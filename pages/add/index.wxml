@@ -1,0 +1,53 @@
+<nav-bar title="{{navTitle}}"></nav-bar>
+<!-- 占位 -->
+<view style="height:{{navBarHeight}}px;"></view>
+
+<view class="container">
+  <!-- 图片上传 -->
+  <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" max-count="2">
+  </van-uploader>
+  <!-- 名称 -->
+  <van-field model:value="{{ name }}" placeholder="填写清晰的活动标题" bind:change="onChange" data-key="name" />
+  <!-- 详情描述 -->
+  <van-field class="field-input-class" model:value="{{ desc }}" type="textarea" autosize="{{autoSize}}" placeholder="描述一下比赛规则、比赛内容、比赛奖励、推荐的人群、贴心tips等，叫大家一起打比赛吧~" />
+  <!-- 日期 -->
+  <van-cell icon="clock" title="日期" model:value="{{ currDate }}" bind:click="onDisplay" data-show="showCalendar" />
+  <van-calendar show="{{ showCalendar }}" bind:close="onClose" data-show="showCalendar" bind:confirm="onConfirm" data-key="currDate" show-confirm="{{ false }}" />
+  <!-- 开始、结束时间 -->
+  <van-cell icon="underway" title="开始时间" model:value="{{ startTime }}" bind:click="onDisplay" data-show="showStartTimePicker" />
+  <van-cell icon="underway" title="结束时间" model:value="{{ endTime }}" bind:click="onDisplay" data-show="showEndTimePicker" />
+  <van-popup show="{{ showStartTimePicker }}" round position="bottom" custom-style="height: 50%" bind:close="onClose" data-show="showStartTimePicker">
+    <van-datetime-picker type="time" value="{{ startTime }}" min-hour="{{ minHour }}" max-hour="{{ maxHour }}" bind:input="onInput" data-key="startTime" bind:confirm="onConfirm" data-show="showStartTimePicker" />
+  </van-popup>
+  <van-popup show="{{ showEndTimePicker }}" round position="bottom" custom-style="height: 50%" bind:close="onClose" data-show="showEndTimePicker">
+    <van-datetime-picker type="time" value="{{ endTime }}" min-hour="{{ minHour }}" max-hour="{{ maxHour }}" bind:input="onInput" data-key="endTime" bind:confirm="onConfirm" data-show="showEndTimePicker" />
+  </van-popup>
+  <!-- 地区 -->
+  <van-cell icon="location" model:value="{{ currArea }}" readonly title="地区" bind:click="onDisplay" data-show="showAreaCascader" />
+  <van-popup show="{{ showAreaCascader }}" round position="bottom" custom-style="height: 50%" bind:close="onClose" data-show="showAreaCascader">
+    <van-cascader wx:if="{{ showAreaCascader }}" value="{{ currArea }}" title="请选择所在地区" options="{{ options }}" active-color="#ee0a24" bind:close="onClose" data-show="showAreaCascader" bind:finish="onFinishAreaCascader" />
+  </van-popup>
+
+  <van-field left-icon="wap-home" model:value="{{ address }}" input-align="right" placeholder="请输详细地址" type="number">
+    <view slot="label">详细地址</view>
+  </van-field>
+
+  <van-field wx:if="{{ type=='3' }}" left-icon="friends" model:value="{{ joinNum }}" input-align="right" placeholder="请输入人数" type="number" border="{{ false }}">
+    <view slot="label">人数</view>
+  </van-field>
+  <van-field wx:else left-icon="friends" model:value="{{ joinNum }}" input-align="right" placeholder="请输入队伍数量" type="number" border="{{ false }}">
+    <view slot="label">队伍数量</view>
+  </van-field>
+  <van-field left-icon="ascending" model:value="{{ startAge }}" input-align="right" placeholder="请输入年龄上限" type="number" border="{{ false }}">
+    <view slot="label">年龄上限</view>
+  </van-field>
+  <van-field left-icon="descending" model:value="{{ endAge }}" input-align="right" placeholder="请输入年龄下限" type="number" border="{{ false }}">
+    <view slot="label">年龄下限</view>
+  </van-field>
+</view>
+<view class="active">
+  <van-button round custom-class="btn-custom-class" bind:click="onCreateBtn">
+    发布
+  </van-button>
+</view>
+<view class="logo"></view>

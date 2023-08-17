@@ -1,0 +1,13 @@
+<!--component/recruit/index.wxml-->
+<view class="card">
+  <image class="avatar" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFill" />
+  <view class="info">
+    <view class="name">
+      王大拿队
+    </view>
+    <view class="num">
+      招募人数：3人
+    </view>
+  </view>
+  <van-button color="#D67407" class="btn" round type="info">立即加入</van-button>
+</view>

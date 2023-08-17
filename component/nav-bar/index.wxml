@@ -1,0 +1,9 @@
+<view class="nav-bar" style="height:{{navBarHeight}}px;">
+  <view class="bar" style="height:{{menuHeight}}px; min-height:{{menuHeight}}px; line-height:{{menuHeight}}px; top:{{menuTop}}px;">
+    <navigator wx:if="{{ showBackNav }}" class="active" open-type='navigateBack'>
+      <van-icon name="arrow-left"></van-icon>
+      返回
+    </navigator>
+  </view>
+  <view class="title" style="top: {{menuTop}}px; height:{{menuHeight}}px;">{{ title }}</view>
+</view>

@@ -1,0 +1,30 @@
+<nav-bar wx:if="{{showNarBar}}" title="{{navTitle}}"></nav-bar>
+<view>
+  <view class="top-img">
+    <image class="sticker" src="http://ryt5dzeq0.hn-bkt.clouddn.com/main-img-font.png" mode="widthFix" />
+    <text class="slogan">老年热血 | 当打之年 | 快乐至上</text>
+  </view>
+
+  <van-sticky offset-top="{{ offsetTop }}" bind:scroll="showNarBar">
+    <view class="tabs">
+      <view wx:for="{{tabs}}" wx:key="*this" class="tab {{activeTab===index?'active':''}}" bindtap="switchTab" data-index="{{index}}">
+      <van-icon size="85rpx" name="{{ tabIcon[index] }}"></van-icon>
+      <view class="title">
+        {{item}}
+      </view>
+      </view>
+    </view>
+  </van-sticky>
+  <swiper current="{{activeTab}}" id="auto-swiper" style="height: {{swiperHeight}};">
+    <swiper-item class="content-hot">
+      <match-card wx:for="{{matchList}}" wx:key="index" title="{{ item.title }}" img="{{item.img}}" date="{{item.date}}" address="{{ item.address }}" matchID="{{index}}"></match-card>
+    </swiper-item>
+    <swiper-item class="content">
+      2
+    </swiper-item>
+    <swiper-item class="content">
+      3
+    </swiper-item>
+  </swiper>
+
+</view>

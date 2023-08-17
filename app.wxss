@@ -1,0 +1,8 @@
+page {
+  --brand-regular: #FB8808;
+  --brand-click:#D67407;
+  --m-background-color :#F2F4F3;
+  --m-font-size-regular: 0.95rem;
+  --m-font-size-large:1.5rem;
+  background-color: var(--m-background-color);
+}

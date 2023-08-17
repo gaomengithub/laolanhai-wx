@@ -1,0 +1,78 @@
+<!--pages/look-desc/index.wxml-->
+<view class="base-info">
+  <view class="title">
+    8.3赛福8-10篮球！养身局球
+  </view>
+  <view class="vs-avatar">
+    <view class="team">
+      <image class="team-avatar" src="http://img.aflc.com.cn/uploadimg/image/20200720/20200720144905_32791.png" mode="scaleToFill" />
+      <view>
+        庞各庄萝卜
+      </view>
+    </view>
+    <view class="score">
+      93-102
+    </view>
+    <view class="team">
+      <image class="team-avatar" src="http://nimg.ws.126.net/?url=http://dingyue.ws.126.net/2021/1009/2e320788j00r0oos0001ac000hs00hsg.jpg&thumbnail=650x2147483647&quality=80&type=jpg" mode="scaleToFill" />
+      <view>
+        庞各庄青椒</view>
+    </view>
+  </view>
+</view>
+<view class="ts">
+  <view class="title">
+    技术统计
+  </view>
+  <view class="vs-card">
+  <view class="left">
+    庞各庄萝
+  </view>
+  <image  class="center" src="http://ryt5dzeq0.hn-bkt.clouddn.com/icons8-battle-80.png" mode="widthFix"/>
+  <view class="right">
+    庞各庄青椒
+  </view>
+  </view>
+  <view class="table">
+    <view class="table-row">
+      <view class="table-cell">球员</view>
+      <view class="table-cell">得分</view>
+      <view class="table-cell">篮板</view>
+      <view class="table-cell">盖帽</view>
+    </view>
+    <view class="table-row">
+      <view class="table-cell">
+        张三
+      </view>
+      <view class="table-cell">1</view>
+      <view class="table-cell">2</view>
+      <view class="table-cell">7</view>
+    </view>
+    <view class="table-row">
+      <view class="table-cell">李四</view>
+      <view class="table-cell">1</view>
+      <view class="table-cell">2</view>
+      <view class="table-cell">7</view>
+    </view>
+    <view class="table-row">
+      <view class="table-cell">王二麻子</view>
+      <view class="table-cell">1</view>
+      <view class="table-cell">2</view>
+      <view class="table-cell">7</view>
+    </view>
+    <view class="table-row">
+      <view class="table-cell">李怡悦</view>
+      <view class="table-cell">1</view>
+      <view class="table-cell">2</view>
+      <view class="table-cell">7</view>
+    </view>
+  </view>
+</view>
+<view class="bottom">
+  <van-divider
+  contentPosition="center"
+  customStyle="color: #1989fa; border-color: #1989fa; font-size: 18px;"
+>
+<image class="avatar" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFill" />
+</van-divider>
+</view>

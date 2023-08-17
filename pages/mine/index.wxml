@@ -1,0 +1,60 @@
+<!--pages/mine/index.wxml-->
+<view class="avatar">
+</view>
+<view class="data-card">
+<view class="title">
+  我的战绩
+</view>
+<view class="data">
+    <view class="cell">
+      <view class="num">
+      24
+      </view>
+      <view class="tag">
+        参赛数
+      </view>
+    </view>
+    <view class="cell">
+      <view class="num">
+      1044
+      </view>
+      <view class="tag">
+        正赛得分
+      </view>
+    </view>
+    <view class="cell">
+      <view class="num">
+        88%
+      </view>
+      <view class="tag">
+        获胜率
+      </view>
+    </view>
+    <view class="cell">
+      <view class="num">
+        2222
+      </view>
+      <view class="tag">
+        战队积分
+      </view>
+    </view>
+  </view>
+</view>
+<view class="select-card">
+<view class="cell">
+
+战队
+</view>
+<view class="cell">
+申请
+</view>
+<view class="cell">
+入驻
+</view>
+</view>
+<view class="joined-card">
+<view class="title">
+  我参加过的
+</view>
+</view>
+<view class="honor-card"></view>

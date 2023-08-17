@@ -1,0 +1,42 @@
+<image class="bg" src="http://ryt5dzeq0.hn-bkt.clouddn.com/%E7%AF%AE%E7%90%83%E6%AF%94%E8%B5%9BMVP%E7%BB%9D%E6%9D%80%E6%97%B6%E5%88%BB%E7%83%AD%E8%A1%80%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A6%96%E5%9B%BE.jpg" mode="widthFix" />
+
+
+<view class="team">
+  <image class="avatar" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFill" />
+  <view class="name">
+    影子追踪者
+  </view>
+  <view class="data">
+    <view class="cell">
+      <view class="num">
+      24
+      </view>
+      <view class="tag">
+        参赛数
+      </view>
+    </view>
+    <view class="cell">
+      <view class="num">
+        88%
+      </view>
+      <view class="tag">
+        获胜率
+      </view>
+    </view>
+    <view class="cell">
+      <view class="num">
+        2222
+      </view>
+      <view class="tag">
+        战队积分
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<recruit></recruit>
+<recruit></recruit>
+<recruit></recruit>
+<recruit></recruit>

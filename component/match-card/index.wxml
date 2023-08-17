@@ -1,0 +1,29 @@
+<!--component/official-game-card/index.wxml-->
+<view class="card">
+  <view class="main">
+    <image class="img" src="{{img}}" mode="aspectFill" />
+    <view class="desc">
+      <view class="title">{{title}}</view>
+      <view class="content">
+      <view class="child">
+        <van-icon class="icon" size="18" name="clock-o" />{{ date }}
+      </view>
+      <view class="child">
+        <van-icon class="icon" size="18" name="location-o" />{{ address }}
+      </view>
+      </view>
+    </view>
+  </view>
+  <view class="active">
+    <view class="status">报名中</view>
+    <view class="avatar-wrap">
+      <image class='avatar' src='https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' />
+      <image class='avatar' src='https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' />
+      <image class='avatar' src='https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' />
+    </view>
+    <text style="color: #757575;font-size: 0.8rem;padding-left: 5px;">23人已报名</text>
+    <view class="btn">
+      <van-button block round color="#D67407" bind:click="toDescPage" data-id="{{matchID}}">立即加入</van-button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,32 @@
+/* component/recruit/index.wxss */
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 22px;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  padding: 16px;
+  background-color: white;
+  position: relative;
+}
+.card .avatar{
+  width: 100px;
+  height: 100px;
+  clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
+
+}
+.card .info .name{
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.card .info .num{
+  color: gray;
+}
+.card .btn{
+  position: absolute;
+  right: 10px;
+}

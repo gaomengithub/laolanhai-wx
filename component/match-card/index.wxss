@@ -1,0 +1,101 @@
+/* component/official-game-card/index.wxss */
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  margin: 16px;
+  padding: 16px;
+  background: linear-gradient(to right , #ffff, #FBE9E7 );
+}
+
+.card .main {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.card .main .img {
+  /* width: 120px; */
+  flex: 37%;
+  height: 130px;
+  border-radius: 8px;
+
+}
+
+.card .main .desc {
+  flex: 63%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 16px;
+}
+
+.card .main .desc .title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+.card .main .desc .content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 16px;
+  color: #424242;
+}
+
+.card .main .desc .content .child {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.card .active {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.active .status {
+  font-size: 0.8rem;
+  height: 1rem;
+  padding: 6px;
+  background-color: #FB8808;
+  border-radius: 3px;
+}
+
+.avatar-wrap {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+  /* 这个值可以根据需要调整 */
+}
+
+.avatar {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  margin-left: -10px;
+  /* 这个值可以根据需要调整 */
+  border: 1px solid white;
+  /* 加上白色描边 */
+}
+
+.btn {
+  position: absolute;
+  right: 10px;
+  height: inherit;
+  width: 100px;
+  font-weight: 600;
+}
+
+.icon {
+  margin-right: 6px;
+  color: var(--brand-regular)
+}

@@ -1,0 +1,48 @@
+<!--component/create-card/index.wxml-->
+<view class="container">
+  <view class="up">
+    <navigator url="/pages/add/index?type=2" class="child" open-type="navigate">
+      <view class="front">
+        <van-icon name="bookmark" />
+      </view>
+      <view class="center">
+        <view class="title">
+          野球战队赛
+        </view>
+        <view class="subTitle">
+          仅限战队参加
+        </view>
+      </view>
+      <view class="back">
+        <van-icon name="arrow" />
+      </view>
+    </navigator>
+    <navigator url="/pages/add/index?type=3" class="child" open-type="navigate">
+      <view class="front">
+        <van-icon name="bookmark" />
+      </view>
+      <view class="center">
+        <view class="title">
+          野球局
+        </view>
+        <view class="subTitle">
+          仅限个人参加
+        </view>
+      </view>
+      <view class="back">
+        <van-icon name="arrow" />
+      </view>
+    </navigator>
+  </view>
+  <view class="mid">
+    <navigator url="/pages/add/index?type=1" class="child" open-type="navigate">
+      <view>正赛</view>
+    </navigator>
+    <navigator url="/pages/create-team/index" class="child" open-type="navigate">
+      <view>球队</view>
+    </navigator>
+  </view>
+  <view class="down">
+    <slot></slot>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "match-card":"/component/match-card/index",
+    "nav-bar": "/component/nav-bar/index",
+    "van-sticky": "@vant/weapp/sticky/index",
+    "van-loading": "@vant/weapp/loading/index",
+    "van-icon": "@vant/weapp/icon/index"
+  },
+  "enablePullDownRefresh": true
+}
