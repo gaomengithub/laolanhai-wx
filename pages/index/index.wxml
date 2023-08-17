@@ -7,12 +7,24 @@
 
   <van-sticky offset-top="{{ offsetTop }}" bind:scroll="showNarBar">
     <view class="tabs">
-      <view wx:for="{{tabs}}" wx:key="*this" class="tab {{activeTab===index?'active':''}}" bindtap="switchTab" data-index="{{index}}">
-      <van-icon size="85rpx" name="{{ tabIcon[index] }}"></van-icon>
-      <view class="title">
-        {{item}}
+      <view wx:for="{{tabs}}" wx:key="index" class="tab {{activeTab===index?'active':''}}" bindtap="switchTab" data-index="{{index}}">
+        <van-icon size="85rpx" name="{{ tabIcon[index] }}"></van-icon>
+        <view class="title">
+          {{item}}
+        </view>
+        <view class="bb" wx:if="{{ activeTab === index }}"></view>
       </view>
-      </view>
+    </view>
+    <view class="filter">
+      <van-button custom-class="fb" bind:click="onClickBtn" data-key="">
+        陕西省
+        <van-icon name="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/triangle-3x.png"></van-icon>
+      </van-button>
+      <van-button custom-class="fb">
+      西安市
+      <van-icon name="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/triangle-3x.png"></van-icon>
+      </van-button>
+      <image class="search" src="{{ searchIcon }}"></image>
     </view>
   </van-sticky>
   <swiper current="{{activeTab}}" id="auto-swiper" style="height: {{swiperHeight}};">
@@ -28,3 +40,15 @@
   </swiper>
 
 </view>
+
+
+<van-popup show="{{ show }}" round position="bottom">
+  <van-cascader
+    wx:if="{{ show }}"
+    value="{{ cascaderValue }}"
+    title="请选择所在地区"
+    options="{{ options }}"
+    bind:close="onClose"
+    bind:finish="onFinish"
+  />
+</van-popup>
