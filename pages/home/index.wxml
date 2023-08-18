@@ -16,15 +16,16 @@
       </view>
     </view>
     <view class="filter">
-      <van-button custom-class="fb" bind:click="onClickBtn" data-key="">
-        陕西省
-        <van-icon name="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/triangle-3x.png"></van-icon>
+      <navigator class="cell" url="/libs/city-selector/index">
+      <view class="child">全国</view><van-icon class="icon" name="arrow" />
+      </navigator>
+
+      <navigator class="cell" url="/libs/city-selector/index">
+      <view class="child">全部时间</view><van-icon class="icon" name="arrow" />
+      </navigator>
+      <van-button custom-class="search">
+        <image class="search" src="{{ searchIcon }}"></image>
       </van-button>
-      <van-button custom-class="fb">
-      西安市
-      <van-icon name="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/triangle-3x.png"></van-icon>
-      </van-button>
-      <image class="search" src="{{ searchIcon }}"></image>
     </view>
   </van-sticky>
   <swiper current="{{activeTab}}" id="auto-swiper" style="height: {{swiperHeight}};">
@@ -42,13 +43,10 @@
 </view>
 
 
-<van-popup show="{{ show }}" round position="bottom">
-  <van-cascader
-    wx:if="{{ show }}"
-    value="{{ cascaderValue }}"
-    title="请选择所在地区"
-    options="{{ options }}"
-    bind:close="onClose"
-    bind:finish="onFinish"
-  />
+<van-popup show="{{ showProvinceList }}" round position="bottom">
+  <van-picker columns="{{ provinceList }}" bind:change="onChange" data-key="currProvince" show-toolbar title="选择省份" />
+</van-popup>
+
+<van-popup show="{{ showCityList }}" round position="bottom">
+  <van-picker columns="{{ cityList }}" bind:change="onChange" data-key="currCity" show-toolbar title="选择城市" />
 </van-popup>

@@ -1,7 +1,7 @@
 <!--component/create-card/index.wxml-->
 <view class="container">
   <view class="up">
-    <navigator url="/pages/add/index?type=2" class="child" open-type="navigate">
+    <!-- <navigator url="/pages/add/index?type=2" class="child" open-type="navigate">
       <view class="front">
         <van-icon name="bookmark" />
       </view>
@@ -16,7 +16,7 @@
       <view class="back">
         <van-icon name="arrow" />
       </view>
-    </navigator>
+    </navigator> -->
     <navigator url="/pages/add/index?type=3" class="child" open-type="navigate">
       <view class="front">
         <van-icon name="bookmark" />
@@ -35,9 +35,9 @@
     </navigator>
   </view>
   <view class="mid">
-    <navigator url="/pages/add/index?type=1" class="child" open-type="navigate">
+    <!-- <navigator url="/pages/add/index?type=1" class="child" open-type="navigate">
       <view>正赛</view>
-    </navigator>
+    </navigator> -->
     <navigator url="/pages/create-team/index" class="child" open-type="navigate">
       <view>球队</view>
     </navigator>

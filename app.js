@@ -1,15 +1,12 @@
-// import { loginForToken } from './modules/tokenManager/getToken'
+
 App({
   onLaunch() {
-    const that = this;
     const systemInfo = wx.getSystemInfoSync();
     const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
-    that.globalData.navBarHeight = systemInfo.statusBarHeight + 44;
-    that.globalData.menuRight = systemInfo.screenWidth - menuButtonInfo.right;
-    that.globalData.menuTop = menuButtonInfo.top;
-    that.globalData.menuHeight = menuButtonInfo.height;
-    // loginForToken()
-
+    this.globalData.navBarHeight = systemInfo.statusBarHeight + 44;
+    this.globalData.menuRight = systemInfo.screenWidth - menuButtonInfo.right;
+    this.globalData.menuTop = menuButtonInfo.top;
+    this.globalData.menuHeight = menuButtonInfo.height;
   },
   globalData: {
     navBarHeight: 0, // 导航栏高度

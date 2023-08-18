@@ -8,7 +8,7 @@ Component({
     color: "#A3A3A3",
     selectedColor: "#000000",
     list: [{
-      pagePath: "/pages/index/index",
+      pagePath: "/pages/home/index",
       iconPath: prefix + "/icon/icon_home.png",
       selectedIconPath: prefix +"/icon/icon_home_hl.png",
       text: "首页"

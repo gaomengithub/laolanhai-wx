@@ -84,6 +84,20 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/select-city/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "libs/city-selector/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
