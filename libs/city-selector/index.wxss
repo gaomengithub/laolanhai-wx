@@ -1,6 +1,6 @@
-
 .search {
   margin-bottom: 20rpx;
+  height: 128rpx;
 }
 
 .location {
@@ -78,19 +78,15 @@
   margin-top: 10rpx;
 }
 
-.selectCity {
-  padding: 16rpx;
-  background-color: #f5f5f5;
-  margin-bottom: -10rpx;
-}
+
 
 .item_letter {
   display: flex;
   background-color: #f5f5f5;
-  height: 40rpx;
+  height: 80rpx;
   padding-left: 34rpx;
   align-items: center;
-  font-size: 24rpx;
+  font-size: 32rpx;
   color: #666;
 }
 
@@ -101,63 +97,26 @@
   padding-left: 34rpx;
   align-items: center;
   border-bottom: 1rpx solid #ededed;
-  font-size: 24rpx;
-  color: #666;
+  font-size: 28rpx;
+  color: rgb(65, 65, 65);
 }
-
-.hotcity-common {
-  font-size: 24rpx;
-  color: #666;
-  padding-bottom: 0;
-  margin: 8rpx 0;
-  margin-left: 16rpx;
-}
-
-.hotCity {
-  padding-right: 50rpx;
-  margin: auto;
-}
-
-.thisCityName {
-  display: inline-block;
-  border: 1rpx solid #c60a0d;
-  border-radius: 8rpx;
-  padding: 10rpx 0;
-  font-size: 24rpx;
-  color: #c60a0d;
-  text-align: center;
-  min-width: 149.5rpx;
-  margin: 16rpx 0;
-}
-
-.thishotText {
-  color: #c60a0d;
-  font-size: 20rpx;
-  margin: 0 !important;
-}
-
-.slectCity {
-  border-color: #c60a0d !important;
-}
-
-.slectCity view {
-  color: #c60a0d !important;
-}
-
-
-
 
 
 .ul {
   display: block;
-  color: grey;
-  margin-left: 20rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
 }
 
 .li {
   display: block;
-  font-weight: 100;
   font-size: 28rpx;
-  padding: 16rpx 0;
+  padding: 20rpx 0;
+  padding-left: 34rpx;
+  border-bottom: 1rpx solid #ededed;
+}
+
+.item-hover{
+  background-color: #CCCCCC;
 }
 

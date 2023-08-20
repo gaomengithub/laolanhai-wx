@@ -5,7 +5,7 @@
     <view style="color: {{selected === index ? selectedColor : color}};font-size: 24rpx; margin-top: 4rpx;">{{item.text}}</view>
     <view wx:if="{{index == 2}}">
       <view class="circle-outside" bindtap="show">
-        <van-image fit="cover" width="4rem" height="4rem" src="http://ryt5dzeq0.hn-bkt.clouddn.com/%E5%8A%A0%E5%8F%B7%E6%8C%89%E9%92%AE.png" bind:click="changePopup" />
+        <van-image fit="cover" width="150rpx" height="150rpx" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/icons8-add-96.png" bind:click="changePopup" />
       </view>
     </view>
   </view>

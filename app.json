@@ -9,7 +9,9 @@
     "pages/look-desc/index",
     "pages/login/index",
     "pages/create-team/index",
-    "libs/city-selector/index"
+    "libs/city-selector/index",
+    "pages/unwork/index",
+    "pages/search/index"
   ],
   "window": {
     "navigationStyle": "custom"

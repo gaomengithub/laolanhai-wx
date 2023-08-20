@@ -33,8 +33,14 @@
   padding-top: 10rpx;
   padding-bottom: 10rpx;
   background-color: #ffffff;
+  border-top-left-radius: 44rpx ;
+  border-top-right-radius: 44rpx;
 }
-
+.item-container{
+  position: relative;
+  width: 100%;
+  top: -44rpx;
+}
 .tab {
   display: flex;
   flex-direction: column;
@@ -117,6 +123,7 @@
   overflow: hidden;
   font-size: 0.95rem;
   transform: translateY(-3.5rpx);
+  text-overflow: ellipsis;  /* 如果文本超出部分被隐藏，则显示省略号 */
 }
 
 

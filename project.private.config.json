@@ -98,6 +98,20 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/unwork/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/search/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

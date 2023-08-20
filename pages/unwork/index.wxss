@@ -1,0 +1,24 @@
+/* pages/unwork/index.wxss */
+page {
+  background-color: #ffffff;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.img {
+  height: 291rpx !important;
+  width: 256rpx !important;
+  margin-top: 412rpx;
+  transform: translateX(-15rpx);
+}
+.tip{
+  font-size: 36rpx;
+  color: #3d3d3d;
+  margin-top: 56rpx;
+}

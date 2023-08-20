@@ -1,16 +1,16 @@
-<!--component/official-game-card/index.wxml-->
-<view class="card">
-  <view class="main">
+<view class="card {{typeClass}}" >
+  <view class="item">
     <image class="img" src="{{img}}" mode="aspectFill" />
     <view class="desc">
       <view class="title">{{title}}</view>
       <view class="content">
-      <view class="child">
-        <van-icon class="icon" size="18" name="clock-o" />{{ date }}
-      </view>
-      <view class="child">
-        <van-icon class="icon" size="18" name="location-o" />{{ address }}
-      </view>
+        <view class="child">
+        <image class="icon" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/clock-oy.svg" mode="scaleToFill"/>
+        {{ date }}
+        </view>
+        <view class="child">
+          <image class="icon" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/adress-oy.svg" mode="scaleToFill"/>{{ address }}
+        </view>
       </view>
     </view>
   </view>

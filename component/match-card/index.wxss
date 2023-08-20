@@ -2,13 +2,25 @@
 .card {
   display: flex;
   flex-direction: column;
-  border-radius: 22px;
-  margin: 16px;
-  padding: 16px;
-  background: linear-gradient(to right , #ffff, #FBE9E7 );
+  border-radius: 44rpx;
+  width: 702rpx;
+  margin: 9rpx;
+  padding: 32rpx;
 }
 
-.card .main {
+.official {
+  background-image: url("http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/card-background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.unofficial {
+  background-image: url("http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/unofficial-background-img.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.card .item {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -17,29 +29,27 @@
   margin-bottom: 8px;
 }
 
-.card .main .img {
-  /* width: 120px; */
-  flex: 37%;
-  height: 130px;
-  border-radius: 8px;
-
+.card .item .img {
+  width: 188rpx;
+  height: 222rpx;
+  border-radius: 12rpx;
 }
 
-.card .main .desc {
+.card .item .desc {
   flex: 63%;
   display: flex;
   flex-direction: column;
   padding-left: 16px;
 }
 
-.card .main .desc .title {
-  font-size: 22px;
+.card .item .desc .title {
+  font-size: 18px;
   font-weight: 600;
   margin-bottom: 25px;
-  letter-spacing: 1px;
+  letter-spacing: 4rpx;
 }
 
-.card .main .desc .content {
+.card .item .desc .content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -47,7 +57,7 @@
   color: #424242;
 }
 
-.card .main .desc .content .child {
+.card .item .desc .content .child {
   margin-bottom: 10px;
   overflow: hidden;
 }
@@ -97,5 +107,6 @@
 
 .icon {
   margin-right: 6px;
-  color: var(--brand-regular)
+  height: 26.3rpx;
+  width: 26.3rpx;
 }

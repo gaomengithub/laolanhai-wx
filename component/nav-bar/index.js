@@ -1,7 +1,7 @@
 const app = getApp()
 
 const noShowActiveUrls = [
-  "pages/index/index",
+  "pages/home/index",
   "pages/look/index",
   "pages/team/index",
   "pages/mine/index"

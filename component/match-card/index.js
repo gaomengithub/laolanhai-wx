@@ -1,45 +1,38 @@
-import {request} from '../../utils/http'
-
 
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
     img: String,
     title: String,
     date: String,
     address: String,
     avatars: Array,
-    matchID:String
+    matchID: String,
+    matchType: {
+      type: Number,
+      value: 2
+    },
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    typeClass: "",
   },
-  methods:{
-
-
-
-
-    
-    toDescPage(e){
-      let obj = {
-        method: "POST",
-        url:"/user/login",
+  lifetimes:{
+    attached: function () {
+      switch (this.data.matchType) {
+        case 0:
+          this.setData({
+            typeClass: 'official'
+          });
+          break;
+        case 3:
+          this.setData({
+            typeClass: 'unofficial'
+          });
+          break;
       }
-      request(obj).then(res=>{
+    },
+  },
 
-      }).catch(res=>{
+  methods: {
 
-      })
-      // console.log(e.currentTarget.dataset.id)
-      // wx.navigateTo({
-      //   url: '/pages/desc/index'
-      // })
-    }
   }
 })

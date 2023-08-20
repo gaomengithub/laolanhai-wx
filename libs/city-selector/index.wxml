@@ -3,7 +3,7 @@
 <view style="height:{{navBarHeight}}px;"></view>
 
 <scroll-view scroll-y="true" style="height:100vh" scroll-into-view="{{scrollTopId}}" scroll-top="{{scrollTop}}">
-  <van-search custom-class="search" value="{{ inputName }}" label="搜索城市" placeholder="输入城市名或拼音查询" bind:change="bindKeyInput">
+  <van-search shape="round"  custom-class="search" value="{{ inputName }}" placeholder="输入城市名或拼音查询" bind:change="bindKeyInput">
   </van-search>
 
   <ul class="ul">
@@ -17,7 +17,7 @@
       <van-icon style="transform: translateY(7rpx);" name="location">
       </van-icon>
       <view>
-        定位中...
+        {{ city }}
       </view>
     </view>
   </view>
@@ -32,20 +32,14 @@
       </van-grid-item>
     </van-grid>
   </view>
-
+<!-- 右侧字母 -->
   <view class="searchLetter">
     <view wx:for="{{searchLetter}}" wx:key="*this" data-letter="{{item}}" catchtouchend="clickLetter">{{item}}</view>
-    <block wx:if="{{isShowLetter}}">
-      <view class="showSlectedLetter">
-        {{toastShowLetter}}
-      </view>
-    </block>
   </view>
   <view class="selection" wx:for="{{cityList}}" wx:key="initial">
     <view class="item_letter" id="{{item.initial}}">{{item.initial}}</view>
-    <view class="item_city" wx:for="{{item.cityInfo}}" wx:for-item="ct" wx:key="id" data-code="{{ct.code}}" data-city="{{ct.city}}" bindtap="bindCity">
+    <view class="item_city" hover-class="item-hover" hover-start-time="20" hover-stay-time="70" wx:for="{{item.cityInfo}}" wx:for-item="ct" wx:key="id" data-code="{{ct.code}}" data-city="{{ct.city}}" bindtap="bindCity">
       {{ct.city}}
     </view>
   </view>
-
 </scroll-view>
