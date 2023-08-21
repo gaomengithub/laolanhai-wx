@@ -3,19 +3,23 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 142rpx;
+  height: 166rpx;
   background: white;
   display: flex;
-  padding-bottom: env(safe-area-inset-bottom);
+  /* padding-bottom: env(safe-area-inset-bottom); */
+  border-top-left-radius: 16rpx;
+  border-top-right-radius: 16rpx;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* 添加此行来产生阴影 */
 }
 
 .tab-bar-item {
   flex: 1;
   text-align: center;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  margin-top: 24rpx;
 }
 
 .circle-outside {
@@ -26,7 +30,7 @@
   position: relative;
   width: 75px;
   height: 75px;
-  top: -20px;
+  top: -66rpx;
   background: #ffffff;
   border-radius: 405%;
 }

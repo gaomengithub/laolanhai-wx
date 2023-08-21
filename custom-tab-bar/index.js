@@ -30,8 +30,6 @@ Component({
       selectedIconPath: prefix +"/icon/icon_mine_hl.png",
       text: "我的"
     }],
-    Fhalf: [],
-    Bhalf: [],
   },
   attached() {
     this.setData({

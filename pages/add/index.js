@@ -1,4 +1,4 @@
-import { createMatch } from '../../utils/api'
+import { createMatch ,uploadImage } from '../../utils/api'
 const app = getApp()
 
 const options = [{
@@ -19,24 +19,36 @@ const options = [{
 },
 ];
 
+let fileList=[]
+
 Page({
   data: {
     options: options,
     type: 3,
     navTitle: "创建",
     autoSize: { minHeight: 50 },
-    formattedDate:"",
+    formattedDate: "",
+    iconUrl: {
+      date: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/calendar-50.png",
+      startTime: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/start-time.svg",
+      endTime: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/icons8-delivery-time-50.png",
+      startAge: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/icons8-up-50.png",
+      endAge: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/icons8-down-50.png",
+      cost: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/icons8-cost-50.png",
+      upload: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/upload-img.svg"
+    },
     //form data
-    name: "测试",
-    desc: "测试",
+    name: "",
+    desc: "",
     currDate: '',
-    startTime: "11:00",
-    endTime: "12:00",
+    startTime: "",
+    endTime: "",
     currArea: "",
     address: "",
-    joinNum: "12",
-    startAge: "45",
-    endAge: "55",
+    joinNum: "",
+    startAge: "",
+    endAge: "",
+    currCost: "免费",
     // 页面控制
     minHour: 10,
     maxHour: 20,
@@ -45,16 +57,14 @@ Page({
     showCalendar: false,
     showMatchTpyePicker: false,
     showAreaCascader: false,
+    showCostAction: false,
+    costActions: [{ name: "免费" }, { name: "约10元" }, { name: "约20元" }, { name: "约30元" }],
     navBarHeight: app.globalData.navBarHeight,
     //上传
     fileList: [],
   },
 
   onLoad(options) {
-    const date = new Date()
-    this.setData({
-      date: this.formatDate(date)
-    })
     try {
       this.setData({
         type: options.type
@@ -84,9 +94,15 @@ Page({
   onConfirm(e) {
     const key = e.currentTarget.dataset.key
     const show = e.currentTarget.dataset.show
+    let val = e.detail
+    if (key == "currDate") {
+      val = this.formatDate(e.detail)
+    } else if (key == "currCost") {
+      val = e.detail.name
+    }
     this.setData({
       [show]: false,
-      [key]: key == "currDate"? this.formatDate(e.detail) : e.detail
+      [key]: val
     })
   },
   onChange(e) {
@@ -111,13 +127,36 @@ Page({
     let day = date.getDate(); // 获取日期
     let formattedDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
     this.setData({
-      formattedDate:formattedDate
+      formattedDate: formattedDate
     })
     return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
   },
 
+
+  onAfterRead(event) {
+    const that = this
+    const { file } = event.detail;
+    wx.compressImage({
+      src: file.url,
+      quality:50,
+      success(res){
+        const obj ={
+          url: res.tempFilePath,
+          isImage: true,
+          name: '图片2',
+        }
+        fileList.push(obj)
+        console.log(fileList)
+        that.setData({
+          fileList:fileList
+        })
+        // uploadImage(res.tempFilePath,"upload-url").then(res=>{
+        //   console.log(res)
+        // })
+      }
+    })
+  },
   onCreateBtn() {
-    
     let data = {
       age_group_start: parseInt(this.data.startAge),
       age_group_end: parseInt(this.data.endAge),
@@ -130,15 +169,23 @@ Page({
       location: this.data.currArea + this.data.address,
       match_type: parseInt(this.data.type),
       name: this.data.name,
+      // price: this.data.currCost
       // organizer: "",
     }
-    createMatch(data).then(res=>{
-      if(res.statusCode == "200"){
-        wx.navigateTo({
-          url: '/pages/desc/index',
+    createMatch(data).then(res => {
+      if (res.statusCode == "200") {
+        wx.showToast({
+          title: '创建成功',
+          icon:"success",
+          duration:"3000",
+          success(){
+            wx.switchTab({
+              url: '/pages/home/index',
+            })
+          }
         })
       }
-    }).catch(e=>{
+    }).catch(e => {
       console.log(e)
     })
   }

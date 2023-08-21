@@ -1,4 +1,4 @@
-<image class="bg" src="http://ryt5dzeq0.hn-bkt.clouddn.com/%E7%AF%AE%E7%90%83%E6%AF%94%E8%B5%9BMVP%E7%BB%9D%E6%9D%80%E6%97%B6%E5%88%BB%E7%83%AD%E8%A1%80%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A6%96%E5%9B%BE.jpg" mode="widthFix" />
+<!-- <image class="bg" src="http://ryt5dzeq0.hn-bkt.clouddn.com/%E7%AF%AE%E7%90%83%E6%AF%94%E8%B5%9BMVP%E7%BB%9D%E6%9D%80%E6%97%B6%E5%88%BB%E7%83%AD%E8%A1%80%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A6%96%E5%9B%BE.jpg" mode="widthFix" />
 
 
 <view class="team">
@@ -34,9 +34,10 @@
   </view>
 </view>
 
+<recruit></recruit>
+<recruit></recruit>
+<recruit></recruit>
+<recruit></recruit> -->
 
 
-<recruit></recruit>
-<recruit></recruit>
-<recruit></recruit>
-<recruit></recruit>
+<unwork></unwork>

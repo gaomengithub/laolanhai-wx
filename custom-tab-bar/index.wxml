@@ -1,4 +1,6 @@
 <!--miniprogram/custom-tab-bar/index.wxml-->
+<!-- 占位 -->
+<view style="height: 232rpx;" wx:if="{{ show }}"></view>
 <view class="tab-bar" wx:if="{{ show }}">
   <view wx:for="{{list}}" wx:key="index" class="tab-bar-item" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
     <image src="{{selected === index ? item.selectedIconPath : item.iconPath}}" style="width: 48rpx;height: 48rpx;"></image>

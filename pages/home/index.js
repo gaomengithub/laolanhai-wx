@@ -65,7 +65,6 @@ Page({
   onLoad() {
     let matchList = []
     getMatchList().then(res => {
-      console.log(res)
       for (let item of res.data.matches) {
         matchList.push(
           {
@@ -75,6 +74,8 @@ Page({
             date: formatForMatchCard(item.start_time),
             img: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
             address: item.location,
+            status:["报名中","进行中","已结束"][item.status],
+            num:item.teams.length + item.users.length
             // avatars: ["头像地址1", "头像地址2"]
           }
         )

@@ -1,4 +1,5 @@
 // pages/desc/index.js
+import { getMatchDesc } from '../../utils/api'
 const app = getApp()
 Page({
 
@@ -7,7 +8,6 @@ Page({
    */
   data: {
     navTitle: "老蓝孩俱乐部",
-    navIconName:"arrow-left",
     navBarHeight: app.globalData.navBarHeight,
   },
 
@@ -15,7 +15,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    getMatchDesc(options.matchID).then(res=>{
+      console.log(res)
+    }).catch(e=>{
+      console.log(e)
+    })
   },
 
   /**

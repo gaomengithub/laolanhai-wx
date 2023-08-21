@@ -33,14 +33,8 @@
   padding-top: 10rpx;
   padding-bottom: 10rpx;
   background-color: #ffffff;
-  border-top-left-radius: 44rpx ;
-  border-top-right-radius: 44rpx;
 }
-.item-container{
-  position: relative;
-  width: 100%;
-  top: -44rpx;
-}
+
 .tab {
   display: flex;
   flex-direction: column;

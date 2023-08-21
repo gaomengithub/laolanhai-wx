@@ -5,6 +5,7 @@
     "nav-bar": "/component/nav-bar/index",
     "van-tabs":"@vant/weapp/tabs/index",
     "van-tab":"@vant/weapp/tab/index",
-    "look-card":"/component/look-card/index"
+    "look-card":"/component/look-card/index",
+    "unwork":"/component/unwork/index"
   }
 }

@@ -1,29 +1,30 @@
-<view class="card {{typeClass}}" >
+<view class="card {{typeClass}}">
   <view class="item">
-    <image class="img" src="{{img}}" mode="aspectFill" />
+    <image class="poster-img" src="{{img}}" mode="aspectFill" />
+    <image class="bg-img" src="{{backgroundImageUrl}}" mode="scaleToFill"/>
     <view class="desc">
       <view class="title">{{title}}</view>
       <view class="content">
         <view class="child">
-        <image class="icon" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/clock-oy.svg" mode="scaleToFill"/>
-        {{ date }}
+          <image class="icon" src="{{iconUrl.clock}}" mode="scaleToFill" />
+          {{ date }}
         </view>
         <view class="child">
-          <image class="icon" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/adress-oy.svg" mode="scaleToFill"/>{{ address }}
+          <image class="icon" src="{{iconUrl.address}}" mode="scaleToFill" />
+          {{ address }}
         </view>
       </view>
     </view>
   </view>
   <view class="active">
-    <view class="status">报名中</view>
+    <view class="status">{{ status }}</view>
     <view class="avatar-wrap">
-      <image class='avatar' src='https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' />
-      <image class='avatar' src='https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' />
-      <image class='avatar' src='https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' />
+      <image class='avatar' wx:for="{{avatarUrl}}" src='{{item}}' wx:key="index"/>
     </view>
-    <text style="color: #757575;font-size: 0.8rem;padding-left: 5px;">23人已报名</text>
-    <view class="btn">
-      <van-button block round color="#D67407" bind:click="toDescPage" data-id="{{matchID}}">立即加入</van-button>
-    </view>
+    <text wx:if="{{matchType == 3}}" class="reg-info">{{num}}人已报名</text>
+    <text wx:else class="reg-info">{{num}}队已报名</text>
+    <navigator url="/pages/desc/index?matchID={{ matchID }}">
+    <van-button custom-class="btn">立即加入</van-button>
+  </navigator>
   </view>
 </view>

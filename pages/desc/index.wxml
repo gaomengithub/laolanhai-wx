@@ -1,22 +1,25 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
-<view class="image-container">
-  <view class="gradient-mask"></view>
-  <image class="main-img" src="http://ryt5dzeq0.hn-bkt.clouddn.com/%E6%B5%B7%E6%8A%A5.png" mode="scaleToFill" />
+<view style="height:{{navBarHeight}}px;"></view>
+
+
+<view class="up">
+  <view class="gradient-mask">
+    <image class="type" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/unofficial-tag-2x.png" mode="widthFix"></image>
+    <view class="title">
+      8.3赛福8-10篮球！养身局球！
+    </view>
+  </view>
 </view>
-<view class="info-container">
-  <view class="type">
-    野球赛
-  </view>
-  <view class="title">
-    8.3赛福8-10篮球！养身局球！
-  </view>
+<view class="mid">
   <view class="date-address">
-    <view class=".child">
-      <van-icon name="clock-o" />20:00-22:00周四08.03
-    </view>
-    <view class=".child">
-      <van-icon name="location-o" />赛服俱乐部
-    </view>
+  <view class="cell">
+    <image class=".child" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/clock-wo.svg" mode="scaleToFill"> </image>
+    20:00-22:00周四08.03
+  </view>
+  <view class="cell">
+    <image class=".child" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/adress-wo.svg" mode="scaleToFill"></image>
+    赛服俱乐部
+  </view>
   </view>
   <view class="part">
     <view class="title">已参加的人员</view>
@@ -30,6 +33,13 @@
   </view>
 
 </view>
+
+
+
+
+
+
+
 <view class="desc">
   <view class="title">
     详情内容
@@ -62,5 +72,5 @@
 </view>
 <view class="logo" style="height: 55px;"></view>
 <view class="active">
-  <van-button style="width: 60vw;" custom-class="btn-custom-class" color="black" block round >立即报名</van-button>
+  <van-button style="width: 60vw;" custom-class="btn-custom-class" color="black" block round>立即报名</van-button>
 </view>

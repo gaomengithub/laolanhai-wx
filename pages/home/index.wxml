@@ -5,7 +5,7 @@
     <text class="slogan">老年热血 | 当打之年 | 快乐至上</text>
   </view>
 
-  <van-sticky class="item-container" offset-top="{{ offsetTop }}" bind:scroll="showNarBar">
+  <van-sticky offset-top="{{ offsetTop }}" bind:scroll="showNarBar">
     <view class="tabs">
       <view wx:for="{{tabs}}" wx:key="index" class="tab {{activeTab===index?'active':''}}" bindtap="switchTab" data-index="{{index}}">
         <van-icon size="85rpx" name="{{ tabIcon[index] }}"></van-icon>
@@ -30,7 +30,7 @@
   </van-sticky>
   <swiper current="{{activeTab}}" id="auto-swiper" style="height: {{swiperHeight}};">
     <swiper-item class="content-hot">
-      <match-card wx:for="{{matchList}}" wx:key="index" title="{{ item.title }}" img="{{item.img}}" date="{{item.date}}"address="{{ item.address }}" matchID="{{index}}" matchType = "{{item.matchType}}"></match-card>
+      <match-card wx:for="{{matchList}}" wx:key="index" title="{{ item.title }}" img="{{item.img}}" date="{{item.date}}"address="{{ item.address }}" matchID="{{item.id}}" matchType = "{{item.matchType}}" status ="{{item.status}}" num = "{{item.num}}"></match-card>
     </swiper-item>
     <swiper-item class="content">
       2

@@ -1,8 +1,2 @@
 <!--pages/unwork/index.wxml-->
-<nav-bar title="{{navTitle}}"></nav-bar>
-<view class="container">
-  <image class="img" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/unwork.png" mode="scaleToFill" />
-  <view class="tip">
-    该功能正在内测阶段当中，敬请期待！
-  </view>
-</view>
+<text>pages/unwork/index.wxml</text>
