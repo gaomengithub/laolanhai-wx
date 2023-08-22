@@ -10,7 +10,8 @@
     "pages/login/index",
     "pages/create-team/index",
     "libs/city-selector/index",
-    "pages/search/index"
+    "pages/search/index",
+    "libs/calendar/index"
   ],
   "window": {
     "navigationStyle": "custom"
@@ -37,5 +38,6 @@
     ]
   },
   "sitemapLocation": "sitemap.json",
-  "useExtendedLib": {}
+  "useExtendedLib": {},
+  "lazyCodeLoading": "requiredComponents"
 }

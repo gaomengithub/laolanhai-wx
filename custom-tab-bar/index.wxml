@@ -6,14 +6,14 @@
     <image src="{{selected === index ? item.selectedIconPath : item.iconPath}}" style="width: 48rpx;height: 48rpx;"></image>
     <view style="color: {{selected === index ? selectedColor : color}};font-size: 24rpx; margin-top: 4rpx;">{{item.text}}</view>
     <view wx:if="{{index == 2}}">
-      <view class="circle-outside" bindtap="show">
-        <van-image fit="cover" width="150rpx" height="150rpx" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/icons8-add-96.png" bind:click="changePopup" />
+      <view class="circle-outside" bind:tap="showPopup">
+        <image class="img" src="{{iconUrl.add}}"  />
       </view>
     </view>
   </view>
 </view>
 <van-popup show="{{ showPopup }}" round position="bottom" custom-style="height: 50vh" bind:close="onClosePopup" catch:touchmove="preventTouchMove">
   <create-card>
-    <van-icon name="close" size="50px" bind:click="onClosePopup" />
+    <image class="close-icon" src="{{iconUrl.close}}" bind:tap="onClosePopup" />
   </create-card>
 </van-popup>

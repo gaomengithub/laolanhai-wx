@@ -7,35 +7,36 @@ Component({
     selected: 0,
     color: "#A3A3A3",
     selectedColor: "#000000",
+    iconUrl: {
+      add: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/icons8-add-96.png",
+      close: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/icons8-close-100.png"
+    },
     list: [{
       pagePath: "/pages/home/index",
       iconPath: prefix + "/icon/icon_home.png",
-      selectedIconPath: prefix +"/icon/icon_home_hl.png",
+      selectedIconPath: prefix + "/icon/icon_home_hl.png",
       text: "首页"
     }, {
       pagePath: "/pages/look/index",
-      iconPath: prefix +"/icon/icon_look.png",
-      selectedIconPath: prefix +"/icon/icon_look_hl.png",
+      iconPath: prefix + "/icon/icon_look.png",
+      selectedIconPath: prefix + "/icon/icon_look_hl.png",
       text: "观赛"
     }, {
       //占位
     }, {
       pagePath: "/pages/team/index",
-      iconPath: prefix +"/icon/icon_ball.png",
-      selectedIconPath: prefix +"/icon/icon_ball_hl.png",
+      iconPath: prefix + "/icon/icon_ball.png",
+      selectedIconPath: prefix + "/icon/icon_ball_hl.png",
       text: "球队"
     }, {
       pagePath: "/pages/mine/index",
-      iconPath: prefix +"/icon/icon_mine.png",
-      selectedIconPath: prefix +"/icon/icon_mine_hl.png",
+      iconPath: prefix + "/icon/icon_mine.png",
+      selectedIconPath: prefix + "/icon/icon_mine_hl.png",
       text: "我的"
     }],
   },
   attached() {
-    this.setData({
-      Fhalf: this.data.list.slice(0, 2),
-      Bhalf: this.data.list.slice(2, 4)
-    })
+
   },
   methods: {
     preventTouchMove: function () {
@@ -46,7 +47,7 @@ Component({
         showPopup: false
       })
     },
-    changePopup() {
+    showPopup() {
       this.setData({
         showPopup: true
       })

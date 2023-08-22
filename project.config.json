@@ -47,8 +47,14 @@
     "tabSize": 2
   },
   "packOptions": {
-    "ignore": [],
+    "ignore": [
+      {
+        "value": "/minitest",
+        "type": "folder"
+      }
+    ],
     "include": []
   },
-  "appid": "wxf79c572cb3defa19"
+  "appid": "wxf79c572cb3defa19",
+  "testRoot": "minitest/"
 }

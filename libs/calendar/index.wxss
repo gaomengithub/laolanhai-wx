@@ -1,0 +1,21 @@
+.calendar {
+  --calendar-height: 618px;
+}
+.bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 100rpx;
+  align-items: center;
+}
+.bar .child{
+  background-color: #ffffff;
+  margin: 12rpx;
+  padding: 12rpx;
+  border-radius: 22rpx;
+  font-size: 28rpx;
+}
+
+.checked{
+  background-color: #ee0a24 !important;
+}

@@ -1,4 +1,4 @@
-import { request , uploadImg } from "./http"
+import { request, uploadImg } from "./http"
 
 export async function getMatchList() {
   let obj = {
@@ -17,11 +17,22 @@ export async function getMatchList() {
 }
 
 
-export async function getMatchDesc(matchID){
+export async function joinMatch(matchID) {
   let obj = {
-    url:'/match/get',
-    data:{
-      id:matchID
+    url: '/match/join',
+    method: 'POST',
+    data: {
+      match_id: matchID
+    }
+  }
+  return await request(obj)
+}
+
+export async function getMatchDesc(matchID) {
+  let obj = {
+    url: '/match/get',
+    data: {
+      id: matchID
     }
   }
   return await request(obj)
@@ -45,7 +56,7 @@ export async function getUploadToken() {
 }
 
 
-export async function uploadImage(path,url) {
-  return await uploadImg(path,url)
+export async function uploadImage(path, url) {
+  return await uploadImg(path, url)
 }
 

@@ -24,7 +24,7 @@
 .up .type {
   width: 180rpx;
   height: 100rpx;
-  margin-top: 200rpx;
+  margin-top: 250rpx;
 }
 
 .up .title {
@@ -74,20 +74,28 @@
 
 .mid .part {
   background-color: rgb(36, 36, 36);
-  border-radius: 22px;
+  border-radius: 44rpx;
   padding: 16px;
 }
 
 .mid .part .title {
-  font-size: 1rem;
-  color: gray;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  opacity: 0.6;
+}
+
+.part .avatars {
+  width: 600rpx;
+  height: 72rpx;
+  padding-top: 22rpx;
+  overflow: hidden;
 }
 
 .part .avatar {
-  width: 3rem;
-  height: 3rem;
+  width: 72rpx;
+  height: 72rpx;
   border-radius: 50%;
-  border: 1px, solid, #fff;
+  border: 4rpx, solid, #fff;
   margin-right: 8px;
 }
 
@@ -119,16 +127,20 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 55px;
+  height: 166rpx;
   background: white;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding-bottom: env(safe-area-inset-bottom);
+  align-items: flex-start;
+  /* padding-bottom: env(safe-area-inset-bottom); */
 }
 
-.btn-custom-class .van-button__text {
-  color: orange;
-  font-size: 1rem;
+.btn-custom-class {
+  margin-top: 16rpx;
+  color: #FB8808 !important;
+  font-size: 36rpx;
   font-weight: 700;
+  width: 650rpx !important;
+  background-color: #000000 !important;
+  border-radius: 60rpx !important;
 }

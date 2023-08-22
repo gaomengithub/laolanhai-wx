@@ -8,7 +8,7 @@
   <van-sticky offset-top="{{ offsetTop }}" bind:scroll="showNarBar">
     <view class="tabs">
       <view wx:for="{{tabs}}" wx:key="index" class="tab {{activeTab===index?'active':''}}" bindtap="switchTab" data-index="{{index}}">
-        <van-icon size="85rpx" name="{{ tabIcon[index] }}"></van-icon>
+        <image class="tab-icon" src="{{ tabIcon[index] }}"></image>
         <view class="title">
           {{item}}
         </view>
@@ -17,11 +17,13 @@
     </view>
     <view class="filter">
       <navigator class="cell" url="/libs/city-selector/index">
-      <view class="child">{{currCity}}</view><van-icon class="icon" name="arrow" />
+      <view class="child">{{currCity}}</view>
+      <image class="icon" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/icons8-arrow-100.png" />
       </navigator>
 
       <navigator class="cell" url="/libs/city-selector/index">
-      <view class="child">全部时间</view><van-icon class="icon" name="arrow" />
+      <view class="child">全部时间</view>
+      <image class="icon" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/icons8-arrow-100.png" />
       </navigator>
       <van-button custom-class="search">
         <image class="search" src="{{ searchIcon }}"></image>
@@ -32,11 +34,11 @@
     <swiper-item class="content-hot">
       <match-card wx:for="{{matchList}}" wx:key="index" title="{{ item.title }}" img="{{item.img}}" date="{{item.date}}"address="{{ item.address }}" matchID="{{item.id}}" matchType = "{{item.matchType}}" status ="{{item.status}}" num = "{{item.num}}"></match-card>
     </swiper-item>
-    <swiper-item class="content">
-      2
+    <swiper-item class="content-official">
+      <unwork></unwork>
     </swiper-item>
-    <swiper-item class="content">
-      3
+    <swiper-item class="content-unofficial">
+      <match-card wx:for="{{unofficialMatchList}}" wx:key="index" title="{{ item.title }}" img="{{item.img}}" date="{{item.date}}"address="{{ item.address }}" matchID="{{item.id}}" matchType = "{{item.matchType}}" status ="{{item.status}}" num = "{{item.num}}"></match-card>
     </swiper-item>
   </swiper>
 

@@ -1,12 +1,11 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
 <view style="height:{{navBarHeight}}px;"></view>
 
-
 <view class="up">
   <view class="gradient-mask">
     <image class="type" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/unofficial-tag-2x.png" mode="widthFix"></image>
     <view class="title">
-      8.3赛福8-10篮球！养身局球！
+     {{match.name}}
     </view>
   </view>
 </view>
@@ -14,11 +13,11 @@
   <view class="date-address">
   <view class="cell">
     <image class=".child" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/clock-wo.svg" mode="scaleToFill"> </image>
-    20:00-22:00周四08.03
+    {{ match.start_time }}
   </view>
   <view class="cell">
     <image class=".child" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/adress-wo.svg" mode="scaleToFill"></image>
-    赛服俱乐部
+    {{match.location}}
   </view>
   </view>
   <view class="part">
@@ -29,48 +28,21 @@
       <image class='avatar' src='https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' />
       <image class='avatar' src='https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' />
     </view>
-
   </view>
-
 </view>
-
-
-
-
-
 
 
 <view class="desc">
   <view class="title">
     详情内容
   </view>
-  <text class="content">
-    主题：活力无关年龄—养身局篮球赛
-    📆时间：2022年6月12日 周日 上午9:00 - 下午3:00
-
-    📍地点：市民体育公园（交通便利，停车位充足，带有完备的篮球设施）
-
-    💡活动简介：激活生活，活化青春！我们欢迎所有55岁及以上的乐龄人士参加我们养身局的篮球赛。不论你是篮球新手，还是老鸟，我们都欢迎你的加入！这将是一个充满活力与欢笑的日子。我们一起通过篮球这项健康活动找回年轻的热情，提升健康水平！
-
-    🏀活动内容：
-    1. 篮球技巧规则介绍（旨在让所有参赛者理解并遵守比赛规则）
-    2. 熱身运动（指导者会引导大家做适合老年人的热身运动）
-    3. 篮球友谊赛（化分为几个小组，进行友谊比赛，设计不同的得分机制以保障安全）
-    4. 午间轻型午餐
-    5. 休息时间（提供桌游，麻将等休息活动）
-    6. 颁奖仪式
-
-    🛍我们还将为参赛者准备健康礼包，包括能量补充零食，运动饮料，健康饮食指南等等。
-
-    🙋‍♀️报名方式：前往我们的网站点击"养身局篮球赛"活动进行在线报名，或在市民体育公园内咨询我们的服务台。
-
-    处在养身局的您，此刻是展现活力的时刻！让我们在篮球场上重温曾经的激情，找回那份热爱生活的勃勃活力！🔥🔥🔥碰撞力量，斗志，友谊，在篮球赛场挥洒汗水，一同享受运动带来的乐趣！
-
-    请您带上篮球装备，与我们一起度过一天充实而开心的篮球日吧！我们热切期待您的参与！📣
-
+  <text class="content" user-select>
+  {{ match.description }}
   </text>
 </view>
-<view class="logo" style="height: 55px;"></view>
+
+<!-- 占位 -->
+<view style="height: 166rpx;"></view>
 <view class="active">
-  <van-button style="width: 60vw;" custom-class="btn-custom-class" color="black" block round>立即报名</van-button>
+  <van-button custom-class="btn-custom-class" bind:click='onJoinBtn' >立即报名</van-button>
 </view>

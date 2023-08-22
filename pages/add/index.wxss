@@ -23,7 +23,7 @@ page{
 }
 
 .btn-custom-class{
-  margin-top: 1vh;
+  margin-top: 16rpx;
   width: 650rpx;
   background-color: #FB8808 !important;
   font-weight: 600;

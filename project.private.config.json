@@ -119,6 +119,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "libs/calendar/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

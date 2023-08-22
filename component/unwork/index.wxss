@@ -5,7 +5,7 @@ page {
 
 .container {
   display: flex;
-  height: 100vh;
+  /* height: 100vh; */
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -14,7 +14,7 @@ page {
 .img {
   height: 291rpx !important;
   width: 256rpx !important;
-  margin-top: 412rpx;
+  margin-top: 150rpx;
   transform: translateX(-15rpx);
 }
 .tip{

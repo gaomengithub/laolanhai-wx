@@ -1,5 +1,4 @@
-// pages/desc/index.js
-import { getMatchDesc } from '../../utils/api'
+import { getMatchDesc, joinMatch } from '../../utils/api'
 const app = getApp()
 Page({
 
@@ -8,16 +7,45 @@ Page({
    */
   data: {
     navTitle: "老蓝孩俱乐部",
+    matchID: "",
+    match: {},
     navBarHeight: app.globalData.navBarHeight,
-  },
 
+  },
+  onJoinBtn() {
+    if (this.data.matchID != "" || this.data.matchID != null) {
+      joinMatch(this.data.matchID).then(res => {
+        wx.showToast({
+          title: '报名成功',
+          icon: 'success',
+          duration: 2000,
+          success() {
+            setTimeout(() => {
+              wx.navigateBack()
+            }, 2000)
+          }
+        })
+      }).catch(e => {
+        console.log("请求出错")
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    getMatchDesc(options.matchID).then(res=>{
-      console.log(res)
-    }).catch(e=>{
+    try {
+      this.setData({
+        matchID: options.matchID
+      })
+    } catch (e) {
+      console.log("获取比赛ID失败")
+    }
+    getMatchDesc(options.matchID).then(res => {
+      this.setData({
+        match: res.data
+      })
+    }).catch(e => {
       console.log(e)
     })
   },

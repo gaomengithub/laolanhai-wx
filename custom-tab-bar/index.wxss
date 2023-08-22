@@ -9,7 +9,8 @@
   /* padding-bottom: env(safe-area-inset-bottom); */
   border-top-left-radius: 16rpx;
   border-top-right-radius: 16rpx;
-  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* 添加此行来产生阴影 */
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+  /* 添加此行来产生阴影 */
 }
 
 .tab-bar-item {
@@ -33,4 +34,14 @@
   top: -66rpx;
   background: #ffffff;
   border-radius: 405%;
+}
+
+.circle-outside .img {
+  height: 150rpx;
+  width: 150rpx;
+}
+
+.close-icon {
+  width: 100rpx;
+  height: 100rpx;
 }

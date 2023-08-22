@@ -13,10 +13,10 @@ Page({
     ],
     searchIcon: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/search.png",
     triangleIcon: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/triangle-3x.png",
-    active: '热门',
     showNarBar: false,
     loading: false,
     matchList: [],
+    unofficialMatchList:[],
     activeTab: 0,
     swiperHeight: "100vh",
     offsetTop: app.globalData.navBarHeight,
@@ -58,8 +58,9 @@ Page({
     this.setSwiperHeight()
   },
   setSwiperHeight() {
-    wx.createSelectorQuery().select(".content-hot").boundingClientRect(rect => {
-      this.setData({ swiperHeight: rect.height + 'px' });
+    const className = [".content-hot",".content-official",".content-unofficial"][this.data.activeTab]
+    wx.createSelectorQuery().select(className).boundingClientRect(rect => {
+      this.setData({ swiperHeight: rect.height + 120 + 'px' });
     }).exec();
   },
   onLoad() {
@@ -82,6 +83,10 @@ Page({
       }
       this.setData({
         matchList: matchList
+      })
+      let unofficialMatchList = matchList.filter(item => item.matchType===3)
+      this.setData({
+        unofficialMatchList:unofficialMatchList
       })
     }).catch(e => {
       console.log(e)

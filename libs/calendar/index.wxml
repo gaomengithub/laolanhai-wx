@@ -1,0 +1,15 @@
+<!--libs/calendar/index.wxml-->
+<nav-bar title="{{navTitle}}"></nav-bar>
+<view style="height:{{navBarHeight}}px;"></view>
+
+<van-radio-group class="bar" value="{{ radio }}" bind:change="onChange" direction="horizontal">
+  <van-radio class="child {{ radio == '7' ? 'checked' : '' }}" name="7" use-icon-slot >七天内</van-radio>
+  <van-radio class="child {{ radio == '15' ? 'checked' : '' }}" name="15" use-icon-slot >十五天内</van-radio>
+  <van-radio class="child {{ radio == '30' ? 'checked' : '' }}" name="30" use-icon-slot >一个月内</van-radio>
+</van-radio-group>
+
+<van-calendar type="{{ type }}" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" show-title="{{false}}"  default-date="{{ calendarData }}" bind:select="onSelect">
+<view slot="footer" >
+dsfa
+</view>
+</van-calendar>
