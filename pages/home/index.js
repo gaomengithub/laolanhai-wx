@@ -16,11 +16,12 @@ Page({
     showNarBar: false,
     loading: false,
     matchList: [],
-    unofficialMatchList:[],
+    unofficialMatchList: [],
     activeTab: 0,
     swiperHeight: "100vh",
     offsetTop: app.globalData.navBarHeight,
-    currCity: "全国",
+    currCity: "",
+    currDate: ""
   },
   showNarBar(e) {
     if (e.detail.isFixed) {
@@ -51,14 +52,15 @@ Page({
       })
     }
     this.setData({
-      currCity: app.globalData.currCity
+      currCity: app.globalData.currCity,
+      currDate: app.globalData.currDate
     })
   },
   onPageScroll() {
     this.setSwiperHeight()
   },
   setSwiperHeight() {
-    const className = [".content-hot",".content-official",".content-unofficial"][this.data.activeTab]
+    const className = [".content-hot", ".content-official", ".content-unofficial"][this.data.activeTab]
     wx.createSelectorQuery().select(className).boundingClientRect(rect => {
       this.setData({ swiperHeight: rect.height + 120 + 'px' });
     }).exec();
@@ -75,8 +77,8 @@ Page({
             date: formatForMatchCard(item.start_time),
             img: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
             address: item.location,
-            status:["报名中","进行中","已结束"][item.status],
-            num:item.teams.length + item.users.length
+            status: ["报名中", "进行中", "已结束"][item.status],
+            num: item.teams.length + item.users.length
             // avatars: ["头像地址1", "头像地址2"]
           }
         )
@@ -84,9 +86,9 @@ Page({
       this.setData({
         matchList: matchList
       })
-      let unofficialMatchList = matchList.filter(item => item.matchType===3)
+      let unofficialMatchList = matchList.filter(item => item.matchType === 3)
       this.setData({
-        unofficialMatchList:unofficialMatchList
+        unofficialMatchList: unofficialMatchList
       })
     }).catch(e => {
       console.log(e)

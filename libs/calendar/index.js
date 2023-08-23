@@ -9,25 +9,53 @@ Page({
     navTitle: "时间",
     radio: "",
     type: "multiple",
-    calendarData: [],
     navBarHeight: app.globalData.navBarHeight,
   },
   onChange(e) {
     const key = e.detail
     const date = new Date();
-    let calendar = []
+    var dates = [];
     for (let i = 0; i < key; i++) {
       date.setDate(date.getDate() + 1);
-      calendar.push(date)
+      dates.push(date.toISOString().substring(0, 10));
     }
-    console.log(calendar)
-    this.setData({
-      radio: e.detail,
-      calendarData:calendar
-    });
+    const calendar = this.selectComponent('.calendar');
+    calendar.setData({
+      currentDate: dates
+    })
   },
-  onSelect(e){
-    console.log(e)
+  // 判断是否连续的函数
+  isConsecutive(list) {
+    for (let i = 1; i < list.length; i++) {
+      // 如果时间戳相差不是一天，那就说明不是连续的
+      if (list[i] - list[i - 1] !== 24 * 60 * 60 * 1000) {
+        return false
+      }
+    }
+    return true
+  },
+  // 将时间戳转为日期的函数
+  formatDate(timestamp) {
+    let date = new Date(timestamp)
+    return `${date.getMonth() + 1}-${date.getDate()}`
+  },
+
+  onConfirm() {
+    const calendar = this.selectComponent('.calendar');
+    const currDate = calendar.data.currentDate
+    let formatedDate = "" 
+    if (this.isConsecutive(currDate)){
+      formatedDate = `${this.formatDate(currDate[0])} - ${this.formatDate(currDate[currDate.length - 1])}`
+    }else{
+      formatedDate = currDate.map(timestamp => this.formatDate(timestamp)).join(', ')
+    }
+    app.globalData.currDate = formatedDate
+    wx.navigateBack()
+
+  },
+  onReset() {
+    const calendar = this.selectComponent('.calendar');
+    calendar.reset()
   },
   /**
    * 生命周期函数--监听页面加载

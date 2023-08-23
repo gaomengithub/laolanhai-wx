@@ -8,8 +8,9 @@
   <van-radio class="child {{ radio == '30' ? 'checked' : '' }}" name="30" use-icon-slot >一个月内</van-radio>
 </van-radio-group>
 
-<van-calendar type="{{ type }}" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" show-title="{{false}}"  default-date="{{ calendarData }}" bind:select="onSelect">
-<view slot="footer" >
-dsfa
-</view>
+<van-calendar type="{{ type }}" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" show-title="{{false}}" value="{{ date }}">
 </van-calendar>
+<view class="active">
+<van-button custom-class="resetBtn" bind:click="onReset">重置</van-button>
+<van-button custom-class="ConfirmBtn" bind:click="onConfirm">确定</van-button>
+</view>

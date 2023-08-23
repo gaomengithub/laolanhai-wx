@@ -38,9 +38,9 @@
     <!-- <navigator url="/pages/add/index?type=1" class="child" open-type="navigate">
       <view>正赛</view>
     </navigator> -->
-    <navigator url="/pages/create-team/index" class="child" open-type="navigate">
+    <!-- <navigator url="/pages/create-team/index" class="child" open-type="navigate">
       <view>球队</view>
-    </navigator>
+    </navigator> -->
   </view>
   <view class="down">
     <slot></slot>

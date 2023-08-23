@@ -3,7 +3,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 166rpx;
+  height: 188rpx;
   background: white;
   display: flex;
   /* padding-bottom: env(safe-area-inset-bottom); */

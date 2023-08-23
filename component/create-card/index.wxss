@@ -14,11 +14,12 @@
   height: 8vh;
   width: 100%;
   justify-content: space-between;
+  
 }
 
 .container .up .child {
   display: flex;
-  width: 40%;
+  width: 100%;
   background-color: rgb(49, 49, 49);
   color: #ffffff;
   border-radius: 22px;
@@ -46,7 +47,7 @@
 
 .container .mid .child{
   display: flex;
-  width: 40%;
+  width: 100%;
   background: linear-gradient(to right,#c6f68d 0%, #90ee02);
   color: #000000;
   border-radius: 22px;

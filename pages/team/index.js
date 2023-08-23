@@ -1,6 +1,6 @@
 // pages/invite/invite.js
 
-
+const app = getApp()
 
 
 Page({
@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    navTitle: "观赛",
+    navBarHeight: app.globalData.navBarHeight,
   },
 
   /**

@@ -27,7 +27,7 @@
       热门城市
     </view>
     <van-grid column-num="{{ 3 }}" gutter="{{ 10 }}" clickable>
-      <van-grid-item use-slot wx:for="{{hotcityList}}" wx:key="index" custom-class="city-grid">
+      <van-grid-item use-slot wx:for="{{hotcityList}}" wx:key="index" custom-class="city-grid" bind:click="bindCity" data-city="{{item}}">
         {{ item }}
       </van-grid-item>
     </van-grid>

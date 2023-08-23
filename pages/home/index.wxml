@@ -21,8 +21,8 @@
       <image class="icon" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/icons8-arrow-100.png" />
       </navigator>
 
-      <navigator class="cell" url="/libs/city-selector/index">
-      <view class="child">全部时间</view>
+      <navigator class="cell" url="/libs/calendar/index">
+      <view class="child">{{currDate}}</view>
       <image class="icon" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/icons8-arrow-100.png" />
       </navigator>
       <van-button custom-class="search">

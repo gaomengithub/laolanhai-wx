@@ -1,2 +1,12 @@
 <!--pages/login/index.wxml-->
-<text>pages/login/index.wxml</text>
+<nav-bar title="{{navTitle}}"></nav-bar>
+<view style="height:{{navBarHeight}}px;"></view>
+<view class="container">
+ 
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image class="avatar" src="{{avatarUrl}}"></image>
+    </button>
+    <van-field label="昵称" model:value="{{ nickName }}" type="nickname" placeholder="请输入昵称" />
+    <van-button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" custom-class="btn">完善</van-button>
+
+</view>

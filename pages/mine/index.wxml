@@ -1,14 +1,27 @@
 <!--pages/mine/index.wxml-->
-<view class="avatar">
+<view class="top">
+  <image class="img" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/light.svg" mode="scaleToFill" />
 </view>
-<view class="data-card">
-<view class="title">
-  我的战绩
+
+<view class="user">
+  <image class="avatar" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/ball-for-user.svg" mode="scaleToFill" />
+
+  <view class="name">
+    {{nickName}}
+
+  </view>
 </view>
-<view class="data">
+<view>
+  <unwork></unwork>
+</view>
+<!-- <view class="data-card">
+  <view class="title">
+    我的战绩
+  </view>
+  <view class="data">
     <view class="cell">
       <view class="num">
-      24
+        24
       </view>
       <view class="tag">
         参赛数
@@ -16,7 +29,7 @@
     </view>
     <view class="cell">
       <view class="num">
-      1044
+        1044
       </view>
       <view class="tag">
         正赛得分
@@ -41,20 +54,20 @@
   </view>
 </view>
 <view class="select-card">
-<view class="cell">
+  <view class="cell">
 
-战队
-</view>
-<view class="cell">
-申请
-</view>
-<view class="cell">
-入驻
-</view>
+    战队
+  </view>
+  <view class="cell">
+    申请
+  </view>
+  <view class="cell">
+    入驻
+  </view>
 </view>
 <view class="joined-card">
-<view class="title">
-  我参加过的
+  <view class="title">
+    我参加过的
+  </view>
 </view>
-</view>
-<view class="honor-card"></view>
+<view class="honor-card"></view> -->

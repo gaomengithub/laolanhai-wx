@@ -60,3 +60,13 @@ export async function uploadImage(path, url) {
   return await uploadImg(path, url)
 }
 
+
+export async function updateUserInfo(data){
+  let obj = {
+    url: '/user/update',
+    method: 'POST',
+    data:data
+  }
+  return await request(obj)
+}
+

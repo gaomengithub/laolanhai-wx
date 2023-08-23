@@ -19,6 +19,8 @@
   padding-left: 44rpx;
   padding-right: 44rpx;
   background-image: url("http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/bg-mask.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .up .type {
@@ -41,6 +43,7 @@
   background-color: #636363;
   padding-left: 44rpx;
   padding-right: 44rpx;
+  top: -1rpx
 }
 
 .mid .date-address {
@@ -65,7 +68,8 @@
   height: 44rpx;
   align-items: center;
 }
-.mid .date-address .cell .child{
+
+.mid .date-address .cell .child {
   height: 32rpx;
   width: 32rpx;
   margin-right: 20rpx;

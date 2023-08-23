@@ -20,3 +20,4 @@ export function formatForMatchCard(str) {
   let matchDate = str.match(regExpDate);
   return matchTime[0] + '  ' + matchDate[0].replace("-","月").replace(/^-0/, '')
 }
+

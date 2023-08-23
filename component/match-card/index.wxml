@@ -1,7 +1,7 @@
 <view class="card {{typeClass}}">
   <view class="item">
     <image class="poster-img" src="{{img}}" mode="aspectFill" />
-    <image class="bg-img" src="{{backgroundImageUrl}}" mode="scaleToFill"/>
+    <image class="bg-img" src="{{backgroundImageUrl}}" mode="scaleToFill" />
     <view class="desc">
       <view class="title">{{title}}</view>
       <view class="content">
@@ -19,12 +19,12 @@
   <view class="active">
     <view class="status">{{ status }}</view>
     <view class="avatar-wrap">
-      <image class='avatar' wx:for="{{avatarUrl}}" src='{{item}}' wx:key="index"/>
+      <image class='avatar' wx:for="{{avatarUrl}}" src='{{item}}' wx:key="index" />
     </view>
     <text wx:if="{{matchType == 3}}" class="reg-info">{{num}}人已报名</text>
     <text wx:else class="reg-info">{{num}}队已报名</text>
-    <navigator url="/pages/desc/index?matchID={{ matchID }}">
-    <van-button custom-class="btn">立即加入</van-button>
-  </navigator>
+    <!-- <navigator url="/pages/desc/index?matchID={{ matchID }}"> -->
+      <van-button custom-class="btn" bind:click="onJoinBtn" >立即加入</van-button>
+    <!-- </navigator> -->
   </view>
 </view>
