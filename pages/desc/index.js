@@ -15,6 +15,7 @@ Page({
   onJoinBtn() {
     if (this.data.matchID != "" || this.data.matchID != null) {
       joinMatch(this.data.matchID).then(res => {
+        console.log(res)
         wx.showToast({
           title: '报名成功',
           icon: 'success',

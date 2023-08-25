@@ -1,4 +1,4 @@
-const prefix = "http://ryt5dzeq0.hn-bkt.clouddn.com/dev"
+import { iconUrls } from '../utils/urls'
 
 Component({
   data: {
@@ -7,31 +7,29 @@ Component({
     selected: 0,
     color: "#A3A3A3",
     selectedColor: "#000000",
-    iconUrl: {
-      add: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/icons8-add-96.png",
-      close: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/icons8-close-100.png"
-    },
+    addIcon:iconUrls.barAdd,
+    closeIcon:iconUrls.barClose,
     list: [{
       pagePath: "/pages/home/index",
-      iconPath: prefix + "/icon/icon_home.png",
-      selectedIconPath: prefix + "/icon/icon_home_hl.png",
+      iconPath:  iconUrls.barHomeGrey,
+      selectedIconPath: iconUrls.barHome,
       text: "首页"
     }, {
       pagePath: "/pages/look/index",
-      iconPath: prefix + "/icon/icon_look.png",
-      selectedIconPath: prefix + "/icon/icon_look_hl.png",
+      iconPath:  iconUrls.barLookGrey,
+      selectedIconPath: iconUrls.barLook,
       text: "观赛"
     }, {
       //占位
     }, {
       pagePath: "/pages/team/index",
-      iconPath: prefix + "/icon/icon_ball.png",
-      selectedIconPath: prefix + "/icon/icon_ball_hl.png",
+      iconPath:  iconUrls.barTeamGrey,
+      selectedIconPath: iconUrls.barTeam,
       text: "球队"
     }, {
       pagePath: "/pages/mine/index",
-      iconPath: prefix + "/icon/icon_mine.png",
-      selectedIconPath: prefix + "/icon/icon_mine_hl.png",
+      iconPath:  iconUrls.barMineGrey,
+      selectedIconPath: iconUrls.barMine,
       text: "我的"
     }],
   },

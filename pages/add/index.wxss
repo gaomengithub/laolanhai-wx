@@ -1,4 +1,4 @@
-page{
+page {
   background-color: #ffffff;
 }
 
@@ -8,7 +8,7 @@ page{
   margin: 22px;
 }
 
-.active{
+.active {
   width: 100%;
   background-color: #ffffff;
   position: fixed;
@@ -18,19 +18,23 @@ page{
   flex-direction: row;
   justify-content: center;
   z-index: 1;
-  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* 添加此行来产生阴影 */
-
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+  /* 添加此行来产生阴影 */
 }
 
-.btn-custom-class{
+.btn-custom-class {
   margin-top: 16rpx;
   width: 650rpx;
   background-color: #FB8808 !important;
   font-weight: 600;
 }
-.upload-bg-img{
+
+.upload-bg-img {
   width: 170rpx;
   height: 174rpx;
 }
 
-
+.van-cell {
+  font-size: 30rpx !important;
+  line-height: 50rpx !important;
+}

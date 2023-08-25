@@ -3,17 +3,17 @@
 <view style="height: 232rpx;" wx:if="{{ show }}"></view>
 <view class="tab-bar" wx:if="{{ show }}">
   <view wx:for="{{list}}" wx:key="index" class="tab-bar-item" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
-    <image src="{{selected === index ? item.selectedIconPath : item.iconPath}}" style="width: 48rpx;height: 48rpx;"></image>
-    <view style="color: {{selected === index ? selectedColor : color}};font-size: 24rpx; margin-top: 4rpx;">{{item.text}}</view>
+    <image class="icon" src="{{selected === index ? item.selectedIconPath : item.iconPath}}"></image>
+    <view class="name" style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</view>
     <view wx:if="{{index == 2}}">
       <view class="circle-outside" bind:tap="showPopup">
-        <image class="img" src="{{iconUrl.add}}"  />
+        <image class="img" src="{{addIcon}}" />
       </view>
     </view>
   </view>
 </view>
 <van-popup show="{{ showPopup }}" round position="bottom" custom-style="height: 50vh" bind:close="onClosePopup" catch:touchmove="preventTouchMove">
   <create-card>
-    <image class="close-icon" src="{{iconUrl.close}}" bind:tap="onClosePopup" />
+    <image class="close-icon" src="{{closeIcon}}" bind:tap="onClosePopup" />
   </create-card>
 </van-popup>

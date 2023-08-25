@@ -1,4 +1,4 @@
-// pages/invite/invite.js
+
 
 const app = getApp()
 

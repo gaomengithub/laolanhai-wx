@@ -70,3 +70,11 @@ export async function updateUserInfo(data){
   return await request(obj)
 }
 
+export async function getDownloadToken(data){
+  let obj = {
+    url:'/attachment/listDownloadLinks',
+    method: 'POST',
+    data:data
+  }
+  return await request(obj)
+}

@@ -5,18 +5,18 @@
 <view class="container">
   <!-- 图片上传 -->
   <van-uploader file-list="{{ fileList }}" bind:after-read="onAfterRead" max-count="2" image-fit="widthFix" accept="image">
-  <image class="upload-bg-img" src="{{ iconUrl.upload }}" mode="scaleToFill"/>
+  <image class="upload-bg-img" src="{{ iconUrls.upload }}" mode="scaleToFill"/>
   </van-uploader>
   <!-- 名称 -->
   <van-field model:value="{{ name }}" placeholder="填写清晰的活动标题" bind:change="onChange" data-key="name" />
   <!-- 详情描述 -->
   <van-field class="field-input-class" model:value="{{ desc }}" type="textarea" autosize="{{autoSize}}" placeholder="描述一下比赛规则、比赛内容、比赛奖励、推荐的人群、贴心tips等，叫大家一起打比赛吧~" />
   <!-- 日期 -->
-  <van-cell is-link icon="{{ iconUrl.date }}" title="日期" model:value="{{ currDate }}" bind:click="onDisplay" data-show="showCalendar" />
+  <van-cell is-link icon="{{ iconUrls.date }}" title="日期" model:value="{{ currDate }}" bind:click="onDisplay" data-show="showCalendar" />
   <van-calendar show="{{ showCalendar }}" bind:close="onClose" data-show="showCalendar" bind:confirm="onConfirm" data-key="currDate" show-confirm="{{ false }}" />
   <!-- 开始、结束时间 -->
-  <van-cell is-link icon="{{ iconUrl.startTime }}" title="开始时间" model:value="{{ startTime }}" bind:click="onDisplay" data-show="showStartTimePicker" />
-  <van-cell is-link icon="{{ iconUrl.endTime }}" title="结束时间" model:value="{{ endTime }}" bind:click="onDisplay" data-show="showEndTimePicker" />
+  <van-cell is-link icon="{{ iconUrls.startTime }}" title="开始时间" model:value="{{ startTime }}" bind:click="onDisplay" data-show="showStartTimePicker" />
+  <van-cell is-link icon="{{ iconUrls.endTime }}" title="结束时间" model:value="{{ endTime }}" bind:click="onDisplay" data-show="showEndTimePicker" />
   <van-popup show="{{ showStartTimePicker }}" round position="bottom" custom-style="height: 50%" bind:close="onClose" data-show="showStartTimePicker">
     <van-datetime-picker type="time" value="{{ startTime }}" min-hour="{{ minHour }}" max-hour="{{ maxHour }}" bind:input="onInput" data-key="startTime" bind:confirm="onConfirm" data-show="showStartTimePicker" />
   </van-popup>
@@ -39,14 +39,14 @@
   <van-field wx:else left-icon="friends" model:value="{{ joinNum }}" input-align="right" placeholder="请输入队伍数量" type="number" >
     <view slot="label">队伍数量</view>
   </van-field>
-  <van-field left-icon="{{iconUrl.startAge}}" model:value="{{ startAge }}" input-align="right" placeholder="请输入年龄上限" type="number" >
+  <van-field left-icon="{{iconUrls.startAge}}" model:value="{{ startAge }}" input-align="right" placeholder="请输入年龄上限" type="number" >
     <view slot="label">年龄上限</view>
   </van-field>
-  <van-field left-icon="{{iconUrl.endAge}}" model:value="{{ endAge }}" input-align="right" placeholder="请输入年龄下限" type="number">
+  <van-field left-icon="{{iconUrls.endAge}}" model:value="{{ endAge }}" input-align="right" placeholder="请输入年龄下限" type="number">
     <view slot="label">年龄下限</view>
   </van-field>
   <!-- 费用 -->
-  <van-cell icon="{{iconUrl.cost}}" title="费用" model:value="{{currCost}}" is-link bind:click="onDisplay" border="{{ false }}"data-show="showCostAction" />
+  <van-cell icon="{{iconUrls.cost}}" title="费用" model:value="{{currCost}}" is-link bind:click="onDisplay" border="{{ false }}"data-show="showCostAction" />
   <van-action-sheet show="{{ showCostAction }}" actions="{{ costActions }}" cancel-text="取消" bind:close="onClose" bind:select="onConfirm" data-show="showCostAction" data-key="currCost"/>
 </view>
 <!-- 占位 -->
@@ -56,4 +56,3 @@
     发布
   </van-button>
 </view>
-<view class="logo"></view>

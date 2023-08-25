@@ -1,18 +1,16 @@
-import { getMatchList } from '../../utils/api'
+import { getMatchList ,getDownloadToken} from '../../utils/api'
 import { formatForMatchCard } from '../../utils/util'
+import { iconUrls ,imgUrls} from '../../utils/urls'
 const app = getApp()
 
 Page({
   data: {
     navTitle: "老蓝孩俱乐部",
+    bannerImg: imgUrls.bannerImg,
     tabs: ["热门", "正赛", "野球"],
-    tabIcon: [
-      "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/hot-3x.png",
-      "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/official-3x.png",
-      "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/pink-ball-3x.png"
-    ],
-    searchIcon: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/search.png",
-    triangleIcon: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/triangle-3x.png",
+    tabIcon: [iconUrls.tabHot, iconUrls.tabOfficial, iconUrls.tabUnofficial],
+    searchIcon: iconUrls.tabSearch,
+    arrowIcon: iconUrls.tabArrow,
     showNarBar: false,
     loading: false,
     matchList: [],
@@ -68,28 +66,32 @@ Page({
   onLoad() {
     let matchList = []
     getMatchList().then(res => {
-      for (let item of res.data.matches) {
-        matchList.push(
-          {
-            id: item.id,
-            matchType: item.match_type,
-            title: item.name,
-            date: formatForMatchCard(item.start_time),
-            img: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
-            address: item.location,
-            status: ["报名中", "进行中", "已结束"][item.status],
-            num: item.teams.length + item.users.length
-            // avatars: ["头像地址1", "头像地址2"]
-          }
-        )
-      }
-      this.setData({
-        matchList: matchList
+      console.log(res)
+      const bannerAttachments = res.data.matches.map(item => 'tmp/' + item.banner_attachments.split("/tmp/")[1])
+      getDownloadToken({file_names:bannerAttachments}).then(token =>{
+        for (let [index, item] of res.data.matches.entries()) {
+          matchList.push(
+            {
+              id: item.id,
+              matchType: item.match_type,
+              title: item.name,
+              date: formatForMatchCard(item.start_time),
+              img: token.data[index] == undefined ? 'https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg':token.data[index],
+              address: item.location,
+              status: ["报名中", "进行中", "已结束"][item.status],
+              num: item.teams.length + item.users.length
+            }
+          )
+        }
+        this.setData({
+          matchList: matchList
+        })
+        let unofficialMatchList = matchList.filter(item => item.matchType === 3)
+        this.setData({
+          unofficialMatchList: unofficialMatchList
+        })
       })
-      let unofficialMatchList = matchList.filter(item => item.matchType === 3)
-      this.setData({
-        unofficialMatchList: unofficialMatchList
-      })
+
     }).catch(e => {
       console.log(e)
     })

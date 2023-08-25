@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://www.xcuitech.com:8000'
+export const BASE_URL = 'https://api.obabyball.com'
 
 
 
