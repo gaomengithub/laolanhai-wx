@@ -69,7 +69,6 @@
 .filter .search {
   height: 72rpx !important;
   width: 116rpx !important;
-  border: none;
   border-radius: 40rpx;
   display: flex;
   flex-direction: column;
@@ -89,7 +88,6 @@
 .filter .cell .icon {
   position: absolute;
   right: 22rpx;
-  font-size: 0.95rem;
   width: 35rpx;
   height: 35rpx;
 }
@@ -99,7 +97,6 @@
   width: 190rpx;
   white-space: nowrap;
   overflow: hidden;
-  font-size: 0.95rem;
   transform: translateY(-3.5rpx);
   text-overflow: ellipsis;
   /* 如果文本超出部分被隐藏，则显示省略号 */

@@ -1,0 +1,94 @@
+.card {
+  position: relative;
+  height: 600rpx;
+  background-color: #ffffff;
+  border-radius: 44rpx;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+}
+
+.card .title {
+  position: absolute;
+  top: 28rpx;
+  left: 24rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.card .title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: #FB8808;
+  z-index: -1;
+}
+
+
+.card .more {
+  position: absolute;
+  top: 30rpx;
+  right: 24rpx;
+  font-size: 28rpx;
+  color: #C2C2C2;
+}
+
+.card .item {
+  position: relative;
+  top: 104rpx;
+  height: 144rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background: linear-gradient(to right, #FAFAFA, #FFF5FA);
+}
+
+.card .item .type-icon {
+  width: 76rpx;
+  height: 76rpx;
+  margin: 16rpx;
+}
+
+.card .item .content {
+  width: 360rpx;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card .item .content .name {
+  font-weight: 600;
+}
+
+.card .item .content .type {
+  color: #9E435F;
+  position: relative;
+  width: fit-content;
+  z-index: 1;
+}
+
+.card .item .content .type::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 208, 230, 0.2), rgba(255, 208, 230, 1));
+  z-index: -1;
+}
+
+.card .status {
+  position: relative;
+  color: #ffffff;
+  background-color: #E6E6E6;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  border-radius: 8rpx;
+  margin-right: 24rpx;
+}

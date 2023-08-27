@@ -1,11 +1,11 @@
-// pages/mine/index.js
+import { imgUrls ,iconUrls }  from '../../utils/urls'
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     nickName:"",
+    lightImg:imgUrls.mineLightImg,
+    teamIcon:iconUrls.mineTeam,
+    applyIcon:iconUrls.mineApply,
+    inIcon:iconUrls.mineIn,
   },
 
   /**

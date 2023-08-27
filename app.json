@@ -5,10 +5,10 @@
     "pages/team/index",
     "pages/mine/index",
     "pages/desc/index",
-    "pages/add/index",
+    "pages/add-match/index",
     "pages/look-desc/index",
     "pages/login/index",
-    "pages/create-team/index",
+    "pages/add-team/index",
     "libs/city-selector/index",
     "pages/search/index",
     "libs/calendar/index"

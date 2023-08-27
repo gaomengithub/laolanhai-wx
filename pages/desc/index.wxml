@@ -1,24 +1,24 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
 <view style="height:{{navBarHeight}}px;"></view>
-
-<view class="up">
+<view class="top">
+  <image class="img" src="https://openstore.obabyball.com/ui_v1/img/desc-banner-test.png" mode="aspectFill"></image>
   <view class="gradient-mask">
-    <image class="type" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/unofficial-tag-2x.png" mode="widthFix"></image>
-    <view class="title">
-     {{match.name}}
+    <image class="type" src="{{ typeUrl }}" mode="widthFix"></image>
+    <view class="name">
+      {{match.name}}
     </view>
   </view>
 </view>
 <view class="mid">
   <view class="date-address">
-  <view class="cell">
-    <image class=".child" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/clock-wo.svg" mode="scaleToFill"> </image>
-    {{ match.start_time }}
-  </view>
-  <view class="cell">
-    <image class=".child" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/adress-wo.svg" mode="scaleToFill"></image>
-    {{match.location}}
-  </view>
+    <view class="cell">
+      <image class=".child" src="{{clockUrl}}" mode="scaleToFill"> </image>
+      {{ match.start_time }}
+    </view>
+    <view class="cell">
+      <image class=".child" src="{{locationUrl}}" mode="scaleToFill"></image>
+      {{match.location}}
+    </view>
   </view>
   <view class="part">
     <view class="title">已参加的人员</view>
@@ -37,12 +37,12 @@
     详情内容
   </view>
   <text class="content" user-select>
-  {{ match.description }}
+    {{ match.description }}
   </text>
 </view>
 
 <!-- 占位 -->
 <view style="height: 166rpx;"></view>
 <view class="active">
-  <van-button custom-class="btn-custom-class" bind:click='onJoinBtn' >立即报名</van-button>
+  <van-button custom-class="btn-custom-class" bind:click='onJoinBtn'>立即报名</van-button>
 </view>

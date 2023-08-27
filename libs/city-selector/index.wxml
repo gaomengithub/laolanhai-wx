@@ -14,8 +14,7 @@
   <view class="location">
     <view class="title">当前定位</view>
     <view class="currCity">
-      <van-icon style="transform: translateY(7rpx);" name="location">
-      </van-icon>
+    <image class="icon" src="{{ locationIcon }}" mode="aspectFill"/>
       <view>
         {{ city }}
       </view>
@@ -26,8 +25,8 @@
     <view class="title">
       热门城市
     </view>
-    <van-grid column-num="{{ 3 }}" gutter="{{ 10 }}" clickable>
-      <van-grid-item use-slot wx:for="{{hotcityList}}" wx:key="index" custom-class="city-grid" bind:click="bindCity" data-city="{{item}}">
+    <van-grid column-num="{{ 3 }}" gutter="{{ 10 }}" clickable border="{{ false }}">
+      <van-grid-item class="cell" use-slot wx:for="{{hotcityList}}" wx:key="index" custom-class="city-grid" content-class="city-content" bind:click="bindCity" data-city="{{item}}">
         {{ item }}
       </van-grid-item>
     </van-grid>

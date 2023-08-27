@@ -23,8 +23,6 @@
     </view>
     <text wx:if="{{matchType == 3}}" class="reg-info">{{num}}人已报名</text>
     <text wx:else class="reg-info">{{num}}队已报名</text>
-    <!-- <navigator url="/pages/desc/index?matchID={{ matchID }}"> -->
       <van-button custom-class="btn" bind:click="onJoinBtn" >立即加入</van-button>
-    <!-- </navigator> -->
   </view>
 </view>

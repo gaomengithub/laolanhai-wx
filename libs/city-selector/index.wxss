@@ -5,25 +5,37 @@
 
 .location {
   background-color: #ffffff;
-  padding: 22rpx;
+  padding: 20rpx;
   margin-bottom: 22rpx;
 }
 
 .location .title {
   color: #A3A3A3;
-  font-size: 24rpx;
+  font-size: 28rpx;
   margin-bottom: 22rpx;
 }
 
 .location .currCity {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
+  font-size: 32rpx !important;
+}
+
+.location .currCity .icon {
+  width: 32rpx;
+  height: 36.6rpx;
+  margin-right: 10rpx;
 }
 
 .city-grid {
-  height: 75rpx;
-  font-size: 14px;
+  font-size: 28rpx;
+  height: 72rpx !important;
+  --grid-item-content-background-color: #F7F7F7;
+}
+
+.city-content {
+  border-radius: 22rpx;
 }
 
 .hotcity {
@@ -34,9 +46,11 @@
 
 .hotcity .title {
   color: #A3A3A3;
-  font-size: 24rpx;
+  font-size: 28rpx;
   margin-bottom: 22rpx;
 }
+
+
 
 .searchLetter {
   position: fixed;
@@ -116,7 +130,6 @@
   border-bottom: 1rpx solid #ededed;
 }
 
-.item-hover{
+.item-hover {
   background-color: #CCCCCC;
 }
-

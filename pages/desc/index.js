@@ -1,4 +1,5 @@
 import { getMatchDesc, joinMatch } from '../../utils/api'
+import { iconUrls } from '../../utils/urls'
 const app = getApp()
 Page({
 
@@ -9,8 +10,10 @@ Page({
     navTitle: "老蓝孩俱乐部",
     matchID: "",
     match: {},
+    typeUrl:iconUrls.descUnofficialTag,
+    clockUrl:iconUrls.descClock,
+    locationUrl:iconUrls.descLocation,
     navBarHeight: app.globalData.navBarHeight,
-
   },
   onJoinBtn() {
     if (this.data.matchID != "" || this.data.matchID != null) {
@@ -37,7 +40,8 @@ Page({
   onLoad(options) {
     try {
       this.setData({
-        matchID: options.matchID
+        matchID: options.matchID,
+        typeUrl:[iconUrls.descOfficialTag,iconUrls.descOfficialTag,iconUrls.descUnofficialTag][options.matchType-1]
       })
     } catch (e) {
       console.log("获取比赛ID失败")

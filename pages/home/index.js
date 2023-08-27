@@ -96,6 +96,11 @@ Page({
       console.log(e)
     })
   },
+  swiperChange(e){
+    this.setData({
+      activeTab:e.detail.current
+    })
+  },
   onReachBottom() {
     this.setData({
       loading: true

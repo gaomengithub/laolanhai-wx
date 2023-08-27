@@ -13,7 +13,7 @@
   </view>
 </view>
 <van-popup show="{{ showPopup }}" round position="bottom" custom-style="height: 50vh" bind:close="onClosePopup" catch:touchmove="preventTouchMove">
-  <create-card>
+  <add-action>
     <image class="close-icon" src="{{closeIcon}}" bind:tap="onClosePopup" />
-  </create-card>
+  </add-action>
 </van-popup>

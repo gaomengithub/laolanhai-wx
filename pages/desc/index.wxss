@@ -1,59 +1,57 @@
-/* pages/desc/index.wxss */
 
-
-.up {
+.top {
   position: relative;
   height: 582rpx;
-  /* width: 750rpx; */
-  background-image: url("http://ryt5dzeq0.hn-bkt.clouddn.com/%E6%B5%B7%E6%8A%A5.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-
+  width: 100%;
 }
 
 .gradient-mask {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: 0;
   height: 582rpx;
-  width: 750rpx;
-  padding-left: 44rpx;
-  padding-right: 44rpx;
-  background-image: url("http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/bg-mask.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  width: 100%;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  background: linear-gradient(to top , rgba(99,99,99,1),rgba(99,99,99,0));
+}
+.top .img{
+  height: 582rpx;
+  width: 100%;
 }
 
-.up .type {
+.top .type {
   width: 180rpx;
   height: 100rpx;
-  margin-top: 250rpx;
+  margin-top: 282rpx;
 }
 
-.up .title {
+.top .name {
   color: #ffffff;
   font-size: 64rpx;
   font-weight: 600;
-  margin-bottom: 15px;
   width: 634rpx;
 }
 
 .mid {
   position: relative;
-  height: 500rpx;
-  background-color: #636363;
-  padding-left: 44rpx;
-  padding-right: 44rpx;
-  top: -1rpx
+  display: flex;
+  flex-direction: column;
+  height: 425rpx;
+  width: 100%;
+  justify-content: space-between;
+  padding-top: 44rpx;
+  padding-bottom: 88rpx;
+  background-color: rgba(99, 99, 99,1);
 }
 
 .mid .date-address {
-  background-color: rgb(36, 36, 36);
+  background-color: rgba(0, 0, 0,0.4);
   border-radius: 44rpx;
   color: #fff;
   font-weight: 600;
   font-size: 32rpx;
-  margin-bottom: 15px;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
   height: 188rpx;
   display: flex;
   flex-direction: column;
@@ -78,9 +76,12 @@
 
 
 .mid .part {
-  background-color: rgb(36, 36, 36);
+  background-color: rgba(0, 0, 0,0.4);
   border-radius: 44rpx;
+  max-height: 200rpx;
   padding: 16px;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
 }
 
 .mid .part .title {
@@ -144,7 +145,7 @@
   margin-top: 16rpx;
   color: #FB8808 !important;
   font-size: 36rpx;
-  font-weight: 700;
+  font-weight: 600;
   width: 650rpx !important;
   background-color: #000000 !important;
   border-radius: 60rpx !important;

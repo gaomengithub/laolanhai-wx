@@ -49,6 +49,6 @@
 }
 
 .close-icon {
-  width: 70rpx;
-  height: 70rpx;
+  width: 128rpx;
+  height: 128rpx;
 }

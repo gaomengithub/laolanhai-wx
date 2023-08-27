@@ -1,8 +1,10 @@
-import { createMatch, uploadImage } from '../../utils/api'
+import { createMatch } from '../../utils/api'
 import WxValidate from '../../utils/WxValidate'
-import { options } from '../../utils/area'
+import { options } from '../../utils/pca-code'
 import { iconUrls } from '../../utils/urls'
 import { getUploadToken } from '../../utils/api'
+import { getDifferenceInMinute } from '../../utils/util'
+import { addMatchMessages, addMatchRules } from '../../utils/validate-set'
 
 
 const qiniuUploader = require("../../utils/qiniuUploader");
@@ -66,7 +68,7 @@ Page({
   },
 
   onLoad(options) {
-    this.initValidate();
+    this.WxValidate = new WxValidate(addMatchRules, addMatchMessages)
     try {
       this.setData({
         type: options.type
@@ -146,7 +148,7 @@ Page({
         getUploadToken().then(res => {
           initQiniu(res.data.message);
           qiniuUploader.upload(filePath, (res) => {
-            fileList.push({ url: filePath})
+            fileList.push({ url: filePath })
             that.setData({
               fileList: fileList
             })
@@ -169,7 +171,18 @@ Page({
   },
   onCreateBtn() {
     //校验表单
-    const formData = { name: this.data.name, desc: this.data.desc, joinNum: this.data.joinNum, date: this.data.currDate, currArea: this.data.currArea, address: this.data.address, startAge: this.data.startAge, endAge: this.data.endAge }
+    const formData = {
+      name: this.data.name,
+      desc: this.data.desc,
+      joinNum: this.data.joinNum,
+      date: this.data.currDate,
+      currArea: this.data.currArea,
+      address: this.data.address,
+      startAge: this.data.startAge,
+      endAge: this.data.endAge,
+      timeDiff: getDifferenceInMinute(this.data.endTime, this.data.startTime)
+    }
+    console.log(getDifferenceInMinute(this.data.endTime, this.data.startTime))
     if (!this.WxValidate.checkForm(formData)) {
       const error = this.WxValidate.errorList[0];
       wx.showModal({
@@ -212,65 +225,4 @@ Page({
       console.log(e)
     })
   },
-
-
-
-  initValidate() {
-    const rules = {
-      name: {
-        required: true
-      },
-      desc: {
-        required: true
-      },
-      date: {
-        required: true
-      },
-      currArea: {
-        required: true,
-      },
-      address: {
-        required: true,
-      },
-      joinNum: {
-        required: true,
-      },
-      startAge: {
-        required: true
-      },
-      endAge: {
-        required: true
-      }
-    }
-    const messages = {
-      name: {
-        required: '标题不能为空'
-      },
-      desc: {
-        required: '描述不能为空'
-      },
-      date: {
-        required: '日期不能为空'
-      },
-      currArea: {
-        required: '地区不能为空',
-      },
-      joinNum: {
-        required: '参加数量不能为空',
-      },
-      address: {
-        required: '详细地址不能为空',
-      },
-      startAge: {
-        required: '年龄上限不能为空'
-      },
-      endAge: {
-        required: '年龄下限不能为空'
-      }
-    }
-    this.WxValidate = new WxValidate(rules, messages)
-  },
-
-
-
 })

@@ -1,0 +1,36 @@
+<nav-bar title="{{navTitle}}"></nav-bar>
+<view style="height:{{navBarHeight}}px;"></view>
+<view class="container">
+  <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" max-count="1">
+    <image class="upload-icon" src="{{ iconUrls.upload }}" mode="aspectFill" />
+  </van-uploader>
+  <view class="input-container"></view>
+  <van-field  model:value="{{ name }}" placeholder="请填写球队名称">
+    <view class="title" slot="label">球队名称</view>
+    <image class="field-icon" slot="left-icon" src="{{ iconUrls.name }}" mode="aspectFill" />
+  </van-field>
+  <van-field class="field-input-class" model:value="{{ desc }}" type="textarea" autosize="{{autoSize}}" placeholder="请填写球队简介。比如我们的老年篮球队是由一群热爱篮球运动的老人组成的。虽然我们的年龄不同，但是我们都有一颗想要锻炼身体、结交朋友、展示自己的热情。">
+    <view  class="title" slot="label">球队简介</view>
+    <image class="field-icon" slot="left-icon" src="{{ iconUrls.intro }}" mode="aspectFill" />
+  </van-field>
+  <van-cell is-link model:value="{{ currCity }}" readonly bind:click="onDisplay" data-show="showAreaCascader">
+  <view  class="title" slot="title">所在城市</view>
+    <image class="field-icon" slot='icon' src="{{iconUrls.location}}" mode="aspectFill" />
+  </van-cell>
+  <van-field model:value="{{ address }}" placeholder="主要活动位置" type="number">
+    <view  class="title" slot="label">活动位置</view>
+    <image class="field-icon" slot='left-icon' src="{{iconUrls.address}}" mode="aspectFill" />
+  </van-field>
+</view>
+
+<!-- 占位 -->
+<view style="height: 166rpx;" ></view>
+<view class="active">
+  <van-button round custom-class="btn-custom-class" bind:click="onCreateBtn">
+    立即创建
+  </van-button>
+</view>
+
+<van-popup show="{{ showAreaCascader }}" round position="bottom" custom-style="height: 50%" bind:close="onClose" data-show="showAreaCascader">
+    <van-cascader wx:if="{{ showAreaCascader }}" value="{{ currArea }}" title="请选择所在地区" options="{{ options }}" active-color="#ee0a24" bind:close="onClose" data-show="showAreaCascader" bind:finish="onFinishAreaCascader" />
+  </van-popup>

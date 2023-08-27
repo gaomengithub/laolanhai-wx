@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "unwork":"/component/unwork/index"
+    "unwork":"/component/unwork/index",
+    "score-card":"/component/score-card/index",
+    "joined-card":"/component/joined-card/index"
   }
 }

@@ -1,0 +1,81 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 44rpx;
+  padding-left: 52rpx;
+  padding-right: 52rpx;
+  background-color: white;
+  position: relative;
+  height: 230rpx;
+}
+
+.card .title {
+  position: absolute;
+  top: 28rpx;
+  left: 24rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.card .title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: #FB8808;
+  z-index: -1;
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grid .item {
+  width: max-content;
+}
+
+.grid .item .tag {
+  font-size: 28rpx;
+  color: #A3A3A3;
+}
+
+.grid .item .num {
+  font-size: 42rpx;
+  font-weight: 600;
+}
+
+.active {
+  width: 30rpx;
+  height: 20rpx;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+/* .card .data {
+  width: 100%;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.card .data .cell {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 10vh;
+  justify-content: space-around;
+}
+
+.card .data .cell .tag {
+  color: gray;
+} */

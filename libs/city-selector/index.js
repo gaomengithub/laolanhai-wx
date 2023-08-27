@@ -1,8 +1,10 @@
 import { searchLetter, sortedCityList, cityObjs } from './city.js';
+import { iconUrls } from '../../utils/urls'
 const app = getApp()
 Page({
   data: {
-    navTitle: "定位",
+    navTitle: "城市选择",
+    locationIcon:iconUrls.cityLocation,
     searchLetter: searchLetter,
     showLetter: "",
     cityList: sortedCityList,

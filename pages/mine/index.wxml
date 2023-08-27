@@ -1,73 +1,37 @@
-<!--pages/mine/index.wxml-->
 <view class="top">
-  <image class="img" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/light.svg" mode="scaleToFill" />
+  <image class="img" src="{{ lightImg }}" mode="aspectFill" />
 </view>
 
-<view class="user">
-  <image class="avatar" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/ball-for-user.svg" mode="scaleToFill" />
-
-  <view class="name">
-    {{nickName}}
-
+<view class="container">
+  <view class="user">
+    <image class="avatar" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/ball-for-user.svg" mode="scaleToFill" />
+    <view class="name">
+      {{nickName}}
+    </view>
   </view>
-</view>
-<view>
-  <unwork></unwork>
-</view>
-<!-- <view class="data-card">
-  <view class="title">
-    我的战绩
-  </view>
-  <view class="data">
+  <score-card></score-card>
+  <view class="active-card">
     <view class="cell">
-      <view class="num">
-        24
-      </view>
-      <view class="tag">
-        参赛数
+    <image class="icon" src="{{ teamIcon }}" mode="aspectFill"/>
+    <view class="text">
+      战队
+    </view>
+    </view>
+    <view class="cell">
+      <image class="icon" src="{{ applyIcon }}" mode="aspectFill"/>
+      <view class="text">
+        申请
       </view>
     </view>
     <view class="cell">
-      <view class="num">
-        1044
-      </view>
-      <view class="tag">
-        正赛得分
-      </view>
-    </view>
-    <view class="cell">
-      <view class="num">
-        88%
-      </view>
-      <view class="tag">
-        获胜率
-      </view>
-    </view>
-    <view class="cell">
-      <view class="num">
-        2222
-      </view>
-      <view class="tag">
-        战队积分
+      <image class="icon" src="{{ inIcon }}" mode="aspectFill"/>
+      <view class="text">
+        入驻
       </view>
     </view>
   </view>
+  <joined-card />
 </view>
-<view class="select-card">
-  <view class="cell">
+<!-- <unwork></unwork> -->
 
-    战队
-  </view>
-  <view class="cell">
-    申请
-  </view>
-  <view class="cell">
-    入驻
-  </view>
-</view>
-<view class="joined-card">
-  <view class="title">
-    我参加过的
-  </view>
-</view>
-<view class="honor-card"></view> -->
+<!-- <view class="honor-card"></view> -->
