@@ -5,7 +5,7 @@
 <view class="container">
   <!-- 图片上传 -->
   <van-uploader file-list="{{ fileList }}" bind:after-read="onAfterRead" max-count="2" image-fit="widthFix" accept="image">
-  <image class="upload-bg-img" src="{{ iconUrls.upload }}" mode="scaleToFill"/>
+  <image class="upload-bg-img" src="{{ iconUrls.upload }}" mode="aspectFill"/>
   </van-uploader>
   <!-- 名称 -->
   <van-field model:value="{{ name }}" placeholder="填写清晰的活动标题" bind:change="onChange" data-key="name" />

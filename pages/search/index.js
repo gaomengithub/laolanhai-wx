@@ -1,4 +1,5 @@
-// pages/search/index.js
+import { searchAngthing ,getDownloadToken} from '../../utils/api'
+
 const app = getApp()
 Page({
 
@@ -6,9 +7,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navTitle:"搜索",
+    navTitle: "搜索",
+    value: "",
     navBarHeight: app.globalData.navBarHeight,
-
+    matches: "",
+    teams: "",
+    users: ""
   },
 
   /**
@@ -16,6 +20,27 @@ Page({
    */
   onLoad(options) {
 
+  },
+  onChange(e) {
+    this.setData({
+      value: e.detail,
+    });
+  },
+  onClick() {
+    console.log(this.data.value)
+    searchAngthing(this.data.value).then(res => {
+      const bannerAttachments = res.data.matches.map(item => 'tmp/' + item.banner_attachments.split("/tmp/")[1])
+      getDownloadToken({ file_names: bannerAttachments }).then(token => {
+        for (let [index, item] of res.data.matches.entries()) {
+          item.banner_attachments = token.data[index] == undefined ? 'https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' : token.data[index]
+        }
+        this.setData({
+          matches: res.data.matches,
+          teams: res.data.teams,
+          users: res.data.users
+        })
+      })
+    })
   },
 
   /**

@@ -1,6 +1,12 @@
 <!--pages/search/index.wxml-->
-<nav-bar title="{{navTitle}}" ></nav-bar>
+<nav-bar title="{{navTitle}}"></nav-bar>
 <view style="height:{{navBarHeight}}px;"></view>
-<van-search shape="round"  custom-class="search" value="{{ inputName }}" placeholder="请输入你需要搜索的球队、球员名称" bind:change="bindKeyInput">
-  </van-search>
+<van-search shape="round"  value="{{ value }}" placeholder="请输入你需要搜索的球队、球员名称" bind:change="onChange" use-action-slot>
+  <view slot="action" bind:tap="onClick" class="btn">搜索</view>
+</van-search>
+<view class="matches">
+  <match-card wx:for="{{matches}}" wx:key="*this" name="{{ item.name }}" img="{{item.banner_attachments}}" date="{{item.start_time}}" location="{{ item.location }}" matchID="{{item.id}}" matchType="{{item.match_type}}" status="{{item.status}}"></match-card>
 
+</view>
+<view class="teams"></view>
+<view class="users"></view>

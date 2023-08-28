@@ -1,11 +1,23 @@
-import { imgUrls ,iconUrls }  from '../../utils/urls'
+import { imgUrls, iconUrls } from '../../utils/urls'
 Page({
   data: {
-    nickName:"",
-    lightImg:imgUrls.mineLightImg,
-    teamIcon:iconUrls.mineTeam,
-    applyIcon:iconUrls.mineApply,
-    inIcon:iconUrls.mineIn,
+    nickName: "",
+    lightImg: imgUrls.mineLightImg,
+    teamIcon: iconUrls.mineTeam,
+    applyIcon: iconUrls.mineApply,
+    inIcon: iconUrls.mineIn,
+    showPopup:false,
+    closeIcon:iconUrls.barClose,
+  },
+  onClosePopup() {
+    this.setData({
+      showPopup: false
+    })
+  },
+  showPopup() {
+    this.setData({
+      showPopup: true
+    })
   },
 
   /**
@@ -37,6 +49,10 @@ Page({
       })
     }
   },
+  onApply() {
+
+  },
+
 
   /**
    * 生命周期函数--监听页面隐藏

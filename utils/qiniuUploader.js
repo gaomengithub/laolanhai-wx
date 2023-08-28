@@ -2,7 +2,7 @@
     // 请参考demo的index.js中的initQiniu()方法，若在使用处对options进行了赋值，则此处config不需要赋默认值。init(options) 即updateConfigWithOptions(options)，会对config进行赋值
     var config = {
         // bucket 所在区域。ECN, SCN, NCN, NA, ASG，分别对应七牛云的：华东，华南，华北，北美，新加坡 5 个区域
-        qiniuRegion: '',
+        qiniuRegion:'',
         // 七牛云bucket 外链前缀，外链在下载资源时用到
         qiniuBucketURLPrefix: '',
 
@@ -28,13 +28,14 @@
         updateConfigWithOptions(options);
     }
 
+
     // 更新七牛云配置
     function updateConfigWithOptions(options) {
         if (options.region) {
             config.qiniuRegion = options.region;
-        } else {
+        } /*else {
             console.error('qiniu uploader need your bucket region');
-        }
+        }*/
         if (options.uptoken) {
             config.qiniuUploadToken = options.uptoken;
         } else if (options.uptokenURL) {

@@ -2,24 +2,11 @@ import { createMatch } from '../../utils/api'
 import WxValidate from '../../utils/WxValidate'
 import { options } from '../../utils/pca-code'
 import { iconUrls } from '../../utils/urls'
-import { getUploadToken } from '../../utils/api'
 import { getDifferenceInMinute } from '../../utils/util'
 import { addMatchMessages, addMatchRules } from '../../utils/validate-set'
+import { uploadImgWithToken } from '../../utils/qiniu'
 
 
-const qiniuUploader = require("../../utils/qiniuUploader");
-// index.js
-
-// 初始化七牛云相关配置
-function initQiniu(token) {
-  var options = {
-    region: 'ECN',
-    uptoken: token,
-    domain: 'https://store.obabyball.com',
-    shouldUseQiniuFileName: false
-  };
-  qiniuUploader.init(options);
-}
 
 const app = getApp()
 let fileList = []
@@ -138,33 +125,20 @@ Page({
 
 
   onAfterRead(event) {
-    const that = this
+    const _this = this
     const { file } = event.detail;
     wx.compressImage({
       src: file.tempFilePath,
-      quality: 50,
+      quality: 10,
       success(res) {
         var filePath = res.tempFilePath;
-        getUploadToken().then(res => {
-          initQiniu(res.data.message);
-          qiniuUploader.upload(filePath, (res) => {
-            fileList.push({ url: filePath })
-            that.setData({
-              fileList: fileList
-            })
-          }, (error) => {
-            console.error('error: ' + JSON.stringify(error));
-          },
-            null,
-            (progress) => {
-              that.setData({
-                'imageProgress': progress
-              });
-              console.log('上传进度', progress.progress);
-              console.log('已经上传的数据长度', progress.totalBytesSent);
-              console.log('预期需要上传的数据总长度', progress.totalBytesExpectedToSend);
-            },
-          );
+        uploadImgWithToken(filePath).then(url => {
+          fileList.push({ url: filePath })
+          _this.setData({
+            fileList
+          })
+        }).catch(e=>{
+          console.error('error: ' + JSON.stringify(e));
         })
       }
     })
@@ -180,9 +154,10 @@ Page({
       address: this.data.address,
       startAge: this.data.startAge,
       endAge: this.data.endAge,
-      timeDiff: getDifferenceInMinute(this.data.endTime, this.data.startTime)
+      timeDiff: getDifferenceInMinute(this.data.endTime, this.data.startTime),
+      ageDiff: this.data.startAge - this.data.endAge,
+      imgCount: this.data.fileList.length
     }
-    console.log(getDifferenceInMinute(this.data.endTime, this.data.startTime))
     if (!this.WxValidate.checkForm(formData)) {
       const error = this.WxValidate.errorList[0];
       wx.showModal({

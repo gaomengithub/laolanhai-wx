@@ -1,18 +1,22 @@
 import { iconUrls } from '../../utils/urls'
 import { options } from '../../utils/pca-code'
+import { addTeamMessages, addTeamRules } from '../../utils/validate-set'
+import WxValidate from '../../utils/WxValidate'
+import { createTeam } from '../../utils/api'
+import { uploadImgWithToken } from '../../utils/qiniu'
 const app = getApp()
+let fileList = []
 Page({
   data: {
-    options:options,
+    options: options,
     navTitle: "创建球队",
     autoSize: { minHeight: 100 },
     name: "",
-    desc: "",
+    intro: "",
     currCity: "",
-    address: "",
-    fileList:[],
-    currCity:"",
-    showAreaCascader:false,
+    location: "",
+    fileList: [],
+    showAreaCascader: false,
     iconUrls: {
       upload: iconUrls.addTeamUpload,
       name: iconUrls.addTeamName,
@@ -43,7 +47,70 @@ Page({
     })
   },
   onLoad(options) {
+    this.WxValidate = new WxValidate(addTeamRules, addTeamMessages)
+  },
+  onCreateBtn() {
+    //校验表单
+    const formData = {
+      name: this.data.name,
+      intro: this.data.intro,
+      city: this.data.currCity,
+      location: this.data.location,
+      imgCount: this.data.fileList.length
+    }
+    if (!this.WxValidate.checkForm(formData)) {
+      const error = this.WxValidate.errorList[0];
+      wx.showModal({
+        content: error.msg,
+        showCancel: false
+      })
+      return false;
+    }
 
+    let data = {
+      city: this.data.currCity,
+      desc: this.data.intro,
+      logo: fileList[0],
+      name: this.data.name,
+      region: this.data.location,
+      founded: new Date()
+    }
+    createTeam(data).then(res => {
+      if (res.statusCode == "200") {
+        wx.showModal({
+          title: '创建成功',
+          showCancel: false,
+          complete: (res) => {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '/pages/home/index',
+              })
+            }
+          }
+        })
+      }
+    }).catch(e => {
+      console.log(e)
+    })
+  },
+  onAfterRead(event) {
+    const _this = this
+    const { file } = event.detail;
+    wx.compressImage({
+      src: file.tempFilePath,
+      quality: 10,
+      success(res) {
+        var filePath = res.tempFilePath;
+        uploadImgWithToken(filePath).then(_res => {
+          fileList.push({ url: filePath })
+          _this.setData({
+            fileList
+          })
+        }).catch(e=>{
+          console.error('error: ' + JSON.stringify(e));
+        })
+      }
+    })
   },
 
   /**

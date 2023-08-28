@@ -131,6 +131,7 @@ class WxValidate {
              * 验证两个输入框的内容是否相同
              */
             equalTo(value, param) {
+
                 return that.optional(value) || value === that.data[param]
             },
             /**
@@ -143,6 +144,7 @@ class WxValidate {
              * 验证最小长度
              */
             minlength(value, param) {
+
                 return that.optional(value) || value.length >= param
             },
             /**

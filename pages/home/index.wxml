@@ -29,13 +29,13 @@
   </van-sticky>
   <swiper current="{{activeTab}}" id="auto-swiper" style="height: {{swiperHeight}};" bindchange="swiperChange">
     <swiper-item class="content-hot">
-      <match-card wx:for="{{matchList}}" wx:key="index" title="{{ item.title }}" img="{{item.img}}" date="{{item.date}}" address="{{ item.address }}" matchID="{{item.id}}" matchType="{{item.matchType}}" status="{{item.status}}" num="{{item.num}}"></match-card>
+      <match-card wx:for="{{matchList}}" wx:key="index" name="{{ item.name }}" img="{{item.banner_attachments}}" date="{{item.start_time}}" location="{{ item.location }}" matchID="{{item.id}}" matchType="{{item.match_type}}" status="{{item.status}}" users="{{ item.users }}" teams="{{ item.teams }}"></match-card>
     </swiper-item>
     <swiper-item class="content-official">
       <unwork></unwork>
     </swiper-item>
     <swiper-item class="content-unofficial">
-      <match-card wx:for="{{unofficialMatchList}}" wx:key="index" title="{{ item.title }}" img="{{item.img}}" date="{{item.date}}" address="{{ item.address }}" matchID="{{item.id}}" matchType="{{item.matchType}}" status="{{item.status}}" num="{{item.num}}"></match-card>
+      <match-card wx:for="{{unofficialMatchList}}" wx:key="index" name="{{ item.name }}" img="{{item.banner_attachments}}" date="{{item.start_time}}" location="{{ item.location }}" matchID="{{item.id}}" matchType="{{item.match_type}}" status="{{item.status}}"></match-card>
     </swiper-item>
   </swiper>
 </view>

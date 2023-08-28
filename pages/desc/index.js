@@ -2,10 +2,6 @@ import { getMatchDesc, joinMatch } from '../../utils/api'
 import { iconUrls } from '../../utils/urls'
 const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     navTitle: "老蓝孩俱乐部",
     matchID: "",
@@ -30,7 +26,17 @@ Page({
           }
         })
       }).catch(e => {
-        console.log("请求出错")
+        //已报名返回400，弹出提示信息
+        wx.showToast({
+          title: e.data.message,
+          icon: 'error',
+          duration: 2000,
+          success() {
+            setTimeout(() => {
+              wx.navigateBack()
+            }, 2000)
+          }
+        })
       })
     }
   },

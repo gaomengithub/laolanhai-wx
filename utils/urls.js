@@ -43,6 +43,9 @@ export const iconUrls = {
   mineUnofficial: prefix + '/ui_v1/icon/tab-unofficial-v2.svg',
   addActionUnofficial: prefix + '/ui_v1/icon/tab-unofficial-v2.svg',
   addActionOfficial: prefix + '/ui_v1/icon/tab-official-v1.svg',
+  mineReferee:prefix +  '/ui_v1/icon/mine-referee-v1.svg',
+  matchCardClock:prefix +  '/ui_v1/icon/match-card-clock-v1.svg',
+  matchCardLocation:prefix +  '/ui_v1/icon/match-card-location-v1.svg'
 }
 
 export const imgUrls = {

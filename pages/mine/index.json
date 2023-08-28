@@ -2,6 +2,8 @@
   "usingComponents": {
     "unwork":"/component/unwork/index",
     "score-card":"/component/score-card/index",
-    "joined-card":"/component/joined-card/index"
+    "joined-card":"/component/joined-card/index",
+    "apply-action":"/component/apply-action/index",
+    "van-popup": "@vant/weapp/popup/index"
   }
 }

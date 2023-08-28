@@ -13,13 +13,16 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : `0${n}`
 }
-let regExpTime = new RegExp("[0-9]{2}:[0-9]{2}", "g");
-let regExpDate = new RegExp("-[0-9]{2}-[0-9]{2}", "g");
+
 export function formatForMatchCard(str) {
-  let matchTime = str.match(regExpTime);
-  let matchDate = str.match(regExpDate);
-  return matchTime[0] + '  ' + matchDate[0].replace("-","月").replace(/^-0/, '')
+  const lstr = str.replace(/-/g, "T").replace(":00+08:00","").split("T")
+  const month = lstr[1]
+  const day = lstr[2].replace(/^-0/, '')
+  const time  = lstr[3]
+  return month + '月' + day + '日' + "  " +  time
 }
+
+
 
 
 export function getDifferenceInMinute(time1, time2) {

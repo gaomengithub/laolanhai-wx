@@ -53,11 +53,19 @@
   padding-left: 16px;
 }
 
-.card .item .desc .title {
+.card .item .desc .name {
   font-size: 18px;
   font-weight: 600;
+  height: 96rpx;
+  width: 400rpx;
   margin-bottom: 24rpx;
   letter-spacing: 4rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .card .item .desc .content {

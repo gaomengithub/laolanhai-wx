@@ -9,22 +9,24 @@
       {{nickName}}
     </view>
   </view>
-  <score-card></score-card>
+  <view class="score">
+    <score-card></score-card>
+  </view>
   <view class="active-card">
     <view class="cell">
-    <image class="icon" src="{{ teamIcon }}" mode="aspectFill"/>
-    <view class="text">
-      战队
+      <image class="icon" src="{{ teamIcon }}" mode="aspectFill" />
+      <view class="text">
+        战队
+      </view>
     </view>
-    </view>
-    <view class="cell">
-      <image class="icon" src="{{ applyIcon }}" mode="aspectFill"/>
+    <view class="cell" bind:tap="showPopup">
+      <image class="icon" src="{{ applyIcon }}" mode="aspectFill" />
       <view class="text">
         申请
       </view>
     </view>
     <view class="cell">
-      <image class="icon" src="{{ inIcon }}" mode="aspectFill"/>
+      <image class="icon" src="{{ inIcon }}" mode="aspectFill" />
       <view class="text">
         入驻
       </view>
@@ -32,6 +34,16 @@
   </view>
   <joined-card />
 </view>
+
+
+
 <!-- <unwork></unwork> -->
 
 <!-- <view class="honor-card"></view> -->
+
+
+<van-popup show="{{ showPopup }}" round custom-class="popup" bind:close="onClosePopup" catch:touchmove="preventTouchMove">
+  <apply-action>
+    <image class="close-icon" src="{{closeIcon}}" bind:tap="onClosePopup" />
+  </apply-action>
+</van-popup>

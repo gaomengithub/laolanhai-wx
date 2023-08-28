@@ -1,6 +1,6 @@
-import { getMatchList ,getDownloadToken} from '../../utils/api'
-import { formatForMatchCard } from '../../utils/util'
-import { iconUrls ,imgUrls} from '../../utils/urls'
+import { getMatchList, getDownloadToken } from '../../utils/api'
+
+import { iconUrls, imgUrls } from '../../utils/urls'
 const app = getApp()
 
 Page({
@@ -64,41 +64,28 @@ Page({
     }).exec();
   },
   onLoad() {
-    let matchList = []
+    // let matchList = []
     getMatchList().then(res => {
-      console.log(res)
       const bannerAttachments = res.data.matches.map(item => 'tmp/' + item.banner_attachments.split("/tmp/")[1])
-      getDownloadToken({file_names:bannerAttachments}).then(token =>{
+      getDownloadToken({ file_names: bannerAttachments }).then(token => {
         for (let [index, item] of res.data.matches.entries()) {
-          matchList.push(
-            {
-              id: item.id,
-              matchType: item.match_type,
-              title: item.name,
-              date: formatForMatchCard(item.start_time),
-              img: token.data[index] == undefined ? 'https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg':token.data[index],
-              address: item.location,
-              status: ["报名中", "进行中", "已结束"][item.status],
-              num: item.teams.length + item.users.length
-            }
-          )
+          item.banner_attachments = token.data[index] == undefined ? 'https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' : token.data[index]
         }
         this.setData({
-          matchList: matchList
+          matchList: res.data.matches
         })
-        let unofficialMatchList = matchList.filter(item => item.matchType === 3)
+        let unofficialMatchList = this.data.matchList.filter(item => item.match_type === 3)
         this.setData({
           unofficialMatchList: unofficialMatchList
         })
       })
-
     }).catch(e => {
       console.log(e)
     })
   },
-  swiperChange(e){
+  swiperChange(e) {
     this.setData({
-      activeTab:e.detail.current
+      activeTab: e.detail.current
     })
   },
   onReachBottom() {

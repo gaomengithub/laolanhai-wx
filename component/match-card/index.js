@@ -1,31 +1,44 @@
-
+import { formatForMatchCard } from '../../utils/util'
+import { iconUrls } from '../../utils/urls'
 Component({
   properties: {
     img: String,
-    title: String,
+    name: String,
     date: String,
-    address: String,
-    avatars: Array,
+    location: String,
     matchID: String,
     matchType: Number,
     status: String,
-    num: Number,
+    teams: Array,
+    users: Array
   },
   data: {
+    imgUrlWithToken: "",
+    joinNum: "",
+    formatedDate: "",
     typeClass: "",
     iconUrl: {
-      clock: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/clock-oy.svg",
-      address: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/adress-oy.svg"
+      clock: iconUrls.matchCardClock,
+      address: iconUrls.matchCardLocation
     },
     avatarUrl: [
       "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
       "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
       "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
     ],
-    backgroundImageUrl: "http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/bg-ball-4x.png"
+    backgroundImageUrl: "https://openstore.obabyball.com/ui_v1/img/match-card-bg-ball-v1.png"
   },
   lifetimes: {
     attached: function () {
+      
+      this.setData({
+        formatedDate: formatForMatchCard(this.data.date)
+      })
+
+      this.setData({
+        joinNum: this.data.teams.length + this.data.users.length
+      })
+
       switch (this.data.matchType) {
         case 0:
           this.setData({
@@ -58,7 +71,7 @@ Component({
             })
           }
         },
-        fail(){
+        fail() {
           wx.redirectTo({
             url: '/pages/login/index',
           })

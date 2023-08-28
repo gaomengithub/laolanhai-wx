@@ -48,6 +48,15 @@ export async function createMatch(data) {
   return await request(obj)
 }
 
+export async function createTeam(data) {
+  let obj = {
+    url: '/team/create',
+    method: 'POST',
+    data: data
+  }
+  return await request(obj)
+}
+
 export async function getUploadToken() {
   let obj = {
     url: '/attachment/getUploadToken',
@@ -75,6 +84,16 @@ export async function getDownloadToken(data){
     url:'/attachment/listDownloadLinks',
     method: 'POST',
     data:data
+  }
+  return await request(obj)
+}
+
+export async function searchAngthing(data){
+  let obj = {
+    url:'/match/search',
+    data:{
+      input:data
+    }
   }
   return await request(obj)
 }

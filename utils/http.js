@@ -37,6 +37,9 @@ function requestWithToken(obj, accessToken, retry) {
             console.log("超过重试次数")
           }
         }
+        if (res.statusCode == "400") {
+          reject(res)
+        }
       },
       fail: function (err) {
         reject(err)

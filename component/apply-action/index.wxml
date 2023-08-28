@@ -1,0 +1,18 @@
+<view class="container">
+  <van-cell custom-class="item {{ item.title == '申请成为裁判' ? 'official-item' : '' }}" wx:for="{{ addList }}" wx:key="*this" url="{{item.url}}" link-type="navigateTo" border="{{ false }}" is-link center>
+  <view class="nav">
+    <image class="icon" src="{{ item.icon }}" mode="aspectFill" />
+    <view class="content">
+      <view class="title {{ item.title == '申请成为裁判' ? 'official-text' : ''  }}">
+        {{ item.title }}
+      </view>
+      <view class="text {{ item.title == '申请成为裁判' ? 'official-text' : ''  }}">
+        {{ item.text }}
+      </view>
+    </view>
+  </view>
+  </van-cell>
+  <view class="active">
+    <slot></slot>
+  </view>
+</view>
