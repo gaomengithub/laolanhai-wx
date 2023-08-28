@@ -70,29 +70,40 @@ export async function uploadImage(path, url) {
 }
 
 
-export async function updateUserInfo(data){
+export async function updateUserInfo(data) {
   let obj = {
     url: '/user/update',
     method: 'POST',
-    data:data
+    data: data
   }
   return await request(obj)
 }
 
-export async function getDownloadToken(data){
+export async function getDownloadToken(data) {
   let obj = {
-    url:'/attachment/listDownloadLinks',
+    url: '/attachment/listDownloadLinks',
     method: 'POST',
-    data:data
+    data: data
   }
   return await request(obj)
 }
 
-export async function searchAngthing(data){
+export async function searchAngthing(data) {
   let obj = {
-    url:'/match/search',
-    data:{
-      input:data
+    url: '/match/search',
+    data: {
+      input: data
+    }
+  }
+  return await request(obj)
+}
+
+export async function getUserInfoByID(id) {
+  let obj = {
+    url: '/user/get',
+    method: 'POST',
+    data: {
+      id: id
     }
   }
   return await request(obj)

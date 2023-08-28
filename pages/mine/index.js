@@ -1,4 +1,5 @@
 import { imgUrls, iconUrls } from '../../utils/urls'
+import { getUserInfoByID } from '../../utils/api'
 Page({
   data: {
     nickName: "",
@@ -8,6 +9,7 @@ Page({
     inIcon: iconUrls.mineIn,
     showPopup:false,
     closeIcon:iconUrls.barClose,
+    avatarUrl:"https://openstore.obabyball.com/ui_v1/icon/mine-default-avatar.svg"
   },
   onClosePopup() {
     this.setData({
@@ -24,9 +26,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const nickName = wx.getStorageSync('nickName')
-    this.setData({
-      nickName
+    const id = wx.getStorageSync('id')
+    getUserInfoByID(id).then(res=>{
+      this.setData({
+        nickName:res.data.nickName
+      })
     })
   },
 

@@ -4,7 +4,7 @@
 
 <view class="container">
   <view class="user">
-    <image class="avatar" src="http://ryt5dzeq0.hn-bkt.clouddn.com/dev/icon/ball-for-user.svg" mode="scaleToFill" />
+    <image class="avatar" src="{{ avatarUrl }}" mode="scaleToFill" />
     <view class="name">
       {{nickName}}
     </view>

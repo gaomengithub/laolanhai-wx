@@ -1,7 +1,7 @@
 import WxValidate from '../../utils/WxValidate'
 import { updateUserInfo } from '../../utils/api'
 import { loginForToken } from '../../modules/tokenManager/getToken'
-const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+const defaultAvatarUrl = 'https://openstore.obabyball.com/ui_v1/icon/mine-default-avatar.svg'
 const app = getApp()
 Page({
 
@@ -17,7 +17,6 @@ Page({
 
 
   getPhoneNumber(e) {
-    // 在此处请求授权获得电话号码，由于微信认证的原因，暂时不写
     wx.showToast({
       title: '请等待',
       icon:'loading',
@@ -36,17 +35,14 @@ Page({
       })
       return false;
     } else {
-      console.log(this.data.avatarUrl)
       const userData = {
         id: wx.getStorageSync('id'),
         nickName: this.data.nickName,
         // phoneCode:"",
         avatar:this.data.avatarUrl
       }
-      updateUserInfo(userData).then(res => {
-        loginForToken().then(res=>{
-          console.log("成功")
-        })
+      updateUserInfo(userData).then(() => {
+        wx.setStorageSync('nickName', this.data.nickName)
         wx.showModal({
           content: '注册成功',
           showCancel: false,

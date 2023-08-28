@@ -106,3 +106,4 @@ export const addTeamMessages = {
     min: '需要上传队徽'
   }
 }
+
