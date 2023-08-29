@@ -13,19 +13,21 @@ Component({
         icon:iconUrls.addActionUnofficial,
         title:"野球局",
         text:"仅限个人参加",
-        url:"/pages/add-match/index?type=3"
+        url:"/pages/match/index?type=3&new=0"
       },
       {
         icon:iconUrls.addActionUnofficial,
         title:"野球战队赛",
         text:"仅限战队参加",
-        url:"/pages/add-match/index?type=2"
+        url:"/pages/to-do/index"
+        // url:"/pages/match/index?type=2&new=0"
       },
       {
         icon:iconUrls.addActionOfficial,
         title:"正赛",
         text:"仅限入驻机构组织",
-        url:"/pages/add-match/index?type=1"
+        url:"/pages/to-do/index"
+        // url:"/pages/match/index?type=1&new=0"
       }
     ]
 

@@ -4,6 +4,7 @@
   width: 100%;
   background-color: white;
   z-index: 1;
+  top: 0;
 }
 
 .nav-bar .bar {

@@ -19,7 +19,8 @@ Component({
         icon:iconUrls.mineReferee,
         title:"申请成为裁判",
         text:"限有正式者申请",
-        url:"/pages/add-match/index?type=2"
+        url:"/pages/to-do/index"
+        // url:"/pages/add-match/index?type=2"
       },
     ]
   },

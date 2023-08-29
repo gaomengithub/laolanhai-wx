@@ -1,7 +1,7 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
 <view style="height:{{navBarHeight}}px;"></view>
 <view class="container">
-  <van-uploader file-list="{{ fileList }}" bind:after-read="onAfterRead" max-count="1" image-fit="widthFix" accept="image">
+  <van-uploader file-list="{{ showFileList }}" bind:after-read="onAfterRead" max-count="1" image-fit="widthFix" accept="image">
     <image class="upload-icon" src="{{ iconUrls.upload }}" mode="aspectFill" />
   </van-uploader>
   <view class="input-container"></view>

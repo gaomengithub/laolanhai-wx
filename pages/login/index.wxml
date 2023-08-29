@@ -2,7 +2,6 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
 <view style="height:{{navBarHeight}}px;"></view>
 <view class="container">
- 
     <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
       <image class="avatar" src="{{avatarUrl}}"></image>
     </button>

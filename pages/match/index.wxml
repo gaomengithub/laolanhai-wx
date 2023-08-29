@@ -4,7 +4,7 @@
 
 <view class="container">
   <!-- 图片上传 -->
-  <van-uploader file-list="{{ fileList }}" bind:after-read="onAfterRead" max-count="2" image-fit="widthFix" accept="image">
+  <van-uploader file-list="{{ showFileList }}" bind:after-read="onAfterRead" max-count="2" image-fit="widthFix" accept="image">
   <image class="upload-bg-img" src="{{ iconUrls.upload }}" mode="aspectFill"/>
   </van-uploader>
   <!-- 名称 -->
@@ -53,6 +53,11 @@
 <view style="height: 166rpx;" ></view>
 <view class="active">
   <van-button round custom-class="btn-custom-class" bind:click="onCreateBtn">
-    发布
+    <block wx:if="{{ !isNew }}">
+      发布
+    </block> 
+    <block wx:else>
+      修改
+    </block> 
   </van-button>
 </view>

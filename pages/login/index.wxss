@@ -2,11 +2,9 @@ page{
   background-color: #ffffff;
 }
 .avatar-wrapper {
-  padding: 0;
-  width: 56px !important;
+  padding: 4px;
   margin-top: 40px;
   margin-bottom: 40px;
-
 }
 
 .avatar {

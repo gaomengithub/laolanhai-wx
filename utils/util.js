@@ -1,12 +1,12 @@
-export function formatTime(date) {
+export function formatDate(date) {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
+  // const hour = date.getHours()
+  // const minute = date.getMinutes()
+  // const second = date.getSeconds()
 
-  return `${[year, month, day].map(formatNumber).join('/')} ${[hour, minute, second].map(formatNumber).join(':')}`
+  return `${[year, month, day].map(formatNumber).join('-')}`
 }
 
 const formatNumber = n => {
@@ -22,7 +22,10 @@ export function formatForMatchCard(str) {
   return month + '月' + day + '日' + "  " +  time
 }
 
-
+export function splitDateTime(str){
+  const lstr = str.replace(":00+08:00","").split("T")
+  return lstr
+}
 
 
 export function getDifferenceInMinute(time1, time2) {

@@ -4,7 +4,7 @@
 }
 .container{
   position: relative;
-  top: -44rpx;
+  /* top: -44rpx; */
 }
 .content-hot,
 .content-official,
@@ -21,8 +21,8 @@
   padding-top: 8rpx;
   padding-bottom: 8rpx;
   background-color: #ffffff;
-  border-top-left-radius: 44rpx !important;
-  border-top-right-radius: 44rpx !important;
+  /* border-top-left-radius: 44rpx !important;
+  border-top-right-radius: 44rpx !important; */
 }
 
 .tab {

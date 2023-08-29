@@ -61,7 +61,7 @@ Component({
         key: 'quals',
         success(res) {
           let qual = res.data[0].qual
-          if (qual == 6) {
+          if (qual == 2) {
             wx.redirectTo({
               url: '/pages/login/index',
             })

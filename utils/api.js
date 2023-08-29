@@ -48,6 +48,15 @@ export async function createMatch(data) {
   return await request(obj)
 }
 
+export async function updateMatch(data){
+  let obj = {
+    url: '/match/update',
+    method: 'POST',
+    data: data
+  }
+  return await request(obj)
+}
+
 export async function createTeam(data) {
   let obj = {
     url: '/team/create',

@@ -1,7 +1,6 @@
 import WxValidate from '../../utils/WxValidate'
 import { updateUserInfo } from '../../utils/api'
-import { loginForToken } from '../../modules/tokenManager/getToken'
-const defaultAvatarUrl = 'https://openstore.obabyball.com/ui_v1/icon/mine-default-avatar.svg'
+import { uploadImgWithToken } from '../../utils/qiniu'
 const app = getApp()
 Page({
 
@@ -9,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl: defaultAvatarUrl,
+    avatarUrl: "",
     navTitle: "完善资料",
     navBarHeight: app.globalData.navBarHeight,
     nickName: "",
@@ -17,16 +16,11 @@ Page({
 
 
   getPhoneNumber(e) {
-    wx.showToast({
-      title: '请等待',
-      icon:'loading',
-      mask:true,
-      duration: 1000
-    })
-
-
     //校验表单
-    const data = { nickName: this.data.nickName }
+    const data = {
+      nickName: this.data.nickName,
+      avatarUrl: this.data.avatarUrl
+    }
     if (!this.WxValidate.checkForm(data)) {
       const error = this.WxValidate.errorList[0];
       wx.showModal({
@@ -35,26 +29,38 @@ Page({
       })
       return false;
     } else {
-      const userData = {
-        id: wx.getStorageSync('id'),
-        nickName: this.data.nickName,
-        // phoneCode:"",
-        avatar:this.data.avatarUrl
-      }
-      updateUserInfo(userData).then(() => {
-        wx.setStorageSync('nickName', this.data.nickName)
-        wx.showModal({
-          content: '注册成功',
-          showCancel: false,
-          complete: (res) => {
-            if (res.confirm) {
-              wx.switchTab({
-                url: '/pages/home/index',
-              })
-            }
-          }
-        })
+      wx.showToast({
+        title: '请等待',
+        icon: 'loading',
+        mask: true,
+        duration: 1000
       })
+      uploadImgWithToken(this.data.avatarUrl).then(url => {
+        const userData = {
+          id: wx.getStorageSync('id'),
+          nickName: this.data.nickName,
+          phoneCode: e.detail.code,
+          avatar: url.key
+        }
+        updateUserInfo(userData).then(() => {
+          wx.showModal({
+            content: '注册成功',
+            showCancel: false,
+            complete: (res) => {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/home/index',
+                })
+              }
+            }
+          })
+        })
+      }
+      ).catch(e => {
+        console.log('上传头像失败')
+      })
+
+
     }
   },
   onChooseAvatar(e) {
@@ -68,10 +74,16 @@ Page({
       nickName: {
         required: true
       },
+      avatarUrl: {
+        required: true
+      },
     }
     const messages = {
       nickName: {
         required: '昵称不能为空'
+      },
+      avatarUrl: {
+        required: '需要选择头像'
       },
     }
     this.WxValidate = new WxValidate(rules, messages)

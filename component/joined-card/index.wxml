@@ -5,7 +5,8 @@
   <view class="more">
     查看更多
   </view>
-  <view class="item">
+  <unwork></unwork>
+  <!-- <view class="item">
     <image class="type-icon" src="{{unOfficialIcon}}" mode="aspectFill" />
     <view class="content">
       <view class="name">
@@ -20,5 +21,5 @@
     <view class="status">
       已结束
     </view>
-  </view>
+  </view> -->
 </view>

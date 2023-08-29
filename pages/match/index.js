@@ -1,23 +1,23 @@
-import { createMatch } from '../../utils/api'
+import { createMatch, getMatchDesc, getDownloadToken, updateMatch } from '../../utils/api'
 import WxValidate from '../../utils/WxValidate'
 import { options } from '../../utils/pca-code'
 import { iconUrls } from '../../utils/urls'
-import { getDifferenceInMinute } from '../../utils/util'
+import { getDifferenceInMinute, formatDate, splitDateTime } from '../../utils/util'
 import { addMatchMessages, addMatchRules } from '../../utils/validate-set'
 import { uploadImgWithToken } from '../../utils/qiniu'
 
-
-
 const app = getApp()
 let fileList = []
+let showFileList = []
 
 Page({
   data: {
     options: options,
     type: 3,
+    isNew: true,
+    matchID:"",
     navTitle: "发布",
     autoSize: { minHeight: 50 },
-    formattedDate: "",
     iconUrls: {
       date: iconUrls.addCalendar,
       startTime: iconUrls.addStartTime,
@@ -30,7 +30,7 @@ Page({
     //form data
     name: "",
     desc: "",
-    currDate: '',
+    currDate: "",
     startTime: "",
     endTime: "",
     currArea: "",
@@ -52,16 +52,45 @@ Page({
     navBarHeight: app.globalData.navBarHeight,
     //上传
     fileList: [],
+    showFileList: []
   },
 
   onLoad(options) {
     this.WxValidate = new WxValidate(addMatchRules, addMatchMessages)
     try {
       this.setData({
-        type: options.type
+        type: options.type,
+        isNew: options.new == 0
       })
     } catch (e) {
-      console.log("获取页面参数错误")
+      this.setData({
+        type: 3,
+        isNew: true
+      })
+    }
+    // 修改比赛信息
+    if (!this.data.isNew && options.matchID.length > 0) {
+      this.setData({
+        matchID:options.matchID
+      })
+      getMatchDesc(matchID).then(res => {
+        getDownloadToken({ file_names: [res.data.banner_attachments, res.data.attachments] }).then(token => {
+          this.setData({
+            name: res.data.name,
+            desc: res.data.description,
+            joinNum: res.data.join_num,
+            startAge: res.data.age_group_start,
+            endAge: res.data.age_group_end,
+            fileList: token.data,
+            currDate: splitDateTime(res.data.start_time)[0],
+            startTime: splitDateTime(res.data.start_time)[1],
+            endTime: splitDateTime(res.data.end_time)[1],
+            currArea: res.data.location.split("||")[0],
+            address: res.data.location.split("||")[1],
+            currCost: res.data.price
+          })
+        })
+      })
     }
   },
   onDisplay(e) {
@@ -87,7 +116,7 @@ Page({
     const show = e.currentTarget.dataset.show
     let val = e.detail
     if (key == "currDate") {
-      val = this.formatDate(e.detail)
+      val = formatDate(e.detail)
     } else if (key == "currCost") {
       val = e.detail.name
     }
@@ -111,19 +140,6 @@ Page({
     })
   },
 
-  formatDate(date) {
-    date = new Date(date);
-    let year = date.getFullYear(); // 获取年份
-    let month = date.getMonth() + 1; // 获取月份，月份从0开始所以加1
-    let day = date.getDate(); // 获取日期
-    let formattedDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
-    this.setData({
-      formattedDate: formattedDate
-    })
-    return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
-  },
-
-
   onAfterRead(event) {
     const _this = this
     const { file } = event.detail;
@@ -133,11 +149,15 @@ Page({
       success(res) {
         var filePath = res.tempFilePath;
         uploadImgWithToken(filePath).then(url => {
-          fileList.push({ url: filePath })
+          showFileList.push({ url: filePath })
+          fileList.push({ url: url.key })
           _this.setData({
-            fileList
+            fileList,
+            showFileList
           })
-        }).catch(e=>{
+          console.log(_this.data.fileList)
+          console.log(_this.data.showFileList)
+        }).catch(e => {
           console.error('error: ' + JSON.stringify(e));
         })
       }
@@ -173,17 +193,17 @@ Page({
       attachments: this.data.fileList[1].url,
       banner_attachments: this.data.fileList[0].url,
       description: this.data.desc,
-      end_time: this.data.formattedDate + 'T' + this.data.endTime + ':00Z',
-      start_time: this.data.formattedDate + 'T' + this.data.startTime + ':00Z',
+      end_time: this.data.currDate + 'T' + this.data.endTime + ':00Z',
+      start_time: this.data.currDate + 'T' + this.data.startTime + ':00Z',
       join_num: parseInt(this.data.joinNum),
-      location: this.data.currArea + this.data.address,
+      location: this.data.currArea + "||" + this.data.address,
       match_type: parseInt(this.data.type),
       name: this.data.name,
       // price: this.data.currCost
       // organizer: "",
     }
-    createMatch(data).then(res => {
-      if (res.statusCode == "200") {
+    if (this.data.isNew) {
+      createMatch(data).then(res => {
         wx.showModal({
           title: '创建成功',
           showCancel: false,
@@ -195,9 +215,24 @@ Page({
             }
           }
         })
-      }
-    }).catch(e => {
-      console.log(e)
-    })
+      }).catch(e => {
+        console.log(e)
+      })
+    } else {
+      data['id'] = this.data.matchID
+      updateMatch(data).then(() => {
+        wx.showModal({
+          title: '创建成功',
+          showCancel: false,
+          complete: (res) => {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '/pages/home/index',
+              })
+            }
+          }
+        })
+      })
+    }
   },
 })

@@ -140,6 +140,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/update-match/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

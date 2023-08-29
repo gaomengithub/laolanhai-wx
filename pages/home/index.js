@@ -66,7 +66,7 @@ Page({
   onLoad() {
     // let matchList = []
     getMatchList().then(res => {
-      const bannerAttachments = res.data.matches.map(item => 'tmp/' + item.banner_attachments.split("/tmp/")[1])
+      const bannerAttachments = res.data.matches.map(item => item.banner_attachments)
       getDownloadToken({ file_names: bannerAttachments }).then(token => {
         for (let [index, item] of res.data.matches.entries()) {
           item.banner_attachments = token.data[index] == undefined ? 'https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' : token.data[index]

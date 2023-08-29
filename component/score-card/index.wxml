@@ -6,7 +6,7 @@
   <van-grid custom-class="grid" border="{{false}}">
     <van-grid-item content-class="item" custom-class="" use-slot>
       <view class="num">
-        24
+        -
       </view>
       <view class="tag">
         参赛数
@@ -14,7 +14,7 @@
     </van-grid-item>
     <van-grid-item content-class="item" use-slot>
       <view class="num">
-        1044
+        -
       </view>
       <view class="tag">
         正赛得分
@@ -22,7 +22,7 @@
     </van-grid-item>
     <van-grid-item content-class="item" use-slot>
       <view class="num">
-        88%
+        -
       </view>
       <view class="tag">
         获胜率
@@ -30,7 +30,7 @@
     </van-grid-item>
     <van-grid-item content-class="item" use-slot>
       <view class="num">
-        2222
+        -
       </view>
       <view class="tag">
         战队积分

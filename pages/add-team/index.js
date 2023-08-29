@@ -6,6 +6,7 @@ import { createTeam } from '../../utils/api'
 import { uploadImgWithToken } from '../../utils/qiniu'
 const app = getApp()
 let fileList = []
+let showFileList = []
 Page({
   data: {
     options: options,
@@ -16,6 +17,7 @@ Page({
     currCity: "",
     location: "",
     fileList: [],
+    showFileList:[],
     showAreaCascader: false,
     iconUrls: {
       upload: iconUrls.addTeamUpload,
@@ -101,9 +103,11 @@ Page({
       quality: 10,
       success(res) {
         var filePath = res.tempFilePath;
-        uploadImgWithToken(filePath).then(_res => {
-          fileList.push({ url: filePath })
+        uploadImgWithToken(filePath).then(url => {
+          showFileList.push({ url: filePath })
+          fileList.push(url.key)
           _this.setData({
+            showFileList,
             fileList
           })
         }).catch(e=>{
