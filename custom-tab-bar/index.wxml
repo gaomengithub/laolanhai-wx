@@ -1,5 +1,5 @@
 <!-- 占位 -->
-<view style="height: 232rpx;" wx:if="{{ show }}"></view>
+<view style="height: 188rpx;" wx:if="{{ show }}"></view>
 
 <view class="tab-bar" wx:if="{{ show }}">
   <view wx:for="{{list}}" wx:key="index" class="tab-bar-item" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">

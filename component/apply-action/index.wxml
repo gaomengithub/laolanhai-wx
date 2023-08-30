@@ -1,16 +1,29 @@
 <view class="container">
-  <van-cell custom-class="item {{ item.title == '申请成为裁判' ? 'official-item' : '' }}" wx:for="{{ addList }}" wx:key="*this" url="{{item.url}}" link-type="navigateTo" border="{{ false }}" is-link center>
-  <view class="nav">
-    <image class="icon" src="{{ item.icon }}" mode="aspectFill" />
-    <view class="content">
-      <view class="title {{ item.title == '申请成为裁判' ? 'official-text' : ''  }}">
-        {{ item.title }}
-      </view>
-      <view class="text {{ item.title == '申请成为裁判' ? 'official-text' : ''  }}">
-        {{ item.text }}
+  <van-cell custom-class="item" border="{{ false }}" is-link center clickable bind:click="navigateTo" data-url="{{ team.url }}">
+    <view class="nav">
+      <image class="icon" src="{{ team.icon }}" mode="aspectFill" />
+      <view class="content">
+        <view class="title">
+          {{ team.title }}
+        </view>
+        <view class="text">
+          {{ team.text }}
+        </view>
       </view>
     </view>
-  </view>
+  </van-cell>
+  <van-cell custom-class="item referee-item"  border="{{ false }}" is-link center clickable bind:click="navigateTo" data-url="{{ referee.url }}" >
+    <view class="nav">
+      <image class="icon" src="{{ referee.icon }}" mode="aspectFill" />
+      <view class="content">
+        <view class="title">
+          {{ referee.title }}
+        </view>
+        <view class="text referee-text">
+          {{ referee.text }}
+        </view>
+      </view>
+    </view>
   </van-cell>
   <view class="active">
     <slot></slot>

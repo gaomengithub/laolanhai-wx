@@ -37,4 +37,6 @@ page {
 .van-cell {
   font-size: 30rpx !important;
   line-height: 50rpx !important;
+  align-items: center;
 }
+

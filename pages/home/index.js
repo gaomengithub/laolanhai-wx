@@ -60,7 +60,7 @@ Page({
   setSwiperHeight() {
     const className = [".content-hot", ".content-official", ".content-unofficial"][this.data.activeTab]
     wx.createSelectorQuery().select(className).boundingClientRect(rect => {
-      this.setData({ swiperHeight: rect.height + 120 + 'px' });
+      this.setData({ swiperHeight: rect.height  + 128 + 'px' });
     }).exec();
   },
   onLoad() {

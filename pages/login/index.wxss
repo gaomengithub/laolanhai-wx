@@ -1,6 +1,7 @@
-page{
+page {
   background-color: #ffffff;
 }
+
 .avatar-wrapper {
   padding: 4px;
   margin-top: 40px;
@@ -20,11 +21,19 @@ page{
 }
 
 
-.btn{
+.btn {
   margin-top: 100rpx;
   background-color: #FB8808 !important;
   border-radius: 44rpx !important;
   width: 650rpx;
   font-weight: 600;
   letter-spacing: 2rpx;
+}
+
+.tip {
+  color: red;
+  font-size: 28rpx;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  text-align: center;
 }

@@ -1,90 +1,115 @@
 import WxValidate from '../../utils/WxValidate'
 import { updateUserInfo } from '../../utils/api'
 import { uploadImgWithToken } from '../../utils/qiniu'
+const computedBehavior = require('miniprogram-computed').behavior
 const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
+  behaviors: [computedBehavior],
   data: {
     avatarUrl: "",
     navTitle: "完善资料",
     navBarHeight: app.globalData.navBarHeight,
     nickName: "",
+    disabled: true,
+    showNameTip: false,
+    showAvatarTip: false
   },
-
-
-  getPhoneNumber(e) {
-    //校验表单
-    const data = {
-      nickName: this.data.nickName,
-      avatarUrl: this.data.avatarUrl
-    }
-    if (!this.WxValidate.checkForm(data)) {
-      const error = this.WxValidate.errorList[0];
-      wx.showModal({
-        content: error.msg,
-        showCancel: false
-      })
-      return false;
-    } else {
-      wx.showToast({
-        title: '请等待',
-        icon: 'loading',
-        mask: true,
-        duration: 1000
-      })
-      uploadImgWithToken(this.data.avatarUrl).then(url => {
-        const userData = {
-          id: wx.getStorageSync('id'),
-          nickName: this.data.nickName,
-          phoneCode: e.detail.code,
-          avatar: url.key
-        }
-        updateUserInfo(userData).then(() => {
-          wx.showModal({
-            content: '注册成功',
-            showCancel: false,
-            complete: (res) => {
-              if (res.confirm) {
-                wx.switchTab({
-                  url: '/pages/home/index',
-                })
-              }
-            }
-          })
+  watch: {
+    'avatarUrl, nickName': function (a, n) {
+      if (a.length > 0 && n.length > 0) {
+        this.setData({
+          disabled: false
         })
       }
-      ).catch(e => {
-        console.log('上传头像失败')
-      })
-
-
     }
   },
+  validate(e) {
+    const key = e.currentTarget.dataset.key
+    let data = null
+    if (key == "showNameTip") {
+      data = {
+        nickName: this.data.nickName,
+        avatarUrl: "stand"
+      }
+    }
+
+    if (key == "showAvatarTip") {
+      data = {
+        nickName: 'stand',
+        avatarUrl: this.data.avatarUrl
+      }
+    }
+
+    if (!this.WxValidate.checkForm(data)) {
+      this.setData({
+        [key]: true
+      })
+    } else {
+      this.setData({
+        [key]: false,
+      })
+    }
+  },
+
+  getPhoneNumber(e) {
+    wx.showToast({
+      title: '请等待',
+      icon: 'loading',
+      mask: true,
+      duration: 1000
+    })
+    uploadImgWithToken(this.data.avatarUrl).then(url => {
+      const userData = {
+        id: wx.getStorageSync('id'),
+        nickName: this.data.nickName,
+        phoneCode: e.detail.code,
+        avatar: url.key
+      }
+      updateUserInfo(userData).then(() => {
+        wx.showModal({
+          content: '注册成功',
+          showCancel: false,
+          complete: (res) => {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '/pages/home/index',
+              })
+            }
+          }
+        })
+      })
+    }
+    ).catch(e => {
+      console.log('上传头像失败')
+    })
+
+
+
+  },
   onChooseAvatar(e) {
+    console.log(e)
     const { avatarUrl } = e.detail
     this.setData({
       avatarUrl,
+      showAvatarTip: false
     })
   },
   initValidate() {
     const rules = {
-      nickName: {
+      avatarUrl: {
         required: true
       },
-      avatarUrl: {
+      nickName: {
         required: true
       },
     }
     const messages = {
-      nickName: {
-        required: '昵称不能为空'
-      },
       avatarUrl: {
         required: '需要选择头像'
       },
+      nickName: {
+        required: '昵称不能为空'
+      }
     }
     this.WxValidate = new WxValidate(rules, messages)
   },

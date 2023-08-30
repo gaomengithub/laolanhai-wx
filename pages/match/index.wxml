@@ -39,11 +39,11 @@
   <van-field wx:else left-icon="friends" model:value="{{ joinNum }}" input-align="right" placeholder="请输入队伍数量" type="number" >
     <view slot="label">队伍数量</view>
   </van-field>
-  <van-field left-icon="{{iconUrls.startAge}}" model:value="{{ startAge }}" input-align="right" placeholder="请输入年龄上限" type="number" >
-    <view slot="label">年龄上限</view>
+  <van-field left-icon="{{iconUrls.startAge}}" model:value="{{ startAge }}" input-align="right" placeholder="请输入可参加的最小年龄" type="number" >
+    <view slot="label">最小年龄</view>
   </van-field>
-  <van-field left-icon="{{iconUrls.endAge}}" model:value="{{ endAge }}" input-align="right" placeholder="请输入年龄下限" type="number">
-    <view slot="label">年龄下限</view>
+  <van-field left-icon="{{iconUrls.endAge}}" model:value="{{ endAge }}" input-align="right" placeholder="请输入可参加的最大年龄" type="number">
+    <view slot="label">最大年龄</view>
   </van-field>
   <!-- 费用 -->
   <van-cell icon="{{iconUrls.cost}}" title="费用" model:value="{{currCost}}" is-link bind:click="onDisplay" border="{{ false }}"data-show="showCostAction" />
@@ -53,7 +53,7 @@
 <view style="height: 166rpx;" ></view>
 <view class="active">
   <van-button round custom-class="btn-custom-class" bind:click="onCreateBtn">
-    <block wx:if="{{ !isNew }}">
+    <block wx:if="{{ isNew }}">
       发布
     </block> 
     <block wx:else>

@@ -15,9 +15,6 @@ export const addMatchRules = {
   timeDiff: {
     min: 1
   },
-  ageDiff: {
-    min: 1
-  },
   currArea: {
     required: true,
   },
@@ -33,6 +30,9 @@ export const addMatchRules = {
   endAge: {
     required: true
   },
+  ageDiff: {
+    min: 1
+  }
 }
 export const addMatchMessages = {
   imgCount: {
@@ -50,9 +50,6 @@ export const addMatchMessages = {
   timeDiff: {
     min: '开始时间要大于结束时间'
   },
-  timeDiff: {
-    min: '年龄上限要大于年龄下限'
-  },
   currArea: {
     required: '地区不能为空',
   },
@@ -67,7 +64,10 @@ export const addMatchMessages = {
   },
   endAge: {
     required: '年龄下限不能为空'
-  }
+  },
+  ageDiff: {
+    min: '年龄上限要大于年龄下限'
+  },
 }
 
 //创建球队

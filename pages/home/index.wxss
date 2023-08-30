@@ -9,7 +9,7 @@
 .content-hot,
 .content-official,
 .content-unofficial {
-  height: 80vh !important;
+  height: 100vh !important;
   background-color: #EBEBEB;
 }
 

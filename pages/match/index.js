@@ -54,20 +54,27 @@ Page({
     fileList: [],
     showFileList: []
   },
-
+  onShow(){
+    fileList = []
+    showFileList = []
+  },
   onLoad(options) {
+
     this.WxValidate = new WxValidate(addMatchRules, addMatchMessages)
-    try {
-      this.setData({
-        type: options.type,
-        isNew: options.new == 0
-      })
-    } catch (e) {
-      this.setData({
-        type: 3,
-        isNew: true
-      })
+    if ( options.type != undefined && options.new !=undefined ){
+      try {
+        this.setData({
+          type: options.type,
+          isNew: options.new == "y"
+        })
+      } catch (e) {
+        this.setData({
+          type: 3,
+          isNew: true
+        })
+      }
     }
+
     // 修改比赛信息
     if (!this.data.isNew && options.matchID.length > 0) {
       this.setData({
@@ -175,7 +182,7 @@ Page({
       startAge: this.data.startAge,
       endAge: this.data.endAge,
       timeDiff: getDifferenceInMinute(this.data.endTime, this.data.startTime),
-      ageDiff: this.data.startAge - this.data.endAge,
+      ageDiff:  this.data.endAge - this.data.startAge,
       imgCount: this.data.fileList.length
     }
     if (!this.WxValidate.checkForm(formData)) {

@@ -38,11 +38,11 @@
   align-items: flex-start;
 }
 
-.official-item {
+.referee-item {
   background-color: #FB8808;
 
 }
 
-.official-text {
+.referee-text {
   color: #000000 !important;
 }
