@@ -9,5 +9,4 @@
     <van-field label="昵称" model:value="{{ nickName }}" type="nickname" placeholder="请输入昵称" bind:blur="validate" data-key="showNameTip" />
     <text wx:if="{{showNameTip}}"  class="tip"> 请输入有效的昵称 </text>
     <van-button disabled="{{ disabled }}" open-type="getPhoneNumber" bind:getphonenumber="getPhoneNumber" custom-class="btn">完善</van-button>
-
 </view>

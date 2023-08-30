@@ -1,5 +1,9 @@
+page {
+  background-color: #EBEBEB;
+}
 
-.bg{
+
+.bg {
   width: 100vw;
   border-bottom-left-radius: 22px;
   border-bottom-right-radius: 22px;
@@ -24,21 +28,21 @@
 
 
 
-.team .avatar{
+.team .avatar {
   position: absolute;
   top: -75px;
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 3px , solid , #ffffff;
+  border: 3px, solid, #ffffff;
 }
 
-.team .name{
+.team .name {
   font-size: 1.2rem;
   font-weight: 700;
   margin-top: 15px;
   margin-bottom: 15px;
-  
+
 }
 
 .team .data {
@@ -48,13 +52,15 @@
   flex-direction: row;
   justify-content: space-around;
 }
-.team .data .cell{
+
+.team .data .cell {
   display: flex;
   flex-direction: column;
   text-align: center;
   height: 10vh;
   justify-content: space-around;
 }
-.team .data .cell .tag{
+
+.team .data .cell .tag {
   color: gray;
 }

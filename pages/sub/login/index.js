@@ -1,6 +1,6 @@
-import WxValidate from '../../utils/WxValidate'
-import { updateUserInfo } from '../../utils/api'
-import { uploadImgWithToken } from '../../utils/qiniu'
+import WxValidate from '../../../utils/WxValidate'
+import { updateUserInfo } from '../../../utils/api'
+import { uploadImgWithToken } from '../../../utils/qiniu'
 const computedBehavior = require('miniprogram-computed').behavior
 const app = getApp()
 Page({
@@ -19,6 +19,11 @@ Page({
       if (a.length > 0 && n.length > 0) {
         this.setData({
           disabled: false
+        })
+      }
+      if (a.length == 0 || n.length == 0){
+        this.setData({
+          disabled: true
         })
       }
     }

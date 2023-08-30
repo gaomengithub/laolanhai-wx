@@ -62,8 +62,8 @@ Component({
         success(res) {
           let qual = res.data[0].qual
           if (qual == 2) {
-            wx.redirectTo({
-              url: '/pages/login/index',
+            wx.navigateTo({
+              url: '/pages/sub/login/index',
             })
           } else {
             wx.navigateTo({
@@ -72,8 +72,8 @@ Component({
           }
         },
         fail() {
-          wx.redirectTo({
-            url: '/pages/login/index',
+          wx.navigateTo({
+            url: '/pages/sub/login/index',
           })
         }
       })

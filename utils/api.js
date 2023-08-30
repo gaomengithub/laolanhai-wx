@@ -117,3 +117,16 @@ export async function getUserInfoByID(id) {
   }
   return await request(obj)
 }
+
+
+export async function getTeamList() {
+  let obj = {
+    url: '/team/list',
+    method: 'POST',
+    data: {
+      page_size: 10,
+      page_token:""
+    }
+  }
+  return await request(obj)
+}

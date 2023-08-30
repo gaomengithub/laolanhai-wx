@@ -5,14 +5,13 @@
     "pages/team/index",
     "pages/mine/index",
     "pages/desc/index",
-    "pages/match/index",
+    "pages/sub/match/index",
     "pages/look-desc/index",
-    "pages/login/index",
+    "pages/sub/login/index",
     "pages/add-team/index",
     "libs/city-selector/index",
-    "pages/search/index",
+    "pages/sub/search/index",
     "libs/calendar/index",
-    "pages/update-match/index",
     "pages/to-do/index"
   ],
   "window": {

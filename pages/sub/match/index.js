@@ -1,10 +1,10 @@
-import { createMatch, getMatchDesc, getDownloadToken, updateMatch } from '../../utils/api'
-import WxValidate from '../../utils/WxValidate'
-import { options } from '../../utils/pca-code'
-import { iconUrls } from '../../utils/urls'
-import { getDifferenceInMinute, formatDate, splitDateTime } from '../../utils/util'
-import { addMatchMessages, addMatchRules } from '../../utils/validate-set'
-import { uploadImgWithToken } from '../../utils/qiniu'
+import { createMatch, getMatchDesc, getDownloadToken, updateMatch } from '../../../utils/api'
+import WxValidate from '../../../utils/WxValidate'
+import { options } from '../../../utils/pca-code'
+import { iconUrls } from '../../../utils/urls'
+import { getDifferenceInMinute, formatDate, splitDateTime } from '../../../utils/util'
+import { addMatchMessages, addMatchRules } from '../../../utils/validate-set'
+import { uploadImgWithToken } from '../../../utils/qiniu'
 
 const app = getApp()
 let fileList = []
@@ -59,7 +59,6 @@ Page({
     showFileList = []
   },
   onLoad(options) {
-
     this.WxValidate = new WxValidate(addMatchRules, addMatchMessages)
     if ( options.type != undefined && options.new !=undefined ){
       try {
@@ -99,6 +98,14 @@ Page({
         })
       })
     }
+  },
+  deleteImg(e){
+    fileList.pop(e.detail.index)
+    showFileList.pop(e.detail.index)
+    this.setData({
+      fileList,
+      showFileList
+    })
   },
   onDisplay(e) {
     const show = e.currentTarget.dataset.show

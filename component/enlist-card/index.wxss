@@ -1,0 +1,70 @@
+/* component/recruit/index.wxss */
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 44rpx;
+  position: relative;
+  height: 216rpx;
+  width: 100%;
+  background: linear-gradient(to right, #FFFFFF, #FFFAF4);
+}
+
+.card .avatar-container {
+  position: absolute;
+  left: 36rpx;
+  width: 160rpx;
+  height: 160rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .avatar-outline {
+  position: absolute;
+  left: 36rpx;
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.card .avatar-container .avatar {
+  width: 112rpx;
+  height: 112rpx;
+  clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
+  z-index: 1;
+}
+
+.card .bg-img {
+  position: absolute;
+  top: -40rpx;
+  right: 35rpx;
+  width: 280rpx;
+  height: 280rpx;
+}
+
+.card .info {
+  height: 108rpx;
+  width: 280rpx;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card .info .name {
+  font-size: 36rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+
+.card .info .num {
+  color: gray;
+}
+
+.card .btn {
+  position: relative;
+  width: 210rpx;
+  background-color: #FB8808;
+  font-size: 30rpx;
+  font-weight: 600;
+}

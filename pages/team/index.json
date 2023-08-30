@@ -1,7 +1,7 @@
 {
 
   "usingComponents": {
-    "recruit":"/component/recruit/index",
+    "enlist-card":"/component/enlist-card/index",
     "van-calendar": "@vant/weapp/calendar/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",

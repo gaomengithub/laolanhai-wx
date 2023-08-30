@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "nav-bar": "/component/nav-bar/index",
-    "van-search": "@vant/weapp/search/index",
-    "match-card":"/component/match-card/index"
-  }
-}

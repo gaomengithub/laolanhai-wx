@@ -20,7 +20,7 @@
         <view class="child">{{currDate}}</view>
         <image class="icon" src="{{arrowIcon}}" />
       </navigator>
-      <navigator url="/pages/search/index">
+      <navigator url="/pages/sub/search/index">
       <van-button custom-class="search">
         <image class="search" src="{{ searchIcon }}"></image>
       </van-button>

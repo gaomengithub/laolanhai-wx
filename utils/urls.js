@@ -50,6 +50,8 @@ export const iconUrls = {
 
 export const imgUrls = {
   bannerImg: prefix + "/ui_v1/img/banner-img-v1.png",
-  mineLightImg :prefix + "/ui_v1/img/mine-light-img-v1.svg"
+  mineLightImg :prefix + "/ui_v1/img/mine-light-img-v1.svg",
+  enListBgImg :prefix + "/ui_v1/img/enlist-bg-img-v2.svg",
+  enListAvatarOutlineImg :prefix + "/ui_v1/img/enlist-avatar-outline-v1.svg"
 }
 

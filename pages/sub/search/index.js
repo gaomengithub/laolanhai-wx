@@ -1,4 +1,4 @@
-import { searchAngthing, getDownloadToken } from '../../utils/api'
+import { searchAngthing, getDownloadToken } from '../../../utils/api'
 
 const app = getApp()
 Page({

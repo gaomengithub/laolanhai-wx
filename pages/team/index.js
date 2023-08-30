@@ -1,4 +1,4 @@
-
+import { getTeamList, getDownloadToken } from '../../utils/api'
 
 const app = getApp()
 
@@ -11,13 +11,28 @@ Page({
   data: {
     navTitle: "观赛",
     navBarHeight: app.globalData.navBarHeight,
+    teamList: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    getTeamList().then(res => {
+      const imgUrls = res.data.items.map(item => item.logo)
+      console.log(imgUrls)
+      getDownloadToken({ file_names: imgUrls }).then(token => {
+        console.log(token)
+        for (let [index, item] of res.data.items.entries()) {
+          item.logo = token.data[index]
+        }
+        this.setData({
+          teamList: res.data.items
+        })
+      })
+    }).catch(e => {
+      console.log("获得队伍列表错误")
+    })
   },
 
   /**
@@ -32,12 +47,12 @@ Page({
    */
   onShow() {
 
-      if (typeof this.getTabBar === 'function' &&
-        this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 3
-        })
-      }
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 3
+      })
+    }
 
 
   },

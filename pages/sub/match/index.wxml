@@ -4,7 +4,7 @@
 
 <view class="container">
   <!-- 图片上传 -->
-  <van-uploader file-list="{{ showFileList }}" bind:after-read="onAfterRead" max-count="2" image-fit="widthFix" accept="image">
+  <van-uploader bind:delete='deleteImg' file-list="{{ showFileList }}" bind:after-read="onAfterRead" max-count="2" image-fit="widthFix" accept="image">
   <image class="upload-bg-img" src="{{ iconUrls.upload }}" mode="aspectFill"/>
   </van-uploader>
   <!-- 名称 -->
