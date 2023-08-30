@@ -55,53 +55,6 @@
   bottom: 11.5rpx;
 }
 
-.filter {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding-left: 21rpx;
-  padding-right: 21rpx;
-  height: 84rpx;
-  background-color: #ffffff;
-}
-
-
-.filter .search {
-  height: 72rpx !important;
-  width: 116rpx !important;
-  border-radius: 40rpx;
-  display: flex;
-  flex-direction: column;
-  
-}
-
-.filter .cell {
-  height: 72rpx !important;
-  width: 260rpx !important;
-  border-radius: 40rpx !important;
-  color: #000;
-  background-color: #F2F4F3 !important;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.filter .cell .icon {
-  position: absolute;
-  right: 22rpx;
-  width: 35rpx;
-  height: 35rpx;
-}
-
-.filter .cell .child {
-  margin-left: 25rpx;
-  width: 190rpx;
-  white-space: nowrap;
-  overflow: hidden;
-  transform: translateY(-3.5rpx);
-  text-overflow: ellipsis;
-  /* 如果文本超出部分被隐藏，则显示省略号 */
-}
 
 .tab-icon {
   width: 75rpx;

@@ -11,21 +11,7 @@
         <view class="bb" wx:if="{{ activeTab === index }}"></view>
       </view>
     </view>
-    <view class="filter">
-      <navigator class="cell" url="/libs/city-selector/index">
-        <view class="child">{{currCity}}</view>
-        <image class="icon" src="{{arrowIcon}}" />
-      </navigator>
-      <navigator class="cell" url="/libs/calendar/index">
-        <view class="child">{{currDate}}</view>
-        <image class="icon" src="{{arrowIcon}}" />
-      </navigator>
-      <navigator url="/pages/sub/search/index">
-      <van-button custom-class="search">
-        <image class="search" src="{{ searchIcon }}"></image>
-      </van-button>
-    </navigator>
-    </view>
+    <filter-bar />
   </van-sticky>
   <swiper  current="{{activeTab}}" id="auto-swiper" style="height: {{swiperHeight}}; background-color: #EBEBEB;" bindchange="swiperChange">
     <swiper-item class="content-hot">

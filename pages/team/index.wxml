@@ -1,11 +1,14 @@
-
-<nav-bar title="{{navTitle}}" ></nav-bar>
+<nav-bar title="{{navTitle}}"></nav-bar>
 <view style="height:{{navBarHeight}}px;"></view>
 
-<view class="joined"></view>
+<view class="container">
+  <view class="joined"></view>
 
-<view class="list">
-  <enlist-card wx:for="{{teamList}}" wx:key="*this" name="{{ item.name }}" avatar="{{ item.logo }}"></enlist-card>
+  <view class="list">
+    <enlist-card wx:for="{{teamList}}" wx:key="*this" name="{{ item.name }}" avatar="{{ item.logo }}"></enlist-card>
+  </view>
+
+
 </view>
 
 
@@ -49,6 +52,3 @@
 <recruit></recruit>
 <recruit></recruit>
 <recruit></recruit> -->
-
-
-<unwork></unwork>

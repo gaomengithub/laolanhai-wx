@@ -1,5 +1,7 @@
-page {
+.container {
+  padding-top: 24rpx;
   background-color: #EBEBEB;
+  padding-bottom: 24rpx;
 }
 
 

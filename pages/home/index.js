@@ -9,8 +9,6 @@ Page({
     bannerImg: imgUrls.bannerImg,
     tabs: ["热门", "正赛", "野球"],
     tabIcon: [iconUrls.tabHot, iconUrls.tabOfficial, iconUrls.tabUnofficial],
-    searchIcon: iconUrls.tabSearch,
-    arrowIcon: iconUrls.tabArrow,
     showNarBar: false,
     loading: false,
     matchList: [],
@@ -18,8 +16,6 @@ Page({
     activeTab: 0,
     swiperHeight: "100vh",
     offsetTop: app.globalData.navBarHeight,
-    currCity: "",
-    currDate: ""
   },
   showNarBar(e) {
     if (e.detail.isFixed) {
@@ -49,10 +45,6 @@ Page({
         selected: 0
       })
     }
-    this.setData({
-      currCity: app.globalData.currCity,
-      currDate: app.globalData.currDate
-    })
   },
   onPageScroll() {
     this.setSwiperHeight()
@@ -64,6 +56,7 @@ Page({
     }).exec();
   },
   onLoad() {
+
     // let matchList = []
     getMatchList().then(res => {
       const bannerAttachments = res.data.matches.map(item => item.banner_attachments)

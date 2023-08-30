@@ -7,7 +7,8 @@
     "van-button": "@vant/weapp/button/index",
     "van-popup": "@vant/weapp/popup/index",
     "van-picker": "@vant/weapp/picker/index",
-    "unwork":"/component/unwork/index"
+    "unwork":"/component/unwork/index",
+    "filter-bar":"/component/filter-bar/index"
   },
   "enablePullDownRefresh": true
 }

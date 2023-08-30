@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navTitle: "观赛",
+    navTitle: "球队",
     navBarHeight: app.globalData.navBarHeight,
     teamList: [],
   },

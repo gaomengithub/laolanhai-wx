@@ -1,0 +1,15 @@
+<view class="filter">
+  <navigator class="cell" url="/libs/city-selector/index">
+    <view class="child">{{currCity}}</view>
+    <image class="icon" src="{{arrowIcon}}" />
+  </navigator>
+  <navigator class="cell" url="/libs/calendar/index">
+    <view class="child">{{currDate}}</view>
+    <image class="icon" src="{{arrowIcon}}" />
+  </navigator>
+  <navigator url="/pages/sub/search/index">
+    <van-button custom-class="search">
+      <image class="search" src="{{searchIcon}}"></image>
+    </van-button>
+  </navigator>
+</view>
