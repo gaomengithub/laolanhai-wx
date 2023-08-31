@@ -1,14 +1,14 @@
-import { getMatchDesc, joinMatch } from '../../../../utils/api'
-import { iconUrls } from '../../../../utils/urls'
+import { getMatchDesc, joinMatch } from '$/api'
+import { iconUrls } from '$/urls'
 const app = getApp()
 Page({
   data: {
     navTitle: "老蓝孩俱乐部",
     matchID: "",
     match: {},
-    typeUrl:iconUrls.descUnofficialTag,
-    clockUrl:iconUrls.descClock,
-    locationUrl:iconUrls.descLocation,
+    typeUrl: iconUrls.descUnofficialTag,
+    clockUrl: iconUrls.descClock,
+    locationUrl: iconUrls.descLocation,
     navBarHeight: app.globalData.navBarHeight,
   },
   onJoinBtn() {
@@ -47,18 +47,21 @@ Page({
     try {
       this.setData({
         matchID: options.matchID,
-        typeUrl:[iconUrls.descOfficialTag,iconUrls.descOfficialTag,iconUrls.descUnofficialTag][options.matchType-1]
+        typeUrl: [iconUrls.descOfficialTag, iconUrls.descOfficialTag, iconUrls.descUnofficialTag][options.matchType - 1]
       })
     } catch (e) {
       console.log("获取比赛ID失败")
     }
     getMatchDesc(options.matchID).then(res => {
+      res.data.start_time = res.data.start_time.replace(":00+08:00", "").replace("T", "  ")
+      res.data.location = res.data.location.replace("||","  ")
       this.setData({
         match: res.data
       })
     }).catch(e => {
       console.log(e)
     })
+
   },
 
   /**

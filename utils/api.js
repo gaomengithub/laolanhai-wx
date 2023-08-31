@@ -130,3 +130,14 @@ export async function getTeamList() {
   }
   return await request(obj)
 }
+
+
+export async function getTeamDesc(teamID) {
+  let obj = {
+    url: '/team/get',
+    data: {
+      id:teamID
+    }
+  }
+  return await request(obj)
+}

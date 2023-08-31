@@ -114,7 +114,7 @@
 }
 
 .desc .title {
-  font-size: 1.5rem;
+  font-size: 36rpx;
   font-weight: 700;
   width: fit-content;
   background: -webkit-linear-gradient(top,
@@ -125,7 +125,17 @@
 }
 
 .desc .content {
-  font-size: 1.2rem;
+  font-size: 36rpx;
+}
+
+.desc .age {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 36rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
 }
 
 .active {

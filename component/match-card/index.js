@@ -1,5 +1,5 @@
-import { formatForMatchCard } from '../../utils/util'
-import { iconUrls } from '../../utils/urls'
+import { formatForMatchCard } from '$/util'
+import { iconUrls ,imgUrls } from '$/urls'
 Component({
   properties: {
     img: String,
@@ -13,30 +13,28 @@ Component({
     users: Array
   },
   data: {
-    imgUrlWithToken: "",
     joinNum: "",
     formatedDate: "",
+    formatedLocation:"",
     typeClass: "",
     iconUrl: {
       clock: iconUrls.matchCardClock,
       address: iconUrls.matchCardLocation
     },
-    avatarUrl: [
-      "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
-      "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
-      "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
-    ],
-    backgroundImageUrl: "https://openstore.obabyball.com/ui_v1/img/match-card-bg-ball-v1.png"
+    matchCardBgImage: imgUrls.matchCardBgImage
   },
   lifetimes: {
     attached: function () {
-      
       this.setData({
         formatedDate: formatForMatchCard(this.data.date)
       })
 
       this.setData({
         joinNum: this.data.teams.length + this.data.users.length
+      })
+
+      this.setData({
+        formatedLocation: this.data.location.replace("||","  ")
       })
 
       switch (this.data.matchType) {

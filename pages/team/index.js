@@ -1,7 +1,6 @@
-import { getTeamList, getDownloadToken } from '../../utils/api'
+import { getTeamList } from '$/api'
 
 const app = getApp()
-
 
 Page({
 
@@ -19,7 +18,6 @@ Page({
    */
   onLoad(options) {
     getTeamList().then(res => {
-
       this.setData({
         teamList: res.data.items
       })

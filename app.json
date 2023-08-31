@@ -4,9 +4,9 @@
     "pages/look/index",
     "pages/team/index",
     "pages/mine/index",
-    "pages/sub/match/index",
     "pages/sub/login/index",
-    "pages/sub/team/index",
+    "pages/sub/create-match/index",
+    "pages/sub/create-team/index",
     "pages/sub/search/index",
     "pages/sub/details/match/index",
     "pages/sub/details/look-desc/index",
@@ -41,5 +41,8 @@
   },
   "sitemapLocation": "sitemap.json",
   "useExtendedLib": {},
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "resolveAlias":{
+    "$/*":"/utils/*"
+  }
 }

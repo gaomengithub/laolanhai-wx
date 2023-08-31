@@ -1,5 +1,6 @@
 import { getAvailableAccessToken } from '../modules/tokenManager/tokenToken'
-import { BASE_URL } from './global'
+
+const  BASE_URL = "https://api.obabyball.com"
 
 export function request(obj, retry = 0, force = false) {
   return new Promise(async function (resolve, reject) {

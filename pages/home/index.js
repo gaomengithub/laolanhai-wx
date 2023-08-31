@@ -1,6 +1,6 @@
-import { getMatchList, getDownloadToken } from '../../utils/api'
-
+import { getMatchList } from '../../utils/api'
 import { iconUrls, imgUrls } from '../../utils/urls'
+
 const app = getApp()
 
 Page({

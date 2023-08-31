@@ -28,13 +28,9 @@ Page({
   onLoad(options) {
     const id = wx.getStorageSync('id')
     getUserInfoByID(id).then(res=>{
-      getDownloadToken( {file_names : [res.data.avatar]}).then(url=>{
-        this.setData({
-          avatarUrl:url.data[0]
-        })
-      })
       this.setData({
-        nickName:res.data.nickName
+        nickName:res.data.nickName,
+        avatarUrl:res.data.avatar
       })
     })
   },

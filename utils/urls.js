@@ -53,6 +53,7 @@ export const imgUrls = {
   mineLightImg: prefix + "/ui_v1/img/mine-light-img-v1.svg",
   enListBgImg: prefix + "/ui_v1/img/enlist-bg-img-v2.svg",
   enListAvatarOutlineImg: prefix + "/ui_v1/img/enlist-avatar-outline-v1.svg",
-  detailTeamBgImg: prefix + "/ui_v1/img/detail-team-bg-img-v1-compress-v2.png"
+  detailTeamBgImg: prefix + "/ui_v1/img/detail-team-bg-img-v1-compress-v2.png",
+  matchCardBgImage: prefix + "/ui_v1/img/match-card-bg-ball-v1.png"
 }
 

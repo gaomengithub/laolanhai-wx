@@ -1,17 +1,18 @@
-// pages/sub/details/team/index.js
-import { imgUrls } from '../../../../utils/urls'
+import { getTeamDesc } from '$/api'
+import { imgUrls } from '$/urls'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    active:0,
+    items:{},
+    active: 0,
     bgImg: imgUrls.detailTeamBgImg,
     navTitle: "球队详情",
     navBarHeight: getApp().globalData.navBarHeight,
   },
-  onChange(e){
+  onChange(e) {
     const active = e.currentTarget.dataset.active
     this.setData({
       active
@@ -22,7 +23,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    getTeamDesc(options.id).then(res => {
+      console.log(res)
+      this.setData({
+        items:res.data
+      })
+    })
   },
 
   /**

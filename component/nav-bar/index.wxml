@@ -7,3 +7,5 @@
   </view>
   <view class="title" style="top: {{menuTop}}px; height:{{menuHeight}}px;">{{ title }}</view>
 </view>
+<!-- 占位 -->
+<view style="height:{{navBarHeight}}px;"></view>

@@ -1,11 +1,10 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
-<view style="height:{{navBarHeight}}px;"></view>
+<!-- <view style="height:{{navBarHeight}}px;"></view> -->
 
 <image class="bg-img" src="{{bgImg}}" mode="aspectFill" />
 <view class="team-card">
-  <team-card />
+  <team-card name="{{items.name}} "></team-card>
 </view>
-
 <view class="tabs-container">
   <view class="tabs">
     <view class="{{active == 0 ? 'tab-active' :'tab'}}" bind:tap="onChange" data-active="0">球队队员</view>
@@ -14,9 +13,12 @@
     </auth-show>
   </view>
   <view wx:if="{{active == 0}}" class="player-items">
-    <player-item wx:for="{{ 3 }}"></player-item>
+    <player-item wx:for="{{items.teamMember}}" wx:key="*this" name="{{ item.nickName }}"></player-item>
   </view>
   <view wx:if="{{ active == 1 }}" class="apply-items">
     <apply-card />
   </view>
+</view>
+<view class="active">
+  <van-button custom-class="btn-custom-class" bind:click='onJoinBtn'>立即加入</van-button>
 </view>

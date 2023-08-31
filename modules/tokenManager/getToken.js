@@ -1,6 +1,5 @@
-import { BASE_URL } from '../../utils/global'
 import { setStorage, getRefreshToken } from './tokenHandler'
-
+const BASE_URL = "https://api.obabyball.com"
 export function loginForToken() {
   return new Promise((resolve, reject)=>{
     wx.login({

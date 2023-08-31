@@ -1,7 +1,7 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
-<view style="height:{{navBarHeight}}px;"></view>
+<!-- <view style="height:{{navBarHeight}}px;"></view> -->
 <view class="top">
-  <image class="img" src="https://openstore.obabyball.com/ui_v1/img/desc-banner-test.png" mode="aspectFill"></image>
+  <image class="img" src="{{ match.attachments }}" mode="aspectFill"></image>
   <view class="gradient-mask">
     <image class="type" src="{{ typeUrl }}" mode="widthFix"></image>
     <view class="name">
@@ -23,10 +23,8 @@
   <view class="part">
     <view class="title">已参加的人员</view>
     <view class="avatars">
-      <image class='avatar' src='https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' />
-      <image class='avatar' src='https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' />
-      <image class='avatar' src='https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' />
-      <image class='avatar' src='https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' />
+      <image class='avatar' wx:for="{{match.users}}" wx:key="*this" src="{{ item.avatar }}" />
+      <image class='avatar' wx:for="{{match.teams}}" wx:key="*this" src="{{ item.avatar }}" />
     </view>
   </view>
 </view>
@@ -35,6 +33,10 @@
 <view class="desc">
   <view class="title">
     详情内容
+  </view>
+  <view class="age">
+    <view> 最大年龄：{{ match.age_group_end }}</view>
+    <view> 最小年龄：{{ match.age_group_start }}</view>
   </view>
   <text class="content" user-select>
     {{ match.description }}
