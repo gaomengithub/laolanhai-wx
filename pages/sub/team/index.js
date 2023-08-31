@@ -1,9 +1,9 @@
-import { iconUrls } from '../../utils/urls'
-import { options } from '../../utils/pca-code'
-import { addTeamMessages, addTeamRules } from '../../utils/validate-set'
-import WxValidate from '../../utils/WxValidate'
-import { createTeam } from '../../utils/api'
-import { uploadImgWithToken } from '../../utils/qiniu'
+import { iconUrls } from '../../../utils/urls'
+import { options } from '../../../utils/pca-code'
+import { addTeamMessages, addTeamRules } from '../../../utils/validate-set'
+import WxValidate from '../../../utils/WxValidate'
+import { createTeam } from '../../../utils/api'
+import { uploadImgWithToken } from '../../../utils/qiniu'
 const app = getApp()
 let fileList = []
 let showFileList = []

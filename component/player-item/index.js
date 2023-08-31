@@ -1,4 +1,4 @@
-// component/team-card/index.js
+// component/player-item/index.js
 Component({
   /**
    * 组件的属性列表
@@ -10,21 +10,16 @@ Component({
     },
     name:{
       type:String,
-      value:"默认队名"
+      value:"默认姓名"
     },
-    matchNum:{
-      type:Number,
-      value:22
-    },
-    winPer:{
+    position:{
       type:String,
-      value:"88%"
+      value:"默认中锋"
     },
-    points:{
-      type:Number,
-      value:221
-    }
-
+    type:{
+      type:String,
+      value:"队长"
+    },
   },
 
   /**

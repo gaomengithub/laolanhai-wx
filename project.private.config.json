@@ -147,6 +147,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/sub/details/team/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

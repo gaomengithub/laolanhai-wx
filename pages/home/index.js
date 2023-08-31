@@ -52,25 +52,17 @@ Page({
   setSwiperHeight() {
     const className = [".content-hot", ".content-official", ".content-unofficial"][this.data.activeTab]
     wx.createSelectorQuery().select(className).boundingClientRect(rect => {
-      this.setData({ swiperHeight: rect.height  + 128 + 'px' });
+      this.setData({ swiperHeight: rect.height + 128 + 'px' });
     }).exec();
   },
   onLoad() {
-
-    // let matchList = []
     getMatchList().then(res => {
-      const bannerAttachments = res.data.matches.map(item => item.banner_attachments)
-      getDownloadToken({ file_names: bannerAttachments }).then(token => {
-        for (let [index, item] of res.data.matches.entries()) {
-          item.banner_attachments = token.data[index] == undefined ? 'https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' : token.data[index]
-        }
-        this.setData({
-          matchList: res.data.matches
-        })
-        let unofficialMatchList = this.data.matchList.filter(item => item.match_type === 3)
-        this.setData({
-          unofficialMatchList: unofficialMatchList
-        })
+      this.setData({
+        matchList: res.data.matches
+      })
+      const unofficialMatchList = this.data.matchList.filter(item => item.match_type === 3)
+      this.setData({
+        unofficialMatchList: unofficialMatchList
       })
     }).catch(e => {
       console.log(e)

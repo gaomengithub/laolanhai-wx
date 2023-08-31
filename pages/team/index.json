@@ -11,6 +11,7 @@
     "van-field": "@vant/weapp/field/index",
     "van-button": "@vant/weapp/button/index",
     "unwork":"/component/unwork/index",
-    "nav-bar": "/component/nav-bar/index"
+    "nav-bar": "/component/nav-bar/index",
+    "auth-show":"/component/auth-show/index"
   }
 }

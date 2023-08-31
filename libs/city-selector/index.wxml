@@ -35,10 +35,10 @@
   <view class="searchLetter">
     <view wx:for="{{searchLetter}}" wx:key="*this" data-letter="{{item}}" catchtouchend="clickLetter">{{item}}</view>
   </view>
-  <view class="selection" wx:for="{{cityList}}" wx:key="initial">
-    <view class="item_letter" id="{{item.initial}}">{{item.initial}}</view>
-    <view class="item_city" hover-class="item-hover" hover-start-time="20" hover-stay-time="70" wx:for="{{item.cityInfo}}" wx:for-item="ct" wx:key="id" data-code="{{ct.code}}" data-city="{{ct.city}}" bindtap="bindCity">
-      {{ct.city}}
+  <view class="selection" wx:for="{{sortedCityList}}" wx:key="*this" wx:for-index="index">
+    <view class="item_letter" id="{{index}}">{{index}}</view>
+    <view class="item_city" hover-class="item-hover" hover-start-time="20" hover-stay-time="70" wx:for="{{item}}" wx:for-item="city" wx:key="*this" bindtap="bindCity">
+      {{city}}
     </view>
   </view>
 </scroll-view>

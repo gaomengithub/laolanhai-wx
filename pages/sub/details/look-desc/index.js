@@ -1,31 +1,18 @@
-import { getTeamList, getDownloadToken } from '../../utils/api'
-
-const app = getApp()
-
-
+// pages/sub/details/look-desc/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    navTitle: "球队",
-    navBarHeight: app.globalData.navBarHeight,
-    teamList: [],
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    getTeamList().then(res => {
 
-      this.setData({
-        teamList: res.data.items
-      })
-    }).catch(e => {
-      console.log("获得队伍列表错误")
-    })
   },
 
   /**
@@ -39,14 +26,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 3
-      })
-    }
-
 
   },
 
@@ -83,6 +62,5 @@ Page({
    */
   onShareAppMessage() {
 
-  },
-
+  }
 })

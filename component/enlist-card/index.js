@@ -7,6 +7,7 @@ Component({
     name: String,
     num: Number,
     avatar: String,
+    teamID: String
   },
 
   /**
@@ -21,6 +22,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    
+    onBtnClick(e) {
+      console.log(e)
+      const teamID = e.currentTarget.dataset.id
+      wx.navigateTo({
+        url: `/pages/sub/details/team/index?id=${teamID}`,
+      })
+    }
   }
 })

@@ -1,0 +1,40 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  height: 128rpx;
+}
+
+.item .avatar {
+  border-radius: 50%;
+  height: 88rpx;
+  width: 88rpx;
+  margin: 24rpx;
+}
+
+.item .info {
+  width: 200rpx;
+}
+
+.item .info .name {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.item .info .position {
+  font-size: 26rpx;
+  color: #A3A3A3;
+}
+
+.item  .type {
+
+  background-color: #FB8808;
+  font-size: 24rpx;
+  height: 42rpx;
+  width: 90rpx;
+  border-radius: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

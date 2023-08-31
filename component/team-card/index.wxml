@@ -1,2 +1,34 @@
-<!--component/team-card/index.wxml-->
-<text>component/team-card/index.wxml</text>
+<view class="card">
+  <image class="avatar" src="{{ avatar }}" mode="aspectFill" />
+  <text class="name">
+    {{name}}
+  </text>
+
+    <van-grid custom-class="data" column-num="3" border="{{ false }}">
+      <van-grid-item  use-slot>
+      <view class="num">
+      {{ matchNum }}
+      </view>
+      <view class="tag">
+        参赛数
+      </view>
+      </van-grid-item>
+      <van-grid-item use-slot>
+      <view class="num">
+      {{ winPer }}
+      </view>
+      <view class="tag">
+        获胜率
+      </view>
+      </van-grid-item>
+      <van-grid-item use-slot>
+      <view class="num">
+      {{ points }}
+      </view>
+      <view class="tag">
+        战队积分
+      </view>
+      </van-grid-item>
+    </van-grid>
+
+</view>

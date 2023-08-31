@@ -1,0 +1,60 @@
+.card {
+  width: 548rpx;
+  height: 248rpx;
+  padding: 26rpx;
+  margin: 24rpx;
+  border-radius: 44rpx;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  background: linear-gradient(to right, #FAFAFA, #FFF8F4);
+}
+
+.card .avatar {
+  position: absolute;
+  top: 32rpx;
+  left: -60rpx;
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 50%;
+}
+
+.sub-container {
+  margin-left: 84rpx;
+}
+
+.sub-container .name {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.sub-container .date,
+.comments {
+  margin-top: 16rpx;
+  width: 468rpx;
+  color: #A3A3A3;
+}
+
+.sub-container .active {
+  width: 460rpx;
+  margin-top: 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.sub-container .active .btn-no,
+.btn-yes {
+  width: 210rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.btn-no {
+  color: #FB8808;
+  background-color: #FFEFDD;
+}
+
+.btn-yes {
+  background-color: #FB8808;
+}

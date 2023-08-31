@@ -1,5 +1,5 @@
-import { getMatchDesc, joinMatch } from '../../utils/api'
-import { iconUrls } from '../../utils/urls'
+import { getMatchDesc, joinMatch } from '../../../../utils/api'
+import { iconUrls } from '../../../../utils/urls'
 const app = getApp()
 Page({
   data: {

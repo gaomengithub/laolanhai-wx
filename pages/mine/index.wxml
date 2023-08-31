@@ -39,7 +39,7 @@
 
 <!-- <unwork></unwork> -->
 
-<!-- <view class="honor-card"></view> -->
+<view class="honor-card"></view>
 
 
 <van-popup show="{{ showPopup }}" round custom-class="popup" bind:close="onClosePopup" catch:touchmove="preventTouchMove">

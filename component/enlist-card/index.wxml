@@ -6,7 +6,7 @@
     <image class="avatar" src="{{ avatar }}" mode="aspectFill" />
   </view>
   <!-- 占位 -->
-  <view style="width: 220rpx; " ></view>
+  <view style="width: 220rpx; "></view>
   <view class="info">
     <view class="name">
       {{ name }}
@@ -15,5 +15,5 @@
       招募人数：{{ num }}人
     </view>
   </view>
-  <van-button custom-class="btn" round>立即加入</van-button>
+  <van-button custom-class="btn" round bind:click="onBtnClick" data-id="{{ teamID }}">立即加入</van-button>
 </view>

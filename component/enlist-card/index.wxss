@@ -46,7 +46,7 @@
 
 .card .info {
   height: 108rpx;
-  width: 280rpx;
+  width: 250rpx;
   white-space: nowrap;
   overflow: hidden;
 }

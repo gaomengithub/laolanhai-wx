@@ -67,7 +67,7 @@ Component({
             })
           } else {
             wx.navigateTo({
-              url: `/pages/desc/index?matchID=${_this.data.matchID}&matchType=${_this.data.matchType}`,
+              url: `/pages/sub/details/match/index?matchID=${_this.data.matchID}&matchType=${_this.data.matchType}`,
             })
           }
         },

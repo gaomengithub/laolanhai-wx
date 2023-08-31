@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "team-card":"/component/team-card/index",
+    "nav-bar": "/component/nav-bar/index",
+    "player-item":"/component/player-item/index",
+    "auth-show":"/component/auth-show/index",
+    "apply-card":"/component/apply-card/index"
+  }
+}

@@ -1,1 +1,44 @@
-/* component/team-card/index.wxss */
+.card {
+  position: relative;
+  border-radius: 44rpx;
+  height: 360rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 28rpx;
+  background: linear-gradient(to right top, #FFFFFF, #FFFAF4);
+}
+
+.card .avatar {
+  position: absolute;
+  top: -102rpx;
+  border-radius: 50%;
+  border: 5rpx solid #FFFFFF;
+  height: 204rpx;
+  width: 204rpx;
+}
+
+.card .name {
+  margin-top: 102rpx;
+  font-size: 40rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+}
+
+.card .data {
+  width: 560rpx;
+  height: 140rpx;
+  --grid-item-content-background-color: none ;
+}
+
+.card .data .num {
+  font-size: 44rpx;
+  font-weight: 600;
+}
+
+.card .data .tag {
+  margin-top: 6rpx;
+  font-size: 26rpx;
+  color: #A3A3A3;
+}

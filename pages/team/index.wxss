@@ -1,9 +1,23 @@
+
 .container {
   padding-top: 24rpx;
   background-color: #EBEBEB;
   padding-bottom: 24rpx;
+  height: 100vh;
 }
 
+.tip{
+  text-align: center;
+  font-size: 32;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+  color: #FFF6DB;
+  background-color: #282A37;
+  padding-top: 24rpx;
+  padding-bottom: 24rpx;
+  margin: 24rpx;
+  border-radius: 44rpx;
+}
 
 .bg {
   width: 100vw;
