@@ -2,16 +2,9 @@
 
   "usingComponents": {
     "enlist-card":"/component/enlist-card/index",
-    "van-calendar": "@vant/weapp/calendar/index",
-    "van-cell": "@vant/weapp/cell/index",
-    "van-cell-group": "@vant/weapp/cell-group/index",
-    "van-picker": "@vant/weapp/picker/index",
-    "van-popup": "@vant/weapp/popup/index",
-    "van-cascader": "@vant/weapp/cascader/index",
-    "van-field": "@vant/weapp/field/index",
     "van-button": "@vant/weapp/button/index",
-    "unwork":"/component/unwork/index",
     "nav-bar": "/component/nav-bar/index",
-    "auth-show":"/component/auth-show/index"
+    "auth-show":"/component/auth-show/index",
+    "team-card":"/component/team-card/index"
   }
 }

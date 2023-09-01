@@ -4,9 +4,6 @@
     "nav-bar": "/component/nav-bar/index",
     "van-sticky": "@vant/weapp/sticky/index",
     "van-loading": "@vant/weapp/loading/index",
-    "van-button": "@vant/weapp/button/index",
-    "van-popup": "@vant/weapp/popup/index",
-    "van-picker": "@vant/weapp/picker/index",
     "unwork":"/component/unwork/index",
     "filter-bar":"/component/filter-bar/index"
   },

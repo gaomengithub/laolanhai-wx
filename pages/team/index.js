@@ -1,5 +1,5 @@
-import { getTeamList } from '$/api'
-
+import { getTeamList, getTeamDesc } from '$/api'
+import { iconUrls } from '$/urls'
 const app = getApp()
 
 Page({
@@ -11,19 +11,41 @@ Page({
     navTitle: "球队",
     navBarHeight: app.globalData.navBarHeight,
     teamList: [],
+    teamCards: [],
+    arrow: iconUrls.tabArrow
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    getTeamList().then(res => {
-      this.setData({
-        teamList: res.data.items
+    if (this.selectComponent("#team-card").data.auth) {
+      let teamCards = []
+      try {
+        const quals = wx.getStorageSync('quals')
+        const ls = quals.map(item => item.teamId).filter(item => item !== undefined)
+        for (let item of ls) {
+          getTeamDesc(item).then(res => {
+            teamCards.push(res.data)
+            this.setData({
+              teamCards
+            })
+          })
+        }
+        console.log(this.data.teamCards)
+      } catch {
+
+      }
+    }
+    if (this.selectComponent("#team-list").data.auth) {
+      getTeamList().then(res => {
+        this.setData({
+          teamList: res.data.items
+        })
+      }).catch(e => {
+        console.log("获得队伍列表错误")
       })
-    }).catch(e => {
-      console.log("获得队伍列表错误")
-    })
+    }
   },
 
   /**

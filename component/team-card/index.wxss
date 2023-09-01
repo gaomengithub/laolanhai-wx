@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: flex-start;
   margin: 28rpx;
+  margin-top: 130rpx;
   background: linear-gradient(to right top, #FFFFFF, #FFFAF4);
 }
 
@@ -42,3 +43,6 @@
   font-size: 26rpx;
   color: #A3A3A3;
 }
+
+
+

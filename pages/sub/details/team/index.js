@@ -1,4 +1,4 @@
-import { getTeamDesc } from '$/api'
+import { getTeamDesc,joinTeam,getTeamApprovalList} from '$/api'
 import { imgUrls } from '$/urls'
 Page({
 
@@ -6,8 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items:{},
+    items: {},
     active: 0,
+    showComments: false,
+    comments: "",
+    autosize: { minHeight: 50 },
     bgImg: imgUrls.detailTeamBgImg,
     navTitle: "球队详情",
     navBarHeight: getApp().globalData.navBarHeight,
@@ -18,17 +21,38 @@ Page({
       active
     })
   },
+  onJoinBtn() {
+    this.setData({
+      showComments: true
+    })
+  },
+  onConfirmBtn() {
+    if (this.data.comments == "") {
+      console.log("888")
+    } else {
+      joinTeam(this.data.items.id, this.data.comments ).then(res=>{
+        console.log(res)
+      })
+    }
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    getTeamDesc(options.id).then(res => {
+    getTeamApprovalList().then(res=>{
       console.log(res)
-      this.setData({
-        items:res.data
-      })
     })
+    try {
+      const teamID = options.id
+      getTeamDesc(teamID).then(res => {
+        this.setData({
+          items: res.data
+        })
+      })
+    } catch (e) {
+      console.log("获取id失败")
+    }
   },
 
   /**

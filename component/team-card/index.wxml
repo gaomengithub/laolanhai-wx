@@ -3,32 +3,32 @@
   <text class="name">
     {{name}}
   </text>
-
-    <van-grid custom-class="data" column-num="3" border="{{ false }}">
-      <van-grid-item  use-slot>
+  <van-grid custom-class="data" column-num="3" border="{{ false }}">
+    <van-grid-item use-slot>
       <view class="num">
-      {{ matchNum }}
+        {{ matchNum }}
       </view>
       <view class="tag">
         参赛数
       </view>
-      </van-grid-item>
-      <van-grid-item use-slot>
+    </van-grid-item>
+    <van-grid-item use-slot>
       <view class="num">
-      {{ winPer }}
+        {{ winPer }}
       </view>
       <view class="tag">
         获胜率
       </view>
-      </van-grid-item>
-      <van-grid-item use-slot>
+    </van-grid-item>
+    <van-grid-item use-slot>
       <view class="num">
-      {{ points }}
+        {{ points }}
       </view>
       <view class="tag">
         战队积分
       </view>
-      </van-grid-item>
-    </van-grid>
-
+    </van-grid-item>
+  </van-grid>
+  <!-- 箭头 -->
+  <slot ></slot>
 </view>

@@ -141,3 +141,25 @@ export async function getTeamDesc(teamID) {
   }
   return await request(obj)
 }
+
+export async function joinTeam(teamID,comment) {
+  let obj = {
+    url: '/team/join',
+    method: 'POST',
+    data: {
+      comment:comment,
+      team_id:teamID
+    }
+  }
+  return await request(obj)
+}
+
+export async function getTeamApprovalList() {
+  let obj = {
+    url: '/team/listApproval',
+    method: 'POST',
+    data: {
+    }
+  }
+  return await request(obj)
+}

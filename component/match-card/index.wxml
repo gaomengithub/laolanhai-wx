@@ -19,8 +19,8 @@
   <view class="active">
     <view class="status">{{ ["报名中", "进行中", "已结束"][status] }}</view>
     <view class="avatar-wrap">
-      <image class='avatar' wx:for="{{users}}" src='{{item.avatar}}' wx:key="index" />
-      <image class='avatar' wx:for="{{teams}}" src='{{item.avatar}}' wx:key="index" />
+      <image class='avatar' wx:for="{{users}}" src='{{item.avatar}}' mode="aspectFill" wx:key="index" />
+      <image class='avatar' wx:for="{{teams}}" src='{{item.avatar}}' mode="aspectFill" wx:key="index" />
     </view>
     <text wx:if="{{matchType == 3}}" class="reg-info">{{joinNum}}人已报名</text>
     <text wx:else class="reg-info">{{joinNum}}队已报名</text>

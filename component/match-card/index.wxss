@@ -4,23 +4,17 @@
   flex-direction: column;
   border-radius: 44rpx;
   margin: 24rpx;
-  height: 338rpx;
-  padding: 24rpx;
+  height: 310rpx;
+  padding: 26rpx;
   position: relative;
 }
 
-
-
 .official {
-  background-image: url("http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/card-background.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: linear-gradient(to top right, #569C89, #359D8D);
 }
 
 .unofficial {
-  background-image: url("http://ryt5dzeq0.hn-bkt.clouddn.com/dev/background/unofficial-background-img.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: linear-gradient(to top right, #FFFFFF, #FFFAF4);
 }
 
 .card .item {
@@ -29,13 +23,14 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-bottom: 24rpx;
+  margin-bottom: 18rpx;
 }
 
 .card .item .poster-img {
-  width: 188rpx;
+  width: 182rpx;
   height: 222rpx;
   border-radius: 12rpx;
+  margin-right: 30rpx;
 }
 
 .card .item .bg-img {
@@ -47,19 +42,18 @@
 }
 
 .card .item .desc {
-  width: 514rpx;
+  width: 428rpx;
   display: flex;
   flex-direction: column;
-  padding-left: 16px;
 }
 
 .card .item .desc .name {
   font-size: 18px;
   font-weight: 600;
   height: 96rpx;
-  width: 400rpx;
-  margin-bottom: 24rpx;
-  letter-spacing: 4rpx;
+  width: 428rpx;
+  margin-bottom: 12rpx;
+  letter-spacing: 2rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -87,7 +81,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 32rpx;
+  margin-top: 18rpx;
 }
 
 .active .status {
@@ -101,6 +95,7 @@
   align-items: center;
   justify-content: center;
   color: #ffffff;
+  margin-left: 6rpx;
 }
 
 .avatar-wrap {
@@ -111,13 +106,11 @@
 }
 
 .avatar {
-  width: 40rpx;
-  height: 40rpx;
+  width: 44rpx;
+  height: 44rpx;
   border-radius: 50%;
   margin-left: -10rpx;
-  /* 这个值可以根据需要调整 */
   border: 1px solid white;
-  /* 加上白色描边 */
 }
 
 .btn {

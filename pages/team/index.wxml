@@ -2,16 +2,22 @@
 <!-- <view style="height:{{navBarHeight}}px;"></view> -->
 
 <view class="container">
-  <auth-show unexpect="{{ [3,5] }}">
+  <auth-show expect="yes45" id="team-card">
+    <team-card wx:for="{{teamCards}}" name="{{item.name}}" avatar="{{item.logo}}" wx:key="index">
+      <navigator url="/pages/sub/details/team/index?id={{ item.id }}" open-type="navigate">
+        <image class="arrow" src="{{arrow}}" mode="aspectFill">
+        </image>
+      </navigator>
+    </team-card>
+  </auth-show>
+  <auth-show expect="no45" id="team-list">
     <view class="tip">
       您还没有加入球队，请选择球队加入
     </view>
+    <view class="list">
+      <enlist-card wx:for="{{teamList}}" wx:key="index" teamID="{{ item.id }}" name="{{ item.name }}" avatar="{{ item.logo }}"></enlist-card>
+    </view>
   </auth-show>
-
-  <view class="joined"></view>
-  <view class="list">
-    <enlist-card  wx:for="{{teamList}}" wx:key="*this" teamID="{{ item.id }}" name="{{ item.name }}" avatar="{{ item.logo }}"></enlist-card>
-  </view>
 </view>
 
 

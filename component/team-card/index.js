@@ -1,4 +1,4 @@
-// component/team-card/index.js
+
 Component({
   /**
    * 组件的属性列表
@@ -23,7 +23,8 @@ Component({
     points:{
       type:Number,
       value:221
-    }
+    },
+
 
   },
 

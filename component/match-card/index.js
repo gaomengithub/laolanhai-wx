@@ -1,5 +1,5 @@
 import { formatForMatchCard } from '$/util'
-import { iconUrls ,imgUrls } from '$/urls'
+import { iconUrls, imgUrls } from '$/urls'
 Component({
   properties: {
     img: String,
@@ -15,7 +15,7 @@ Component({
   data: {
     joinNum: "",
     formatedDate: "",
-    formatedLocation:"",
+    formatedLocation: "",
     typeClass: "",
     iconUrl: {
       clock: iconUrls.matchCardClock,
@@ -26,15 +26,9 @@ Component({
   lifetimes: {
     attached: function () {
       this.setData({
-        formatedDate: formatForMatchCard(this.data.date)
-      })
-
-      this.setData({
-        joinNum: this.data.teams.length + this.data.users.length
-      })
-
-      this.setData({
-        formatedLocation: this.data.location.replace("||","  ")
+        formatedDate: formatForMatchCard(this.data.date),
+        joinNum: this.data.teams.length + this.data.users.length,
+        formatedLocation: this.data.location.replace("||", "  ")
       })
 
       switch (this.data.matchType) {

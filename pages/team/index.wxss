@@ -1,4 +1,3 @@
-
 .container {
   padding-top: 24rpx;
   background-color: #EBEBEB;
@@ -6,7 +5,7 @@
   height: 100vh;
 }
 
-.tip{
+.tip {
   text-align: center;
   font-size: 32;
   font-weight: 600;
@@ -19,64 +18,10 @@
   border-radius: 44rpx;
 }
 
-.bg {
-  width: 100vw;
-  border-bottom-left-radius: 22px;
-  border-bottom-right-radius: 22px;
-}
-
-.team {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 22px;
-  margin-left: 15rpx;
-  margin-right: 15rpx;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
-  padding: 16px;
-  background-color: white;
-  position: relative;
-  justify-content: flex-end;
-  height: 20vh;
-  margin-top: -5vh;
-}
-
-
-
-.team .avatar {
+.arrow {
   position: absolute;
-  top: -75px;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 3px, solid, #ffffff;
-}
-
-.team .name {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-top: 15px;
-  margin-bottom: 15px;
-
-}
-
-.team .data {
-  width: 100%;
-  font-weight: 700;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.team .data .cell {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  height: 10vh;
-  justify-content: space-around;
-}
-
-.team .data .cell .tag {
-  color: gray;
+  width: 35rpx;
+  height: 35rpx;
+  right: 35rpx;
+  top: 45%
 }

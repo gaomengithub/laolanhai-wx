@@ -1,7 +1,9 @@
-import { getMatchList } from '../../utils/api'
-import { iconUrls, imgUrls } from '../../utils/urls'
+import { getMatchList } from '$/api'
+import { iconUrls, imgUrls } from '$/urls'
 
 const app = getApp()
+let old = false
+const classNameList = [".content-hot", ".content-official", ".content-unofficial"]
 
 Page({
   data: {
@@ -10,29 +12,37 @@ Page({
     tabs: ["热门", "正赛", "野球"],
     tabIcon: [iconUrls.tabHot, iconUrls.tabOfficial, iconUrls.tabUnofficial],
     showNarBar: false,
-    loading: false,
     matchList: [],
     unofficialMatchList: [],
+    officialMatchList: [],
     activeTab: 0,
     swiperHeight: "100vh",
     offsetTop: app.globalData.navBarHeight,
   },
-  showNarBar(e) {
-    if (e.detail.isFixed) {
-      this.setData({
-        showNarBar: true
-      })
-    } else {
-      this.setData({
-        showNarBar: false
-      })
+
+  observers: {
+    'matchList': function () {
+      this.setSwiperHeight()
     }
   },
+
+  showNarBar(e) {
+    if (e.detail.isFixed === old) {
+      return
+    } else {
+      this.setData({
+        showNarBar: e.detail.isFixed
+      })
+      old = e.detail.isFixed
+    }
+  },
+
   switchTab(e) {
     this.setData({
       activeTab: e.currentTarget.dataset.index
     })
   },
+
   onPullDownRefresh() {
     wx.stopPullDownRefresh()
     this.onLoad()
@@ -47,10 +57,10 @@ Page({
     }
   },
   onPageScroll() {
-    this.setSwiperHeight()
+    // this.setSwiperHeight()
   },
   setSwiperHeight() {
-    const className = [".content-hot", ".content-official", ".content-unofficial"][this.data.activeTab]
+    const className = classNameList[this.data.activeTab]
     wx.createSelectorQuery().select(className).boundingClientRect(rect => {
       this.setData({ swiperHeight: rect.height + 128 + 'px' });
     }).exec();

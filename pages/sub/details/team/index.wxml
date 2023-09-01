@@ -3,12 +3,12 @@
 
 <image class="bg-img" src="{{bgImg}}" mode="aspectFill" />
 <view class="team-card">
-  <team-card name="{{items.name}} "></team-card>
+  <team-card name="{{items.name}}" avatar="{{items.logo}}"></team-card>
 </view>
 <view class="tabs-container">
   <view class="tabs">
     <view class="{{active == 0 ? 'tab-active' :'tab'}}" bind:tap="onChange" data-active="0">球队队员</view>
-    <auth-show expect="{{ [4] }}">
+    <auth-show expect="yes4?{{ items.id }}">
       <view class="{{active == 1 ? 'tab-active' :'tab'}}" bind:tap="onChange" data-active="1">待加入队员</view>
     </auth-show>
   </view>
@@ -19,6 +19,11 @@
     <apply-card />
   </view>
 </view>
-<view class="active">
-  <van-button custom-class="btn-custom-class" bind:click='onJoinBtn'>立即加入</van-button>
-</view>
+<auth-show expect="no45?{{ items.id }}">
+  <view class="active">
+    <van-button custom-class="btn-custom-class" bind:click='onJoinBtn'>立即加入</van-button>
+  </view>
+</auth-show>
+<van-dialog use-slot title="请输入入队申请" show="{{ showComments }}" show-cancel-button bind:confirm="onConfirmBtn" >
+  <van-field model:value="{{ comments }}" type="textarea" placeholder="请输入想给队长的信息，方便队长通过审批" autosize="{{ autosize}}" border="{{ false }}" />
+</van-dialog>

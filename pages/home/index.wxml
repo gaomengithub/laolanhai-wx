@@ -8,12 +8,12 @@
         <view class="title">
           {{item}}
         </view>
-        <view class="bb" wx:if="{{ activeTab === index }}"></view>
+        <view class="line" wx:if="{{ activeTab === index }}"></view>
       </view>
     </view>
     <filter-bar />
   </van-sticky>
-  <swiper  current="{{activeTab}}" id="auto-swiper" style="height: {{swiperHeight}}; background-color: #EBEBEB;" bindchange="swiperChange">
+  <swiper current="{{activeTab}}" id="auto-swiper" style="height: {{swiperHeight}}; background-color: #EBEBEB;" bindchange="swiperChange">
     <swiper-item class="content-hot">
       <match-card wx:for="{{matchList}}" wx:key="index" name="{{ item.name }}" img="{{item.banner_attachments}}" date="{{item.start_time}}" location="{{ item.location }}" matchID="{{item.id}}" matchType="{{item.match_type}}" status="{{item.status}}" users="{{ item.users }}" teams="{{ item.teams }}"></match-card>
     </swiper-item>
