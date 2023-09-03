@@ -4,15 +4,15 @@
 <view class="container">
   <!-- 图片上传 -->
   <van-uploader bind:delete='deleteImg' file-list="{{ showFileList }}" bind:after-read="onAfterRead" max-count="2" image-fit="widthFix" accept="image">
-  <image class="upload-bg-img" src="{{ iconUrls.upload }}" mode="aspectFill"/>
+    <image class="upload-bg-img" src="{{ iconUrls.upload }}" mode="aspectFill" />
   </van-uploader>
   <!-- 名称 -->
   <van-field model:value="{{ name }}" placeholder="填写清晰的活动标题" bind:change="onChange" data-key="name" />
   <!-- 详情描述 -->
   <van-field class="field-input-class" model:value="{{ desc }}" type="textarea" autosize="{{autoSize}}" placeholder="描述一下比赛规则、比赛内容、比赛奖励、推荐的人群、贴心tips等，叫大家一起打比赛吧~" />
   <!-- 日期 -->
-  <van-cell is-link icon="{{ iconUrls.date }}" title="日期" model:value="{{ currDate }}" bind:click="onDisplay" data-show="showCalendar" />
-  <van-calendar show="{{ showCalendar }}" bind:close="onClose" data-show="showCalendar" bind:confirm="onConfirm" data-key="currDate" show-confirm="{{ false }}" />
+  <van-cell is-link icon="{{ iconUrls.date }}" title="日期" model:value="{{ date }}" bind:click="onDisplay" data-show="showCalendar" />
+  <van-calendar show="{{ showCalendar }}" bind:close="onClose" data-show="showCalendar" bind:confirm="onConfirm" data-key="date" show-confirm="{{ false }}" />
   <!-- 开始、结束时间 -->
   <van-cell is-link icon="{{ iconUrls.startTime }}" title="开始时间" model:value="{{ startTime }}" bind:click="onDisplay" data-show="showStartTimePicker" />
   <van-cell is-link icon="{{ iconUrls.endTime }}" title="结束时间" model:value="{{ endTime }}" bind:click="onDisplay" data-show="showEndTimePicker" />
@@ -23,40 +23,40 @@
     <van-datetime-picker type="time" value="{{ endTime }}" min-hour="{{ minHour }}" max-hour="{{ maxHour }}" bind:input="onInput" data-key="endTime" bind:confirm="onConfirm" data-show="showEndTimePicker" />
   </van-popup>
   <!-- 地区 -->
-  <van-cell is-link icon="location" model:value="{{ currArea }}" readonly title="地区" bind:click="onDisplay" data-show="showAreaCascader" />
+  <van-cell is-link icon="location" model:value="{{ region }}" readonly title="地区" bind:click="onDisplay" data-show="showAreaCascader" />
   <van-popup show="{{ showAreaCascader }}" round position="bottom" custom-style="height: 50%" bind:close="onClose" data-show="showAreaCascader">
-    <van-cascader wx:if="{{ showAreaCascader }}" value="{{ currArea }}" title="请选择所在地区" options="{{ options }}" active-color="#ee0a24" bind:close="onClose" data-show="showAreaCascader" bind:finish="onFinishAreaCascader" />
+    <van-cascader wx:if="{{ showAreaCascader }}" value="{{ region }}" title="请选择所在地区" options="{{ options }}" field-names="{{ fieldNames }}" active-color="#ee0a24" bind:close="onClose" data-show="showAreaCascader" bind:finish="onFinishAreaCascader" />
   </van-popup>
 
-  <van-field left-icon="wap-home" model:value="{{ address }}" input-align="right" placeholder="请输详细地址" >
+  <van-field left-icon="wap-home" model:value="{{ address }}" input-align="right" placeholder="请输详细地址">
     <view slot="label">详细地址</view>
   </van-field>
 
-  <van-field wx:if="{{ type=='3' }}" left-icon="friends" model:value="{{ joinNum }}" input-align="right" placeholder="请输入人数" type="number" >
+  <van-field wx:if="{{ type=='3' }}" left-icon="friends" model:value="{{ joinNum }}" input-align="right" placeholder="请输入人数" type="digit">
     <view slot="label">人数</view>
   </van-field>
-  <van-field wx:else left-icon="friends" model:value="{{ joinNum }}" input-align="right" placeholder="请输入队伍数量" type="number" >
+  <van-field wx:else left-icon="friends" model:value="{{ joinNum }}" input-align="right" placeholder="请输入队伍数量" type="digit">
     <view slot="label">队伍数量</view>
   </van-field>
-  <van-field left-icon="{{iconUrls.startAge}}" model:value="{{ startAge }}" input-align="right" placeholder="请输入可参加的最小年龄" type="number" >
+  <van-field left-icon="{{iconUrls.startAge}}" model:value="{{ startAge }}" input-align="right" placeholder="请输入可参加的最小年龄" type="digit">
     <view slot="label">最小年龄</view>
   </van-field>
-  <van-field left-icon="{{iconUrls.endAge}}" model:value="{{ endAge }}" input-align="right" placeholder="请输入可参加的最大年龄" type="number">
+  <van-field left-icon="{{iconUrls.endAge}}" model:value="{{ endAge }}" input-align="right" placeholder="请输入可参加的最大年龄" type="digit">
     <view slot="label">最大年龄</view>
   </van-field>
   <!-- 费用 -->
-  <van-cell icon="{{iconUrls.cost}}" title="费用" model:value="{{currCost}}" is-link bind:click="onDisplay" border="{{ false }}"data-show="showCostAction" />
-  <van-action-sheet show="{{ showCostAction }}" actions="{{ costActions }}" cancel-text="取消" bind:close="onClose" bind:select="onConfirm" data-show="showCostAction" data-key="currCost"/>
+  <van-cell icon="{{iconUrls.cost}}" title="费用" model:value="{{cost}}" is-link bind:click="onDisplay" border="{{ false }}" data-show="showCostAction" />
+  <van-action-sheet show="{{ showCostAction }}" actions="{{ costActions }}" cancel-text="取消" bind:close="onClose" bind:select="onConfirm" data-show="showCostAction" data-key="cost" />
 </view>
 <!-- 占位 -->
-<view style="height: 166rpx;" ></view>
+<view style="height: 166rpx;"></view>
 <view class="active">
   <van-button round custom-class="btn-custom-class" bind:click="onCreateBtn">
     <block wx:if="{{ isNew }}">
       发布
-    </block> 
+    </block>
     <block wx:else>
       修改
-    </block> 
+    </block>
   </van-button>
 </view>

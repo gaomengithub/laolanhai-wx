@@ -1,5 +1,5 @@
-import { imgUrls, iconUrls } from '../../utils/urls'
-import { getUserInfoByID ,getDownloadToken } from '../../utils/api'
+import { imgUrls, iconUrls } from '$/urls'
+import { getUserInfoByID ,getMatchApprovalList} from '$/api'
 Page({
   data: {
     nickName: "",
@@ -7,9 +7,9 @@ Page({
     teamIcon: iconUrls.mineTeam,
     applyIcon: iconUrls.mineApply,
     inIcon: iconUrls.mineIn,
-    showPopup:false,
-    closeIcon:iconUrls.barClose,
-    avatarUrl:"https://openstore.obabyball.com/ui_v1/icon/mine-default-avatar.svg"
+    showPopup: false,
+    closeIcon: iconUrls.barClose,
+    avatarUrl: ""
   },
   onClosePopup() {
     this.setData({
@@ -22,16 +22,17 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     const id = wx.getStorageSync('id')
-    getUserInfoByID(id).then(res=>{
+    getUserInfoByID(id).then(res => {
+      console.log(res)
       this.setData({
-        nickName:res.data.nickName,
-        avatarUrl:res.data.avatar
+        nickName: res.data.nickName,
+        avatarUrl: res.data.avatar
       })
+    })
+    getMatchApprovalList().then(res=>{
+      console.log(res)
     })
   },
 

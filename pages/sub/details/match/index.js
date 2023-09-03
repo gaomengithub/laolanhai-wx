@@ -6,37 +6,43 @@ Page({
     navTitle: "老蓝孩俱乐部",
     matchID: "",
     match: {},
+    showDialog:false,
+    dialogIconType:"success",
+    dialogMsg:"报名成功",
     typeUrl: iconUrls.descUnofficialTag,
     clockUrl: iconUrls.descClock,
     locationUrl: iconUrls.descLocation,
     navBarHeight: app.globalData.navBarHeight,
   },
+  onDialogConfirmBtn(){
+    this.setData({
+      showDialog:false,
+    })
+    wx.navigateBack()
+  },
   onJoinBtn() {
+    wx.showLoading({
+      title: '请等待',
+      mask:true,
+    })
     if (this.data.matchID != "" || this.data.matchID != null) {
-      joinMatch(this.data.matchID).then(res => {
-        console.log(res)
-        wx.showToast({
-          title: '报名成功',
-          icon: 'success',
-          duration: 2000,
-          success() {
-            setTimeout(() => {
-              wx.navigateBack()
-            }, 2000)
-          }
+      joinMatch(this.data.matchID).then(() => {
+        wx.hideLoading()
+        this.setData({
+          dialogIconType:"success",
+          showDialog:true,
+          dialogMsg:"报名成功"
         })
       }).catch(e => {
-        //已报名返回400，弹出提示信息
-        wx.showToast({
-          title: e.data.message,
-          icon: 'error',
-          duration: 2000,
-          success() {
-            setTimeout(() => {
-              wx.navigateBack()
-            }, 2000)
-          }
-        })
+        console.log(e)
+        if (e.statusCode == 400) {
+          wx.hideLoading()
+          this.setData({
+            dialogIconType:"info",
+            showDialog:true,
+            dialogMsg:"您已经报过名，无需再报名"
+          })
+        }
       })
     }
   },

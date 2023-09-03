@@ -1,11 +1,13 @@
 import { getMatchList } from '$/api'
 import { iconUrls, imgUrls } from '$/urls'
 
+
 const app = getApp()
 let old = false
 const classNameList = [".content-hot", ".content-official", ".content-unofficial"]
 
 Page({
+
   data: {
     navTitle: "老蓝孩俱乐部",
     bannerImg: imgUrls.bannerImg,
@@ -18,12 +20,6 @@ Page({
     activeTab: 0,
     swiperHeight: "100vh",
     offsetTop: app.globalData.navBarHeight,
-  },
-
-  observers: {
-    'matchList': function () {
-      this.setSwiperHeight()
-    }
   },
 
   showNarBar(e) {
@@ -69,11 +65,15 @@ Page({
     getMatchList().then(res => {
       this.setData({
         matchList: res.data.matches
-      })
+      },(()=>{
+        this.setSwiperHeight()
+      }))
       const unofficialMatchList = this.data.matchList.filter(item => item.match_type === 3)
       this.setData({
         unofficialMatchList: unofficialMatchList
-      })
+      },(()=>{
+        this.setSwiperHeight()
+      }))
     }).catch(e => {
       console.log(e)
     })

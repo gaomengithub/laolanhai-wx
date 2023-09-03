@@ -1,7 +1,11 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
 <!-- <view style="height:{{navBarHeight}}px;"></view> -->
+<van-dialog use-slot show="{{ showDialog }}" bind:confirm="onDialogConfirmBtn" theme="round-button" custom-class="dialog" confirm-button-class="confirm-btn" use-title-slot>
+  <icon class="tip-icon" type="{{dialogIconType}}" size="120rpx" />
+  <view class="msg">{{ dialogMsg }}</view>
+</van-dialog>
 <view class="top">
-  <image class="img" src="{{ match.attachments }}" mode="aspectFill"></image>
+  <image class="img" src="{{ match.attachments }}" mode="aspectFit"></image>
   <view class="gradient-mask">
     <image class="type" src="{{ typeUrl }}" mode="widthFix"></image>
     <view class="name">
@@ -28,8 +32,6 @@
     </view>
   </view>
 </view>
-
-
 <view class="desc">
   <view class="title">
     详情内容

@@ -1,6 +1,10 @@
-
 .top {
   position: relative;
+  height: 582rpx;
+  width: 100%;
+}
+
+.top .img {
   height: 582rpx;
   width: 100%;
 }
@@ -10,14 +14,11 @@
   top: 0;
   height: 582rpx;
   width: 100%;
-  padding-left: 40rpx;
-  padding-right: 40rpx;
-  background: linear-gradient(to top , rgba(99,99,99,1),rgba(99,99,99,0));
+  padding-left: 50rpx;
+  padding-right: 50rpx;
+  background: linear-gradient(to top, rgba(99, 99, 99, 1) 0%, rgba(99, 99, 99, 0) 80%);
 }
-.top .img{
-  height: 582rpx;
-  width: 100%;
-}
+
 
 .top .type {
   width: 180rpx;
@@ -34,18 +35,20 @@
 
 .mid {
   position: relative;
+  margin-top: -2rpx;
   display: flex;
   flex-direction: column;
-  height: 425rpx;
+  height: 410rpx;
   width: 100%;
   justify-content: space-between;
   padding-top: 44rpx;
   padding-bottom: 88rpx;
-  background-color: rgba(99, 99, 99,1);
+  background-color: rgba(99, 99, 99, 1);
+  box-shadow: 0 0 20px rgba(99, 99, 99, 1);
 }
 
 .mid .date-address {
-  background-color: rgba(0, 0, 0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 44rpx;
   color: #fff;
   font-weight: 600;
@@ -76,7 +79,7 @@
 
 
 .mid .part {
-  background-color: rgba(0, 0, 0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 44rpx;
   max-height: 200rpx;
   padding: 16px;
@@ -159,4 +162,27 @@
   width: 650rpx !important;
   background-color: #000000 !important;
   border-radius: 60rpx !important;
+}
+
+
+
+.tip-icon {
+  position: relative;
+  padding: 30rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.confirm-btn {
+  --font-weight-bold: 600 !important;
+  color: #000000 !important;
+  --button-danger-background-color: #FB8808 !important;
+}
+
+.dialog .msg {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 600;
+  padding-top: 22rpx;
+  padding-bottom: 22rpx;
 }

@@ -1,6 +1,6 @@
 <!--pages/search/index.wxml-->
 <nav-bar title="{{navTitle}}"></nav-bar>
-<view style="height:{{navBarHeight}}px;"></view>
+<!-- <view style="height:{{navBarHeight}}px;"></view> -->
 <van-search shape="round"  value="{{ value }}" placeholder="请输入你需要搜索的球队、球员名称" bind:change="onChange" use-action-slot>
   <view slot="action" bind:tap="onClick" class="btn">搜索</view>
 </van-search>

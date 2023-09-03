@@ -13,26 +13,30 @@ export const addMatchRules = {
     required: true
   },
   timeDiff: {
-    min: 1
+    min: 60
   },
-  currArea: {
+  region: {
     required: true,
   },
   address: {
     required: true,
   },
   joinNum: {
+    number:true,
     required: true,
   },
   startAge: {
+    number:true,
+    min:45,
     required: true
   },
   endAge: {
+    number:true,
     required: true
   },
   ageDiff: {
     min: 1
-  }
+  },
 }
 export const addMatchMessages = {
   imgCount: {
@@ -48,25 +52,29 @@ export const addMatchMessages = {
     required: '日期不能为空'
   },
   timeDiff: {
-    min: '开始时间要大于结束时间'
+    min: '结束时间要大于开始时间60分钟'
   },
-  currArea: {
+  region: {
     required: '地区不能为空',
   },
   joinNum: {
-    required: '参加数量不能为空',
+    number:'参加的数量必须是数字',
+    required: '参加的数量（人、队伍）不能为空',
   },
   address: {
     required: '详细地址不能为空',
   },
   startAge: {
-    required: '年龄上限不能为空'
+    number:'最小年龄的输入必须是数字',
+    min:'最小年龄不能低于45岁',
+    required: '最小年龄不能为空'
   },
   endAge: {
-    required: '年龄下限不能为空'
+    number:'最大年龄的输入必须是数字',
+    required: '最大年龄不能为空'
   },
   ageDiff: {
-    min: '年龄上限要大于年龄下限'
+    min: '最大年龄要大于最小年龄'
   },
 }
 

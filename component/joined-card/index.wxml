@@ -1,25 +1,28 @@
 <view class="card">
   <view class="title">
-    我参加过的
+    我已参加的
   </view>
   <view class="more">
     查看更多
   </view>
-  <unwork></unwork>
-  <!-- <view class="item">
-    <image class="type-icon" src="{{unOfficialIcon}}" mode="aspectFill" />
+  <view wx:for="{{ items }}" class="item">
+    <image class="type-icon" src="{{ item.type == 3 ? unOfficialIcon : officialIcon}}" mode="aspectFill" />
     <view class="content">
       <view class="name">
-        8.3赛福8-10篮球！
+        {{item.name}}
       </view>
       <view class="type">
-      <block>
-        野球赛
-      </block>
+        <wxs src="./index.wxs" module="tools" />
+        <block>
+          {{ tools.getTypeName(item.type) }}
+        </block>
       </view>
     </view>
     <view class="status">
       已结束
     </view>
-  </view> -->
+    <navigator url="/pages/sub/create-modify-match/index?class=modify&matchID={{ item.matchID }}">
+    <image class="link" src="{{linkIcon}}" mode="aspectFill"/>
+  </navigator>
+  </view>
 </view>

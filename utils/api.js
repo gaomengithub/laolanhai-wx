@@ -163,3 +163,13 @@ export async function getTeamApprovalList() {
   }
   return await request(obj)
 }
+
+export async function getMatchApprovalList() {
+  let obj = {
+    url: '/match/listApproval',
+    method: 'POST',
+    data: {
+    }
+  }
+  return await request(obj)
+}

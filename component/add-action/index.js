@@ -13,7 +13,7 @@ Component({
         icon:iconUrls.addActionUnofficial,
         title:"野球局",
         text:"仅限个人参加",
-        url:"/pages/sub/create-match/index?type=3&new=y"
+        url:"/pages/sub/create-modify-match/index?type=3&new=y"
       },
       {
         icon:iconUrls.addActionUnofficial,

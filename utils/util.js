@@ -36,3 +36,9 @@ export function getDifferenceInMinute(time1, time2) {
   var diff = minute1 - minute2;
   return diff;
 }
+
+
+export function revertQiniuKey(str){
+  const key = str.split("tmp/")[1].split("?e=")[0]
+  return key
+}
