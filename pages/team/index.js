@@ -32,12 +32,10 @@ Page({
             })
           })
         }
-        console.log(this.data.teamCards)
       } catch {
 
       }
     }
-    if (this.selectComponent("#team-list").data.auth) {
       getTeamList().then(res => {
         this.setData({
           teamList: res.data.items
@@ -45,7 +43,6 @@ Page({
       }).catch(e => {
         console.log("获得队伍列表错误")
       })
-    }
   },
 
   /**

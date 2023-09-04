@@ -4,45 +4,60 @@
   <icon class="tip-icon" type="{{dialogIconType}}" size="120rpx" />
   <view class="msg">{{ dialogMsg }}</view>
 </van-dialog>
-<view class="top">
-  <image class="img" src="{{ match.attachments }}" mode="aspectFit"></image>
-  <view class="gradient-mask">
+
+<swiper circular indicator-dots indicator-color="#FFFFFF" style="height: {{swiperHeight}};" bindchange="swiperChange">
+  <swiper-item>
+    <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{match.banner_attachments}}" mode="aspectFill" />
+  </swiper-item>
+  <swiper-item>
+    <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{match.attachments}}" mode="aspectFill" />
+  </swiper-item>
+</swiper>
+
+<view class="container">
+  <image class="star-icon" src="{{ octagonalStar }}" mode="aspectFill" />
+  <view class="cost-tip">
+    {{match.price}}元
+  </view>
+
+  <view class="top">
     <image class="type" src="{{ typeUrl }}" mode="widthFix"></image>
     <view class="name">
       {{match.name}}
     </view>
   </view>
-</view>
-<view class="mid">
-  <view class="date-address">
-    <view class="cell">
-      <image class=".child" src="{{clockUrl}}" mode="scaleToFill"> </image>
-      {{ match.start_time }}
+  <!-- <van-divider custom-style="--divider-margin:0" /> -->
+  <view class="mid">
+    <view class="date-address">
+      <view class="cell">
+        <image class=".child" src="{{clockUrl}}" mode="scaleToFill"> </image>
+        {{ match.start_time }}
+      </view>
+      <view class="cell">
+        <image class=".child" src="{{locationUrl}}" mode="scaleToFill"></image>
+        {{match.location}}
+      </view>
     </view>
-    <view class="cell">
-      <image class=".child" src="{{locationUrl}}" mode="scaleToFill"></image>
-      {{match.location}}
+    <view class="part">
+      <view class="title">已参加的人员</view>
+      <view class="avatars">
+        <image class='avatar' wx:for="{{match.users}}" wx:key="*this" src="{{ item.avatar }}" />
+        <image class='avatar' wx:for="{{match.teams}}" wx:key="*this" src="{{ item.avatar }}" />
+      </view>
     </view>
   </view>
-  <view class="part">
-    <view class="title">已参加的人员</view>
-    <view class="avatars">
-      <image class='avatar' wx:for="{{match.users}}" wx:key="*this" src="{{ item.avatar }}" />
-      <image class='avatar' wx:for="{{match.teams}}" wx:key="*this" src="{{ item.avatar }}" />
+  <view class="desc">
+    <view class="title">
+      详情内容
     </view>
+    <view class="age">
+      <view> 最大年龄：{{ match.age_group_end }}</view>
+      <view> 最小年龄：{{ match.age_group_start }}</view>
+    </view>
+    <text class="content" user-select>
+      {{ match.description }}
+    </text>
   </view>
-</view>
-<view class="desc">
-  <view class="title">
-    详情内容
-  </view>
-  <view class="age">
-    <view> 最大年龄：{{ match.age_group_end }}</view>
-    <view> 最小年龄：{{ match.age_group_start }}</view>
-  </view>
-  <text class="content" user-select>
-    {{ match.description }}
-  </text>
 </view>
 
 <!-- 占位 -->

@@ -1,36 +1,56 @@
+.swiper-img {
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  margin-top: -200rpx;
+}
+
 .top {
   position: relative;
-  height: 582rpx;
-  width: 100%;
-}
+  height: 200rpx;
+  background: linear-gradient(to top, rgba(99, 99, 99, 1), rgba(99, 99, 99, 0));
+  /* box-shadow: 0 0 20px rgba(99, 99, 99, 1); */
 
-.top .img {
-  height: 582rpx;
-  width: 100%;
 }
-
-.gradient-mask {
-  position: absolute;
-  top: 0;
-  height: 582rpx;
-  width: 100%;
-  padding-left: 50rpx;
-  padding-right: 50rpx;
-  background: linear-gradient(to top, rgba(99, 99, 99, 1) 0%, rgba(99, 99, 99, 0) 80%);
-}
-
 
 .top .type {
   width: 180rpx;
-  height: 100rpx;
-  margin-top: 282rpx;
+  margin-left: 44rpx;
 }
 
 .top .name {
+  margin-left: 44rpx;
   color: #ffffff;
-  font-size: 64rpx;
+  font-size: 48rpx;
   font-weight: 600;
-  width: 634rpx;
+  letter-spacing: 2rpx;
+}
+
+.cost-tip {
+  position: absolute;
+  top: 0;
+  right: 24rpx;
+  height: 150rpx;
+  width: 150rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.star-icon {
+  position: absolute;
+  top: 0;
+  right: 24rpx;
+  height: 150rpx;
+  width: 150rpx;
+  z-index: 1;
 }
 
 .mid {
@@ -44,7 +64,7 @@
   padding-top: 44rpx;
   padding-bottom: 88rpx;
   background-color: rgba(99, 99, 99, 1);
-  box-shadow: 0 0 20px rgba(99, 99, 99, 1);
+  /* box-shadow: 0 0 20px rgba(99, 99, 99, 1); */
 }
 
 .mid .date-address {

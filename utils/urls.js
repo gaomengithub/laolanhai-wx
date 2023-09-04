@@ -47,6 +47,7 @@ export const iconUrls = {
   matchCardClock: prefix + '/ui_v1/icon/match-card-clock-v1.svg',
   matchCardLocation: prefix + '/ui_v1/icon/match-card-location-v1.svg',
   descSuccess:prefix + '/ui_v1/icon/success.svg',
+  octagonalStar: prefix + '/ui_v1/icon/octagonal-star.svg'
 }
 
 export const imgUrls = {

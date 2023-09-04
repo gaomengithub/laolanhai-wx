@@ -173,3 +173,13 @@ export async function getMatchApprovalList() {
   }
   return await request(obj)
 }
+
+export async function getMyJoinMatch() {
+  let obj = {
+    url: '/match/listMyJoinMatch',
+    method: 'POST',
+    data: {
+    }
+  }
+  return await request(obj)
+}

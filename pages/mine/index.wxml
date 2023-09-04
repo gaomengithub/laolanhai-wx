@@ -16,7 +16,7 @@
     <view class="cell">
       <image class="icon" src="{{ teamIcon }}" mode="aspectFill" />
       <view class="text">
-        战队
+        球卡
       </view>
     </view>
     <view class="cell" bind:tap="showPopup">

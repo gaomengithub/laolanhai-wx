@@ -8,7 +8,7 @@ function initQiniu() {
     region: 'ECN',
     // uptoken: token,
     domain: 'https://store.obabyball.com',
-    shouldUseQiniuFileName: false
+    shouldUseQiniuFileName: true
   };
   qiniuUploader.init(options);
   inited = true

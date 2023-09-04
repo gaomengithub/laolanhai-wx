@@ -3,61 +3,25 @@
 
 <view class="container">
   <auth-show expect="yes45" id="team-card">
-    <team-card wx:for="{{teamCards}}" name="{{item.name}}" avatar="{{item.logo}}" wx:key="index">
-      <navigator url="/pages/sub/details/team/index?id={{ item.id }}" open-type="navigate">
-        <image class="arrow" src="{{arrow}}" mode="aspectFill">
-        </image>
-      </navigator>
-    </team-card>
+    <view class="title">我的球队</view>
+    <swiper class="team-swiper" indicator-dots="{{ true }}">
+      <swiper-item wx:for="{{teamCards}}" wx:key="index">
+        <team-card name="{{item.name}}" avatar="{{item.logo}}">
+          <navigator url="/pages/sub/details/team/index?id={{ item.id }}" open-type="navigate">
+            <image class="arrow" src="{{arrow}}" mode="aspectFill">
+            </image>
+          </navigator>
+        </team-card>
+      </swiper-item>
+    </swiper>
   </auth-show>
   <auth-show expect="no45" id="team-list">
     <view class="tip">
       您还没有加入球队，请选择球队加入
     </view>
-    <view class="list">
-      <enlist-card wx:for="{{teamList}}" wx:key="index" teamID="{{ item.id }}" name="{{ item.name }}" avatar="{{ item.logo }}"></enlist-card>
-    </view>
   </auth-show>
-</view>
-
-
-<!-- <image class="bg" src="http://ryt5dzeq0.hn-bkt.clouddn.com/%E7%AF%AE%E7%90%83%E6%AF%94%E8%B5%9BMVP%E7%BB%9D%E6%9D%80%E6%97%B6%E5%88%BB%E7%83%AD%E8%A1%80%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A6%96%E5%9B%BE.jpg" mode="widthFix" />
-
-
-<view class="team">
-  <image class="avatar" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFill" />
-  <view class="name">
-    影子追踪者
-  </view>
-  <view class="data">
-    <view class="cell">
-      <view class="num">
-      24
-      </view>
-      <view class="tag">
-        参赛数
-      </view>
-    </view>
-    <view class="cell">
-      <view class="num">
-        88%
-      </view>
-      <view class="tag">
-        获胜率
-      </view>
-    </view>
-    <view class="cell">
-      <view class="num">
-        2222
-      </view>
-      <view class="tag">
-        战队积分
-      </view>
-    </view>
+  <view class="list">
+  <view class="title">其他球队</view>
+    <enlist-card wx:for="{{teamList}}" wx:key="index" teamID="{{ item.id }}" name="{{ item.name }}" avatar="{{ item.logo }}"></enlist-card>
   </view>
 </view>
-
-<recruit></recruit>
-<recruit></recruit>
-<recruit></recruit>
-<recruit></recruit> -->

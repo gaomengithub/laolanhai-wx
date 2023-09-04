@@ -1,50 +1,74 @@
 import { getMatchDesc, joinMatch } from '$/api'
 import { iconUrls } from '$/urls'
-const app = getApp()
+
 Page({
   data: {
     navTitle: "老蓝孩俱乐部",
     matchID: "",
     match: {},
-    showDialog:false,
-    dialogIconType:"success",
-    dialogMsg:"报名成功",
+    swiperImgHeight: wx.getSystemInfoSync().windowWidth + 'px',
+    swiperHeight: wx.getSystemInfoSync().windowWidth + 'px',
+    showDialog: false,
+    dialogIconType: "success",
+    dialogMsg: "报名成功",
     typeUrl: iconUrls.descUnofficialTag,
     clockUrl: iconUrls.descClock,
     locationUrl: iconUrls.descLocation,
-    navBarHeight: app.globalData.navBarHeight,
+    octagonalStar:iconUrls.octagonalStar,
+    windowWidth: wx.getSystemInfoSync().windowWidth,
+    navBarHeight: getApp().globalData.navBarHeight,
   },
-  onDialogConfirmBtn(){
+  onDialogConfirmBtn() {
     this.setData({
-      showDialog:false,
+      showDialog: false,
     })
     wx.navigateBack()
   },
   onJoinBtn() {
     wx.showLoading({
       title: '请等待',
-      mask:true,
+      mask: true,
     })
     if (this.data.matchID != "" || this.data.matchID != null) {
       joinMatch(this.data.matchID).then(() => {
         wx.hideLoading()
         this.setData({
-          dialogIconType:"success",
-          showDialog:true,
-          dialogMsg:"报名成功"
+          dialogIconType: "success",
+          showDialog: true,
+          dialogMsg: "报名成功"
         })
       }).catch(e => {
-        console.log(e)
         if (e.statusCode == 400) {
           wx.hideLoading()
           this.setData({
-            dialogIconType:"info",
-            showDialog:true,
-            dialogMsg:"您已经报过名，无需再报名"
+            dialogIconType: "info",
+            showDialog: true,
+            dialogMsg: "您已经报过名，无需再报名"
           })
         }
       })
     }
+  },
+  swiperChange(e) {
+    const ls = [this.data.match.banner_attachments, this.data.match.attachments]
+    const currImg = ls[e.detail.current]
+
+    wx.getImageInfo({
+      src: currImg,
+      success: (res) => {
+
+        let scale = null
+        if (res.height >= res.width) {
+          scale = this.data.windowWidth * 4 / 3
+        } else {
+          scale = this.data.windowWidth * 3 / 4
+        }
+        this.setData({
+          swiperImgHeight: scale + 'px',
+          swiperHeight: scale + 'px'
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -58,12 +82,18 @@ Page({
     } catch (e) {
       console.log("获取比赛ID失败")
     }
+
     getMatchDesc(options.matchID).then(res => {
       res.data.start_time = res.data.start_time.replace(":00+08:00", "").replace("T", "  ")
-      res.data.location = res.data.location.replace("||","  ")
+      res.data.location = res.data.location.replace("||", "  ")
       this.setData({
         match: res.data
-      })
+      }, (() => {
+        const e = {
+          detail: { current: 0 }
+        }
+        this.swiperChange(e)
+      }))
     }).catch(e => {
       console.log(e)
     })

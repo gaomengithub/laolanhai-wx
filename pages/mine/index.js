@@ -1,5 +1,5 @@
 import { imgUrls, iconUrls } from '$/urls'
-import { getUserInfoByID ,getMatchApprovalList} from '$/api'
+import { getUserInfoByID ,getMyJoinMatch} from '$/api'
 Page({
   data: {
     nickName: "",
@@ -25,15 +25,17 @@ Page({
   onLoad(options) {
     const id = wx.getStorageSync('id')
     getUserInfoByID(id).then(res => {
-      console.log(res)
       this.setData({
         nickName: res.data.nickName,
         avatarUrl: res.data.avatar
       })
     })
-    getMatchApprovalList().then(res=>{
+    getMyJoinMatch().then(res=>{
       console.log(res)
     })
+    // getMatchApprovalList().then(res=>{
+    //   console.log(res)
+    // })
   },
 
   /**

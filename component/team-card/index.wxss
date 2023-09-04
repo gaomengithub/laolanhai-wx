@@ -7,13 +7,13 @@
   align-items: center;
   justify-content: flex-start;
   margin: 28rpx;
-  margin-top: 130rpx;
+  margin-top: 80rpx;
   background: linear-gradient(to right top, #FFFFFF, #FFFAF4);
 }
 
 .card .avatar {
   position: absolute;
-  top: -102rpx;
+  top: -80rpx;
   border-radius: 50%;
   border: 5rpx solid #FFFFFF;
   height: 204rpx;
