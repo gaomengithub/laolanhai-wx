@@ -18,7 +18,7 @@ Component({
       pagePath: "/pages/look/index",
       iconPath:  iconUrls.barLookGrey,
       selectedIconPath: iconUrls.barLook,
-      text: "观赛"
+      text: "赛况"
     }, {
       //占位
     }, {

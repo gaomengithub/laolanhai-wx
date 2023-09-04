@@ -1,39 +1,39 @@
 <!--component/look-card/index.wxml-->
 <view class="card">
-  <view class="up">
-    <view class="active">
-      <view class="title">稿庞各庄篮球赛</view>
-      <van-button custom-class="btn-custom-class" class="btn" round bind:click="navigateToDesc">观赛</van-button>
-    </view>
+  <image class="img" src="https://openstore.obabyball.com/ui_v1/img/test-look-v1.png" mode="aspectFill" />
+  <view class="active">
+    <view class="title">{{title}}</view>
+    <van-button custom-class="btn" round bind:click="toMatchDesc">赛况</van-button>
   </view>
   <view class="down">
-      <image class="avatar" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFill" />
+    <image class="avatar" src="{{avatar}}" mode="aspectFill" />
     <view class="panel">
-      <view class="name">
-        王小二
+      <view class="item">
+      <image class="mvp-icon" src="{{mvpIcon}}" mode="aspectFill"></image>
+      <view class="name">{{name}}</view>
       </view>
-      <view class="data">
-        <view class="cell">
-          <view class="num">25</view>
+      <van-grid column-num="{{ 5 }}" border="{{ false }}">
+        <van-grid-item class="cell" use-slot>
+          <view class="num">{{mvpData.scoring}}</view>
           <view class="tag">得分</view>
-        </view>
-        <view class="cell">
-          <view class="num">5</view>
+        </van-grid-item>
+        <van-grid-item class="cell" use-slot>
+          <view class="num">{{mvpData.rebound}}</view>
           <view class="tag">篮板</view>
-        </view>
-        <view class="cell">
-          <view class="num">2</view>
+        </van-grid-item>
+        <van-grid-item class="cell" use-slot>
+          <view class="num">{{mvpData.assist}}</view>
           <view class="tag">助攻</view>
-        </view>
-        <view class="cell">
-          <view class="num">4</view>
+        </van-grid-item>
+        <van-grid-item class="cell" use-slot>
+          <view class="num">{{mvpData.steal}}</view>
           <view class="tag">抢断</view>
-        </view>
-        <view class="cell">
-          <view class="num">2</view>
+        </van-grid-item>
+        <van-grid-item class="cell" use-slot>
+          <view class="num">{{mvpData.blockShot}}</view>
           <view class="tag">盖帽</view>
-        </view>
-      </view>
+        </van-grid-item>
+      </van-grid>
     </view>
   </view>
 </view>

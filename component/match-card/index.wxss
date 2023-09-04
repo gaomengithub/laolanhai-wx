@@ -73,6 +73,9 @@
 .card .item .desc .content .child {
   margin-bottom: 10rpx;
   overflow: hidden;
+  white-space: nowrap;
+  width: 428rpx;
+  text-overflow: ellipsis;
 }
 
 .card .active {

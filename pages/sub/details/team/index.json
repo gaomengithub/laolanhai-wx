@@ -6,7 +6,6 @@
     "auth-show":"/component/auth-show/index",
     "apply-card":"/component/apply-card/index",
     "van-button": "@vant/weapp/button/index",
-    "van-dialog": "@vant/weapp/dialog/index",
     "van-field": "@vant/weapp/field/index"
   }
 }

@@ -7,8 +7,9 @@ Page({
    */
   data: {
     items: {},
+    applierList:[],
     active: 0,
-    showComments: false,
+    // showComments: false,
     comments: "",
     autosize: { minHeight: 50 },
     bgImg: imgUrls.detailTeamBgImg,
@@ -22,9 +23,24 @@ Page({
     })
   },
   onJoinBtn() {
-    this.setData({
-      showComments: true
+    wx.showModal({
+      title: '填写申请',
+      placeholderText: '输入想给队长的信息',
+      editable:true,
+      complete: (res) => {
+        if (res.cancel) {
+          console.log(res)
+        }
+    
+        if (res.confirm) {
+          console.log(res)
+        }
+      }
     })
+    // this.setData({
+    //   showComments: true
+    // })
+    
   },
   onConfirmBtn() {
     if (this.data.comments == "") {
@@ -41,7 +57,9 @@ Page({
    */
   onLoad(options) {
     getTeamApprovalList().then(res=>{
-      console.log(res)
+      this.setData({
+        applierList:res
+      })
     })
     try {
       const teamID = options.id

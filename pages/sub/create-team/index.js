@@ -10,6 +10,11 @@ let showFileList = []
 Page({
   data: {
     options: options,
+    fieldNames: {
+      text: 'text',
+      value: 'text',
+      children: 'children',
+    },
     navTitle: "创建球队",
     autoSize: { minHeight: 100 },
     name: "",
@@ -26,7 +31,7 @@ Page({
       location: iconUrls.addTeamLocation,
       address: iconUrls.addTeamAddress
     },
-    navBarHeight: app.globalData.navBarHeight,
+    // navBarHeight: app.globalData.navBarHeight,
   },
   onDisplay(e) {
     const show = e.currentTarget.dataset.show
@@ -42,10 +47,10 @@ Page({
   },
   onFinishAreaCascader(e) {
     const { selectedOptions } = e.detail
-    const fieldValue = selectedOptions.map((option) => option.text || option.name).join('/');
+    const val = selectedOptions.map((option) => option.text).join('/');
     this.setData({
       showAreaCascader: false,
-      currCity: fieldValue
+      currCity: val
     })
   },
   onLoad(options) {
@@ -81,6 +86,7 @@ Page({
       if (res.statusCode == "200") {
         wx.showModal({
           title: '创建成功',
+          content:'球队创建成功，您自动成为球队队长',
           showCancel: false,
           complete: (res) => {
             if (res.confirm) {

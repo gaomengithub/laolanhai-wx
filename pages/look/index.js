@@ -9,20 +9,10 @@ Page({
     active: 0,
     scrollTop: 0,
     offsetTop: 0,
-    navTitle: "观赛",
-    navBarHeight: app.globalData.navBarHeight,
+    navTitle: "赛况",
+    // navBarHeight: app.globalData.navBarHeight,
   },
-  onScroll(event) {
-    wx.createSelectorQuery()
-      .select('#scroller')
-      .boundingClientRect((res) => {
-        this.setData({
-          scrollTop: event.detail.scrollTop,
-          offsetTop: res.top,
-        });
-      })
-      .exec();
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */

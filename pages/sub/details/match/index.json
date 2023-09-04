@@ -3,7 +3,7 @@
   "usingComponents": {
     "nav-bar": "/component/nav-bar/index",
     "van-button": "@vant/weapp/button/index",
-    "van-dialog": "@vant/weapp/dialog/index",
     "van-divider": "@vant/weapp/divider/index"
+    
   }
 }

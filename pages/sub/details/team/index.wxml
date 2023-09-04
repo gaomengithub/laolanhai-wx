@@ -24,6 +24,7 @@
     <van-button custom-class="btn-custom-class" bind:click='onJoinBtn'>立即加入</van-button>
   </view>
 </auth-show>
-<van-dialog use-slot title="请输入入队申请" show="{{ showComments }}" show-cancel-button bind:confirm="onConfirmBtn" >
+
+<!-- <van-dialog use-slot title="请输入入队申请" show="{{ showComments }}" show-cancel-button bind:confirm="onConfirmBtn" >
   <van-field model:value="{{ comments }}" type="textarea" placeholder="请输入想给队长的信息，方便队长通过审批" autosize="{{ autosize}}" border="{{ false }}" />
-</van-dialog>
+</van-dialog> -->

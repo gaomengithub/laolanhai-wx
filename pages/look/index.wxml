@@ -1,14 +1,13 @@
 <!--pages/look/look.wxml-->
 <nav-bar title="{{navTitle}}" ></nav-bar>
-<view style="height:{{navBarHeight}}px;"></view>
+<!-- <view style="height:{{navBarHeight}}px;"></view> -->
+<view class="container">
 
-<unwork />
 
-<!-- <van-tabs active="{{ active }}" bind:change="onChange">
+<van-tabs active="{{ active }}" bind:change="onChange">
   <van-tab title="赛事">
-  <look-card></look-card>
-  <look-card></look-card>
   <look-card></look-card>
   </van-tab>
   <van-tab title="新闻">内容 2</van-tab>
-</van-tabs> -->
+</van-tabs>
+</view>

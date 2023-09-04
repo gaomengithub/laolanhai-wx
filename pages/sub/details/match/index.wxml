@@ -1,9 +1,9 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
 <!-- <view style="height:{{navBarHeight}}px;"></view> -->
-<van-dialog use-slot show="{{ showDialog }}" bind:confirm="onDialogConfirmBtn" theme="round-button" custom-class="dialog" confirm-button-class="confirm-btn" use-title-slot>
+<!-- <van-dialog use-slot show="{{ showDialog }}" bind:confirm="onDialogConfirmBtn" theme="round-button" custom-class="dialog" confirm-button-class="confirm-btn" use-title-slot>
   <icon class="tip-icon" type="{{dialogIconType}}" size="120rpx" />
   <view class="msg">{{ dialogMsg }}</view>
-</van-dialog>
+</van-dialog> -->
 
 <swiper circular indicator-dots indicator-color="#FFFFFF" style="height: {{swiperHeight}};" bindchange="swiperChange">
   <swiper-item>

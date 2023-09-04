@@ -9,8 +9,8 @@ Page({
     swiperImgHeight: wx.getSystemInfoSync().windowWidth + 'px',
     swiperHeight: wx.getSystemInfoSync().windowWidth + 'px',
     showDialog: false,
-    dialogIconType: "success",
-    dialogMsg: "报名成功",
+    // dialogIconType: "success",
+    // dialogMsg: "报名成功",
     typeUrl: iconUrls.descUnofficialTag,
     clockUrl: iconUrls.descClock,
     locationUrl: iconUrls.descLocation,
@@ -18,12 +18,12 @@ Page({
     windowWidth: wx.getSystemInfoSync().windowWidth,
     navBarHeight: getApp().globalData.navBarHeight,
   },
-  onDialogConfirmBtn() {
-    this.setData({
-      showDialog: false,
-    })
-    wx.navigateBack()
-  },
+  // onDialogConfirmBtn() {
+  //   this.setData({
+  //     showDialog: false,
+  //   })
+  //   wx.navigateBack()
+  // },
   onJoinBtn() {
     wx.showLoading({
       title: '请等待',
@@ -32,19 +32,39 @@ Page({
     if (this.data.matchID != "" || this.data.matchID != null) {
       joinMatch(this.data.matchID).then(() => {
         wx.hideLoading()
-        this.setData({
-          dialogIconType: "success",
-          showDialog: true,
-          dialogMsg: "报名成功"
+        wx.showModal({
+          title: '报名成功',
+          content: '您已成功报名，请准时参加',
+          showCancel:false,
+          complete: (res) => {        
+            if (res.confirm) {
+              wx.navigateBack()
+            }
+          }
         })
+        // this.setData({
+        //   dialogIconType: "success",
+        //   showDialog: true,
+        //   dialogMsg: "报名成功"
+        // })
       }).catch(e => {
         if (e.statusCode == 400) {
           wx.hideLoading()
-          this.setData({
-            dialogIconType: "info",
-            showDialog: true,
-            dialogMsg: "您已经报过名，无需再报名"
+          wx.showModal({
+            title: '提示',
+            content: '您已经报过名，请勿重新报名',
+            showCancel:false,
+            complete: (res) => {          
+              if (res.confirm) {
+                wx.navigateBack()
+              }
+            }
           })
+          // this.setData({
+          //   dialogIconType: "info",
+          //   showDialog: true,
+          //   dialogMsg: "您已经报过名，无需再报名"
+          // })
         }
       })
     }
