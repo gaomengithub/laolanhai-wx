@@ -4,6 +4,7 @@
     "score-card":"/component/score-card/index",
     "joined-card":"/component/joined-card/index",
     "apply-action":"/component/apply-action/index",
-    "van-popup": "@vant/weapp/popup/index"
+    "van-popup": "@vant/weapp/popup/index",
+    "honor-card":"/component/honor-card/index"
   }
 }

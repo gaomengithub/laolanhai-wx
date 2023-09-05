@@ -1,4 +1,4 @@
-import { getMatchList } from '$/api'
+import { getMatchList , deleteMatch} from '$/api'
 import { iconUrls, imgUrls } from '$/urls'
 
 
@@ -53,7 +53,6 @@ Page({
     }
   },
   onPageScroll() {
-    // this.setSwiperHeight()
   },
   setSwiperHeight() {
     const className = classNameList[this.data.activeTab]
@@ -62,6 +61,11 @@ Page({
     }).exec();
   },
   onLoad() {
+    deleteMatch("2UTIV7EwXAieSRTGn1YYAG9LKZn").then(res=>{
+      console.log(res)
+    })
+
+    
     getMatchList().then(res => {
       this.setData({
         matchList: res.data.matches

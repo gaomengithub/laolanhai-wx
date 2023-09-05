@@ -38,9 +38,24 @@ Component({
               url: '/pages/sub/login/index',
             })
           } else {
-            wx.navigateTo({
-              url: url,
-            })
+            // 临时的
+            if (url == "/pages/to-do/index") {
+              wx.showModal({
+                title: '提示',
+                content: '该功能还在内测阶段，敬请期待',
+                showCancel: false,
+                complete: (res) => {
+                  if (res.confirm) {
+
+                  }
+                }
+              })
+
+            } else {
+              wx.navigateTo({
+                url: url,
+              })
+            }
           }
         },
         fail() {

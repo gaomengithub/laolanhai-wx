@@ -15,15 +15,15 @@ const formatNumber = n => {
 }
 
 export function formatForMatchCard(str) {
-  const lstr = str.replace(/-/g, "T").replace(":00+08:00","").split("T")
+  const lstr = str.replace(/-/g, "T").replace(":00+08:00", "").split("T")
   const month = lstr[1]
   const day = lstr[2].replace(/^-0/, '')
-  const time  = lstr[3]
-  return month + '月' + day + '日' + "  " +  time
+  const time = lstr[3]
+  return month + '月' + day + '日' + "  " + time
 }
 
-export function splitDateTime(str){
-  const lstr = str.replace(":00+08:00","").split("T")
+export function splitDateTime(str) {
+  const lstr = str.replace(":00+08:00", "").split("T")
   return lstr
 }
 
@@ -38,7 +38,12 @@ export function getDifferenceInMinute(time1, time2) {
 }
 
 
-export function revertQiniuKey(str){
-  const key = str.split("tmp/")[1].split("?e=")[0]
-  return key
+export function revertQiniuKey(str) {
+  try {
+    const key = str.split("tmp/")[1].split("?e=")[0]
+    return key
+  } catch {
+    return str
+  }
+
 }

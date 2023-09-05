@@ -1,5 +1,5 @@
 <view class="container">
-  <van-cell custom-class="item {{ item.title == '正赛' ? 'official-item' : '' }}" wx:for="{{ addList }}" wx:key="*this" url="{{item.url}}" link-type="navigateTo" border="{{ false }}" is-link center>
+  <van-cell custom-class="item {{ item.title == '正赛' ? 'official-item' : '' }}" wx:for="{{ addList }}" wx:key="*this" bind:click="onCell" data-key="{{ item.url }}" border="{{ false }}" is-link center>
   <view class="nav">
     <image class="icon" src="{{ item.icon }}" mode="aspectFill" />
     <view class="content">

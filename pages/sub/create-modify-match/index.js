@@ -80,14 +80,14 @@ Page({
           joinNum: res.data.join_num,
           startAge: res.data.age_group_start,
           endAge: res.data.age_group_end,
-          // fileList: [
-          //   { url: revertQiniuKey(res.data.banner_attachments) },
-          //   { url: revertQiniuKey(res.data.attachments) }
-          // ],
-          // showFileList: [
-          //   { url: res.data.banner_attachments },
-          //   { url: res.data.attachments }
-          // ],
+          fileList: [
+            { url: revertQiniuKey(res.data.banner_attachments) },
+            { url: revertQiniuKey(res.data.attachments) }
+          ],
+          showFileList: [
+            { url: res.data.banner_attachments ,isImage: true, },
+            { url: res.data.attachments ,isImage: true, }
+          ],
           date: splitDateTime(res.data.start_time)[0],
           startTime: splitDateTime(res.data.start_time)[1],
           endTime: splitDateTime(res.data.end_time)[1],

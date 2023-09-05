@@ -1,3 +1,4 @@
+
 .top {
   height: 320rpx;
   width: 100%;
@@ -22,6 +23,7 @@
   border-top-right-radius: 44rpx;
   position: relative;
   top: -44rpx;
+  
 }
 
 .user {

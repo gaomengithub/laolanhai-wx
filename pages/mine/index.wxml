@@ -32,14 +32,13 @@
       </view>
     </view>
   </view>
-  <joined-card />
+  <joined-card items="{{ items }}" />
+  <honor-card></honor-card>
+
 </view>
+<!-- 188占位的基础上减去container的top-44 -->
+<view style="height: 144rpx;"></view>
 
-
-
-<!-- <unwork></unwork> -->
-
-<view class="honor-card"></view>
 
 
 <van-popup show="{{ showPopup }}" round custom-class="popup" bind:close="onClosePopup" catch:touchmove="preventTouchMove">

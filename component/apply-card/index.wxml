@@ -11,8 +11,8 @@
       入队申请：{{comments}}
     </view>
     <view class="active">
-      <van-button custom-class="btn-no" round>驳回</van-button>
-      <van-button custom-class="btn-yes" round>同意</van-button>
+      <van-button custom-class="btn-no" round bind:click="onButton" data-key="{{ 0 }}">驳回</van-button>
+      <van-button custom-class="btn-yes" round bind:click="onButton" data-key="{{ 1 }}">同意</van-button>
     </view>
   </view>
 </view>

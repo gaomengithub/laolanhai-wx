@@ -3,6 +3,7 @@ import { getUserInfoByID ,getMyJoinMatch} from '$/api'
 Page({
   data: {
     nickName: "",
+    items:[],
     lightImg: imgUrls.mineLightImg,
     teamIcon: iconUrls.mineTeam,
     applyIcon: iconUrls.mineApply,
@@ -31,7 +32,9 @@ Page({
       })
     })
     getMyJoinMatch().then(res=>{
-      console.log(res)
+      this.setData({
+        items:res.data.matches
+      })
     })
     // getMatchApprovalList().then(res=>{
     //   console.log(res)

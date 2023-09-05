@@ -1,0 +1,22 @@
+<!--component/honor-card/index.wxml-->
+<view class="container">
+  <view class="bar-container">
+    <view class="title">
+      我的成就
+    </view>
+    <view class="more">
+      查看更多
+    </view>
+  </view>
+  <view class="item" wx:for="{{ items }}">
+    <image class="avatar" src="{{ item.avatar }}" mode="scaleToFill" />
+    <view class="text">
+    <view class="name">
+      {{ item.name }}
+    </view>
+    <view class="intro">
+      {{item.intro}}
+    </view>
+  </view>
+  </view>
+</view>

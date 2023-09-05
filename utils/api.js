@@ -154,11 +154,12 @@ export async function joinTeam(teamID,comment) {
   return await request(obj)
 }
 
-export async function getTeamApprovalList() {
+export async function getTeamApprovalList(teamID) {
   let obj = {
     url: '/team/listApproval',
     method: 'POST',
     data: {
+      teamId:teamID
     }
   }
   return await request(obj)
@@ -177,8 +178,26 @@ export async function getMatchApprovalList() {
 export async function getMyJoinMatch() {
   let obj = {
     url: '/match/listMyJoinMatch',
-    method: 'POST',
     data: {
+    }
+  }
+  return await request(obj)
+}
+
+export async function updateApproval(data) {
+  let obj = {
+    url: '/match/listMyJoinMatch',
+    data: data
+  }
+  return await request(obj)
+}
+
+export async function deleteMatch(matchID) {
+  let obj = {
+    url: '/match/delete',
+    method: 'POST',
+    data:{
+      id: matchID
     }
   }
   return await request(obj)

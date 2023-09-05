@@ -7,16 +7,22 @@
   padding-right: 24rpx;
 }
 
-.card .title {
-  position: absolute;
-  top: 28rpx;
-  left: 24rpx;
+.card .sub-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100rpx;
+  justify-content: space-between;
+}
+
+.sub-container .title {
+  position: relative;
   font-size: 32rpx;
   font-weight: 600;
   z-index: 1;
 }
 
-.card .title::after {
+.sub-container .title::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -29,16 +35,14 @@
 
 
 .card .more {
-  position: absolute;
-  top: 30rpx;
-  right: 24rpx;
   font-size: 28rpx;
   color: #C2C2C2;
 }
 
 .card .item {
   position: relative;
-  top: 104rpx;
+  margin: 22rpx;
+  border-radius: 22rpx;
   height: 144rpx;
   display: flex;
   flex-direction: row;
@@ -54,9 +58,10 @@
 }
 
 .card .item .content {
-  width: 340rpx;
+  width: 320rpx;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card .item .content .name {
@@ -91,6 +96,7 @@
   padding-bottom: 10rpx;
   border-radius: 8rpx;
   margin-right: 24rpx;
+  font-size: 26rpx;
 }
 
 .card .link {
