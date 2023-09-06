@@ -32,6 +32,7 @@ Component({
   methods: {
     expectValidate: function () {
       try {
+        // 现在是本地读取
         const quals = wx.getStorageSync('quals')
         const ls = quals.map(item => item.qual)
         if (this.data.expect == "no45") {

@@ -1,13 +1,15 @@
 import { imgUrls, iconUrls } from '$/urls'
-import { getUserInfoByID ,getMyJoinMatch} from '$/api'
+import { getUserInfoByID, getMyJoinMatch } from '$/api'
 Page({
   data: {
     nickName: "",
-    items:[],
+    userID: "",
+    items: [],
     lightImg: imgUrls.mineLightImg,
     teamIcon: iconUrls.mineTeam,
     applyIcon: iconUrls.mineApply,
     inIcon: iconUrls.mineIn,
+    editIcon: iconUrls.editIcon,
     showPopup: false,
     closeIcon: iconUrls.barClose,
     avatarUrl: ""
@@ -28,12 +30,13 @@ Page({
     getUserInfoByID(id).then(res => {
       this.setData({
         nickName: res.data.nickName,
-        avatarUrl: res.data.avatar
+        avatarUrl: res.data.avatar,
+        userID: id
       })
     })
-    getMyJoinMatch().then(res=>{
+    getMyJoinMatch().then(res => {
       this.setData({
-        items:res.data.matches
+        items: res.data.matches
       })
     })
     // getMatchApprovalList().then(res=>{

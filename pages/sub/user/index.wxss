@@ -32,8 +32,8 @@ page {
 
 .tip {
   color: red;
-  font-size: 28rpx;
+  font-size: 24rpx;
   padding-left: 24rpx;
   padding-right: 24rpx;
-  text-align: center;
+  text-align: right;
 }

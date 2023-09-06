@@ -25,6 +25,7 @@ Page({
   //   wx.navigateBack()
   // },
   onJoinBtn() {
+    console.log("e")
     wx.showLoading({
       title: '请等待',
       mask: true,

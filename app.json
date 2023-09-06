@@ -4,7 +4,7 @@
     "pages/look/index",
     "pages/team/index",
     "pages/mine/index",
-    "pages/sub/login/index",
+    "pages/sub/user/index",
     "pages/sub/create-modify-match/index",
     "pages/sub/create-team/index",
     "pages/sub/search/index",

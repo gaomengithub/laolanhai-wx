@@ -40,7 +40,7 @@ export function getDifferenceInMinute(time1, time2) {
 
 export function revertQiniuKey(str) {
   try {
-    const key = str.split("tmp/")[1].split("?e=")[0]
+    const key = str.replace("https://store.obabyball.com/","").split("?e=")[0]
     return key
   } catch {
     return str

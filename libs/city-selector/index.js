@@ -1,5 +1,5 @@
 import { searchLetter, cityList } from './city.js';
-import { iconUrls } from '../../utils/urls'
+import { iconUrls } from '$/urls'
 const app = getApp()
 Page({
   data: {
@@ -11,7 +11,7 @@ Page({
     scrollTop: 0,//置顶高度
     scrollTopId: '',//置顶id
     city: "定位中...",
-    navBarHeight: app.globalData.navBarHeight,
+    // navBarHeight: app.globalData.navBarHeight,
     hotcityList: ["北京市", "成都市", "西安市", "海口市", "大连市", "南京市", "天津市", "深圳市"],
     inputName: '',
     completeList: [],

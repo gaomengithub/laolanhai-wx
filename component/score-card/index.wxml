@@ -1,12 +1,9 @@
 <view class="card">
-  <view class="title">
-    我的战绩
-  </view>
-
+  <top-line name="我的战绩" bind:handleButtomClick="onMineMoreBtn" />
   <van-grid custom-class="grid" border="{{false}}">
     <van-grid-item content-class="item" custom-class="" use-slot>
       <view class="num">
-        -
+        {{ joinedNum }}
       </view>
       <view class="tag">
         参赛数
@@ -14,7 +11,7 @@
     </van-grid-item>
     <van-grid-item content-class="item" use-slot>
       <view class="num">
-        -
+        {{ score }}
       </view>
       <view class="tag">
         正赛得分
@@ -22,18 +19,18 @@
     </van-grid-item>
     <van-grid-item content-class="item" use-slot>
       <view class="num">
-        -
+        {{ win }}
       </view>
       <view class="tag">
-        获胜率
+        获胜
       </view>
     </van-grid-item>
     <van-grid-item content-class="item" use-slot>
       <view class="num">
-        -
+        {{ pointer }}
       </view>
       <view class="tag">
-        战队积分
+        积分
       </view>
     </van-grid-item>
   </van-grid>

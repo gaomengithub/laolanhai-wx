@@ -1,0 +1,41 @@
+<nav-bar title="{{navTitle}}"></nav-bar>
+<!-- <view style="height:{{navBarHeight}}px;"></view> -->
+<view class="container">
+  <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" bind:tap="validate" data-key="showAvatarTip">
+    <image class="avatar" src="{{avatarUrl}}"></image>
+  </button>
+  <text wx:if="{{showAvatarTip}}" class="tip" style="margin-top: -40rpx;">请选择有效的头像</text>
+  <!-- 昵称 -->
+  <van-field label="昵称" model:value="{{ nickName }}" type="nickname" placeholder="请输入昵称" bind:blur="validate" data-key="showNameTip" />
+  <text wx:if="{{showNameTip}}" class="tip"> 请输入有效的昵称 </text>
+  <!-- 出生日期 -->
+  <van-cell title="出生日期" is-link bind:click="onDisplay" value="{{ currentDate }}" data-key="showDatePicker" />
+  <van-popup show="{{ showDatePicker }}" bind:close="onClose" position="bottom" custom-style="height: 30%;" data-key="showDatePicker">
+    <van-datetime-picker type="date" value="{{ date }}" bind:input="onInput" min-date="{{ minDate }}" formatter="{{ formatter }}" bind:confirm="onClose" bind:cancel="onClose" data-key="showDatePicker" />
+  </van-popup>
+
+  <!-- 注册的补充 -->
+  <view wx:if="{{ type == 'modify' }}">
+    <!-- 身高 -->
+    <van-cell title="身高" is-link bind:click="onDisplay" value="{{ height }}" data-key="showHeightPicker" />
+    <van-popup show="{{ showHeightPicker }}" bind:close="onClose" position="bottom" custom-style="height: 30%;" data-key="showHeightPicker">
+      <van-picker columns="{{ heightColumns }}" show-toolbar="{{ true }}" title="选择身高" bind:confirm="onClose" bind:cancel="onClose" bind:change="onChange" data-key="showHeightPicker" data-key="showHeightPicker" data-type="height" />
+    </van-popup>
+    <!-- 体重 -->
+    <van-cell title="体重" is-link bind:click="onDisplay" value="{{ weight }}" data-key="showWeightPicker" />
+    <van-popup show="{{ showWeightPicker }}" bind:close="onClose" position="bottom" custom-style="height: 30%;" data-key="showWeightPicker">
+      <van-picker columns="{{ weightColumns }}" show-toolbar="{{ true }}" title="选择体重" bind:confirm="onClose" bind:cancel="onClose" bind:change="onChange" data-key="showWeightPicker" data-key="showWeightPicker" data-type="weight" />
+    </van-popup>
+    <van-field label="自我介绍" border="{{ false }}" type="textarea" autosize="{{ { minHeight:50 } }}" model:value="{{ about }}" placeholder="请输入一段自我介绍" />
+
+  </view>
+
+
+  <!-- 提交 -->
+  <view wx:if="{{ type == 'create' }}">
+    <van-button disabled="{{ disabled }}" open-type="getPhoneNumber" bind:getphonenumber="getPhoneNumber" custom-class="btn">完善</van-button>
+  </view>
+  <view wx:if="{{ type == 'modify' }}">
+    <van-button disabled="{{ disabled }}" bind:click="onUpdateUserInfo" custom-class="btn">完善</van-button>
+  </view>
+</view>

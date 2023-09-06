@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "top-line":"/component/top-line/index"
+    "van-button": "@vant/weapp/button/index"
   }
 }

@@ -49,6 +49,10 @@ Component({
             }
           }
         })
+      } else {
+        wx.navigateTo({
+          url: key,
+        })
       }
     }
   }

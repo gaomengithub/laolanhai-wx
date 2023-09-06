@@ -49,6 +49,7 @@ export const iconUrls = {
   descSuccess:prefix + '/ui_v1/icon/success.svg',
   octagonalStar: prefix + '/ui_v1/icon/octagonal-star.svg',
   lookMvp: prefix + '/ui_v1/icon/look-mvp-v1.svg',
+  editIcon:prefix + '/ui_v1/icon/edit-v1.svg',
 }
 
 export const imgUrls = {

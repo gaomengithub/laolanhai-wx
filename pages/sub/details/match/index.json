@@ -2,8 +2,6 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "nav-bar": "/component/nav-bar/index",
-    "van-button": "@vant/weapp/button/index",
-    "van-divider": "@vant/weapp/divider/index"
-    
+    "bottom-btn-bar":"/component/bottom-btn-bar"
   }
 }

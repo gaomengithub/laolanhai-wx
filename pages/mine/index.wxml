@@ -8,6 +8,9 @@
     <view class="name">
       {{nickName}}
     </view>
+    <navigator url="/pages/sub/user/index?id={{userID}}&type=modify" open-type="navigate">
+      <image class="edit" src="{{editIcon}}" mode="scaleToFill"></image>
+    </navigator>
   </view>
   <view class="score">
     <score-card></score-card>

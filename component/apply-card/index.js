@@ -39,7 +39,7 @@ Component({
   lifetimes: {
     attached() {
       getTeamApprovalList(this.data.teamID).then(res => {
-        const applierList = res.data.map(item => item.ID)
+        const applierList = res.data.map(item => item.Applier.ID)
         for (let userID of applierList) {
           console.log(userID)
           getUserInfoByID(userID).then(userRes => {

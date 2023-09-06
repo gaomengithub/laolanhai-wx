@@ -60,8 +60,10 @@
   </view>
 </view>
 
-<!-- 占位 -->
+
+<bottom-btn-bar name="立即报名" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn" />
+<!-- 占位
 <view style="height: 166rpx;"></view>
 <view class="active">
   <van-button custom-class="btn-custom-class" bind:click='onJoinBtn'>立即报名</van-button>
-</view>
+</view> -->

@@ -1,13 +1,6 @@
 <view class="card">
-  <view class="sub-container">
-    <view class="title">
-      我已参加的
-    </view>
-    <view class="more">
-      查看更多
-    </view>
-  </view>
-  <view wx:for="{{ items }}" wx:key="*this" class="item">
+  <top-line name="我已参加的"></top-line>
+  <view wx:for="{{ items }}" wx:key="index" class="item">
     <image class="type-icon" src="{{ item.match_type == 3 ? unOfficialIcon : officialIcon}}" mode="aspectFill" />
     <view class="content">
       <view class="name">

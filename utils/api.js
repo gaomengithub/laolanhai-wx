@@ -195,7 +195,7 @@ export async function updateApproval(data) {
 export async function deleteMatch(matchID) {
   let obj = {
     url: '/match/delete',
-    method: 'POST',
+    method: 'GET',
     data:{
       id: matchID
     }

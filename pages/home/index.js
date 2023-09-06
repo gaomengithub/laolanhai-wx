@@ -1,4 +1,4 @@
-import { getMatchList , deleteMatch} from '$/api'
+import { getMatchList, deleteMatch } from '$/api'
 import { iconUrls, imgUrls } from '$/urls'
 
 
@@ -61,21 +61,21 @@ Page({
     }).exec();
   },
   onLoad() {
-    deleteMatch("2UTIV7EwXAieSRTGn1YYAG9LKZn").then(res=>{
-      console.log(res)
-    })
+    // deleteMatch("2UTIV7EwXAieSRTGn1YYAG9LKZn").then(res => {
+    //   console.log(res)
+    // })
 
-    
+
     getMatchList().then(res => {
       this.setData({
         matchList: res.data.matches
-      },(()=>{
+      }, (() => {
         this.setSwiperHeight()
       }))
       const unofficialMatchList = this.data.matchList.filter(item => item.match_type === 3)
       this.setData({
         unofficialMatchList: unofficialMatchList
-      },(()=>{
+      }, (() => {
         this.setSwiperHeight()
       }))
     }).catch(e => {
