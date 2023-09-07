@@ -22,12 +22,15 @@
   border-radius: 44rpx;
 }
 
-.arrow {
+.detail {
   position: absolute;
+  top: 35rpx;
+  right: 35rpx;
+}
+
+.arrow {
   width: 35rpx;
   height: 35rpx;
-  right: 35rpx;
-  top: 45%
 }
 
 .title {

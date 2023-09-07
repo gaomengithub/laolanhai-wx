@@ -186,7 +186,8 @@ export async function getMyJoinMatch() {
 
 export async function updateApproval(data) {
   let obj = {
-    url: '/match/listMyJoinMatch',
+    url: '/team/updateApproval',
+    method: 'POST',
     data: data
   }
   return await request(obj)

@@ -8,8 +8,9 @@
       <swiper-item wx:for="{{teamCards}}" wx:key="index">
         <team-card name="{{item.name}}" avatar="{{item.logo}}">
           <navigator url="/pages/sub/details/team/index?id={{ item.id }}" open-type="navigate">
-            <image class="arrow" src="{{arrow}}" mode="aspectFill">
-            </image>
+          <view class="detail">
+            球队详情<image class="arrow" src="{{arrow}}" mode="aspectFill"/>
+          </view>
           </navigator>
         </team-card>
       </swiper-item>
@@ -21,7 +22,7 @@
     </view>
   </auth-show>
   <view class="list">
-  <view class="title">其他球队</view>
+    <view class="title">其他球队</view>
     <enlist-card wx:for="{{teamList}}" wx:key="index" teamID="{{ item.id }}" name="{{ item.name }}" avatar="{{ item.logo }}"></enlist-card>
   </view>
 </view>

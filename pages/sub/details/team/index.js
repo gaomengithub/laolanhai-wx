@@ -1,4 +1,4 @@
-import { getTeamDesc,joinTeam,getTeamApprovalList} from '$/api'
+import { getTeamDesc, joinTeam, getTeamApprovalList } from '$/api'
 import { imgUrls } from '$/urls'
 Page({
 
@@ -7,14 +7,14 @@ Page({
    */
   data: {
     items: {},
-    applierList:[],
+    applierList: [],
     active: 0,
     // showComments: false,
     comments: "",
     autosize: { minHeight: 50 },
     bgImg: imgUrls.detailTeamBgImg,
     navTitle: "球队详情",
-    navBarHeight: getApp().globalData.navBarHeight,
+    // navBarHeight: getApp().globalData.navBarHeight,
   },
   onChange(e) {
     const active = e.currentTarget.dataset.active
@@ -26,39 +26,38 @@ Page({
     wx.showModal({
       title: '填写申请',
       placeholderText: '输入想给队长的信息',
-      editable:true,
+      editable: true,
       complete: (res) => {
         if (res.cancel) {
-          console.log(res)
+
         }
-    
+
         if (res.confirm) {
-          console.log(res)
+          joinTeam(this.data.items.id, res.content).then(res => {
+            wx.showToast({
+              title: '申请成功，等待审批',
+              duration: 2000,
+              mask: true,
+              success: function () {
+                setTimeout(function () {
+                  wx.navigateBack()
+                }, 2000)
+              }
+            })
+          })
         }
       }
     })
-    // this.setData({
-    //   showComments: true
-    // })
-    
-  },
-  onConfirmBtn() {
-    if (this.data.comments == "") {
-      console.log("888")
-    } else {
-      joinTeam(this.data.items.id, this.data.comments ).then(res=>{
-        console.log(res)
-      })
-    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    getTeamApprovalList().then(res=>{
+    getTeamApprovalList().then(res => {
+      console.log(res)
       this.setData({
-        applierList:res
+        applierList: res.data
       })
     })
     try {

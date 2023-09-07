@@ -1,18 +1,20 @@
-<view class="card">
-  <image class="avatar" src="{{avatar}}"></image>
-  <view class="sub-container">
-    <view class="name">
-      {{name}} <span style="font-size: 26rpx;font-weight: 400;" >{{ age }}岁</span>
-    </view>
-    <view class="date">
-      申请时间：{{date}}
-    </view>
-    <view class="comments">
-      入队申请：{{comments}}
-    </view>
-    <view class="active">
-      <van-button custom-class="btn-no" round bind:click="onButton" data-key="{{ 0 }}">驳回</van-button>
-      <van-button custom-class="btn-yes" round bind:click="onButton" data-key="{{ 1 }}">同意</van-button>
+<view class="container">
+  <view class="card" wx:for="{{approvalRes}}" wx:key="index">
+    <image class="avatar" src="{{item.user.avatar}}"></image>
+    <view class="sub-container">
+      <view class="name">
+        {{item.user.nickName}} <span style="font-size: 26rpx;font-weight: 400;">{{ item.user.birthDate }}出生</span>
+      </view>
+      <view class="date">
+        申请时间：{{item.CreatedAt}}
+      </view>
+      <view class="comments">
+        入队申请：{{item.Comment}}
+      </view>
+      <view class="active">
+        <van-button custom-class="btn" round bind:click="onButtonClick" data-type="{{ 2 }}" data-key="{{item.ID}}" data-rev="{{item.Rev}}">驳回</van-button>
+        <van-button custom-class="btn yes" round bind:click="onButtonClick" data-type="{{ 1 }}" data-key="{{item.ID}}" data-rev="{{item.Rev}}">同意</van-button>
+      </view>
     </view>
   </view>
 </view>

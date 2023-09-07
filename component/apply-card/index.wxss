@@ -43,18 +43,16 @@
   justify-content: space-around;
 }
 
-.sub-container .active .btn-no,
-.btn-yes {
+.btn {
   width: 210rpx;
   font-size: 30rpx;
   font-weight: 600;
-}
-
-.btn-no {
   color: #FB8808;
   background-color: #FFEFDD;
 }
 
-.btn-yes {
+
+.yes {
+  color: #000000;
   background-color: #FB8808;
 }

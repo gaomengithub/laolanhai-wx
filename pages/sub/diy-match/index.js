@@ -13,7 +13,7 @@ Page({
     isNew: true,
     navTitle: "发布",
     matchID: "",
-    autoSize: { minHeight: 60 },
+    autoSize: { minHeight: 80 },
     iconUrls: {
       date: iconUrls.addCalendar,
       startTime: iconUrls.addStartTime,

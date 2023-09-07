@@ -1,53 +1,34 @@
-import { getTeamApprovalList, getUserInfoByID } from '$/api'
+import { getTeamApprovalList, getUserInfoByID, updateApproval } from '$/api'
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
-    name: {
-      type: String,
-      value: "燕子"
-    },
-    age: {
-      type: Number,
-      value: 55
-    },
-    date: {
-      type: String,
-      value: "2023-08-31"
-    },
-    comments: {
-      type: String,
-      value: "我志愿加入"
-    },
-    avatar: {
-      type: String,
-      value: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"
-    },
     teamID: {
       type: String,
       value: ""
     }
   },
 
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    approvalRes: [],
   },
   lifetimes: {
     attached() {
-      getTeamApprovalList(this.data.teamID).then(res => {
-        const applierList = res.data.map(item => item.Applier.ID)
-        for (let userID of applierList) {
-          console.log(userID)
-          getUserInfoByID(userID).then(userRes => {
-            console.log(userRes)
+      let approvalRes
+      if (this.data.teamID.length > 0) {
+        getTeamApprovalList(this.data.teamID).then(resp => {
+          approvalRes = resp.data
+          const applierIDs = approvalRes.map(item => item.Applier.ID)
+          return Promise.all(applierIDs.map(applierID => getUserInfoByID(applierID)))
+        }).then(userRespList => {
+          const dict = {};
+          userRespList.forEach((item) => {
+            dict[item.data.id] = item.data;
           })
-        }
-
-      })
+          approvalRes.map(item => item["user"] = dict[item.Applier.ID])
+          this.setData({
+            approvalRes
+          })
+        })
+      }
     }
   },
 
@@ -56,14 +37,49 @@ Component({
    */
   methods: {
 
-    onButton(e) {
+    onButtonClick(e) {
+
       const key = e.currentTarget.dataset.key
-      let obj = {
-        "action": key,
-        "approve_id": "string",
-        "comment": "string",
-        "rev": 0
-      }
+      const type = e.currentTarget.dataset.type
+      const rev = e.currentTarget.dataset.rev
+      wx.showModal({
+        title: '填写回执',
+        placeholderText: "填写同意或者驳回的理由",
+        editable: true,
+        complete: (res) => {
+          if (res.cancel) {
+
+          }
+
+          if (res.confirm) {
+            console.log(res)
+            let obj = {
+              "action": type,
+              "approve_id": key,
+              "comment": "string",
+              "rev": rev + 1
+            }
+            wx.showLoading({
+              title: '请等待',
+            })
+            updateApproval(obj).then(res => {
+              wx.hideLoading()
+              wx.showModal({
+                title: '提示',
+                content: '审批成功',
+                showCancel: false,
+                complete: (res) => {
+                  if (res.confirm) {
+
+                  }
+                }
+              })
+            })
+          }
+        }
+      })
+
+
     }
 
   }
