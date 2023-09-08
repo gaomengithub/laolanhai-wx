@@ -10,11 +10,11 @@
     "pages/sub/search/index",
     "pages/sub/details/match/index",
     "pages/sub/details/look-desc/index",
+    "pages/sub/details/team/index",
     "pages/sub/details/look/index",
     "libs/city-selector/index",
     "libs/calendar/index",
-    "pages/to-do/index",
-    "pages/sub/details/team/index"
+    "pages/to-do/index"
   ],
   "window": {
     "navigationStyle": "custom"

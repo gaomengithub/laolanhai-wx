@@ -30,5 +30,7 @@
     </van-grid-item>
   </van-grid>
   <!-- 箭头 -->
-  <slot ></slot>
+  <view class="slot">
+    <slot></slot>
+  </view>
 </view>

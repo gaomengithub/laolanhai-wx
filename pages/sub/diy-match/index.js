@@ -108,7 +108,6 @@ Page({
       fileList,
       showFileList
     })
-
   },
   onDisplay(e) {
     const show = e.currentTarget.dataset.show

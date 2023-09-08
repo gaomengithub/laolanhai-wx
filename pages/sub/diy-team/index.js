@@ -2,13 +2,14 @@ import { iconUrls } from '$/urls'
 import { options } from '$/pca-code'
 import { addTeamMessages, addTeamRules } from '$/validate-set'
 import WxValidate from '$/WxValidate'
-import { createTeam } from '$/api'
+import { createTeam, getTeamDesc, updateMatch } from '$/api'
 import { uploadImgWithToken } from '$/qiniu'
-const app = getApp()
+
 let fileList = []
 let showFileList = []
 Page({
   data: {
+    type: "",
     options: options,
     fieldNames: {
       text: 'text',
@@ -16,13 +17,13 @@ Page({
       children: 'children',
     },
     navTitle: "创建球队",
-    autoSize: { minHeight: 100 },
+    autoSize: { minHeight: 85 },
     name: "",
     intro: "",
     currCity: "",
     location: "",
     fileList: [],
-    showFileList:[],
+    showFileList: [],
     showAreaCascader: false,
     iconUrls: {
       upload: iconUrls.addTeamUpload,
@@ -37,6 +38,16 @@ Page({
     const show = e.currentTarget.dataset.show
     this.setData({
       [show]: true
+    })
+  },
+  onDelete(e) {
+    const fileList = this.data.fileList
+    const showFileList = this.data.showFileList
+    fileList.splice(e.detail.index, 1)
+    showFileList.splice(e.detail.index, 1)
+    this.setData({
+      fileList,
+      showFileList
     })
   },
   onClose(e) {
@@ -55,8 +66,26 @@ Page({
   },
   onLoad(options) {
     this.WxValidate = new WxValidate(addTeamRules, addTeamMessages)
+
+    const teamID = options.teamID
+    const type = options.type
+    this.setData({
+      type
+    })
+    if (teamID != undefined) {
+      getTeamDesc(teamID).then(res => {
+        this.setData({
+          showFileList: [{ url: res.data.logo, isImage: true, }],
+          currCity: res.data.city,
+          fileList: [{ url: res.data.logo }],
+          location: res.data.region,
+          intro: res.data.desc,
+          name: res.data.name
+        })
+      })
+    }
   },
-  onCreateBtn() {
+  onBtnClick() {
     //校验表单
     const formData = {
       name: this.data.name,
@@ -82,11 +111,11 @@ Page({
       region: this.data.location,
       founded: new Date()
     }
-    createTeam(data).then(res => {
-      if (res.statusCode == "200") {
+    if (this.data.type == 'create') {
+      createTeam(data).then(res => {
         wx.showModal({
           title: '创建成功',
-          content:'球队创建成功，您自动成为球队队长',
+          content: '球队创建成功，您自动成为球队队长',
           showCancel: false,
           complete: (res) => {
             if (res.confirm) {
@@ -96,10 +125,14 @@ Page({
             }
           }
         })
-      }
-    }).catch(e => {
-      console.log(e)
-    })
+      }).catch(e => {
+        console.log(e)
+      })
+    }
+    if( (this.data.type == 'modify') ){
+      updateMatch
+    }
+
   },
   onAfterRead(event) {
     const _this = this
@@ -116,7 +149,7 @@ Page({
             showFileList,
             fileList
           })
-        }).catch(e=>{
+        }).catch(e => {
           console.error('error: ' + JSON.stringify(e));
         })
       }

@@ -14,6 +14,7 @@
     <filter-bar />
   </van-sticky>
   <swiper current="{{activeTab}}" id="auto-swiper" style="height: {{swiperHeight}}; background-color: #EBEBEB;" bindchange="swiperChange">
+    <van-skeleton custom-class="loading-skeleton" title row="16" loading="{{ loading }}" />
     <swiper-item class="content-hot">
       <match-card wx:for="{{matchList}}" wx:key="index" name="{{ item.name }}" img="{{item.banner_attachments}}" date="{{item.start_time}}" location="{{ item.location }}" matchID="{{item.id}}" matchType="{{item.match_type}}" status="{{item.status}}" users="{{ item.users }}" teams="{{ item.teams }}"></match-card>
     </swiper-item>
@@ -24,4 +25,5 @@
       <match-card wx:for="{{unofficialMatchList}}" wx:key="index" name="{{ item.name }}" img="{{item.banner_attachments}}" date="{{item.start_time}}" location="{{ item.location }}" matchID="{{item.id}}" matchType="{{item.match_type}}" status="{{item.status}}"></match-card>
     </swiper-item>
   </swiper>
+
 </view>

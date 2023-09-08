@@ -30,7 +30,7 @@
 .card .data {
   width: 560rpx;
   height: 140rpx;
-  --grid-item-content-background-color: none ;
+  --grid-item-content-background-color: none;
 }
 
 .card .data .num {
@@ -44,5 +44,8 @@
   color: #A3A3A3;
 }
 
-
-
+.slot {
+  position: absolute;
+  top: 35rpx;
+  right: 35rpx;
+}

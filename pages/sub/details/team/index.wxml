@@ -3,7 +3,13 @@
 
 <image class="bg-img" src="{{bgImg}}" mode="aspectFill" />
 <view class="team-card">
-  <team-card name="{{items.name}}" avatar="{{items.logo}}"></team-card>
+  <team-card name="{{items.name}}" avatar="{{items.logo}}">
+    <auth-show expect="yes4?{{ items.id }}">
+    <navigator url="/pages/sub/diy-team/index?teamID={{items.id}}&type=modify">
+      <view class="manage"> 变更 </view>
+    </navigator>
+  </auth-show>
+  </team-card>
 </view>
 <view class="tabs-container">
   <view class="tabs">
@@ -26,9 +32,3 @@
     <van-button custom-class="btn-custom-class" bind:click='onJoinBtn'>立即加入</van-button>
   </view>
 </auth-show>
-
-
-
-
-
-

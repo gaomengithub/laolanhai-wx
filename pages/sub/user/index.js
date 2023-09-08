@@ -1,9 +1,8 @@
 import WxValidate from '$/WxValidate'
 import { updateUserInfo, getUserInfoByID } from '$/api'
 import { uploadImgWithToken } from '$/qiniu'
-import { formatDate, revertQiniuKey } from '$/util'
+import { formatDate } from '$/util'
 const computedBehavior = require('miniprogram-computed').behavior
-// const app = getApp()
 Page({
   behaviors: [computedBehavior],
   data: {
@@ -12,7 +11,6 @@ Page({
     avatarUrl: "",
     avatarKey: "",
     navTitle: "完善资料",
-    // navBarHeight: app.globalData.navBarHeight,
     nickName: "",
     height: "172cm",
     weight: "80kg",
@@ -137,6 +135,7 @@ Page({
       avatarUrl,
       showAvatarTip: false
     })
+    console.log(avatarUrl)
     uploadImgWithToken(avatarUrl).then(url => {
       this.setData({
         avatarKey: url.key
@@ -172,10 +171,10 @@ Page({
     if (type == "modify") {
       const userID = options.id
       getUserInfoByID(userID).then(res => {
-        console.log(res)
         this.setData({
           type,
           avatarUrl: res.data.avatar,
+          avatarKey:res.data.avatarKey,
           nickName: res.data.nickName,
           about: res.data.about == undefined ? "" : res.data.about,
           weight: res.data.weight == undefined ? "" : res.data.weight,
@@ -190,7 +189,7 @@ Page({
     const userData = {
       id: wx.getStorageSync('id'),
       nickName: this.data.nickName,
-      avatar: revertQiniuKey(this.data.avatarUrl),
+      avatar: this.data.avatarKey,
       about: this.data.about,
       birthDate: this.data.currentDate,
       height: this.data.height,
@@ -221,7 +220,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    
   },
 
   /**

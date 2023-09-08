@@ -9,6 +9,7 @@ const classNameList = [".content-hot", ".content-official", ".content-unofficial
 Page({
 
   data: {
+    loading: true,
     navTitle: "老蓝孩俱乐部",
     bannerImg: imgUrls.bannerImg,
     tabs: ["热门", "正赛", "野球"],
@@ -61,11 +62,7 @@ Page({
     }).exec();
   },
   onLoad() {
-    // deleteMatch("2UTIV7EwXAieSRTGn1YYAG9LKZn").then(res => {
-    //   console.log(res)
-    // })
-
-
+    console.log("e")
     getMatchList().then(res => {
       this.setData({
         matchList: res.data.matches
@@ -88,14 +85,19 @@ Page({
     })
   },
   onReachBottom() {
-    this.setData({
-      loading: true
-    })
     // this.getMatchList()
   },
 
   onReady() {
-
+    this.setData({
+      loading: false,
+    });
+  },
+  onShareAppMessage(){
+    return {
+      title: '老蓝孩',
+      imageUrl: imgUrls.bannerImg
+    }
   },
   onClickFilterBtn(e) {
     this.getTabBar().hide()

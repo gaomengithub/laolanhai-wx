@@ -22,15 +22,11 @@
   border-radius: 44rpx;
 }
 
-.detail {
-  position: absolute;
-  top: 35rpx;
-  right: 35rpx;
-}
+
 
 .arrow {
-  width: 35rpx;
-  height: 35rpx;
+  width: 30rpx;
+  height: 30rpx;
 }
 
 .title {
@@ -53,4 +49,10 @@
   /* 修改这里的百分比，可以控制背景颜色覆盖的比例 */
   background-color: orange;
   z-index: -1;
+}
+
+.active {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

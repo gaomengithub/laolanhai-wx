@@ -8,21 +8,26 @@
       <swiper-item wx:for="{{teamCards}}" wx:key="index">
         <team-card name="{{item.name}}" avatar="{{item.logo}}">
           <navigator url="/pages/sub/details/team/index?id={{ item.id }}" open-type="navigate">
-          <view class="detail">
-            球队详情<image class="arrow" src="{{arrow}}" mode="aspectFill"/>
-          </view>
+            <view class="active" >
+              球队详情
+              <image class="arrow" src="{{arrow}}" mode="aspectFill" />
+            </view>
           </navigator>
         </team-card>
       </swiper-item>
     </swiper>
   </auth-show>
-  <auth-show expect="no45" id="team-list">
-    <view class="tip">
-      您还没有加入球队，请选择球队加入
-    </view>
-  </auth-show>
+
+
   <view class="list">
-    <view class="title">其他球队</view>
+    <view class="title">球队列表</view>
+    <auth-show expect="no45" id="team-list">
+      <view class="tip">
+        您还没有加入球队，请选择球队加入
+      </view>
+    </auth-show>
     <enlist-card wx:for="{{teamList}}" wx:key="index" teamID="{{ item.id }}" name="{{ item.name }}" avatar="{{ item.logo }}"></enlist-card>
   </view>
 </view>
+<!-- 占位 -->
+<view style="height: 188rpx;"></view>
