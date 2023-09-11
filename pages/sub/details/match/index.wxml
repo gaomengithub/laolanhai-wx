@@ -1,10 +1,5 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
 <!-- <view style="height:{{navBarHeight}}px;"></view> -->
-<!-- <van-dialog use-slot show="{{ showDialog }}" bind:confirm="onDialogConfirmBtn" theme="round-button" custom-class="dialog" confirm-button-class="confirm-btn" use-title-slot>
-  <icon class="tip-icon" type="{{dialogIconType}}" size="120rpx" />
-  <view class="msg">{{ dialogMsg }}</view>
-</van-dialog> -->
-
 <swiper circular indicator-dots indicator-color="#FFFFFF" style="height: {{swiperHeight}};" bindchange="swiperChange">
   <swiper-item>
     <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{match.banner_attachments}}" mode="aspectFill" />
@@ -17,16 +12,16 @@
 <view class="container">
   <image class="star-icon" src="{{ octagonalStar }}" mode="aspectFill" />
   <view class="cost-tip">
-    {{match.price}}元
+    {{["免费", "约10元", "约20元", "约30元"][match.price[0]]}}
   </view>
 
-  <view class="top">
+  <view class="mask">
     <image class="type" src="{{ typeUrl }}" mode="widthFix"></image>
     <view class="name">
       {{match.name}}
     </view>
   </view>
-  <!-- <van-divider custom-style="--divider-margin:0" /> -->
+
   <view class="mid">
     <view class="date-address">
       <view class="cell">
@@ -60,10 +55,5 @@
   </view>
 </view>
 
-
+<logo-bar />
 <bottom-btn-bar name="立即报名" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn" />
-<!-- 占位
-<view style="height: 166rpx;"></view>
-<view class="active">
-  <van-button custom-class="btn-custom-class" bind:click='onJoinBtn'>立即报名</van-button>
-</view> -->

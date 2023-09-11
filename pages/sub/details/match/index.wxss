@@ -7,20 +7,19 @@
   margin-top: -200rpx;
 }
 
-.top {
+.mask {
   position: relative;
   height: 200rpx;
   background: linear-gradient(to top, rgba(99, 99, 99, 1), rgba(99, 99, 99, 0));
   /* box-shadow: 0 0 20px rgba(99, 99, 99, 1); */
-
 }
 
-.top .type {
+.mask .type {
   width: 180rpx;
   margin-left: 44rpx;
 }
 
-.top .name {
+.mask .name {
   margin-left: 44rpx;
   color: #ffffff;
   font-size: 48rpx;
@@ -30,7 +29,7 @@
 
 .cost-tip {
   position: absolute;
-  top: 0;
+  top: -35rpx;
   right: 24rpx;
   height: 150rpx;
   width: 150rpx;
@@ -46,7 +45,7 @@
 
 .star-icon {
   position: absolute;
-  top: 0;
+  top: -35rpx;
   right: 24rpx;
   height: 150rpx;
   width: 150rpx;

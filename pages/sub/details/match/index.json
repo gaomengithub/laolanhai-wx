@@ -2,6 +2,7 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "nav-bar": "/component/nav-bar/index",
-    "bottom-btn-bar":"/component/bottom-btn-bar"
+    "bottom-btn-bar":"/component/bottom-btn-bar/index",
+    "logo-bar":"/component/logo-bar/index"
   }
 }

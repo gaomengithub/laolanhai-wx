@@ -10,6 +10,7 @@ let showFileList = []
 Page({
   data: {
     type: "",
+    teamID:"",
     options: options,
     fieldNames: {
       text: 'text',
@@ -70,7 +71,8 @@ Page({
     const teamID = options.teamID
     const type = options.type
     this.setData({
-      type
+      type,
+      teamID
     })
     if (teamID != undefined) {
       getTeamDesc(teamID).then(res => {
@@ -103,7 +105,7 @@ Page({
       return false;
     }
 
-    let data = {
+    let teamData = {
       city: this.data.currCity,
       desc: this.data.intro,
       logo: fileList[0],
@@ -112,7 +114,7 @@ Page({
       founded: new Date()
     }
     if (this.data.type == 'create') {
-      createTeam(data).then(res => {
+      createTeam(teamData).then(() => {
         wx.showModal({
           title: '创建成功',
           content: '球队创建成功，您自动成为球队队长',
@@ -125,12 +127,24 @@ Page({
             }
           }
         })
-      }).catch(e => {
-        console.log(e)
       })
     }
-    if( (this.data.type == 'modify') ){
-      updateMatch
+    if ((this.data.type == 'modify')) {
+      teamData["id"] = this.data.teamID
+      updateMatch(teamData).then(()=>{
+        wx.showModal({
+          title: '修改成功',
+          content: '修改球队信息成功，点击确定返回',
+          showCancel: false,
+          complete: (res) => {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '/pages/home/index',
+              })
+            }
+          }
+        })
+      })
     }
 
   },

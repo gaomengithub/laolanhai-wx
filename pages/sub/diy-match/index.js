@@ -72,8 +72,6 @@ Page({
         isNew: false
       })
       getMatchDesc(matchID).then(res => {
-        console.log(res)
-        console.log(matchID)
         this.setData({
           name: res.data.name,
           desc: res.data.description,
@@ -178,7 +176,6 @@ Page({
             fileList,
             showFileList
           })
-          console.log(_this.data.fileList)
         }).catch(e => {
           console.error('error: ' + JSON.stringify(e));
         })
@@ -246,7 +243,6 @@ Page({
       })
     } else {
       data['id'] = this.data.matchID
-      console.log(this.data.matchID)
       updateMatch(data).then(() => {
         wx.showModal({
           title: '修改成功',
