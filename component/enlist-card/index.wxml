@@ -3,13 +3,13 @@
   <image class="bg-img" src="{{ bgImg }}" mode="aspectFit" />
   <image class="avatar-outline" src="{{ avatarOutline }}" mode="aspectFit" />
   <view class="avatar-container">
-    <image class="avatar" src="{{ avatar }}" mode="aspectFill" />
+    <image class="avatar" src="{{ team.logo }}" mode="aspectFill" />
   </view>
   <!-- 占位 -->
   <view style="width: 220rpx; "></view>
   <view class="info">
     <view class="name">
-      {{ name }}
+      {{ team.name }}
     </view>
     <view class="num">
       招募人数：{{ num }}人

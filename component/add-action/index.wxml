@@ -1,17 +1,42 @@
 <view class="container">
-  <van-cell custom-class="item {{ item.title == '正赛' ? 'official-item' : '' }}" wx:for="{{ addList }}" wx:key="*this" bind:click="onCell" data-key="{{ item.url }}" border="{{ false }}" is-link center>
-  <view class="nav">
-    <image class="icon" src="{{ item.icon }}" mode="aspectFill" />
-    <view class="content">
-      <view class="title {{ item.title == '正赛' ? 'official-text' : ''  }}">
-        {{ item.title }}
+  <view class="item" bind:click="onCell" border="{{ false }}" bind:tap="onClick" data-path="/pages/sub/diy-match/index?pageClass=create">
+    <image class="icon" src="{{ diyPerson.icon }}" mode="aspectFill" />
+    <view class="cell">
+      <view class="title">
+        {{ diyPerson.title }}
       </view>
-      <view class="text {{ item.title == '正赛' ? 'official-text' : ''  }}">
-        {{ item.text }}
+      <view class="text">
+        {{ diyPerson.text }}
       </view>
     </view>
+    <image class="arrow" src="{{greyArrow}}" mode="aspectFill" />
   </view>
-  </van-cell>
+
+  <view class="item" bind:click="onCell" border="{{ false }}">
+    <image class="icon" src="{{ diyTeam.icon }}" mode="aspectFill" />
+    <view class="cell">
+      <view class="title">
+        {{ diyTeam.title }}
+      </view>
+      <view class="text">
+        {{ diyTeam.text }}
+      </view>
+    </view>
+    <image class="arrow" src="{{greyArrow}}" mode="aspectFill" />
+  </view>
+
+  <view class="item official-item" bind:click="onCell" border="{{ false }}">
+    <image class="icon" src="{{ official.icon }}" mode="aspectFill" />
+    <view class="cell">
+      <view class="title official-title">
+        {{ official.title }}
+      </view>
+      <view class="text official-text">
+        {{ official.text }}
+      </view>
+    </view>
+    <image class="arrow" src="{{blackArrow}}" mode="aspectFill" />
+  </view>
   <view class="active">
     <slot></slot>
   </view>

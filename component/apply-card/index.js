@@ -12,6 +12,15 @@ Component({
   },
   lifetimes: {
     attached() {
+      this.loadApprovalData()
+    }
+  },
+
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    loadApprovalData(){
       let approvalRes
       if (this.data.teamID.length > 0) {
         getTeamApprovalList(this.data.teamID).then(resp => {
@@ -29,13 +38,7 @@ Component({
           })
         })
       }
-    }
-  },
-
-  /**
-   * 组件的方法列表
-   */
-  methods: {
+    },
 
     onButtonClick(e) {
 
@@ -62,7 +65,7 @@ Component({
             wx.showLoading({
               title: '请等待',
             })
-            updateApproval(obj).then(res => {
+            updateApproval(obj).then(() => {
               wx.hideLoading()
               wx.showModal({
                 title: '提示',
@@ -70,7 +73,7 @@ Component({
                 showCancel: false,
                 complete: (res) => {
                   if (res.confirm) {
-
+                    this.loadApprovalData()
                   }
                 }
               })
@@ -78,8 +81,6 @@ Component({
           }
         }
       })
-
-
     }
 
   }

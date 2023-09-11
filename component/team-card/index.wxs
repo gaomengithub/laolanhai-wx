@@ -1,0 +1,39 @@
+var formatMemberNum = function (arr) {
+  if (arr == undefined) return
+  return arr.length
+}
+
+var formatFounded = function (str) {
+  if (str == undefined) return
+  return str.split("-")[0]
+}
+
+var formatAverage = function (arr) {
+  if (arr == undefined) return
+  var total = 0;
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i].birthDate == undefined) {
+      return "-"
+    }
+    total += calculateAge(arr[i].birthDate);
+  }
+  return total / arr.length;
+
+}
+
+module.exports = {
+  formatMemberNum: formatMemberNum,
+  formatFounded: formatFounded,
+  formatAverage: formatAverage
+}
+
+function calculateAge(birthdate) {
+  var today = getDate();
+  var birthDate = getDate(birthdate);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}

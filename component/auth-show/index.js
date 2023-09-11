@@ -47,8 +47,8 @@ Component({
             auth: et.some((num) => ls.includes(num))
           })
         }
+        //验证是不是这个队伍的队长
         if (this.data.expect.startsWith("yes4?")) {
-          console.log(this.data.expect)
           const teamID = this.data.expect.split("4?")[1]
           const teamls = quals.map(item => item.teamId).filter(item => item !== undefined)
           this.setData({

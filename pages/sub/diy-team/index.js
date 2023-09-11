@@ -2,7 +2,7 @@ import { iconUrls } from '$/urls'
 import { options } from '$/pca-code'
 import { addTeamMessages, addTeamRules } from '$/validate-set'
 import WxValidate from '$/WxValidate'
-import { createTeam, getTeamDesc, updateMatch } from '$/api'
+import { createTeam, getTeamDesc, updateTeam } from '$/api'
 import { uploadImgWithToken } from '$/qiniu'
 
 let fileList = []
@@ -131,7 +131,7 @@ Page({
     }
     if ((this.data.type == 'modify')) {
       teamData["id"] = this.data.teamID
-      updateMatch(teamData).then(()=>{
+      updateTeam(teamData).then(()=>{
         wx.showModal({
           title: '修改成功',
           content: '修改球队信息成功，点击确定返回',

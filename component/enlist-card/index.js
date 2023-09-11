@@ -4,10 +4,13 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    name: String,
-    num: Number,
-    avatar: String,
-    teamID: String
+    team: {
+      type: Object,
+      value: {
+        name:"老蓝孩",
+        logo:"",
+      }
+    }
   },
 
   /**

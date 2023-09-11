@@ -1,17 +1,10 @@
 import { request, uploadImg } from "./http"
 
-export async function getMatchList() {
+export async function getMatchList(data) {
   let obj = {
     url: '/match/list',
     method: 'POST',
-    data: {
-      city: "",
-      match_type: 3,
-      page_size: 10,
-      page_token: "",
-      team_id: "",
-      user_id: ""
-    }
+    data: data
   }
   return await request(obj)
 }
@@ -51,6 +44,15 @@ export async function createMatch(data) {
 export async function updateMatch(data){
   let obj = {
     url: '/match/update',
+    method: 'POST',
+    data: data
+  }
+  return await request(obj)
+}
+
+export async function updateTeam(data){
+  let obj = {
+    url: '/team/update',
     method: 'POST',
     data: data
   }

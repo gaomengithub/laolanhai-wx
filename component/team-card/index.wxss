@@ -48,4 +48,14 @@
   position: absolute;
   top: 35rpx;
   right: 35rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #A2A2A2;
+}
+
+
+.arrow {
+  width: 30rpx;
+  height: 30rpx;
 }

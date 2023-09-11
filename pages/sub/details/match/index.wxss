@@ -20,16 +20,25 @@
 }
 
 .mask .name {
+  display: -webkit-box;
+  word-break:break-all;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-left: 44rpx;
   color: #ffffff;
   font-size: 48rpx;
   font-weight: 600;
+  height: 164rpx;
+  line-height: 64rpx;
+  width: 634rpx;
   letter-spacing: 2rpx;
 }
 
 .cost-tip {
   position: absolute;
-  top: -35rpx;
+  top: -50rpx;
   right: 24rpx;
   height: 150rpx;
   width: 150rpx;
@@ -45,7 +54,7 @@
 
 .star-icon {
   position: absolute;
-  top: -35rpx;
+  top: -50rpx;
   right: 24rpx;
   height: 150rpx;
   width: 150rpx;

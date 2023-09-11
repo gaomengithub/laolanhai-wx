@@ -33,7 +33,7 @@ Page({
         }
 
         if (res.confirm) {
-          joinTeam(this.data.items.id, res.content).then(res => {
+          joinTeam(this.data.items.id, res.content).then(() => {
             wx.showToast({
               title: '申请成功，等待审批',
               duration: 2000,

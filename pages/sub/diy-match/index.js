@@ -83,8 +83,8 @@ Page({
             { url: revertQiniuKey(res.data.attachments) }
           ],
           showFileList: [
-            { url: res.data.banner_attachments ,isImage: true, },
-            { url: res.data.attachments ,isImage: true, }
+            { url: res.data.banner_attachments, isImage: true, },
+            { url: res.data.attachments, isImage: true, }
           ],
           date: splitDateTime(res.data.start_time)[0],
           startTime: splitDateTime(res.data.start_time)[1],
@@ -213,7 +213,7 @@ Page({
     let data = {
       age_group_start: parseInt(this.data.startAge),
       age_group_end: parseInt(this.data.endAge),
-      attachments: this.data.fileList[1].url,
+      attachments: [this.data.fileList[1].url],
       banner_attachments: this.data.fileList[0].url,
       description: this.data.desc,
       end_time: this.data.date + 'T' + this.data.endTime + ':00Z',
@@ -229,6 +229,7 @@ Page({
       createMatch(data).then(() => {
         wx.showModal({
           title: '创建成功',
+          content:"创建成功，点击确定返回",
           showCancel: false,
           complete: (res) => {
             if (res.confirm) {

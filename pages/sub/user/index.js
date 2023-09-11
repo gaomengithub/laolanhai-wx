@@ -135,7 +135,6 @@ Page({
       avatarUrl,
       showAvatarTip: false
     })
-    console.log(avatarUrl)
     uploadImgWithToken(avatarUrl).then(url => {
       this.setData({
         avatarKey: url.key
@@ -174,14 +173,13 @@ Page({
         this.setData({
           type,
           avatarUrl: res.data.avatar,
-          avatarKey:res.data.avatarKey,
+          avatarKey: res.data.avatarKey,
           nickName: res.data.nickName,
           about: res.data.about == undefined ? "" : res.data.about,
           weight: res.data.weight == undefined ? "" : res.data.weight,
           height: res.data.about == undefined ? "" : res.data.height,
           birthDate: res.data.birthDate == undefined ? "" : res.data.birthDate
         })
-
       })
     }
   },
@@ -195,7 +193,7 @@ Page({
       height: this.data.height,
       weight: this.data.weight,
     }
-    updateUserInfo(userData).then(res => {
+    updateUserInfo(userData).then(() => {
       wx.showModal({
         title: '提示',
         content: '更新成功',
@@ -220,7 +218,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    
+
   },
 
   /**

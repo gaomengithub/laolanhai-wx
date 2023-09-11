@@ -4,22 +4,20 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    avatar:{
-      type:String,
-      value:"https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"
+    player: {
+      type: Object,
+      value: {
+        avatar: "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg",
+        name: "老蓝孩",
+        position: "中锋",
+        id: "",
+      }
     },
-    name:{
-      type:String,
-      value:"默认姓名"
-    },
-    position:{
-      type:String,
-      value:"默认中锋"
-    },
-    type:{
-      type:String,
-      value:"队长"
-    },
+    //用来判断是否是该队队长
+    teamID: {
+      type: String,
+      value: ""
+    }
   },
 
   /**

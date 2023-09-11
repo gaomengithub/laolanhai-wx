@@ -5,6 +5,7 @@
     "player-item":"/component/player-item/index",
     "auth-show":"/component/auth-show/index",
     "apply-card":"/component/apply-card/index",
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "bottom-btn-bar":"/component/bottom-btn-bar/index"
   }
 }

@@ -1,5 +1,5 @@
 import { getTeamList, getTeamDesc } from '$/api'
-import { iconUrls } from '$/urls'
+
 const app = getApp()
 
 Page({
@@ -12,7 +12,7 @@ Page({
     navBarHeight: app.globalData.navBarHeight,
     teamList: [],
     teamCards: [],
-    arrow: iconUrls.tabArrow
+
   },
 
   /**

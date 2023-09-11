@@ -6,11 +6,10 @@
     <view class="title">我的球队</view>
     <swiper class="team-swiper" indicator-dots="{{ true }}">
       <swiper-item wx:for="{{teamCards}}" wx:key="index">
-        <team-card name="{{item.name}}" avatar="{{item.logo}}">
+        <team-card team="{{item}}">
           <navigator url="/pages/sub/details/team/index?id={{ item.id }}" open-type="navigate">
             <view class="active" >
               球队详情
-              <image class="arrow" src="{{arrow}}" mode="aspectFill" />
             </view>
           </navigator>
         </team-card>
@@ -26,7 +25,7 @@
         您还没有加入球队，请选择球队加入
       </view>
     </auth-show>
-    <enlist-card wx:for="{{teamList}}" wx:key="index" teamID="{{ item.id }}" name="{{ item.name }}" avatar="{{ item.logo }}"></enlist-card>
+    <enlist-card wx:for="{{teamList}}" wx:key="index" team="{{item}}"></enlist-card>
   </view>
 </view>
 <!-- 占位 -->

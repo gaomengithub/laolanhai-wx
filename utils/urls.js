@@ -50,6 +50,8 @@ export const iconUrls = {
   octagonalStar: prefix + '/ui_v1/icon/octagonal-star.svg',
   lookMvp: prefix + '/ui_v1/icon/look-mvp-v1.svg',
   editIcon:prefix + '/ui_v1/icon/edit-v1.svg',
+  greyArrow:prefix + '/ui_v1/icon/arrow-grey.svg',
+  blackArrow:prefix + '/ui_v1/icon/arrow-black.svg',
 }
 
 export const imgUrls = {

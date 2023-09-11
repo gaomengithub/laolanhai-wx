@@ -1,14 +1,16 @@
 <view class="item">
-  <image class="avatar" src="{{avatar}}" mode="aspectFill"></image>
+  <image class="avatar" src="{{player.avatar}}" mode="aspectFill"></image>
   <view class="info">
     <view class="name">
-    {{ name }}
+      {{ player.nickName }}
     </view>
     <!-- <view class="position">
     {{position}}
     </view> -->
   </view>
-  <view class="type">
-    {{type}}
-    </view>
+    <view class="type">
+    队长
+  </view>
+
+
 </view>

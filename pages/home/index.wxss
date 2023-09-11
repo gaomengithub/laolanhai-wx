@@ -8,7 +8,7 @@
 
 .content-hot,
 .content-official,
-.content-unofficial {
+.content-diy {
   height: fit-content !important;
   background-color: #EBEBEB;
 }

@@ -3,12 +3,12 @@
 
 <image class="bg-img" src="{{bgImg}}" mode="aspectFill" />
 <view class="team-card">
-  <team-card name="{{items.name}}" avatar="{{items.logo}}">
+  <team-card team="{{items}}">
     <auth-show expect="yes4?{{ items.id }}">
-    <navigator url="/pages/sub/diy-team/index?teamID={{items.id}}&type=modify">
-      <view class="manage"> 变更 </view>
-    </navigator>
-  </auth-show>
+      <navigator url="/pages/sub/diy-team/index?teamID={{items.id}}&type=modify">
+        <view class="manage"> 变更 </view>
+      </navigator>
+    </auth-show>
   </team-card>
 </view>
 <view class="tabs-container">
@@ -19,7 +19,7 @@
     </auth-show>
   </view>
   <view wx:if="{{active == 0}}" class="player-items">
-    <player-item wx:for="{{items.teamMember}}" wx:key="index" name="{{ item.nickName }}"></player-item>
+    <player-item wx:for="{{items.teamMember}}" wx:key="index" player="{{item}}" teamID="{{ items.id }}"></player-item>
   </view>
   <view wx:if="{{ active == 1 }}" class="apply-items">
     <apply-card teamID="{{items.id}}" />
@@ -28,7 +28,5 @@
 
 
 <auth-show expect="no45?{{ items.id }}">
-  <view class="active">
-    <van-button custom-class="btn-custom-class" bind:click='onJoinBtn'>立即加入</van-button>
-  </view>
+  <bottom-btn-bar name="立即加入" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn"></bottom-btn-bar>
 </auth-show>

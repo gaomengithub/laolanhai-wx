@@ -5,6 +5,7 @@
     "van-button": "@vant/weapp/button/index",
     "nav-bar": "/component/nav-bar/index",
     "auth-show":"/component/auth-show/index",
-    "team-card":"/component/team-card/index"
+    "team-card":"/component/team-card/index",
+    "logo-bar":"/component/logo-bar/index"
   }
 }

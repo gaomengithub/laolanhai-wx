@@ -1,0 +1,4 @@
+var formatDate = function (str){
+  return str.split("T")[0]
+}
+module.exports.formatDate = formatDate;

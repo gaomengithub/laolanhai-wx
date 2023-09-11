@@ -14,7 +14,7 @@ Page({
     typeUrl: iconUrls.descUnofficialTag,
     clockUrl: iconUrls.descClock,
     locationUrl: iconUrls.descLocation,
-    octagonalStar:iconUrls.octagonalStar,
+    octagonalStar: iconUrls.octagonalStar,
     windowWidth: wx.getSystemInfoSync().windowWidth,
     navBarHeight: getApp().globalData.navBarHeight,
   },
@@ -36,42 +36,32 @@ Page({
         wx.showModal({
           title: '报名成功',
           content: '您已成功报名，请准时参加',
-          showCancel:false,
-          complete: (res) => {        
+          showCancel: false,
+          complete: (res) => {
             if (res.confirm) {
               wx.navigateBack()
             }
           }
         })
-        // this.setData({
-        //   dialogIconType: "success",
-        //   showDialog: true,
-        //   dialogMsg: "报名成功"
-        // })
       }).catch(e => {
         if (e.statusCode == 400) {
           wx.hideLoading()
           wx.showModal({
             title: '提示',
             content: '您已经报过名，请勿重新报名',
-            showCancel:false,
-            complete: (res) => {          
+            showCancel: false,
+            complete: (res) => {
               if (res.confirm) {
                 wx.navigateBack()
               }
             }
           })
-          // this.setData({
-          //   dialogIconType: "info",
-          //   showDialog: true,
-          //   dialogMsg: "您已经报过名，无需再报名"
-          // })
         }
       })
     }
   },
   swiperChange(e) {
-    const ls = [this.data.match.banner_attachments, this.data.match.attachments]
+    const ls = [this.data.match.banner_attachments, ...this.data.match.attachments]
     const currImg = ls[e.detail.current]
 
     wx.getImageInfo({

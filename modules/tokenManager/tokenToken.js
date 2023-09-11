@@ -5,7 +5,7 @@ import { loginForToken, updateAccessToken } from './getToken'
 export async function getAvailableAccessToken(force = false) {
   let accessToken = getAccessToken()
   if (accessToken === "" || accessToken == null || force === true) {
-    await loginForToken().then(res=>{
+    await loginForToken().then(res => {
       accessToken = res.accessToken
     })
   } else {

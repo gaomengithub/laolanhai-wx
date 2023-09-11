@@ -1,10 +1,10 @@
-import { getMatchList, deleteMatch } from '$/api'
+import { getMatchList } from '$/api'
 import { iconUrls, imgUrls } from '$/urls'
 
 
 const app = getApp()
 let old = false
-const classNameList = [".content-hot", ".content-official", ".content-unofficial"]
+const classNameList = [".content-hot", ".content-official", ".content-diy"]
 
 Page({
 
@@ -16,7 +16,7 @@ Page({
     tabIcon: [iconUrls.tabHot, iconUrls.tabOfficial, iconUrls.tabUnofficial],
     showNarBar: false,
     matchList: [],
-    unofficialMatchList: [],
+    diyMatchList: [],
     officialMatchList: [],
     activeTab: 0,
     swiperHeight: "100vh",
@@ -58,20 +58,27 @@ Page({
   setSwiperHeight() {
     const className = classNameList[this.data.activeTab]
     wx.createSelectorQuery().select(className).boundingClientRect(rect => {
-      this.setData({ swiperHeight: rect.height + 128 + 'px' });
+      if (rect.height >= app.globalData.windowHeight * 0.66) {
+        this.setData({ swiperHeight: rect.height + 128 + 'px' });
+      } else {
+        this.setData({ swiperHeight: app.globalData.windowHeight * 0.66 + 'px' });
+      }
     }).exec();
   },
   onLoad() {
-    console.log("e")
-    getMatchList().then(res => {
+    const filter = {
+      city: "",
+      match_type: 0,
+      page_size: 10,
+      page_token: "",
+      team_id: "",
+      user_id: ""
+    }
+    getMatchList(filter).then(res => {
+      const diyMatchList = res.data.matches.filter(item => item.match_type == 3)
       this.setData({
+        diyMatchList,
         matchList: res.data.matches
-      }, (() => {
-        this.setSwiperHeight()
-      }))
-      const unofficialMatchList = this.data.matchList.filter(item => item.match_type === 3)
-      this.setData({
-        unofficialMatchList: unofficialMatchList
       }, (() => {
         this.setSwiperHeight()
       }))
@@ -82,7 +89,9 @@ Page({
   swiperChange(e) {
     this.setData({
       activeTab: e.detail.current
-    })
+    }, (() => {
+      this.setSwiperHeight()
+    }))
   },
   onReachBottom() {
     // this.getMatchList()
@@ -93,7 +102,7 @@ Page({
       loading: false,
     });
   },
-  onShareAppMessage(){
+  onShareAppMessage() {
     return {
       title: '老蓝孩',
       imageUrl: imgUrls.bannerImg
