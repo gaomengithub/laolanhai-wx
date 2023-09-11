@@ -1,5 +1,5 @@
 <view class="container">
-  <view class="item" bind:click="onCell" border="{{ false }}" bind:tap="onClick" data-path="/pages/sub/diy-match/index?pageClass=create">
+  <view class="item" border="{{ false }}" bind:tap="onClick" data-path="/pages/sub/diy-match/index?pageClass=create" hover-class="hover" hover-start-time="20" hover-stay-time="70">
     <image class="icon" src="{{ diyPerson.icon }}" mode="aspectFill" />
     <view class="cell">
       <view class="title">
@@ -12,7 +12,7 @@
     <image class="arrow" src="{{greyArrow}}" mode="aspectFill" />
   </view>
 
-  <view class="item" bind:click="onCell" border="{{ false }}">
+  <view class="item" bind:tap="onClick" data-path="/pages/to-do/index" border="{{ false }}" hover-class="hover" hover-start-time="20" hover-stay-time="70">
     <image class="icon" src="{{ diyTeam.icon }}" mode="aspectFill" />
     <view class="cell">
       <view class="title">
@@ -25,7 +25,7 @@
     <image class="arrow" src="{{greyArrow}}" mode="aspectFill" />
   </view>
 
-  <view class="item official-item" bind:click="onCell" border="{{ false }}">
+  <view class="item official-item" bind:tap="onClick" data-path="/pages/to-do/index" border="{{ false }}" hover-class="hover" hover-start-time="20" hover-stay-time="70">
     <image class="icon" src="{{ official.icon }}" mode="aspectFill" />
     <view class="cell">
       <view class="title official-title">

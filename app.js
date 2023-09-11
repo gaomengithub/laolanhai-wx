@@ -1,4 +1,5 @@
-
+import { setStorage } from 'modules/tokenManager/tokenHandler';
+import { loginForToken } from './modules/tokenManager/getToken'
 App({
   onLaunch() {
     const systemInfo = wx.getSystemInfoSync();
@@ -8,6 +9,9 @@ App({
     this.globalData.menuTop = menuButtonInfo.top;
     this.globalData.menuHeight = menuButtonInfo.height;
     this.globalData.windowHeight = systemInfo.windowHeight;
+    loginForToken().then(res=>{
+      setStorage(res)
+    })
   },
   globalData: {
     navBarHeight: 0, // 导航栏高度

@@ -1,5 +1,6 @@
 import { formatForMatchCard } from '$/util'
 import { iconUrls, imgUrls } from '$/urls'
+import routeInterceptor from '$/router'
 Component({
   properties: {
     img: String,
@@ -48,27 +49,8 @@ Component({
 
   methods: {
     onJoinBtn() {
-      const _this = this
-      wx.getStorage({
-        key: 'quals',
-        success(res) {
-          let qual = res.data[0].qual
-          if (qual == 2) {
-            wx.navigateTo({
-              url: '/pages/sub/login/index',
-            })
-          } else {
-            wx.navigateTo({
-              url: `/pages/sub/details/match/index?matchID=${_this.data.matchID}&matchType=${_this.data.matchType}`,
-            })
-          }
-        },
-        fail() {
-          wx.navigateTo({
-            url: '/pages/sub/login/index',
-          })
-        }
-      })
+      const path = `/pages/sub/details/match/index?matchID=${this.data.matchID}&matchType=${this.data.matchType}`
+      routeInterceptor.navigateTo(path)
     }
   }
 })

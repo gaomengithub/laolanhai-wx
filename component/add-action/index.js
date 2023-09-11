@@ -1,5 +1,5 @@
 import { iconUrls } from "$/urls"
-import routeInterceptor from '$/route-interceptor/index'
+import routeInterceptor from '$/router'
 
 Component({
   /**
@@ -10,8 +10,8 @@ Component({
   },
 
   data: {
-    greyArrow:iconUrls.greyArrow,
-    blackArrow:iconUrls.blackArrow,
+    greyArrow: iconUrls.greyArrow,
+    blackArrow: iconUrls.blackArrow,
     official: {
       icon: iconUrls.addActionOfficial,
       title: "正赛",
@@ -40,19 +40,7 @@ Component({
   methods: {
     onClick(e) {
       const path = e.currentTarget.dataset.path
-      if (path == "/pages/to-do/index") {
-        wx.showModal({
-          title: '提示',
-          content: '该功能正在内测，敬请期待',
-          showCancel: false,
-          complete: (res) => {
-            if (res.confirm) {
-            }
-          }
-        })
-      } else {
-        routeInterceptor.navigateTo(path)
-      }
+      routeInterceptor.navigateTo(path)
     }
   }
 })

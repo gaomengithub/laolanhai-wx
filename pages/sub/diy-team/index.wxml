@@ -17,9 +17,13 @@
     <view class="title" slot="title">所在城市</view>
     <image class="field-icon" slot='icon' src="{{iconUrls.location}}" mode="scaleToFill" />
   </van-cell>
-  <van-field model:value="{{ location }}" placeholder="主要活动位置" type="number">
+  <van-field model:value="{{ location }}" placeholder="主要活动位置" type="text">
     <view class="title" slot="label">活动位置</view>
     <image class="field-icon" slot='left-icon' src="{{iconUrls.address}}" mode="scaleToFill" />
+  </van-field>
+  <van-field model:value="{{ memberNum }}" placeholder="期望的队伍人数" type="number" border="{{ false }}">
+    <view class="title" slot="label">人数上限</view>
+    <image style="height:55rpx;width: 55rpx; margin-right: 3rpx;" slot='left-icon' src="{{iconUrls.member}}" mode="aspectFill" />
   </van-field>
 </view>
 

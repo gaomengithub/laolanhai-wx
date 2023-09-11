@@ -1,7 +1,12 @@
 import { setStorage, getRefreshToken } from './tokenHandler'
 const BASE_URL = "https://api.obabyball.com"
+
+let loginPromise = null;
 export function loginForToken() {
-  return new Promise((resolve, reject) => {
+  if (loginPromise) {
+    return loginPromise;
+  }
+  loginPromise = new Promise((resolve, reject) => {
     wx.login({
       success(res) {
         if (res.code) {
@@ -12,7 +17,6 @@ export function loginForToken() {
             },
             success(res) {
               if (res.statusCode == "200") {
-                setStorage(res.data)
                 resolve(res.data)
               } else {
                 reject(res)
@@ -29,8 +33,7 @@ export function loginForToken() {
       }
     })
   })
-
-
+  return loginPromise
 }
 
 export function updateAccessToken() {

@@ -23,6 +23,7 @@ Page({
     intro: "",
     currCity: "",
     location: "",
+    memberNum:"",
     fileList: [],
     showFileList: [],
     showAreaCascader: false,
@@ -31,7 +32,8 @@ Page({
       name: iconUrls.addTeamName,
       intro: iconUrls.addTeamIntro,
       location: iconUrls.addTeamLocation,
-      address: iconUrls.addTeamAddress
+      address: iconUrls.addTeamAddress,
+      member:iconUrls.member
     },
     // navBarHeight: app.globalData.navBarHeight,
   },

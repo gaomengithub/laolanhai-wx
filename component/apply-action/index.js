@@ -12,7 +12,7 @@ Component({
       icon: iconUrls.addActionUnofficial,
       title: "申请成立球队",
       text: "自己成为队长",
-      url: "/pages/sub/diy-team/index"
+      url: "/pages/sub/diy-team/index?type=create"
     },
     referee: {
       icon: iconUrls.mineReferee,

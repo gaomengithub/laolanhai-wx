@@ -8,7 +8,7 @@
 }
 
 .item {
-  height: 180rpx;
+  height: 160rpx;
   margin-left: 32rpx;
   margin-right: 32rpx;
   margin-bottom: 20rpx;
@@ -65,4 +65,8 @@
 
 .official-text {
   color: #222222 !important;
+}
+
+.hover {
+  background-color: #ffffff;
 }
