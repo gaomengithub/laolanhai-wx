@@ -16,7 +16,7 @@
     <score-card></score-card>
   </view>
   <view class="active-card">
-    <view class="cell">
+    <view class="cell" bind:tap="onCellClick" data-key="card">
       <image class="icon" src="{{ teamIcon }}" mode="aspectFill" />
       <view class="text">
         球卡
@@ -28,7 +28,7 @@
         申请
       </view>
     </view>
-    <view class="cell">
+    <view class="cell" bind:tap="onCellClick" data-key="in">
       <image class="icon" src="{{ inIcon }}" mode="aspectFill" />
       <view class="text">
         入驻

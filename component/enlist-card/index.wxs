@@ -1,0 +1,10 @@
+var getEnlistMemberNum = function (obj) {
+  if (obj.teamMember == undefined) return
+  var total = obj.number
+  var teamMemberNum = obj.teamMember.length
+  return total - teamMemberNum
+}
+
+module.exports = {
+  getEnlistMemberNum: getEnlistMemberNum
+}

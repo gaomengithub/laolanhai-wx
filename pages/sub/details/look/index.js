@@ -1,11 +1,40 @@
-// pages/look-desc/index.js
+import { iconUrls } from '$/urls'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    picShow:false,
+    editIcon: iconUrls.editIcon,
+    activeNames: ['1'],
+    showFileList: [
+      { url: "https://openstore.obabyball.com/ui_v1/img/look_5.jpg", deletable: false, },
+      { url: "https://openstore.obabyball.com/ui_v1/img/look_4.jpg", deletable: false, },
+      { url: "https://openstore.obabyball.com/ui_v1/img/look_3.jpg", deletable: false, },
+      { url: "https://openstore.obabyball.com/ui_v1/img/look_2.jpg", deletable: false, },
+      { url: "https://openstore.obabyball.com/ui_v1/img/look_1.jpg", deletable: false, },
+    ],
+    maxCount: 5,
+  },
+  onChange(event) {
+    this.setData({
+      activeNames: event.detail,
+      picShow:event.detail.includes('2')
+    });
+  },
+  onEditClick() {
+    const temp = this.data.showFileList
+    this.setData({
+      showFileList:null,
+      maxCount: 8
+    },()=>{
+      setTimeout(() => {
+        this.setData({
+          showFileList: temp
+        })
+      }, 1)
+    })
   },
 
   /**

@@ -10,20 +10,20 @@ let showFileList = []
 Page({
   data: {
     type: "",
-    teamID:"",
+    teamID: "",
     options: options,
     fieldNames: {
       text: 'text',
       value: 'text',
       children: 'children',
     },
-    navTitle: "创建球队",
+    navTitle: "创建/修改球队",
     autoSize: { minHeight: 85 },
     name: "",
     intro: "",
     currCity: "",
     location: "",
-    memberNum:"",
+    memberNum: "",
     fileList: [],
     showFileList: [],
     showAreaCascader: false,
@@ -33,7 +33,7 @@ Page({
       intro: iconUrls.addTeamIntro,
       location: iconUrls.addTeamLocation,
       address: iconUrls.addTeamAddress,
-      member:iconUrls.member
+      member: iconUrls.member
     },
     // navBarHeight: app.globalData.navBarHeight,
   },
@@ -81,10 +81,11 @@ Page({
         this.setData({
           showFileList: [{ url: res.data.logo, isImage: true, }],
           currCity: res.data.city,
-          fileList: [{ url: res.data.logo }],
+          fileList: [{ url: res.data.logoKey }],
           location: res.data.region,
           intro: res.data.desc,
-          name: res.data.name
+          name: res.data.name,
+          memberNum:res.data.number
         })
       })
     }
@@ -96,7 +97,8 @@ Page({
       intro: this.data.intro,
       city: this.data.currCity,
       location: this.data.location,
-      imgCount: this.data.fileList.length
+      imgCount: this.data.fileList.length,
+      memberNum:this.data.memberNum
     }
     if (!this.WxValidate.checkForm(formData)) {
       const error = this.WxValidate.errorList[0];
@@ -113,19 +115,19 @@ Page({
       logo: fileList[0],
       name: this.data.name,
       region: this.data.location,
+      number: parseInt(this.data.memberNum),
       founded: new Date()
     }
+    console.log(teamData)
     if (this.data.type == 'create') {
       createTeam(teamData).then(() => {
         wx.showModal({
           title: '创建成功',
-          content: '球队创建成功，您自动成为球队队长',
+          content: '球队创建成功，您自动成为球队队长，并自动开启招募',
           showCancel: false,
           complete: (res) => {
             if (res.confirm) {
-              wx.switchTab({
-                url: '/pages/home/index',
-              })
+              wx.navigateBack()
             }
           }
         })
@@ -133,7 +135,7 @@ Page({
     }
     if ((this.data.type == 'modify')) {
       teamData["id"] = this.data.teamID
-      updateTeam(teamData).then(()=>{
+      updateTeam(teamData).then(() => {
         wx.showModal({
           title: '修改成功',
           content: '修改球队信息成功，点击确定返回',

@@ -1,6 +1,6 @@
 <!--component/honor-card/index.wxml-->
 <view class="container">
-  <top-line name="我的成就"></top-line>
+  <top-line name="我的成就" subName=""></top-line>
   <view class="item" wx:for="{{ items }}" wx:key="index">
     <image class="avatar" src="{{ item.avatar }}" mode="scaleToFill" />
     <view class="text">

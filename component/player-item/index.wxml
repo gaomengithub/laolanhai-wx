@@ -8,7 +8,7 @@
     {{position}}
     </view> -->
   </view>
-    <view class="type">
+  <view wx:if="{{ isLeader }}"  class="type">
     队长
   </view>
 

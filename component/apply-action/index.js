@@ -1,4 +1,5 @@
-import { iconUrls } from "../../utils/urls"
+import { iconUrls } from "$/urls"
+import routeInterceptor from '$/router'
 Component({
   /**
    * 组件的属性列表
@@ -8,18 +9,17 @@ Component({
   },
 
   data: {
-    team: {
+    greyArrow: iconUrls.greyArrow,
+    blackArrow: iconUrls.blackArrow,
+    manager: {
       icon: iconUrls.addActionUnofficial,
-      title: "申请成立球队",
-      text: "自己成为队长",
-      url: "/pages/sub/diy-team/index?type=create"
+      title: "申请成为大区旋风",
+      text: "管理大区相关事务",
     },
     referee: {
       icon: iconUrls.mineReferee,
       title: "申请成为裁判",
-      text: "限有正式者申请",
-      url: "/pages/to-do/index"
-      // url:"/pages/add-match/index?type=2"
+      text: "限有裁判资格者申请",
     },
   },
 
@@ -27,43 +27,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    navigateTo(e) {
-      const url = e.currentTarget.dataset.url
-      wx.getStorage({
-        key: 'quals',
-        success(res) {
-          let qual = res.data[0].qual
-          if (qual == 2) {
-            wx.navigateTo({
-              url: '/pages/sub/login/index',
-            })
-          } else {
-            // 临时的
-            if (url == "/pages/to-do/index") {
-              wx.showModal({
-                title: '提示',
-                content: '该功能还在内测阶段，敬请期待',
-                showCancel: false,
-                complete: (res) => {
-                  if (res.confirm) {
-
-                  }
-                }
-              })
-
-            } else {
-              wx.navigateTo({
-                url: url,
-              })
-            }
-          }
-        },
-        fail() {
-          wx.navigateTo({
-            url: '/pages/sub/login/index',
-          })
-        }
-      })
+    onClick(e){
+      const path = e.currentTarget.dataset.path
+      routeInterceptor.navigateTo(path)
     }
   }
 })

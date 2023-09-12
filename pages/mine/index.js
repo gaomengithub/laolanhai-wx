@@ -14,6 +14,19 @@ Page({
     closeIcon: iconUrls.barClose,
     avatarUrl: ""
   },
+  onCellClick(e){
+    const key  = e.currentTarget.key
+    wx.showModal({
+      title: '提示',
+      content: '该功能还在内测阶段，敬请期待',
+      showCancel:false,
+      complete: (res) => {    
+        if (res.confirm) {
+          
+        }
+      }
+    })
+  },
   onClosePopup() {
     this.setData({
       showPopup: false

@@ -6,7 +6,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  margin: 28rpx;
   margin-top: 80rpx;
   background: linear-gradient(to right top, #FFFFFF, #FFFAF4);
 }

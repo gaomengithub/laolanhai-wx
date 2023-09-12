@@ -17,6 +17,15 @@ Page({
     completeList: [],
   },
   onLoad(options) {
+    var _this = this
+    wx.getFuzzyLocation({
+      type: 'gcj02',
+      success(res) {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        _this.getCity(latitude, longitude)
+      }
+    })
     const sortedCityList = cityList.reduce((acc, val) => {
       const key = val.short[0];
       if (!acc[key]) acc[key] = [];
@@ -27,12 +36,29 @@ Page({
       sortedCityList
     })
   },
+  // 获取定位城市名称方法
+  getCity: function (latitude, longitude) {
+    wx.request({
+      url: `https://apis.map.qq.com/ws/geocoder/v1/?key=5KUBZ-B5PK3-QAN3L-OGC4J-JUIPK-UDFQU&location=` + latitude + ',' + longitude,
+      success: res => {
+        if (res.data.message == "query ok") {
+          const city = res.data.result.address_component.city
+          const province = res.data.result.address_component.province
+          this.setData({
+            city: province + "\/" + city
+          })
+          app.globalData.currCity = city
+        }
+      }
+    })
+  },
 
   clickLetter(e) {
     const showLetter = e.currentTarget.dataset.letter;
     this.setData({
       scrollTopId: showLetter,
     })
+    
     wx.showToast({
       title: showLetter,
       icon: "none"

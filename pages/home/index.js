@@ -46,11 +46,16 @@ Page({
   },
 
   onShow() {
+
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
         selected: 0
       })
+    }
+    if (app.globalData.currCity != "全国") {
+      let city = app.globalData.currCity
+      this.loadMatchList(city)
     }
   },
   onPageScroll() {
@@ -66,8 +71,12 @@ Page({
     }).exec();
   },
   onLoad() {
+    let city = ""
+    this.loadMatchList(city)
+  },
+  loadMatchList(city) {
     const filter = {
-      city: "",
+      city: city,
       match_type: 0,
       page_size: 10,
       page_token: "",
@@ -75,13 +84,20 @@ Page({
       user_id: ""
     }
     getMatchList(filter).then(res => {
-      const diyMatchList = res.data.matches.filter(item => item.match_type == 3)
-      this.setData({
-        diyMatchList,
-        matchList: res.data.matches
-      }, (() => {
-        this.setSwiperHeight()
-      }))
+      if (res.data.matches != null) {
+        const diyMatchList = res.data.matches.filter(item => item.match_type == 3)
+        this.setData({
+          diyMatchList,
+          matchList: res.data.matches
+        }, (() => {
+          this.setSwiperHeight()
+        }))
+      }else{
+        this.setData({
+          matchList:[],
+          diyMatchList:[]
+        })
+      }
     }).catch(e => {
       console.log(e)
     })

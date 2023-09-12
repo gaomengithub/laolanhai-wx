@@ -9,12 +9,18 @@
     "pages/sub/diy-team/index",
     "pages/sub/search/index",
     "pages/sub/details/match/index",
-    "pages/sub/details/look-desc/index",
     "pages/sub/details/team/index",
     "pages/sub/details/look/index",
     "libs/city-selector/index",
     "libs/calendar/index",
     "pages/to-do/index"
+  ],
+  "permission": {
+    "scope.userFuzzyLocation": {
+      "desc": "你的位置信息将用于帮助我们定位您的城市" 
+    }},
+  "requiredPrivateInfos":[
+    "getFuzzyLocation"
   ],
   "window": {
     "navigationStyle": "custom"

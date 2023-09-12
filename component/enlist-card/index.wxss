@@ -7,7 +7,6 @@
   border-radius: 44rpx;
   position: relative;
   height: 216rpx;
-  margin: 24rpx;
   background: linear-gradient(to right, #FFFFFF, #FFFAF4);
 }
 

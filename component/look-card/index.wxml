@@ -3,35 +3,30 @@
   <image class="img" src="https://openstore.obabyball.com/ui_v1/img/test-look-v1.png" mode="aspectFill" />
   <view class="active">
     <view class="title">{{title}}</view>
-    <van-button custom-class="btn" round bind:click="toMatchDesc">赛况</van-button>
+    <van-button custom-class="btn" round bind:click="toMatchDesc">查看赛况</van-button>
   </view>
   <view class="down">
+  <view class="avatar-item">
     <image class="avatar" src="{{avatar}}" mode="aspectFill" />
+    <image class="avatar-outline" src="{{ outline }}" mode="aspectFill"/>
+  </view>
     <view class="panel">
       <view class="item">
-      <image class="mvp-icon" src="{{mvpIcon}}" mode="aspectFill"></image>
-      <view class="name">{{name}}</view>
+      <!-- <image class="mvp-icon" src="{{mvpIcon}}" mode="aspectFill"></image> -->
+      <!-- <view class="name">{{name}}</view> -->
       </view>
-      <van-grid column-num="{{ 5 }}" border="{{ false }}">
+      <van-grid column-num="{{ 3 }}" border="{{ false }}">
         <van-grid-item class="cell" use-slot>
-          <view class="num">{{mvpData.scoring}}</view>
-          <view class="tag">得分</view>
+          <view class="num">{{total}}</view>
+          <view class="tag">总场次</view>
         </van-grid-item>
         <van-grid-item class="cell" use-slot>
-          <view class="num">{{mvpData.rebound}}</view>
-          <view class="tag">篮板</view>
+          <view class="num">{{schedule}}</view>
+          <view class="tag">赛程</view>
         </van-grid-item>
         <van-grid-item class="cell" use-slot>
-          <view class="num">{{mvpData.assist}}</view>
-          <view class="tag">助攻</view>
-        </van-grid-item>
-        <van-grid-item class="cell" use-slot>
-          <view class="num">{{mvpData.steal}}</view>
-          <view class="tag">抢断</view>
-        </van-grid-item>
-        <van-grid-item class="cell" use-slot>
-          <view class="num">{{mvpData.blockShot}}</view>
-          <view class="tag">盖帽</view>
+          <view class="num">{{teamNum}}</view>
+          <view class="tag">队伍数</view>
         </van-grid-item>
       </van-grid>
     </view>

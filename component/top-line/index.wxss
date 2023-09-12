@@ -4,7 +4,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 100rpx;
+  height: 90rpx;
 }
 
 
@@ -28,5 +28,10 @@
 }
 
 .more {
-  color: #C2C2C2;
+  color: #969696;
+}
+
+
+.hover {
+  background-color: #ffffff;
 }

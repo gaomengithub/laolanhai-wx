@@ -1,30 +1,31 @@
 <view class="container">
-  <van-cell custom-class="item" border="{{ false }}" is-link center clickable bind:click="navigateTo" data-url="{{ team.url }}">
-    <view class="nav">
-      <image class="icon" src="{{ team.icon }}" mode="aspectFill" />
-      <view class="content">
-        <view class="title">
-          {{ team.title }}
-        </view>
-        <view class="text">
-          {{ team.text }}
-        </view>
+  <view class="item" border="{{ false }}" bind:tap="onClick" data-path="/pages/to-do/index" hover-class="hover" hover-start-time="20" hover-stay-time="70">
+    <image class="icon" src="{{ manager.icon }}" mode="aspectFill" />
+    <view class="cell">
+      <view class="title">
+        {{ manager.title }}
+      </view>
+      <view class="text">
+        {{ manager.text }}
       </view>
     </view>
-  </van-cell>
-  <van-cell custom-class="item referee-item"  border="{{ false }}" is-link center clickable bind:click="navigateTo" data-url="{{ referee.url }}" >
-    <view class="nav">
-      <image class="icon" src="{{ referee.icon }}" mode="aspectFill" />
-      <view class="content">
-        <view class="title">
-          {{ referee.title }}
-        </view>
-        <view class="text referee-text">
-          {{ referee.text }}
-        </view>
+    <image class="arrow" src="{{greyArrow}}" mode="aspectFill" />
+  </view>
+
+  <view class="item referee-item" bind:tap="onClick" data-path="/pages/to-do/index" border="{{ false }}" hover-class="hover" hover-start-time="20" hover-stay-time="70">
+    <image class="icon" src="{{ referee.icon }}" mode="aspectFill" />
+    <view class="cell">
+      <view class="title referee-title">
+        {{ referee.title }}
+      </view>
+      <view class="text referee-text">
+        {{ referee.text }}
       </view>
     </view>
-  </van-cell>
+    <image class="arrow" src="{{greyArrow}}" mode="aspectFill" />
+  </view>
+
+
   <view class="active">
     <slot></slot>
   </view>

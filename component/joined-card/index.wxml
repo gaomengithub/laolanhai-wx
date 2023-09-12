@@ -1,5 +1,5 @@
 <view class="card">
-  <top-line name="我已参加的"></top-line>
+  <top-line name="我已参加的" subName=""></top-line>
   <view wx:for="{{ items }}" wx:key="index" class="item">
     <image class="type-icon" src="{{ item.match_type == 3 ? unOfficialIcon : officialIcon}}" mode="aspectFill" />
     <view class="content">

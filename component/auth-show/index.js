@@ -41,6 +41,12 @@ Component({
             auth: !et.some((num) => ls.includes(num))
           })
         }
+        //验证是不是管理员
+        if (this.data.expect == "yes1") {
+          this.setData({
+            auth: ls.includes(1)
+          })
+        }
         if (this.data.expect == "yes45") {
           const et = [4, 5]
           this.setData({

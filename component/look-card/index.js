@@ -1,4 +1,6 @@
-import { iconUrls } from '$/urls'
+import { iconUrls ,imgUrls } from '$/urls'
+import routeInterceptor from '$/router'
+
 Component({
   /**
    * 组件的属性列表
@@ -10,22 +12,34 @@ Component({
     },
     name : {
       type:String,
-      value:"-测试-"
+      value:"大悦杯"
     },
     avatar :{
       type:String,
       value:"https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"
     },
-    mvpData:{
-      type:Object,
-      value:{
-        scoring:"-",
-        rebound:"-",
-        assist:"-",
-        steal:"-",
-        blockShot:"-"
-      }
+    total:{
+      type:String,
+      value:"16"
+    },
+    schedule:{
+      type:String,
+      value:"8/16"
+    },
+    teamNum:{
+      type:Number,
+      value:32
     }
+    // mvpData:{
+    //   type:Object,
+    //   value:{
+    //     scoring:"-",
+    //     rebound:"-",
+    //     assist:"-",
+    //     steal:"-",
+    //     blockShot:"-"
+    //   }
+    // }
 
   },
 
@@ -33,7 +47,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    mvpIcon:iconUrls.lookMvp
+    mvpIcon:iconUrls.lookMvp,
+    outline:imgUrls.enListAvatarOutlineImg,
   },
 
   /**
@@ -41,16 +56,8 @@ Component({
    */
   methods: {
     toMatchDesc(e) {
-      wx.showModal({
-        title: '提示',
-        content: '赛事还未开始，敬请期待',
-        showCancel:false,
-        complete: (res) => {     
-          if (res.confirm) {
-            
-          }
-        }
-      })
+      const path = "/pages/sub/details/look/index"
+      routeInterceptor.navigateTo(path)
     },
 
   }

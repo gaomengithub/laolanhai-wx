@@ -94,6 +94,9 @@ export const addTeamRules = {
   },
   imgCount: {
     min: 1
+  },
+  memberNum: {
+    min: 1
   }
 }
 
@@ -112,6 +115,9 @@ export const addTeamMessages = {
   },
   imgCount: {
     min: '需要上传队徽'
+  },
+  memberNum: {
+    min: '球队人数不能少于8人'
   }
 }
 

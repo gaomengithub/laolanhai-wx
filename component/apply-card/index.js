@@ -9,6 +9,7 @@ Component({
 
   data: {
     approvalRes: [],
+    haveData: true,
   },
   lifetimes: {
     attached() {
@@ -20,23 +21,29 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    loadApprovalData(){
-      let approvalRes
+    loadApprovalData() {
       if (this.data.teamID.length > 0) {
         getTeamApprovalList(this.data.teamID).then(resp => {
-          approvalRes = resp.data
-          const applierIDs = approvalRes.map(item => item.Applier.ID)
-          return Promise.all(applierIDs.map(applierID => getUserInfoByID(applierID)))
-        }).then(userRespList => {
-          const dict = {};
-          userRespList.forEach((item) => {
-            dict[item.data.id] = item.data;
-          })
-          approvalRes.map(item => item["user"] = dict[item.Applier.ID])
-          this.setData({
-            approvalRes
-          })
-        })
+          if (resp.data != null && resp.data.length > 0) {
+            const approvalRes = resp.data;
+            const applierIDs = approvalRes.map(item => item.Applier.ID);
+            return Promise.all(applierIDs.map(applierID => getUserInfoByID(applierID))).then(userRespList => {
+              const dict = {};
+              userRespList.forEach((item) => {
+                dict[item.data.id] = item.data;
+              });
+              approvalRes.map(item => item["user"] = dict[item.Applier.ID]);
+              this.setData({
+                approvalRes,
+                haveData: true
+              });
+            });
+          } else {
+            this.setData({
+              haveData: false
+            });
+          }
+        });
       }
     },
 

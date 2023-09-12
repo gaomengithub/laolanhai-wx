@@ -1,4 +1,4 @@
-import { imgUrls } from '../../utils/urls'
+import { imgUrls } from '$/urls'
 Component({
   /**
    * 组件的属性列表
@@ -9,6 +9,7 @@ Component({
       value: {
         name:"老蓝孩",
         logo:"",
+        id:"",
       }
     }
   },
@@ -26,7 +27,6 @@ Component({
    */
   methods: {
     onBtnClick(e) {
-      console.log(e)
       const teamID = e.currentTarget.dataset.id
       wx.navigateTo({
         url: `/pages/sub/details/team/index?id=${teamID}`,

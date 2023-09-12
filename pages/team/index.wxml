@@ -3,13 +3,13 @@
 
 <view class="container">
   <auth-show expect="yes45" id="team-card">
-    <view class="title">我的球队</view>
+    <top-line name="我的球队" subName=""></top-line>
     <swiper class="team-swiper" indicator-dots="{{ true }}">
       <swiper-item wx:for="{{teamCards}}" wx:key="index">
         <team-card team="{{item}}">
           <navigator url="/pages/sub/details/team/index?id={{ item.id }}" open-type="navigate">
             <view class="active">
-              球队详情
+              详情
             </view>
           </navigator>
         </team-card>
@@ -19,14 +19,19 @@
 
 
   <view class="list">
-    <view class="title">球队列表</view>
-    
+    <top-line name="球队列表" subName="创建球队" bind:handleButtomClick="ToTeamCreate"></top-line>
+
     <auth-show expect="no45" id="team-list">
       <view class="tip">
         您还没有加入球队，请选择球队加入
       </view>
     </auth-show>
-    <enlist-card wx:for="{{teamList}}" wx:key="index" team="{{item}}"></enlist-card>
+    <view wx:if="{{haveData}}">
+      <enlist-card wx:for="{{teamList}}" wx:key="index" team="{{item}}"></enlist-card>
+    </view>
+    <view wx:else class="tip-plain">
+    可加入的球队列表为空
+    </view>
   </view>
 </view>
 <!-- 占位 -->

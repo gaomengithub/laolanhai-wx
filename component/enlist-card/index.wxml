@@ -11,9 +11,10 @@
     <view class="name">
       {{ team.name }}
     </view>
+    <wxs src="./index.wxs" module="tools"/>
     <view class="num">
-      招募人数：{{ num }}人
+      招募人数：{{ tools.getEnlistMemberNum(team) }}人
     </view>
   </view>
-  <van-button custom-class="btn" round bind:click="onBtnClick" data-id="{{ teamID }}">立即加入</van-button>
+  <van-button custom-class="btn" round bind:click="onBtnClick" data-id="{{ team.id }}">立即加入</van-button>
 </view>

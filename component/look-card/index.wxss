@@ -59,11 +59,7 @@
   height: 224rpx;
 }
 
-.card .down .avatar {
-  width: 65px;
-  height: 65px;
-  clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
-}
+
 
 .card .down .panel {
   display: flex;
@@ -100,16 +96,45 @@
 .num {
   font-size: 36rpx;
   font-weight: 600;
+  width: max-content;
+  white-space: nowrap;
 }
 
 .tag {
+  margin-top: 18rpx;
   font-size: 32rpx;
-  font-weight: 600;
+  font-weight: 500;
+  width: max-content;
+  white-space: nowrap;
   color: #C3C3C3;
 }
 
-.mvp-icon {
+/* .mvp-icon {
   margin-right: 15rpx;
   width: 50rpx;
   height: 26rpx;
+} */
+
+.avatar-item {
+  margin-left: 32rpx;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-outline {
+  width: 185rpx;
+  height: 185rpx;
+  position: absolute;
+}
+
+.avatar-item .avatar {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  z-index: 1;
+  /* border-radius: 50%; */
+  clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
 }

@@ -1,4 +1,4 @@
-<view class="container">
+<view wx:if="{{haveData}}">
   <view class="card" wx:for="{{approvalRes}}" wx:key="index">
     <image class="avatar" src="{{item.user.avatar}}"></image>
     <view class="sub-container">
@@ -18,4 +18,7 @@
       </view>
     </view>
   </view>
+</view>
+<view wx:else class="tip">
+  没有等待审批的队员
 </view>

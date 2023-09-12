@@ -4,6 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    isLeader: {
+      type: Boolean,
+      value: false
+    },
     player: {
       type: Object,
       value: {
@@ -13,11 +17,6 @@ Component({
         id: "",
       }
     },
-    //用来判断是否是该队队长
-    teamID: {
-      type: String,
-      value: ""
-    }
   },
 
   /**

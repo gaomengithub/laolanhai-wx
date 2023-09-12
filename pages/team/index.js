@@ -1,5 +1,5 @@
 import { getTeamList, getTeamDesc } from '$/api'
-
+import routeInterceptor from '$/router'
 const app = getApp()
 
 Page({
@@ -12,13 +12,34 @@ Page({
     navBarHeight: app.globalData.navBarHeight,
     teamList: [],
     teamCards: [],
-
+    haveData: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.loadMyTeamList()
+    this.loadTeamList()
+  },
+  loadTeamList() {
+    getTeamList().then(res => {
+      const filter = res.data.items.filter(item => !item.isMyTeam)
+      if (filter.length > 0) {
+        this.setData({
+          teamList: filter,
+          haveData: true
+        })
+      } else {
+        this.setData({
+          haveData: false
+        })
+      }
+    }).catch(e => {
+      console.log("获得队伍列表错误")
+    })
+  },
+  loadMyTeamList() {
     if (this.selectComponent("#team-card").data.auth) {
       let teamCards = []
       try {
@@ -33,16 +54,13 @@ Page({
           })
         }
       } catch {
-
+        console.log("加载我的球队数据失败")
       }
     }
-      getTeamList().then(res => {
-        this.setData({
-          teamList: res.data.items
-        })
-      }).catch(e => {
-        console.log("获得队伍列表错误")
-      })
+  },
+  ToTeamCreate() {
+    const path = '/pages/sub/diy-team/index?type=create'
+    routeInterceptor.navigateTo(path)
   },
 
   /**
@@ -56,7 +74,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.loadMyTeamList()
+    this.loadTeamList()
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({

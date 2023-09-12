@@ -31,11 +31,10 @@ Page({
         if (res.cancel) {
 
         }
-
         if (res.confirm) {
           joinTeam(this.data.items.id, res.content).then(() => {
             wx.showToast({
-              title: '申请成功，等待审批',
+              title: '申请成功，等待队长审批',
               duration: 2000,
               mask: true,
               success: function () {

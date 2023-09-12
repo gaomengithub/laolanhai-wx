@@ -1,5 +1,4 @@
-// pages/look/look.js
-const app = getApp()
+
 Page({
 
   /**

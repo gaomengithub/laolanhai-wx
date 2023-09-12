@@ -7,6 +7,10 @@ Component({
     name:{
       type:String,
       value:"我的"
+    },
+    subName:{
+      type:String,
+      value:"查看更多"
     }
   },
 

@@ -19,7 +19,7 @@
     </auth-show>
   </view>
   <view wx:if="{{active == 0}}" class="player-items">
-    <player-item wx:for="{{items.teamMember}}" wx:key="index" player="{{item}}" teamID="{{ items.id }}"></player-item>
+    <player-item wx:for="{{items.teamMember}}" wx:key="index" player="{{item}}" isLeader="{{index==0?true:false }}"></player-item>
   </view>
   <view wx:if="{{ active == 1 }}" class="apply-items">
     <apply-card teamID="{{items.id}}" />

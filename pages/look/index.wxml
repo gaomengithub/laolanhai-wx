@@ -8,6 +8,6 @@
   <van-tab title="赛事">
   <look-card></look-card>
   </van-tab>
-  <van-tab title="新闻"></van-tab>
+  <van-tab disabled title="新闻"></van-tab>
 </van-tabs>
 </view>

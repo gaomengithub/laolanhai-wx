@@ -1,5 +1,5 @@
 <view class="card">
-  <top-line name="我的战绩" bind:handleButtomClick="onMineMoreBtn" />
+  <top-line name="我的战绩" subName="" bind:handleButtomClick="onMineMoreBtn" />
   <van-grid custom-class="grid" border="{{false}}">
     <van-grid-item content-class="item" custom-class="" use-slot>
       <view class="num">
