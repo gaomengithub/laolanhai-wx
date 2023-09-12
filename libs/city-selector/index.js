@@ -12,11 +12,12 @@ Page({
     scrollTopId: '',//置顶id
     city: "定位中...",
     // navBarHeight: app.globalData.navBarHeight,
-    hotcityList: ["北京市", "成都市", "西安市", "海口市", "大连市", "南京市", "天津市", "深圳市"],
+    hotcityList: ["全国","北京市", "成都市", "西安市", "海口市", "大连市", "南京市", "天津市", "深圳市"],
     inputName: '',
     completeList: [],
   },
   onLoad(options) {
+
     var _this = this
     wx.getFuzzyLocation({
       type: 'gcj02',
@@ -47,7 +48,7 @@ Page({
           this.setData({
             city: province + "\/" + city
           })
-          app.globalData.currCity = city
+          // app.globalData.currCity = city
         }
       }
     })
@@ -71,9 +72,9 @@ Page({
       scrollTop: 0,
       completeList: [],
     })
-
-    app.globalData.currCity = e.currentTarget.dataset.city
-
+    console.log(e)
+    // app.globalData.currCity = e.currentTarget.dataset.city
+    app.globalData.setCity(e.currentTarget.dataset.city)
     wx.showToast({
       title: "已选择" + e.currentTarget.dataset.city,
       icon: "none",

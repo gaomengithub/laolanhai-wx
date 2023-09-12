@@ -3,7 +3,7 @@
 <!-- <view style="height:{{navBarHeight}}px;"></view> -->
 
 <scroll-view scroll-y="true" style="height:100vh" scroll-into-view="{{scrollTopId}}" scroll-top="{{scrollTop}}">
-  <van-search shape="round"  custom-class="search" value="{{ inputName }}" placeholder="输入城市名或拼音查询" bind:change="bindKeyInput">
+  <van-search shape="round" custom-class="search" value="{{ inputName }}" placeholder="输入城市名或拼音查询" bind:change="bindKeyInput">
   </van-search>
 
   <ul class="ul">
@@ -14,7 +14,7 @@
   <view class="location">
     <view class="title">当前定位</view>
     <view class="currCity">
-    <image class="icon" src="{{ locationIcon }}" mode="aspectFill"/>
+      <image class="icon" src="{{ locationIcon }}" mode="aspectFill" />
       <view>
         {{ city }}
       </view>
@@ -31,7 +31,7 @@
       </van-grid-item>
     </van-grid>
   </view>
-<!-- 右侧字母 -->
+  <!-- 右侧字母 -->
   <view class="searchLetter">
     <view wx:for="{{searchLetter}}" wx:key="*this" data-letter="{{item}}" catchtouchend="clickLetter">{{item}}</view>
   </view>

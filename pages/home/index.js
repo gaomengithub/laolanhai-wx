@@ -53,10 +53,10 @@ Page({
         selected: 0
       })
     }
-    if (app.globalData.currCity != "全国") {
-      let city = app.globalData.currCity
-      this.loadMatchList(city)
-    }
+    // if (app.globalData.currCity != "全国") {
+    //   let city = app.globalData.currCity
+    //   this.loadMatchList(city)
+    // }
   },
   onPageScroll() {
   },
@@ -71,10 +71,19 @@ Page({
     }).exec();
   },
   onLoad() {
+    //订阅
+    const { globalData } = getApp()
+    globalData.setEvent('ON_CITY_CHANGE', this.loadMatchList);
+
     let city = ""
     this.loadMatchList(city)
   },
+  onUnload() {
+    const { globalData } = getApp();
+    globalData.removeEvent('ON_CITY_CHANGE', this.loadMatchList);
+  },
   loadMatchList(city) {
+    city = city.replace("全国","");
     const filter = {
       city: city,
       match_type: 0,

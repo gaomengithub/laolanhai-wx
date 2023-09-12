@@ -11,6 +11,4 @@
   <view wx:if="{{ isLeader }}"  class="type">
     队长
   </view>
-
-
 </view>

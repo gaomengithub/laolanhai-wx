@@ -1,4 +1,4 @@
-import { getTeamDesc, joinTeam, getTeamApprovalList } from '$/api'
+import { getTeamDesc, joinTeam } from '$/api'
 import { imgUrls } from '$/urls'
 Page({
 
@@ -7,14 +7,13 @@ Page({
    */
   data: {
     items: {},
-    applierList: [],
     active: 0,
+    teamID: "",
     // showComments: false,
     comments: "",
     autosize: { minHeight: 50 },
     bgImg: imgUrls.detailTeamBgImg,
     navTitle: "球队详情",
-    // navBarHeight: getApp().globalData.navBarHeight,
   },
   onChange(e) {
     const active = e.currentTarget.dataset.active
@@ -48,24 +47,26 @@ Page({
       }
     })
   },
+  loadTeamDesc(teamID) {
+    getTeamDesc(teamID).then(res => {
+      this.setData({
+        items: res.data
+      })
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    getTeamApprovalList().then(res => {
-      console.log(res)
-      this.setData({
-        applierList: res.data
-      })
-    })
     try {
       const teamID = options.id
-      getTeamDesc(teamID).then(res => {
+      if (teamID != undefined) {
+        this.loadTeamDesc(teamID)
         this.setData({
-          items: res.data
+          teamID
         })
-      })
+      }
     } catch (e) {
       console.log("获取id失败")
     }
@@ -82,7 +83,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.loadTeamDesc(this.data.teamID)
   },
 
   /**
