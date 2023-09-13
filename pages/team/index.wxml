@@ -3,13 +3,14 @@
 
 <view class="container">
   <auth-show expect="yes45" id="team-card">
-    <top-line name="我的球队" subName="" ></top-line>
+    <top-line name="我的球队" subName=""></top-line>
     <swiper class="team-swiper" indicator-dots="{{ true }}">
       <swiper-item wx:for="{{teamCards}}" wx:key="index">
         <team-card team="{{item}}">
           <navigator url="/pages/sub/details/team/index?id={{ item.id }}" open-type="navigate">
             <view class="active">
-              详情
+              <text>详情</text>
+              <image class="arrow" src="{{arrow}}" mode="aspectFill" />
             </view>
           </navigator>
         </team-card>
@@ -30,7 +31,7 @@
       <enlist-card wx:for="{{teamList}}" wx:key="index" team="{{item}}"></enlist-card>
     </view>
     <view wx:else class="tip-plain">
-    可加入的球队列表为空
+      可加入的球队列表为空
     </view>
   </view>
 </view>

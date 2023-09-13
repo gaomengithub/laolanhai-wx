@@ -1,11 +1,13 @@
 import { getTeamDesc, joinTeam } from '$/api'
-import { imgUrls } from '$/urls'
+import { imgUrls ,iconUrls } from '$/urls'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    arrow: iconUrls.tabArrow,
     items: {},
     active: 0,
     teamID: "",

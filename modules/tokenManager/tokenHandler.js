@@ -1,9 +1,10 @@
+var log = require('../../utils/log')
 export function getAccessToken() {
   let accessToken = ""
   try {
     accessToken = wx.getStorageSync('accessToken')
   } catch (e) {
-    console.log("getStorageSync读取出错。")
+    log.error(JSON.stringify(e))
   }
   return accessToken
 }
@@ -13,7 +14,7 @@ export function getRefreshToken() {
   try {
     refreshToken = wx.getStorageSync('refreshToken')
   } catch (e) {
-    console.log("getStorageSync读取出错。")
+    log.error(JSON.stringify(e))
   }
   return refreshToken
 }
@@ -25,7 +26,7 @@ export function setStorage(obj) {
       wx.setStorageSync(key, obj[key])
     })
   } catch (e) {
-    console.log("Storage保存出错")
+    log.error(JSON.stringify(e))
   }
 }
 
@@ -39,6 +40,6 @@ export function checkExpired() {
     const expiredAt = parseInt(ex)
     return Date.now() > expiredAt * 1000
   } catch (e) {
-    console.log("getStorageSync读取出错。")
+    log.error(JSON.stringify(e))
   }
 }

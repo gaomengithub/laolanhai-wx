@@ -87,3 +87,14 @@ page {
   border-radius: 60rpx !important;
 }
 
+.arrow {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.manage{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+

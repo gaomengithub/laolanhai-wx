@@ -3,6 +3,8 @@ import { updateUserInfo, getUserInfoByID } from '$/api'
 import { uploadImgWithToken } from '$/qiniu'
 import { formatDate } from '$/util'
 import Notify from '@vant/weapp/notify/notify';
+import { loginForToken } from "../../../modules/tokenManager/getToken"
+import { setStorage } from "../../../modules/tokenManager/tokenHandler"
 const computedBehavior = require('miniprogram-computed').behavior
 Page({
   behaviors: [computedBehavior],
@@ -128,6 +130,10 @@ Page({
           }
         }
       })
+      // 主要是更新缓存
+      loginForToken().then(res => {
+        setStorage(res)
+      })
     })
   },
   onChooseAvatar(e) {
@@ -205,6 +211,10 @@ Page({
           }
         }
       })
+      loginForToken().then(res => {
+        console.log(res)
+        setStorage(res)
+      })
     })
   },
 
@@ -219,7 +229,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    Notify( {type: 'primary', message: '请先完善用户资料',duration: 3000,safeAreaInsetTop:true});
+    Notify({ type: 'primary', message: '请先完善用户资料', duration: 3000, safeAreaInsetTop: true });
   },
 
   /**

@@ -1,5 +1,5 @@
 import { getAvailableAccessToken } from '../modules/tokenManager/tokenToken'
-
+var log = require('./log.js')
 const BASE_URL = "https://api.obabyball.com"
 
 export function request(obj, retry = 0, force = false) {
@@ -28,14 +28,13 @@ function requestWithToken(obj, accessToken, retry) {
           resolve(res)
         }
         if (res.statusCode == "401") {
-          //如果是401则重新请求。约定401是鉴权失败，需要考虑重试次数。
-          if (retry < 2) {  // 可以根据需求定义重试次数
+          if (retry < 2) {  
             setTimeout(() => {
               request(obj, retry + 1, true).then(res => resolve(res))
                 .catch(err => reject(err));
             }, 1000)
           } else {
-            console.log("超过重试次数")
+            log.error('重试超过3次')
           }
         }
         if (res.statusCode == "400") {
@@ -43,7 +42,18 @@ function requestWithToken(obj, accessToken, retry) {
         }
       },
       fail: function (err) {
-        reject(err)
+        wx.showModal({
+          title: '错误',
+          content: '请求出错，请检查网络连接后重试',
+          showCancel:false,
+          complete: (res) => {        
+            if (res.confirm) {
+              
+            }
+          }
+        })
+        
+        log.error(JSON.stringify(err))
       },
       complete: function () {
       }

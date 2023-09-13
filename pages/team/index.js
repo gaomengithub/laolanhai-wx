@@ -1,5 +1,6 @@
 import { getTeamList, getTeamDesc } from '$/api'
 import routeInterceptor from '$/router'
+import { iconUrls } from '$/urls'
 const app = getApp()
 
 Page({
@@ -8,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    arrow: iconUrls.tabArrow,
     navTitle: "球队",
     navBarHeight: app.globalData.navBarHeight,
     teamList: [],

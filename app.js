@@ -1,5 +1,6 @@
 import { setStorage } from 'modules/tokenManager/tokenHandler';
 import { loginForToken } from './modules/tokenManager/getToken'
+var log = require('./utils/log')
 App({
   onLaunch() {
     const systemInfo = wx.getSystemInfoSync();
@@ -10,6 +11,7 @@ App({
     this.globalData.menuHeight = menuButtonInfo.height;
     this.globalData.windowHeight = systemInfo.windowHeight;
     loginForToken().then(res=>{
+      log.info("用户刷新了token")
       setStorage(res)
     })
   },

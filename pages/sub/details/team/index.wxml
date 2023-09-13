@@ -6,7 +6,10 @@
   <team-card team="{{items}}">
     <auth-show expect="yes4?{{ items.id }}">
       <navigator url="/pages/sub/diy-team/index?teamID={{items.id}}&type=modify">
-        <view class="manage"> 变更 </view>
+        <view class="manage">
+          <text>变更</text>
+          <image class="arrow" src="{{arrow}}" mode="aspectFill" />
+        </view>
       </navigator>
     </auth-show>
   </team-card>

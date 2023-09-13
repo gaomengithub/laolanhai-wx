@@ -1,6 +1,6 @@
 import { setStorage, getRefreshToken } from './tokenHandler'
 const BASE_URL = "https://api.obabyball.com"
-
+var log = require('../../utils/log')
 let loginPromise = null;
 export function loginForToken() {
   if (loginPromise) {
@@ -9,27 +9,49 @@ export function loginForToken() {
   loginPromise = new Promise((resolve, reject) => {
     wx.login({
       success(res) {
-        if (res.code) {
-          wx.request({
-            url: BASE_URL + '/user/login',
-            data: {
-              code: res.code
-            },
-            success(res) {
-              if (res.statusCode == "200") {
-                resolve(res.data)
-              } else {
-                reject(res)
-              }
-            },
-            fail(e) {
-              console.log("弹窗" + e)
-              // reject(e)
+        wx.request({
+          url: BASE_URL + '/user/login',
+          data: {
+            code: res.code
+          },
+          success(res) {
+            if (res.statusCode == "200") {
+              resolve(res.data)
+            } else {
+              reject(res)
             }
-          })
-        } else {
-          console.log("弹窗，获取userCode错误")
-        }
+          },
+          fail(e) {
+            wx.showModal({
+              title: '错误',
+              content: '网络连接错误',
+              showCancel: false,
+              complete: (res) => {
+                if (res.confirm) {
+    
+                }
+              }
+            })
+            log.error(JSON.stringify(e))
+          }
+        })
+
+      },
+      fail(e) {
+        wx.showModal({
+          title: '错误',
+          content: '获取用户code失败',
+          showCancel: false,
+          complete: (res) => {
+            if (res.confirm) {
+
+            }
+          }
+        })
+        log.error(JSON.stringify(e))
+      },
+      complete() {
+        loginPromise = null
       }
     })
   })
@@ -53,7 +75,17 @@ export function updateAccessToken() {
       }
     },
     fail(e) {
-      console.log("刷新失败" + e)
+      wx.showModal({
+        title: '错误',
+        content: '网络连接错误',
+        showCancel: false,
+        complete: (res) => {
+          if (res.confirm) {
+
+          }
+        }
+      })
+      log.error(JSON.stringify(e))
     }
   })
 }

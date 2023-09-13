@@ -29,3 +29,13 @@
   padding-top: 24rpx;
 }
 
+.active {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.arrow {
+  width: 30rpx;
+  height: 30rpx;
+}

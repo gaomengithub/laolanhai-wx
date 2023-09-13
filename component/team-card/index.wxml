@@ -33,6 +33,5 @@
   <!-- 箭头 -->
   <view class="slot">
     <slot></slot>
-    <image class="arrow" src="{{arrow}}" mode="aspectFill" />
   </view>
 </view>
