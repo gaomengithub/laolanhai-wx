@@ -74,9 +74,8 @@ Page({
     //订阅
     const { globalData } = getApp()
     globalData.setEvent('ON_CITY_CHANGE', this.loadMatchList);
-
-    let city = ""
-    this.loadMatchList(city)
+    
+    this.loadMatchList(globalData.currCity)
   },
   onUnload() {
     const { globalData } = getApp();

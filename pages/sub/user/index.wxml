@@ -1,4 +1,5 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
+<van-notify id="van-notify" />  
 <!-- <view style="height:{{navBarHeight}}px;"></view> -->
 <view class="container">
   <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" bind:tap="validate" data-key="showAvatarTip">

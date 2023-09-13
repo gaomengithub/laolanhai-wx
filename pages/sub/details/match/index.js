@@ -8,9 +8,7 @@ Page({
     match: {},
     swiperImgHeight: wx.getSystemInfoSync().windowWidth + 'px',
     swiperHeight: wx.getSystemInfoSync().windowWidth + 'px',
-    showDialog: false,
-    // dialogIconType: "success",
-    // dialogMsg: "报名成功",
+    editUrl: iconUrls.edit,
     typeUrl: iconUrls.descUnofficialTag,
     clockUrl: iconUrls.descClock,
     locationUrl: iconUrls.descLocation,
@@ -18,12 +16,7 @@ Page({
     windowWidth: wx.getSystemInfoSync().windowWidth,
     navBarHeight: getApp().globalData.navBarHeight,
   },
-  // onDialogConfirmBtn() {
-  //   this.setData({
-  //     showDialog: false,
-  //   })
-  //   wx.navigateBack()
-  // },
+
   onJoinBtn() {
     console.log("e")
     wx.showLoading({

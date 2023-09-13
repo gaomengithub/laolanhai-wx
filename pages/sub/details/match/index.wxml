@@ -1,59 +1,69 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
 <!-- <view style="height:{{navBarHeight}}px;"></view> -->
-<swiper circular indicator-dots indicator-color="#FFFFFF" style="height: {{swiperHeight}};" bindchange="swiperChange">
-  <swiper-item>
-    <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{match.banner_attachments}}" mode="aspectFill" />
-  </swiper-item>
-  <swiper-item>
-    <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{match.attachments}}" mode="aspectFill" />
-  </swiper-item>
-</swiper>
+<view class="contanier">
+  <auth-show expect="isFirstUser?{{match.users[0].id}}">
+    <navigator url="/pages/sub/diy-match/index?class=modify&type={{match.match_type}}&matchID={{ match.id }}">
+    <image class="edit" src="{{editUrl}}" mode="aspectFill" />
+  </navigator>
+  </auth-show>
 
-<view class="container">
-  <image class="star-icon" src="{{ octagonalStar }}" mode="aspectFill" />
-  <view class="cost-tip">
-    {{["免费", "约10元", "约20元", "约30元"][match.price[0]]}}
-  </view>
+  <swiper circular indicator-dots indicator-color="#FFFFFF" style="height: {{swiperHeight}};" bindchange="swiperChange">
+    <swiper-item>
+      <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{match.banner_attachments}}" mode="aspectFill" />
+    </swiper-item>
+    <swiper-item>
+      <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{match.attachments}}" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
 
-  <view class="mask">
-    <image class="type" src="{{ typeUrl }}" mode="widthFix"></image>
-    <view class="name">
-      {{match.name}}
+  <view class="sub-container">
+    <image class="star-icon" src="{{ octagonalStar }}" mode="aspectFill" />
+    <view class="cost-tip">
+      {{match.price}}
     </view>
-  </view>
 
-  <view class="mid">
-    <view class="date-address">
-      <view class="cell">
-        <image class=".child" src="{{clockUrl}}" mode="scaleToFill"> </image>
-        {{ match.start_time }}
-      </view>
-      <view class="cell">
-        <image class=".child" src="{{locationUrl}}" mode="scaleToFill"></image>
-        {{match.location}}
+    <view class="mask">
+      <image class="type" src="{{ typeUrl }}" mode="widthFix"></image>
+      <view class="name">
+        {{match.name}}
       </view>
     </view>
-    <view class="part">
-      <view class="title">已参加的人员</view>
-      <view class="avatars">
-        <image class='avatar' wx:for="{{match.users}}" wx:key="*this" src="{{ item.avatar }}" />
-        <image class='avatar' wx:for="{{match.teams}}" wx:key="*this" src="{{ item.avatar }}" />
+
+    <view class="mid">
+      <view class="date-address">
+        <view class="cell">
+          <image class=".child" src="{{clockUrl}}" mode="scaleToFill"> </image>
+          {{ match.start_time }}
+        </view>
+        <view class="cell">
+          <image class=".child" src="{{locationUrl}}" mode="scaleToFill"></image>
+          {{match.location}}
+        </view>
+      </view>
+      <view class="part">
+        <view class="title">已参加的人员</view>
+        <view class="avatars">
+          <image class='avatar' wx:for="{{match.users}}" wx:key="*this" src="{{ item.avatar }}" />
+          <image class='avatar' wx:for="{{match.teams}}" wx:key="*this" src="{{ item.avatar }}" />
+        </view>
       </view>
     </view>
-  </view>
-  <view class="desc">
-    <view class="title">
-      详情内容
+    <view class="desc">
+      <view class="title">
+        详情内容
+      </view>
+      <view class="age">
+        <view> 最大年龄：{{ match.age_group_end }}</view>
+        <view> 最小年龄：{{ match.age_group_start }}</view>
+      </view>
+      <text class="content" user-select>
+        {{ match.description }}
+      </text>
     </view>
-    <view class="age">
-      <view> 最大年龄：{{ match.age_group_end }}</view>
-      <view> 最小年龄：{{ match.age_group_start }}</view>
-    </view>
-    <text class="content" user-select>
-      {{ match.description }}
-    </text>
   </view>
+
+  <logo-bar />
+
 </view>
 
-<logo-bar />
 <bottom-btn-bar name="立即报名" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn" />

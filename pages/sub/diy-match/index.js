@@ -79,12 +79,12 @@ Page({
           startAge: res.data.age_group_start,
           endAge: res.data.age_group_end,
           fileList: [
-            { url: revertQiniuKey(res.data.banner_attachments) },
-            { url: revertQiniuKey(res.data.attachments) }
+            { url: res.data.banner_attachments_key },
+            { url: res.data.attachments_key[0] }
           ],
           showFileList: [
             { url: res.data.banner_attachments, isImage: true, },
-            { url: res.data.attachments, isImage: true, }
+            { url: res.data.attachments[0], isImage: true, }
           ],
           date: splitDateTime(res.data.start_time)[0],
           startTime: splitDateTime(res.data.start_time)[1],
@@ -213,7 +213,7 @@ Page({
     let data = {
       age_group_start: parseInt(this.data.startAge),
       age_group_end: parseInt(this.data.endAge),
-      attachments: [this.data.fileList[1].url],
+      attachments: new Array(this.data.fileList[1].url),
       banner_attachments: this.data.fileList[0].url,
       description: this.data.desc,
       end_time: this.data.date + 'T' + this.data.endTime + ':00Z',
@@ -222,8 +222,9 @@ Page({
       location: this.data.region + "||" + this.data.address,
       match_type: parseInt(this.data.type),
       name: this.data.name,
-      price: parseInt(this.data.cost) == NaN ? 0 : parseInt(this.data.cost)
-      // organizer: "",
+      price: {"免费":"0","约10元":"10","约20元":"20","约30元":"30"}[this.data.cost],
+      organizer: wx.getStorageSync('id'),
+      city:this.data.region.split("/")[1]
     }
     if (this.data.isNew) {
       createMatch(data).then(() => {

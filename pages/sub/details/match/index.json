@@ -3,6 +3,7 @@
   "usingComponents": {
     "nav-bar": "/component/nav-bar/index",
     "bottom-btn-bar":"/component/bottom-btn-bar/index",
-    "logo-bar":"/component/logo-bar/index"
+    "logo-bar":"/component/logo-bar/index",
+    "auth-show":"/component/auth-show/index"
   }
 }

@@ -34,7 +34,9 @@ Component({
       try {
         // 现在是本地读取
         const quals = wx.getStorageSync('quals')
+        const id = wx.getStorageSync('id')
         const ls = quals.map(item => item.qual)
+
         if (this.data.expect == "no45") {
           const et = [4, 5]
           this.setData({
@@ -66,6 +68,11 @@ Component({
           const teamls = quals.map(item => item.teamId).filter(item => item !== undefined)
           this.setData({
             auth: !teamls.includes(teamID)
+          })
+        }
+        if (this.data.expect.startsWith("isFirstUser?")) {
+          this.setData({
+            auth: this.data.expect.split("User?")[1] == id
           })
         }
       } catch (e) {

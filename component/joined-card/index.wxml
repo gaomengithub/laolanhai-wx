@@ -1,5 +1,6 @@
 <view class="card">
-  <top-line name="我已参加的" subName=""></top-line>
+  <!-- <top-line name="我已参加的" subName=""></top-line> -->
+  <slot></slot>
   <view wx:for="{{ items }}" wx:key="index" class="item">
     <image class="type-icon" src="{{ item.match_type == 3 ? unOfficialIcon : officialIcon}}" mode="aspectFill" />
     <view class="content">
@@ -13,10 +14,10 @@
         </block>
       </view>
     </view>
-    <view class="status">
-      已结束
+    <view class="status {{ ['start','mid','end'][item.status] }}">
+      {{ ["报名中","已开赛","已结束"][item.status] }}
     </view>
-    <navigator url="/pages/sub/diy-match/index?class=modify&type={{item.match_type}}&matchID={{ item.id }}">
+    <navigator url="/pages/sub/details/match/index?matchID={{ item.id }}">
       <image class="link" src="{{linkIcon}}" mode="aspectFill" />
     </navigator>
   </view>

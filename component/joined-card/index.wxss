@@ -65,13 +65,27 @@
   padding-top: 10rpx;
   padding-bottom: 10rpx;
   border-radius: 8rpx;
-  margin-right: 24rpx;
   font-size: 26rpx;
 }
+
+.start {
+  color: #ffffff !important;
+  background-color: #FB8808 !important;
+}
+
+.mid {
+  color: #ffffff !important;
+  background-color: #569C89 !important;
+}
+
+.end {
+  color: #ffffff !important;
+  background-color: #E6E6E6 !important;
+}
+
 
 .card .link {
   height: 35rpx;
   width: 35rpx;
   margin-right: 10rpx;
 }
-

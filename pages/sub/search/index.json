@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "nav-bar": "../../../component/nav-bar/index",
+    "nav-bar": "/component/nav-bar/index",
     "van-search": "@vant/weapp/search/index",
-    "match-card":"../../../component/match-card/index"
+    "joined-card":"/component/joined-card/index"
   }
 }

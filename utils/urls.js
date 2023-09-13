@@ -53,6 +53,7 @@ export const iconUrls = {
   greyArrow: prefix + '/ui_v1/icon/arrow-grey.svg',
   blackArrow: prefix + '/ui_v1/icon/arrow-black.svg',
   member: prefix + '/ui_v1/icon/member.svg',
+  edit: prefix + "/ui_v1/icon/edit.svg"
 }
 
 export const imgUrls = {

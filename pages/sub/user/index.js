@@ -2,6 +2,7 @@ import WxValidate from '$/WxValidate'
 import { updateUserInfo, getUserInfoByID } from '$/api'
 import { uploadImgWithToken } from '$/qiniu'
 import { formatDate } from '$/util'
+import Notify from '@vant/weapp/notify/notify';
 const computedBehavior = require('miniprogram-computed').behavior
 Page({
   behaviors: [computedBehavior],
@@ -218,7 +219,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    Notify( {type: 'primary', message: '请先完善用户资料',duration: 3000,safeAreaInsetTop:true});
   },
 
   /**

@@ -22,7 +22,7 @@
       <unwork></unwork>
     </swiper-item>
     <swiper-item class="content-diy">
-      <match-card wx:for="{{diyMatchList}}" wx:key="index" name="{{ item.name }}" img="{{item.banner_attachments}}" date="{{item.start_time}}" location="{{ item.location }}" matchID="{{item.id}}" matchType="{{item.match_type}}" status="{{item.status}}"></match-card>
+      <match-card wx:for="{{diyMatchList}}" wx:key="index" name="{{ item.name }}" img="{{item.banner_attachments}}" date="{{item.start_time}}" location="{{ item.location }}" matchID="{{item.id}}" matchType="{{item.match_type}}" status="{{item.status}}" users="{{ item.users }}"></match-card>
     </swiper-item>
   </swiper>
 

@@ -1,8 +1,12 @@
+.container{
+  position: relative;
+}
+
 .swiper-img {
   width: 100%;
 }
 
-.container {
+.sub-container {
   position: relative;
   margin-top: -200rpx;
 }
@@ -21,9 +25,9 @@
 
 .mask .name {
   display: -webkit-box;
-  word-break:break-all;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
+  word-break: break-all;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-left: 44rpx;
@@ -213,4 +217,12 @@
   font-weight: 600;
   padding-top: 22rpx;
   padding-bottom: 22rpx;
+}
+
+.edit {
+  position: fixed;
+  right: 15rpx;
+  height: 75rpx;
+  width: 75rpx;
+  z-index: 3;
 }

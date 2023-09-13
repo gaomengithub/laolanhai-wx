@@ -1,6 +1,6 @@
-import { searchAngthing, getDownloadToken } from '../../../utils/api'
+import { searchAngthing } from '../../../utils/api'
 
-const app = getApp()
+// const app = getApp()
 Page({
 
   /**
@@ -9,8 +9,8 @@ Page({
   data: {
     navTitle: "搜索",
     value: "",
-    navBarHeight: app.globalData.navBarHeight,
-    matches: "",
+    // navBarHeight: app.globalData.navBarHeight,
+    matches: [],
     teams: "",
     users: ""
   },
@@ -27,21 +27,26 @@ Page({
     });
   },
   onClick() {
-    searchAngthing(this.data.value).then(res => {
-      if (res.data.matches.lenght > 0) {
-        const bannerAttachments = res.data.matches.map(item => 'tmp/' + item.banner_attachments.split("/tmp/")[1])
-        getDownloadToken({ file_names: bannerAttachments }).then(token => {
-          for (let [index, item] of res.data.matches.entries()) {
-            item.banner_attachments = token.data[index] == undefined ? 'https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg' : token.data[index]
-          }
-          this.setData({
-            matches: res.data.matches,
-            // teams: res.data.teams,
-            // users: res.data.users
-          })
+    if (this.data.value.length > 0) {
+      searchAngthing(this.data.value).then(res => {
+        this.setData({
+          matches: res.data.matches == undefined ? [] : res.data.matches,
+          teams: res.data.teams == undefined ? [] : res.data.teams,
+          users: res.data.users == undefined ? [] :res.data.teams
         })
-      }
-    })
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '请输入搜索的内容',
+        showCancel: false,
+        complete: (res) => {
+          if (res.confirm) {
+
+          }
+        }
+      })
+    }
   },
 
   /**

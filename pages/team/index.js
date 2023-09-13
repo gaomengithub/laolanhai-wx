@@ -62,7 +62,6 @@ Page({
     const path = '/pages/sub/diy-team/index?type=create'
     routeInterceptor.navigateTo(path)
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
