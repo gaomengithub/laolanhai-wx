@@ -1,29 +1,30 @@
-<view class="card {{typeClass}}">
+<view class="card {{match.match_type == 3 ? 'diy':'official'}}">
   <view class="item">
-    <image class="poster-img" src="{{img}}" mode="aspectFill" />
+    <wxs src="./index.wxs" module="tools" />
+    <image class="poster" src="{{match.banner_attachments}}" mode="aspectFill" />
     <image class="bg-img" src="{{matchCardBgImage}}" mode="scaleToFill" />
     <view class="desc">
-      <view class="name">{{name}}</view>
+      <view class="name">{{match.name}}</view>
       <view class="content">
         <view class="child">
           <image class="icon" src="{{iconUrl.clock}}" mode="scaleToFill" />
-          {{ formatedDate }}
+          {{ tools.formatStartTime(match.start_time) }}
         </view>
         <view class="child">
           <image class="icon" src="{{iconUrl.address}}" mode="scaleToFill" />
-          {{ formatedLocation }}
+          {{ tools.formatLocation(match.location) }}
         </view>
       </view>
     </view>
   </view>
   <view class="active">
-    <view class="status">{{ ["报名中", "进行中", "已结束"][status] }}</view>
+    <view class="status">{{ ["报名中", "进行中", "已结束"][match.status] }}</view>
     <view class="avatar-wrap">
-      <image class='avatar' wx:for="{{users}}" src='{{item.avatar}}' mode="aspectFill" wx:key="index" />
-      <image class='avatar' wx:for="{{teams}}" src='{{item.avatar}}' mode="aspectFill" wx:key="index" />
+      <image class='avatar' wx:for="{{match.users}}" src='{{item.avatar}}' mode="aspectFill" wx:key="index" />
+      <image class='avatar' wx:for="{{match.teams}}" src='{{item.avatar}}' mode="aspectFill" wx:key="index" />
     </view>
-    <text wx:if="{{matchType == 3}}" class="reg-info">{{joinNum}}人已报名</text>
-    <text wx:else class="reg-info">{{joinNum}}队已报名</text>
+    <text wx:if="{{match.match_type == 3}}" class="info">{{tools.calcJoinedNum(match.users)}}人已报名</text>
+    <text wx:else class="info">{{tools.calcJoinedNum(match.teams)}}队已报名</text>
     <van-button custom-class="btn" bind:click="onJoinBtn">立即加入</van-button>
   </view>
 </view>

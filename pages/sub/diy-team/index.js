@@ -81,11 +81,11 @@ Page({
         this.setData({
           showFileList: [{ url: res.data.logo, isImage: true, }],
           currCity: res.data.city,
-          fileList: [{ url: res.data.logoKey }],
+          fileList: [res.data.logoKey],
           location: res.data.region,
           intro: res.data.desc,
           name: res.data.name,
-          memberNum:res.data.number
+          memberNum: res.data.number
         })
       })
     }
@@ -98,7 +98,7 @@ Page({
       city: this.data.currCity,
       location: this.data.location,
       imgCount: this.data.fileList.length,
-      memberNum:this.data.memberNum
+      memberNum: this.data.memberNum,
     }
     if (!this.WxValidate.checkForm(formData)) {
       const error = this.WxValidate.errorList[0];
@@ -118,7 +118,6 @@ Page({
       number: parseInt(this.data.memberNum),
       founded: new Date()
     }
-    console.log(teamData)
     if (this.data.type == 'create') {
       createTeam(teamData).then(() => {
         wx.showModal({
@@ -127,7 +126,11 @@ Page({
           showCancel: false,
           complete: (res) => {
             if (res.confirm) {
-              wx.navigateBack()
+              wx.navigateBack({
+                success: () => {
+                  getApp().globalData.refreshTeamList()
+                }
+              })
             }
           }
         })
@@ -142,8 +145,10 @@ Page({
           showCancel: false,
           complete: (res) => {
             if (res.confirm) {
-              wx.switchTab({
-                url: '/pages/home/index',
+              wx.navigateBack({
+                success: () => {
+                  getApp().globalData.refreshTeamList()
+                }
               })
             }
           }

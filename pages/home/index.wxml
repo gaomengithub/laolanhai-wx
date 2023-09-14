@@ -16,14 +16,23 @@
   <swiper current="{{activeTab}}" id="auto-swiper" style="height: {{swiperHeight}}; background-color: #EBEBEB;" bindchange="swiperChange">
     <van-skeleton custom-class="loading-skeleton" title row="16" loading="{{ loading }}" />
     <swiper-item class="content-hot">
-      <match-card wx:for="{{matchList}}" wx:key="index" name="{{ item.name }}" img="{{item.banner_attachments}}" date="{{item.start_time}}" location="{{ item.location }}" matchID="{{item.id}}" matchType="{{item.match_type}}" status="{{item.status}}" users="{{ item.users }}" teams="{{ item.teams }}"></match-card>
+      <view class="tip" wx:if="{{ matchList == [] }}">
+      暂时没有数据
+      </view>
+      <block wx:else>
+      <match-card wx:for="{{matchList}}" wx:key="index" match="{{ item }}"></match-card>
+      </block>
     </swiper-item>
     <swiper-item class="content-official">
       <unwork></unwork>
     </swiper-item>
     <swiper-item class="content-diy">
-      <match-card wx:for="{{diyMatchList}}" wx:key="index" name="{{ item.name }}" img="{{item.banner_attachments}}" date="{{item.start_time}}" location="{{ item.location }}" matchID="{{item.id}}" matchType="{{item.match_type}}" status="{{item.status}}" users="{{ item.users }}"></match-card>
+      <view class="tip" wx:if="{{ diyMatchList == [] }}">
+      暂时没有数据
+      </view>
+      <block wx:else>
+        <match-card wx:for="{{diyMatchList}}" wx:key="index" match="{{ item }}"></match-card>
+      </block>
     </swiper-item>
   </swiper>
-
 </view>

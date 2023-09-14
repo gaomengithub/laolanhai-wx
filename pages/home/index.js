@@ -7,7 +7,6 @@ let old = false
 const classNameList = [".content-hot", ".content-official", ".content-diy"]
 
 Page({
-
   data: {
     loading: true,
     navTitle: "老蓝孩俱乐部",
@@ -15,9 +14,9 @@ Page({
     tabs: ["热门", "正赛", "野球"],
     tabIcon: [iconUrls.tabHot, iconUrls.tabOfficial, iconUrls.tabUnofficial],
     showNarBar: false,
-    matchList: [],
-    diyMatchList: [],
-    officialMatchList: [],
+    matchList: [{}],
+    diyMatchList: [{}],
+    officialMatchList: [{}],
     activeTab: 0,
     swiperHeight: "100vh",
     offsetTop: app.globalData.navBarHeight,
@@ -74,7 +73,7 @@ Page({
     //订阅
     const { globalData } = getApp()
     globalData.setEvent('ON_CITY_CHANGE', this.loadMatchList);
-    
+
     this.loadMatchList(globalData.currCity)
   },
   onUnload() {
@@ -82,7 +81,7 @@ Page({
     globalData.removeEvent('ON_CITY_CHANGE', this.loadMatchList);
   },
   loadMatchList(city) {
-    city = city.replace("全国","");
+    city = city.replace("全国", "");
     const filter = {
       city: city,
       match_type: 0,
@@ -100,14 +99,12 @@ Page({
         }, (() => {
           this.setSwiperHeight()
         }))
-      }else{
+      } else {
         this.setData({
-          matchList:[],
-          diyMatchList:[]
+          matchList: [],
+          diyMatchList: []
         })
       }
-    }).catch(e => {
-      console.log(e)
     })
   },
   swiperChange(e) {
@@ -129,7 +126,12 @@ Page({
   onShareAppMessage() {
     return {
       title: '老蓝孩',
-      imageUrl: imgUrls.bannerImg
+      path: '/pages/home/index'
+    }
+  },
+  onShareTimeline(){
+    return {
+      title: '老蓝孩',
     }
   },
   onClickFilterBtn(e) {

@@ -70,9 +70,9 @@ Component({
             auth: !teamls.includes(teamID)
           })
         }
-        if (this.data.expect.startsWith("isFirstUser?")) {
+        if (this.data.expect.startsWith("isOrganizer?")) {
           this.setData({
-            auth: this.data.expect.split("User?")[1] == id
+            auth: this.data.expect.split("Organizer?")[1] == id
           })
         }
       } catch (e) {

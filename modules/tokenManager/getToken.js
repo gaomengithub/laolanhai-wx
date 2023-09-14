@@ -28,7 +28,7 @@ export function loginForToken() {
               showCancel: false,
               complete: (res) => {
                 if (res.confirm) {
-    
+
                 }
               }
             })
@@ -57,7 +57,7 @@ export function loginForToken() {
   })
   return loginPromise
 }
-
+//也用来刷新缓存
 export function updateAccessToken() {
   const refreshToken = getRefreshToken()
   wx.request({
@@ -71,7 +71,9 @@ export function updateAccessToken() {
         setStorage(res.data)
       }
       if (res.statusCode == "401") {
-        loginForToken()
+        loginForToken().then(res => {
+          setStorage(res)
+        })
       }
     },
     fail(e) {
@@ -86,6 +88,9 @@ export function updateAccessToken() {
         }
       })
       log.error(JSON.stringify(e))
+    },
+    complete() {
+
     }
   })
 }

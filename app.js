@@ -11,13 +11,13 @@ App({
     this.globalData.menuHeight = menuButtonInfo.height;
     this.globalData.windowHeight = systemInfo.windowHeight;
     loginForToken().then(res=>{
-      log.info("用户刷新了token")
       setStorage(res)
     })
   },
   globalData: {
     events: {
       ON_CITY_CHANGE: [],
+      ON_TEAM_CHANGE:[]
     },
     setEvent(name, fn) {
       this.events[name].push(fn);
@@ -42,6 +42,9 @@ App({
     setCity(city) {
       this.currCity = city;
       this.fire("ON_CITY_CHANGE", city);
+    },
+    refreshTeamList(){
+      this.fire("ON_TEAM_CHANGE")
     },
     navBarHeight: 0, // 导航栏高度
     menuRight: 0, // 胶囊距右方间距（方保持左、右间距一致）

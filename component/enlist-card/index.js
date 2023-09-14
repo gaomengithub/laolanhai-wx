@@ -1,4 +1,5 @@
 import { imgUrls } from '$/urls'
+import routeInterceptor from '$/router'
 Component({
   /**
    * 组件的属性列表
@@ -28,9 +29,8 @@ Component({
   methods: {
     onBtnClick(e) {
       const teamID = e.currentTarget.dataset.id
-      wx.navigateTo({
-        url: `/pages/sub/details/team/index?id=${teamID}`,
-      })
+      const path = `/pages/sub/details/team/index?id=${teamID}`
+      routeInterceptor.navigateTo(path)
     }
   }
 })

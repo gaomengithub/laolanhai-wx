@@ -1,5 +1,5 @@
 import { getTeamDesc, joinTeam } from '$/api'
-import { imgUrls ,iconUrls } from '$/urls'
+import { imgUrls, iconUrls } from '$/urls'
 
 Page({
 
@@ -34,22 +34,46 @@ Page({
         }
         if (res.confirm) {
           joinTeam(this.data.items.id, res.content).then(() => {
-            wx.showToast({
-              title: '申请成功，等待队长审批',
-              duration: 2000,
-              mask: true,
-              success: function () {
-                setTimeout(function () {
-                  wx.navigateBack()
-                }, 2000)
+            wx.showModal({
+              title: '提示',
+              content: '申请成功，请等待队长审批',
+              showCancel: false,
+              complete: (res) => {
+                if (res.cancel) {
+
+                }
+
+                if (res.confirm) {
+
+                }
               }
             })
+
+
+          }).catch(e => {
+            if (e.statusCode == 400) {
+              wx.showModal({
+                title: '错误',
+                content: '您的申请正在审批中',
+                showCancel: false,
+                complete: (res) => {
+                  if (res.cancel) {
+
+                  }
+
+                  if (res.confirm) {
+
+                  }
+                }
+              })
+            }
           })
         }
       }
     })
   },
   loadTeamDesc(teamID) {
+    teamID = teamID == undefined ? this.data.teamID : teamID
     getTeamDesc(teamID).then(res => {
       this.setData({
         items: res.data
@@ -72,8 +96,13 @@ Page({
     } catch (e) {
       console.log("获取id失败")
     }
+    const { globalData } = getApp()
+    globalData.setEvent('ON_TEAM_CHANGE', this.loadTeamDesc);
   },
-
+  onUnload() {
+    const { globalData } = getApp();
+    globalData.removeEvent('ON_TEAM_CHANGE', this.loadTeamDesc);
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -85,7 +114,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.loadTeamDesc(this.data.teamID)
+    // this.loadTeamDesc(this.data.teamID)
   },
 
   /**

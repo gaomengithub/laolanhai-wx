@@ -20,14 +20,13 @@
 
 
   <view class="list">
-    <top-line name="球队列表" subName="创建球队" bind:handleButtomClick="ToTeamCreate"></top-line>
-
+    <top-line name="球队列表" subName="<创建球队>" bind:handleButtomClick="ToTeamCreate"></top-line>
     <auth-show expect="no45" id="team-list">
       <view class="tip">
         您还没有加入球队，请选择球队加入
       </view>
     </auth-show>
-    <view wx:if="{{haveData}}">
+    <view wx:if="{{teamList!=[]}}">
       <enlist-card wx:for="{{teamList}}" wx:key="index" team="{{item}}"></enlist-card>
     </view>
     <view wx:else class="tip-plain">

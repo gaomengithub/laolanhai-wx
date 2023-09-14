@@ -127,7 +127,7 @@
 
 .part .avatars {
   width: 600rpx;
-  height: 72rpx;
+  height: fit-content;
   padding-top: 22rpx;
   overflow: hidden;
 }

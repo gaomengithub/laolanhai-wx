@@ -1,10 +1,11 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
 <!-- <view style="height:{{navBarHeight}}px;"></view> -->
 <view class="contanier">
-  <auth-show expect="isFirstUser?{{match.users[0].id}}">
+  <wxs src="./index.wxs" module="tools" />
+  <auth-show expect="isOrganizer?{{match.organizer}}">
     <navigator url="/pages/sub/diy-match/index?class=modify&type={{match.match_type}}&matchID={{ match.id }}">
-    <image class="edit" src="{{editUrl}}" mode="aspectFill" />
-  </navigator>
+      <image class="edit" src="{{editUrl}}" mode="aspectFill" />
+    </navigator>
   </auth-show>
 
   <swiper circular indicator-dots indicator-color="#FFFFFF" style="height: {{swiperHeight}};" bindchange="swiperChange">
@@ -33,18 +34,18 @@
       <view class="date-address">
         <view class="cell">
           <image class=".child" src="{{clockUrl}}" mode="scaleToFill"> </image>
-          {{ match.start_time }}
+          {{ tools.formatStartTime(match.start_time) }}
         </view>
         <view class="cell">
           <image class=".child" src="{{locationUrl}}" mode="scaleToFill"></image>
-          {{match.location}}
+          {{ tools.formatLocation(match.location)}}
         </view>
       </view>
       <view class="part">
         <view class="title">已参加的人员</view>
         <view class="avatars">
-          <image class='avatar' wx:for="{{match.users}}" wx:key="*this" src="{{ item.avatar }}" />
-          <image class='avatar' wx:for="{{match.teams}}" wx:key="*this" src="{{ item.avatar }}" />
+          <image class='avatar' wx:for="{{match.users}}" wx:key="index" src="{{ item.avatar }}" />
+          <image class='avatar' wx:for="{{match.teams}}" wx:key="index" src="{{ item.avatar }}" />
         </view>
       </view>
     </view>
@@ -66,4 +67,4 @@
 
 </view>
 
-<bottom-btn-bar name="立即报名" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn" />
+<bottom-btn-bar name="{{isUser?'已报名':'立即报名'}}" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn" />

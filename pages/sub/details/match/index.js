@@ -6,6 +6,7 @@ Page({
     navTitle: "老蓝孩俱乐部",
     matchID: "",
     match: {},
+    isUser: false,
     swiperImgHeight: wx.getSystemInfoSync().windowWidth + 'px',
     swiperHeight: wx.getSystemInfoSync().windowWidth + 'px',
     editUrl: iconUrls.edit,
@@ -32,7 +33,7 @@ Page({
           showCancel: false,
           complete: (res) => {
             if (res.confirm) {
-              wx.navigateBack()
+              this.onLoad()
             }
           }
         })
@@ -45,7 +46,7 @@ Page({
             showCancel: false,
             complete: (res) => {
               if (res.confirm) {
-                wx.navigateBack()
+                // wx.navigateBack()
               }
             }
           })
@@ -60,7 +61,6 @@ Page({
     wx.getImageInfo({
       src: currImg,
       success: (res) => {
-
         let scale = null
         if (res.height >= res.width) {
           scale = this.data.windowWidth * 4 / 3
@@ -86,22 +86,25 @@ Page({
     } catch (e) {
       console.log("获取比赛ID失败")
     }
+    this.loadMatchDesc(options.matchID)
 
-    getMatchDesc(options.matchID).then(res => {
-      res.data.start_time = res.data.start_time.replace(":00+08:00", "").replace("T", "  ")
-      res.data.location = res.data.location.replace("||", "  ")
+
+  },
+  loadMatchDesc(matchID) {
+    getMatchDesc(matchID).then(res => {
+      //判断是不是已经报名
+      const id = wx.getStorageSync('id')
+      const ls = res.data.users.map(item => item.id)
       this.setData({
-        match: res.data
+        match: res.data,
+        isUser: ls.includes(id)
       }, (() => {
         const e = {
           detail: { current: 0 }
         }
         this.swiperChange(e)
       }))
-    }).catch(e => {
-      console.log(e)
     })
-
   },
 
   /**

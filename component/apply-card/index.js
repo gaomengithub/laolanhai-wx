@@ -62,7 +62,6 @@ Component({
           }
 
           if (res.confirm) {
-            console.log(res)
             let obj = {
               "action": type,
               "approve_id": key,
@@ -81,6 +80,7 @@ Component({
                 complete: (res) => {
                   if (res.confirm) {
                     this.loadApprovalData()
+                    getApp().globalData.refreshTeamList()
                   }
                 }
               })

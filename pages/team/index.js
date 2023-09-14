@@ -14,7 +14,6 @@ Page({
     navBarHeight: app.globalData.navBarHeight,
     teamList: [],
     teamCards: [],
-    haveData: true,
   },
 
   /**
@@ -23,6 +22,14 @@ Page({
   onLoad(options) {
     this.loadMyTeamList()
     this.loadTeamList()
+    const { globalData } = getApp()
+    globalData.setEvent('ON_TEAM_CHANGE', this.loadMyTeamList);
+    globalData.setEvent('ON_TEAM_CHANGE', this.loadTeamList);
+  },
+  onUnload() {
+    const { globalData } = getApp();
+    globalData.removeEvent('ON_TEAM_CHANGE', this.loadMyTeamList);
+    globalData.removeEvent('ON_TEAM_CHANGE', this.loadTeamList);
   },
   loadTeamList() {
     getTeamList().then(res => {
@@ -30,15 +37,8 @@ Page({
       if (filter.length > 0) {
         this.setData({
           teamList: filter,
-          haveData: true
-        })
-      } else {
-        this.setData({
-          haveData: false
         })
       }
-    }).catch(e => {
-      console.log("获得队伍列表错误")
     })
   },
   loadMyTeamList() {
@@ -75,8 +75,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.loadMyTeamList()
-    this.loadTeamList()
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({

@@ -222,43 +222,33 @@ Page({
       location: this.data.region + "||" + this.data.address,
       match_type: parseInt(this.data.type),
       name: this.data.name,
-      price: {"免费":"0","约10元":"10","约20元":"20","约30元":"30"}[this.data.cost],
+      price: { "免费": "0", "约10元": "10", "约20元": "20", "约30元": "30" }[this.data.cost],
       organizer: wx.getStorageSync('id'),
-      city:this.data.region.split("/")[1]
+      city: this.data.region.split("/")[1]
     }
-    if (this.data.isNew) {
-      createMatch(data).then(() => {
-        wx.showModal({
-          title: '创建成功',
-          content:"创建成功，点击确定返回",
-          showCancel: false,
-          complete: (res) => {
-            if (res.confirm) {
-              wx.switchTab({
-                url: '/pages/home/index',
-              })
-            }
+    let title = this.data.isNew ? "创建成功" : "修改成功";
+
+    let processFunction = this.data.isNew ? createMatch : updateMatch;
+
+    let currData = this.data.isNew ? data : { ...data, id: this.data.matchID };
+
+    processFunction(currData).then(() => {
+      wx.showModal({
+        title: title,
+        content: "操作成功，点击确定返回",
+        showCancel: false,
+        complete: (res) => {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '/pages/home/index',
+              success: () => {
+                getApp().globalData.setCity("全国")
+              }
+            })
           }
-        })
-      }).catch(e => {
-        console.log(e)
+        }
       })
-    } else {
-      data['id'] = this.data.matchID
-      updateMatch(data).then(() => {
-        wx.showModal({
-          title: '修改成功',
-          showCancel: false,
-          complete: (res) => {
-            if (res.confirm) {
-              wx.switchTab({
-                url: '/pages/home/index',
-              })
-            }
-          }
-        })
-      })
-    }
+    });
     wx.hideLoading()
   },
 })

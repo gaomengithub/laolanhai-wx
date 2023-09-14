@@ -72,7 +72,6 @@ Page({
       scrollTop: 0,
       completeList: [],
     })
-    console.log(e)
     // app.globalData.currCity = e.currentTarget.dataset.city
     app.globalData.setCity(e.currentTarget.dataset.city)
     wx.showToast({

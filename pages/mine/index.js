@@ -15,7 +15,7 @@ Page({
     avatarUrl: ""
   },
   onCellClick(e){
-    const key  = e.currentTarget.key
+    // const key  = e.currentTarget.key
     wx.showModal({
       title: '提示',
       content: '该功能还在内测阶段，敬请期待',

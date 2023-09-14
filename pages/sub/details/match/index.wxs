@@ -1,0 +1,17 @@
+
+
+var formatStartTime = function (str) {
+  if (str == undefined) return
+  return str.replace(":00+08:00", "").replace("T", "  ")
+}
+
+var formatLocation = function (str) {
+  if (str == undefined) return
+  return str.replace("||", "  ")
+}
+
+module.exports = {
+
+  formatLocation:formatLocation,
+  formatStartTime:formatStartTime
+}

@@ -1,35 +1,34 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
 <!-- <view style="height:{{navBarHeight}}px;"></view> -->
-
-<image class="bg-img" src="{{bgImg}}" mode="aspectFill" />
-<view class="team-card">
-  <team-card team="{{items}}">
-    <auth-show expect="yes4?{{ items.id }}">
-      <navigator url="/pages/sub/diy-team/index?teamID={{items.id}}&type=modify">
-        <view class="manage">
-          <text>变更</text>
-          <image class="arrow" src="{{arrow}}" mode="aspectFill" />
-        </view>
-      </navigator>
-    </auth-show>
-  </team-card>
+<view class="container">
+  <image class="bg-img" src="{{bgImg}}" mode="aspectFill" />
+  <view class="team-card">
+    <team-card team="{{items}}">
+      <auth-show expect="yes4?{{ items.id }}">
+        <navigator url="/pages/sub/diy-team/index?teamID={{items.id}}&type=modify">
+          <view class="manage">
+            <text>变更</text>
+            <image class="arrow" src="{{arrow}}" mode="aspectFill" />
+          </view>
+        </navigator>
+      </auth-show>
+    </team-card>
+  </view>
+  <view class="tabs-container">
+    <view class="tabs">
+      <view class="{{active == 0 ? 'tab-active' :'tab'}}" bind:tap="onChange" data-active="0">球队队员</view>
+      <auth-show expect="yes4?{{ items.id }}">
+        <view class="{{active == 1 ? 'tab-active' :'tab'}}" bind:tap="onChange" data-active="1">待加入队员</view>
+      </auth-show>
+    </view>
+    <view wx:if="{{active == 0}}" class="player-items">
+      <player-item players="{{items.teamMember==undefined ? []:items.teamMember}}"></player-item>
+    </view>
+    <view wx:if="{{ active == 1 }}" class="apply-items">
+      <apply-card teamID="{{items.id}}" />
+    </view>
+  </view>
 </view>
-<view class="tabs-container">
-  <view class="tabs">
-    <view class="{{active == 0 ? 'tab-active' :'tab'}}" bind:tap="onChange" data-active="0">球队队员</view>
-    <auth-show expect="yes4?{{ items.id }}">
-      <view class="{{active == 1 ? 'tab-active' :'tab'}}" bind:tap="onChange" data-active="1">待加入队员</view>
-    </auth-show>
-  </view>
-  <view wx:if="{{active == 0}}" class="player-items">
-    <player-item wx:for="{{items.teamMember}}" wx:key="index" player="{{item}}" isLeader="{{index==0?true:false }}"></player-item>
-  </view>
-  <view wx:if="{{ active == 1 }}" class="apply-items">
-    <apply-card teamID="{{items.id}}" />
-  </view>
-</view>
-
-
 <auth-show expect="no45?{{ items.id }}">
   <bottom-btn-bar name="立即加入" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn"></bottom-btn-bar>
 </auth-show>

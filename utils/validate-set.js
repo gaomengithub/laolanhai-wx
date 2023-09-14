@@ -22,16 +22,16 @@ export const addMatchRules = {
     required: true,
   },
   joinNum: {
-    number:true,
+    number: true,
     required: true,
   },
   startAge: {
-    number:true,
-    min:45,
+    number: true,
+    min: 45,
     required: true
   },
   endAge: {
-    number:true,
+    number: true,
     required: true
   },
   ageDiff: {
@@ -58,19 +58,19 @@ export const addMatchMessages = {
     required: '地区不能为空',
   },
   joinNum: {
-    number:'参加的数量必须是数字',
+    number: '参加的数量必须是数字',
     required: '参加的数量（人、队伍）不能为空',
   },
   address: {
     required: '详细地址不能为空',
   },
   startAge: {
-    number:'最小年龄的输入必须是数字',
-    min:'最小年龄不能低于45岁',
+    number: '最小年龄的输入必须是数字',
+    min: '最小年龄不能低于45岁',
     required: '最小年龄不能为空'
   },
   endAge: {
-    number:'最大年龄的输入必须是数字',
+    number: '最大年龄的输入必须是数字',
     required: '最大年龄不能为空'
   },
   ageDiff: {
@@ -97,7 +97,8 @@ export const addTeamRules = {
   },
   memberNum: {
     min: 1
-  }
+  },
+
 }
 
 export const addTeamMessages = {
@@ -118,6 +119,7 @@ export const addTeamMessages = {
   },
   memberNum: {
     min: '球队人数不能少于8人'
-  }
+  },
+
 }
 
