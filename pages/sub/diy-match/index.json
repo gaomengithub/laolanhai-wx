@@ -1,7 +1,7 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "nav-bar": "/component/nav-bar/index",
+    "nav-bar": "/components/nav-bar/index",
     "van-calendar": "@vant/weapp/calendar/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-picker": "@vant/weapp/picker/index",

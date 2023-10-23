@@ -15,7 +15,7 @@ Component({
       selectedIconPath: iconUrls.barHome,
       text: "首页"
     }, {
-      pagePath: "/pages/look/index",
+      pagePath: "/pages/status/index",
       iconPath:  iconUrls.barLookGrey,
       selectedIconPath: iconUrls.barLook,
       text: "赛况"

@@ -1,4 +1,5 @@
 var log = require('../../utils/log')
+
 export function getAccessToken() {
   let accessToken = ""
   try {

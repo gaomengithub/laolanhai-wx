@@ -1,7 +1,9 @@
 import { setStorage, getRefreshToken } from './tokenHandler'
 const BASE_URL = "https://api.obabyball.com"
 var log = require('../../utils/log')
+
 let loginPromise = null;
+
 export function loginForToken() {
   if (loginPromise) {
     return loginPromise;

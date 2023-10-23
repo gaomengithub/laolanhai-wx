@@ -2,6 +2,6 @@
   "component": true,
   "navigationStyle": "custom",
   "usingComponents": {
-    "nav-bar": "/component/nav-bar/index"
+    "nav-bar": "/components/nav-bar/index"
   }
 }

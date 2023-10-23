@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "nav-bar": "/component/nav-bar/index",
+    "nav-bar": "/components/nav-bar/index",
     "van-calendar": "@vant/weapp/calendar/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-picker": "@vant/weapp/picker/index",
@@ -9,6 +9,6 @@
     "van-field": "@vant/weapp/field/index",
     "van-button": "@vant/weapp/button/index",
     "van-uploader": "@vant/weapp/uploader/index",
-    "bottom-btn-bar":"/component/bottom-btn-bar/index"
+    "bottom-btn-bar":"/components/bottom-btn-bar/index"
   }
 }

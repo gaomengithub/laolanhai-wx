@@ -1,11 +1,11 @@
 {
   "usingComponents": {
-    "team-card":"/component/team-card/index",
-    "nav-bar": "/component/nav-bar/index",
-    "player-item":"/component/player-item/index",
-    "auth-show":"/component/auth-show/index",
-    "apply-card":"/component/apply-card/index",
+    "team-card":"/components/team-card/index",
+    "nav-bar": "/components/nav-bar/index",
+    "player-item":"/components/player-item/index",
+    "auth-show":"/components/auth-show/index",
+    "apply-card":"/components/apply-card/index",
     "van-button": "@vant/weapp/button/index",
-    "bottom-btn-bar":"/component/bottom-btn-bar/index"
+    "bottom-btn-bar":"/components/bottom-btn-bar/index"
   }
 }

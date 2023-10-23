@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/home/index",
-    "pages/look/index",
+    "pages/status/index",
     "pages/team/index",
     "pages/mine/index",
     "pages/sub/user/index",
@@ -33,7 +33,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/look/index",
+        "pagePath": "pages/status/index",
         "text": "赛况"
       },
       {

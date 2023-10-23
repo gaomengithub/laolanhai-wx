@@ -1,11 +1,11 @@
 {
   "usingComponents": {
-    "unwork":"/component/unwork/index",
-    "score-card":"/component/score-card/index",
-    "joined-card":"/component/joined-card/index",
-    "apply-action":"/component/apply-action/index",
+    "unwork":"/components/unwork/index",
+    "score-card":"/components/score-card/index",
+    "joined-card":"/components/joined-card/index",
+    "apply-action":"/components/apply-action/index",
     "van-popup": "@vant/weapp/popup/index",
-    "honor-card":"/component/honor-card/index",
-    "top-line":"/component/top-line/index"
+    "honor-card":"/components/honor-card/index",
+    "top-line":"/components/top-line/index"
   }
 }

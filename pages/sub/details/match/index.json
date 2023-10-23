@@ -1,9 +1,9 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "nav-bar": "/component/nav-bar/index",
-    "bottom-btn-bar":"/component/bottom-btn-bar/index",
-    "logo-bar":"/component/logo-bar/index",
-    "auth-show":"/component/auth-show/index"
+    "nav-bar": "/components/nav-bar/index",
+    "bottom-btn-bar":"/components/bottom-btn-bar/index",
+    "logo-bar":"/components/logo-bar/index",
+    "auth-show":"/components/auth-show/index"
   }
 }
