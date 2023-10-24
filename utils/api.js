@@ -1,12 +1,12 @@
-import { request, uploadImg } from "./http"
+import { request_ } from "../modules/requestManager"
 
-export async function getMatchList(data) {
+export async function getMatches(data) {
   let obj = {
     url: '/match/list',
     method: 'POST',
     data: data
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 
@@ -18,7 +18,7 @@ export async function joinMatch(matchID) {
       match_id: matchID
     }
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 export async function getMatchDesc(matchID) {
@@ -28,7 +28,7 @@ export async function getMatchDesc(matchID) {
       id: matchID
     }
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 
@@ -38,25 +38,25 @@ export async function createMatch(data) {
     method: 'POST',
     data: data
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
-export async function updateMatch(data){
+export async function updateMatch(data) {
   let obj = {
     url: '/match/update',
     method: 'POST',
     data: data
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
-export async function updateTeam(data){
+export async function updateTeam(data) {
   let obj = {
     url: '/team/update',
     method: 'POST',
     data: data
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 export async function createTeam(data) {
@@ -65,14 +65,14 @@ export async function createTeam(data) {
     method: 'POST',
     data: data
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 export async function getUploadToken() {
   let obj = {
     url: '/attachment/getUploadToken',
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 
@@ -87,7 +87,7 @@ export async function updateUserInfo(data) {
     method: 'POST',
     data: data
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 export async function getDownloadToken(data) {
@@ -96,7 +96,7 @@ export async function getDownloadToken(data) {
     method: 'POST',
     data: data
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 export async function searchAngthing(data) {
@@ -106,7 +106,7 @@ export async function searchAngthing(data) {
       input: data
     }
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 export async function getUserInfoByID(id) {
@@ -117,7 +117,7 @@ export async function getUserInfoByID(id) {
       id: id
     }
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 
@@ -127,10 +127,10 @@ export async function getTeamList() {
     method: 'POST',
     data: {
       page_size: 10,
-      page_token:""
+      page_token: ""
     }
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 
@@ -138,22 +138,22 @@ export async function getTeamDesc(teamID) {
   let obj = {
     url: '/team/get',
     data: {
-      id:teamID
+      id: teamID
     }
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
-export async function joinTeam(teamID,comment) {
+export async function joinTeam(teamID, comment) {
   let obj = {
     url: '/team/join',
     method: 'POST',
     data: {
-      comment:comment,
-      team_id:teamID
+      comment: comment,
+      team_id: teamID
     }
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 export async function getTeamApprovalList(teamID) {
@@ -161,10 +161,10 @@ export async function getTeamApprovalList(teamID) {
     url: '/team/listApproval',
     method: 'POST',
     data: {
-      teamId:teamID
+      teamId: teamID
     }
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 export async function getMatchApprovalList() {
@@ -174,7 +174,7 @@ export async function getMatchApprovalList() {
     data: {
     }
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 export async function getMyJoinMatch() {
@@ -183,7 +183,7 @@ export async function getMyJoinMatch() {
     data: {
     }
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 export async function updateApproval(data) {
@@ -192,16 +192,16 @@ export async function updateApproval(data) {
     method: 'POST',
     data: data
   }
-  return await request(obj)
+  return await request_(obj)
 }
 
 export async function deleteMatch(matchID) {
   let obj = {
     url: '/match/delete',
     method: 'GET',
-    data:{
+    data: {
       id: matchID
     }
   }
-  return await request(obj)
+  return await request_(obj)
 }

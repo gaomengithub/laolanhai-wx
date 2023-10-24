@@ -1,6 +1,6 @@
-import { getMatchList } from '$/api'
-import { iconUrls, imgUrls } from '$/urls'
-
+import { getMatches } from '$/api'
+import { imgUrls } from '$/urls'
+import { iconSet } from '$/icon/index'
 
 const app = getApp()
 let old = false
@@ -10,16 +10,17 @@ Page({
   data: {
     loading: true,
     navTitle: "老蓝孩俱乐部",
-    bannerImg: imgUrls.bannerImg,
-    tabs: ["热门", "正赛", "野球"],
-    tabIcon: [iconUrls.tabHot, iconUrls.tabOfficial, iconUrls.tabUnofficial],
+    banner: imgUrls.bannerImg,
+    tabs: [
+      { title: "热门", icon: iconSet.tabHot },
+      { title: "正赛", icon: iconSet.tabOfficial },
+      { title: "野球", icon: iconSet.tabDiyGame },
+      { title: "场馆", icon: '' },
+    ],
     showNarBar: false,
-    matchList: [{}],
-    diyMatchList: [{}],
-    officialMatchList: [{}],
-    activeTab: 0,
+    active: 0,
     swiperHeight: "100vh",
-    offsetTop: app.globalData.navBarHeight,
+    offsetTop: app.globalData.common.navBarHeight,
   },
 
   showNarBar(e) {
@@ -34,8 +35,9 @@ Page({
   },
 
   switchTab(e) {
+    console.log(e)
     this.setData({
-      activeTab: e.currentTarget.dataset.index
+      active: e.currentTarget.dataset.index
     })
   },
 
@@ -71,10 +73,10 @@ Page({
   },
   onLoad() {
     //订阅
-    const { globalData } = getApp()
-    globalData.setEvent('ON_CITY_CHANGE', this.loadMatchList);
+    // const { globalData } = getApp()
+    // globalData.setEvent('ON_CITY_CHANGE', this.loadMatchList);
 
-    this.loadMatchList(globalData.currCity)
+    // this.loadMatchList(globalData.currCity)
   },
   onUnload() {
     const { globalData } = getApp();
@@ -90,7 +92,7 @@ Page({
       team_id: "",
       user_id: ""
     }
-    getMatchList(filter).then(res => {
+    getMatches(filter).then(res => {
       if (res.data.matches != null) {
         const diyMatchList = res.data.matches.filter(item => item.match_type == 3)
         this.setData({
@@ -129,7 +131,7 @@ Page({
       path: '/pages/home/index'
     }
   },
-  onShareTimeline(){
+  onShareTimeline() {
     return {
       title: '老蓝孩',
     }

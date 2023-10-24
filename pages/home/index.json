@@ -1,12 +1,10 @@
 {
   "usingComponents": {
-    "match-card":"/components/match-card/index",
+    "diy-matches-items":"/components/diy-matches-items/index",
     "nav-bar": "/components/nav-bar/index",
     "van-sticky": "@vant/weapp/sticky/index",
     "van-loading": "@vant/weapp/loading/index",
-    "unwork":"/components/unwork/index",
-    "filter-bar":"/components/filter-bar/index",
-    "van-skeleton": "@vant/weapp/skeleton/index"
+    "filter-bar":"/components/filter-bar/index"
   },
   "enablePullDownRefresh": true
 }

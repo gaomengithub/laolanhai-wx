@@ -1,6 +1,6 @@
 import { getAvailableAccessToken } from '../modules/tokenManager/tokenToken'
 
-var log = require('./log.js')
+var log = require('../utils/log')
 const BASE_URL = "https://api.obabyball.com"
 
 export function request_(obj, retry = 0, force = false) {
@@ -26,19 +26,29 @@ function requestWithToken(obj, accessToken, retry) {
       success: function (res) {
         if (res.statusCode == "200") {
           resolve(res.data)
-        }
-        if (res.statusCode == "401") {
+        } else if (res.statusCode == "401") {
+          let retryTimeout = null
           if (retry < 2) {
-            setTimeout(() => {
+            retryTimeout = setTimeout(() => {
               request_(obj, retry + 1, true)
-                .then(res => resolve(res))
-                .catch(err => reject(err))
+                .then(() => clearTimeout(retryTimeout))
+                .catch(() => clearTimeout(retryTimeout))
             }, 1000)
           } else {
-            log.error('重试超过3次')
+            reject(new Error('重试超过最大次数'))
+            log.error('重试超过最大次数')
+            wx.showModal({
+              title: '错误',
+              content: '获取token的重试次数超过最大值',
+              showCancel: false,
+              complete: (res) => {
+                if (res.confirm) {
+
+                }
+              }
+            })
           }
-        }
-        if (res.statusCode == "400") {
+        } else {
           reject(res)
         }
       },

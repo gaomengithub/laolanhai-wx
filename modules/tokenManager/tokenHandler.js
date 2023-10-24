@@ -20,6 +20,13 @@ export function getRefreshToken() {
   return refreshToken
 }
 
+export function clearStorage() {
+  try {
+    wx.clearStorageSync()
+  } catch (e) {
+    log.error(JSON.stringify(e))
+  }
+}
 
 export function setStorage(obj) {
   try {
