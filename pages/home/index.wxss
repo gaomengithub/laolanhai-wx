@@ -8,7 +8,8 @@
 
 .hot,
 .official,
-.diy {
+.diy,
+.arena {
   height: fit-content !important;
   background-color: #EBEBEB;
 }
