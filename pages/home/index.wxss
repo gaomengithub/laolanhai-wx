@@ -5,6 +5,7 @@
 .container {
   position: relative;
   background-color: #EBEBEB;
+  min-height: 66vh;
 }
 
 .tabs {

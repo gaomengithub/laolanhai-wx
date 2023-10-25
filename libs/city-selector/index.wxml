@@ -5,7 +5,7 @@
   </van-search>
 
   <ul class="ul">
-    <li wx:for="{{completeList}}" wx:key="*this" bindtap="bindCity" data-city="{{item.city}}" data-code="{{item.code}}" class="li">{{item.city}}</li>
+    <li wx:for="{{ completeList }}" wx:key="index" bindtap="bindCity" data-city="{{ item.city }}" class="li">{{ item.city }}</li>
   </ul>
 
   <view class="location">
@@ -23,19 +23,19 @@
       热门城市
     </view>
     <van-grid column-num="{{ 3 }}" gutter="{{ 10 }}" clickable border="{{ false }}">
-      <van-grid-item class="cell" use-slot wx:for="{{hotcityList}}" wx:key="index" custom-class="city-grid" content-class="city-content" bind:click="bindCity" data-city="{{item}}">
+      <van-grid-item class="cell" use-slot wx:for="{{ hotcityList }}" wx:key="index" custom-class="city-grid" content-class="city-content" bind:click="bindCity" data-city="{{item}}">
         {{ item }}
       </van-grid-item>
     </van-grid>
   </view>
   <!-- 右侧字母 -->
   <view class="searchLetter">
-    <view wx:for="{{searchLetter}}" wx:key="*this" data-letter="{{item}}" catchtouchend="clickLetter">{{item}}</view>
+    <view wx:for="{{ searchLetter }}" wx:key="index" data-letter="{{item}}" catchtouchend="clickLetter">{{item}}</view>
   </view>
-  <view class="selection" wx:for="{{sortedCityList}}" wx:key="*this" wx:for-index="index">
+  <view class="selection" wx:for="{{sortedCityList}}" wx:key="index">
     <view class="item_letter" id="{{index}}">{{index}}</view>
-    <view class="item_city" hover-class="item-hover" hover-start-time="20" hover-stay-time="70" wx:for="{{item}}" wx:for-item="city" wx:key="*this" bindtap="bindCity">
-      {{city}}
+    <view class="item_city" hover-class="item-hover" hover-start-time="20" hover-stay-time="70" wx:for="{{item}}" wx:for-item="item_" wx:for-index="index_" data-city="{{ item_  }}" wx:key="index_" bindtap="bindCity">
+      {{item_}}
     </view>
   </view>
 </scroll-view>

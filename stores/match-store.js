@@ -1,4 +1,4 @@
-import { observable, action } from "mobx-miniprogram";
+import { observable, action } from "mobx-miniprogram"
 import { getMatches, joinMatch } from '$/api'
 
 export const match = observable({

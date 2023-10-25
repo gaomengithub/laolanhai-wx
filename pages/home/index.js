@@ -31,12 +31,13 @@ Page({
   },
 
   switchTab(e) {
+    const active = e.currentTarget.dataset.index
     this.setData({
-      active: e.currentTarget.dataset.index
+      active
     })
-    // 等待后端修改完成后调整
+    // 0-hot 1-official 2-team 3-solo 4-arena
     const filter = {
-      match_type: 1
+      match_type: [0, 1, 3][active]
     }
     this.modifyOptions(filter)
   },

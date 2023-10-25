@@ -109,13 +109,10 @@ export async function searchAngthing(data) {
   return await request_(obj)
 }
 
-export async function getUserInfoByID(id) {
+export async function getUserInfoByID() {
   let obj = {
     url: '/user/get',
     method: 'POST',
-    data: {
-      id: id
-    }
   }
   return await request_(obj)
 }
@@ -167,7 +164,7 @@ export async function getTeamApprovalList(teamID) {
   return await request_(obj)
 }
 
-export async function getMatchApprovalList() {
+export async function getMatchApprovals() {
   let obj = {
     url: '/match/listApproval',
     method: 'POST',
@@ -177,7 +174,7 @@ export async function getMatchApprovalList() {
   return await request_(obj)
 }
 
-export async function getMyJoinMatch() {
+export async function getMyJoinMatches() {
   let obj = {
     url: '/match/listMyJoinMatch',
     data: {

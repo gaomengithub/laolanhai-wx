@@ -1,8 +1,9 @@
 import { imgUrls, iconUrls } from '$/urls'
-import { getUserInfoByID, getMyJoinMatch } from '$/api'
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { user } from "../../stores/user-store"
+
 Page({
   data: {
-    nickName: "",
     userID: "",
     items: [],
     lightImg: imgUrls.mineLightImg,
@@ -12,17 +13,17 @@ Page({
     editIcon: iconUrls.editIcon,
     showPopup: false,
     closeIcon: iconUrls.barClose,
-    avatarUrl: ""
+
   },
-  onCellClick(e){
+  onCellClick(e) {
     // const key  = e.currentTarget.key
     wx.showModal({
       title: '提示',
       content: '该功能还在内测阶段，敬请期待',
-      showCancel:false,
-      complete: (res) => {    
+      showCancel: false,
+      complete: (res) => {
         if (res.confirm) {
-          
+
         }
       }
     })
@@ -37,38 +38,32 @@ Page({
       showPopup: true
     })
   },
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
+  },
+  onLoad() {
+    this.storeBindings = createStoreBindings(this, {
+      store: user,
+      fields: ["userInfo"],
+      actions: ["updateUserInfo","updateMatches"],
+    })
+    this.updateUserInfo()
+    this.updateMatches()
 
-  onLoad(options) {
-    const id = wx.getStorageSync('id')
-    getUserInfoByID(id).then(res => {
-      this.setData({
-        nickName: res.data.nickName,
-        avatarUrl: res.data.avatar,
-        userID: id
-      })
-    })
-    getMyJoinMatch().then(res => {
-      this.setData({
-        items: res.data.matches
-      })
-    })
+
+    // getMyJoinMatch().then(res => {
+    //   this.setData({
+    //     items: res.data.matches
+    //   })
+    // })
     // getMatchApprovalList().then(res=>{
     //   console.log(res)
     // })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
-    this.onLoad()
+
     //tabbar
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
@@ -77,43 +72,5 @@ Page({
       })
     }
   },
-  onApply() {
 
-  },
-
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

@@ -20,6 +20,8 @@ Component({
     }
   },
   storeBindings: [{
+    store: search,
+  }, {
     store: match,
     fields: {
       matches: function () {
@@ -29,8 +31,8 @@ Component({
     actions: {
       updateMatches: "updateMatches",
     },
-  },
-  ],
+  }],
+
   lifetimes: {
     attached() {
       if (!this.data.isSearch) {

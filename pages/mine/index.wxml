@@ -4,9 +4,9 @@
 
 <view class="container">
   <view class="user">
-    <image class="avatar" src="{{ avatarUrl }}" mode="scaleToFill" />
+    <image class="avatar" src="{{ userInfo.avatar }}" mode="scaleToFill" />
     <view class="name">
-      {{nickName}}
+      {{userInfo.nickName}}
     </view>
     <navigator url="/pages/sub/user/index?id={{userID}}&type=modify" open-type="navigate">
       <image class="edit" src="{{editIcon}}" mode="scaleToFill"></image>
