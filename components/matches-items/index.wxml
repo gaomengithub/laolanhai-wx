@@ -1,11 +1,11 @@
 <view class="container">
   <view class="card" wx:for="{{matches}}" wx:key="index">
-    <image class="tag-img" src="{{ tagImg }}" mode="scaleToFill" />
+    <image class="tag-img" src="{{ item.match_type == 3 ? tagImg.diy :tagImg.official }}" mode="scaleToFill" />
     <view class="main">
       <wxs src="./index.wxs" module="tools" />
       <image class="poster" src="{{ item.banner_attachments }}" mode="aspectFill" />
       <view class="desc">
-        <view class="name">{{item.name}}</view>
+        <view class="name">{{ item.name }}</view>
         <view class="content">
           <view class="child">
             <image class="icon" src="{{ icon.clock }}" mode="scaleToFill" />
@@ -19,7 +19,7 @@
       </view>
     </view>
     <view class="active">
-      <view class="status">{{ ["报名中", "进行中", "已结束"][match.status] }}</view>
+      <view class="status">{{ ["报名中", "进行中", "已结束"][item.status] }}</view>
       <view class="avatar-wrap">
         <image class='avatar' wx:for="{{ item.users }}" wx:for-item="item_" wx:for-index="idx" src='{{ item_.avatar }}' mode="aspectFill" wx:key="idx" />
       </view>

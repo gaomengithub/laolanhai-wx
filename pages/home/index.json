@@ -1,10 +1,8 @@
 {
   "usingComponents": {
-    "diy-matches-items":"/components/diy-matches-items/index",
+    "matches-items":"/components/matches-items/index",
     "nav-bar": "/components/nav-bar/index",
     "van-sticky": "@vant/weapp/sticky/index",
-    "van-loading": "@vant/weapp/loading/index",
     "filter-bar":"/components/filter-bar/index"
-  },
-  "enablePullDownRefresh": true
+  }
 }

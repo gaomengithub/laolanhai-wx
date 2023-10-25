@@ -1,6 +1,6 @@
 <!--libs/calendar/index.wxml-->
 <nav-bar title="{{navTitle}}"></nav-bar>
-<view style="height:{{navBarHeight}}px;"></view>
+
 
 <van-radio-group class="bar" value="{{ radio }}" bind:change="onChange" direction="horizontal">
   <van-radio class="child {{ radio == '7' ? 'checked' : '' }}" name="7" use-icon-slot >七天内</van-radio>

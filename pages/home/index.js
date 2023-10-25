@@ -1,7 +1,7 @@
-
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { match } from "../../stores/match-store";
 const app = getApp()
 let isFixed = false
-const classNames = [".hot", ".official", ".diy", ".arena"]
 
 Page({
   data: {
@@ -15,7 +15,7 @@ Page({
     ],
     showNarBar: false,
     active: 0,
-    swiperHeight: "100vh",
+    match_type: [],
     offsetTop: app.globalData.common.navBarHeight,
   },
 
@@ -34,10 +34,20 @@ Page({
     this.setData({
       active: e.currentTarget.dataset.index
     })
+    // 等待后端修改完成后调整
+    const filter = {
+      match_type: 1
+    }
+    this.modifyOptions(filter)
   },
-
-  onPullDownRefresh() {
-
+  onLoad() {
+    this.storeBindings = createStoreBindings(this, {
+      store: match,
+      actions: ["updateMatches", "modifyOptions"],
+    });
+  },
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   },
 
   onShow() {
@@ -46,19 +56,6 @@ Page({
         selected: 0
       })
     }
-  },
-  onReady() {
-    this.setSwiperHeight()
-  },
-  setSwiperHeight() {
-    const currClassName = classNames[this.data.active]
-    wx.createSelectorQuery().select(currClassName).boundingClientRect(rect => {
-      if (rect.height >= app.globalData.common.windowHeight * 0.66) {
-        this.setData({ swiperHeight: rect.height + 128 + 'px' });
-      } else {
-        this.setData({ swiperHeight: app.globalData.windowHeight * 0.66 + 'px' });
-      }
-    }).exec();
   },
 
   onShareAppMessage() {

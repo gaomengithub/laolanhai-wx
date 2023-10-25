@@ -2,6 +2,8 @@
   "usingComponents": {
     "nav-bar": "/components/nav-bar/index",
     "van-search": "@vant/weapp/search/index",
-    "joined-card":"/components/joined-card/index"
+    "matches-items":"/components/matches-items/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index"
   }
 }

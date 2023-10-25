@@ -1,23 +1,21 @@
 import { searchLetter, cityList } from './city.js';
-import { iconUrls } from '$/urls'
-const app = getApp()
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { match } from "../../stores/match-store";
 Page({
   data: {
     navTitle: "城市选择",
-    locationIcon: iconUrls.cityLocation,
+    locationIcon: 'https://openstore.obabyball.com/ui_v1/icon/city-location-v1.svg',
     searchLetter: searchLetter,
     showLetter: "",
     sortedCityList: [],
     scrollTop: 0,//置顶高度
     scrollTopId: '',//置顶id
     city: "定位中...",
-    // navBarHeight: app.globalData.navBarHeight,
-    hotcityList: ["全国","北京市", "成都市", "西安市", "海口市", "大连市", "南京市", "天津市", "深圳市"],
+    hotcityList: ["全国", "北京市", "成都市", "西安市", "海口市", "大连市", "南京市", "天津市", "深圳市"],
     inputName: '',
     completeList: [],
   },
   onLoad(options) {
-
     var _this = this
     wx.getFuzzyLocation({
       type: 'gcj02',
@@ -36,11 +34,20 @@ Page({
     this.setData({
       sortedCityList
     })
+
+    this.storeBindings = createStoreBindings(this, {
+      store: match,
+      actions: ["modifyOptions"],
+    });
+  },
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   },
   // 获取定位城市名称方法
   getCity: function (latitude, longitude) {
+    const prefix = 'https://apis.map.qq.com/ws/geocoder/v1/?key=5KUBZ-B5PK3-QAN3L-OGC4J-JUIPK-UDFQU&location='
     wx.request({
-      url: `https://apis.map.qq.com/ws/geocoder/v1/?key=5KUBZ-B5PK3-QAN3L-OGC4J-JUIPK-UDFQU&location=` + latitude + ',' + longitude,
+      url: prefix + latitude + ',' + longitude,
       success: res => {
         if (res.data.message == "query ok") {
           const city = res.data.result.address_component.city
@@ -48,7 +55,6 @@ Page({
           this.setData({
             city: province + "\/" + city
           })
-          // app.globalData.currCity = city
         }
       }
     })
@@ -59,7 +65,6 @@ Page({
     this.setData({
       scrollTopId: showLetter,
     })
-    
     wx.showToast({
       title: showLetter,
       icon: "none"
@@ -67,13 +72,17 @@ Page({
   },
   //选择城市
   bindCity: function (e) {
+
+    const filter = {
+      city: e.currentTarget.dataset.city == '全国' ? '' : e.currentTarget.dataset.city
+    }
+    this.modifyOptions(filter)
+    
     this.setData({
-      city: e.currentTarget.dataset.city,
+      // city: e.currentTarget.dataset.city,
       scrollTop: 0,
       completeList: [],
     })
-    // app.globalData.currCity = e.currentTarget.dataset.city
-    app.globalData.setCity(e.currentTarget.dataset.city)
     wx.showToast({
       title: "已选择" + e.currentTarget.dataset.city,
       icon: "none",

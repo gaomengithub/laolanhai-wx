@@ -4,13 +4,6 @@
 
 .container {
   position: relative;
-}
-
-.hot,
-.official,
-.diy,
-.arena {
-  height: fit-content !important;
   background-color: #EBEBEB;
 }
 

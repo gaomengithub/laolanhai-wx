@@ -11,17 +11,7 @@
         <view class="line" wx:if="{{ active == index }}"></view>
       </view>
     </view>
-    <!-- <filter-bar /> -->
+    <filter-bar></filter-bar>
   </van-sticky>
-  <swiper current="{{ active }}" id="auto-swiper" style="height: {{ swiperHeight }}; background-color: #EBEBEB;" bindchange="swiperChange">
-    <swiper-item class="hot">
-      <diy-matches-items></diy-matches-items>
-    </swiper-item>
-    <swiper-item class="official">
-
-    </swiper-item>
-    <swiper-item class="diy">
-
-    </swiper-item>
-  </swiper>
+  <matches-items></matches-items>
 </view>

@@ -1,15 +1,15 @@
 <view class="filter">
   <navigator class="cell" url="/libs/city-selector/index">
-    <view class="child">{{currCity}}</view>
-    <image class="icon" src="{{arrowIcon}}" />
+    <view class="child">{{ city == '' ? '全国' : city }}</view>
+    <image class="icon" src="{{ icon.arrow }}" />
   </navigator>
   <navigator class="cell" url="/libs/calendar/index">
-    <view class="child">{{currDate}}</view>
-    <image class="icon" src="{{arrowIcon}}" />
+    <view class="child">{{ date }}</view>
+    <image class="icon" src="{{ icon.arrow }}" />
   </navigator>
   <navigator url="/pages/sub/search/index">
     <van-button custom-class="search">
-      <image class="search" src="{{searchIcon}}"></image>
+      <image class="search" src="{{ icon.search }}"></image>
     </van-button>
   </navigator>
 </view>

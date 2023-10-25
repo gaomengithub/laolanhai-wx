@@ -1,13 +1,18 @@
-<!--pages/search/index.wxml-->
 <nav-bar title="{{navTitle}}"></nav-bar>
-<!-- <view style="height:{{navBarHeight}}px;"></view> -->
-<van-search shape="round" value="{{ value }}" placeholder="请输入你需要搜索的球队、球员名称" bind:change="onChange" use-action-slot>
-  <view slot="action" bind:tap="onClick" class="btn">搜索</view>
+
+<van-search shape="round" value="{{ value }}" bind:change="onInputChange" use-action-slot placeholder="请输入你需要搜索的球队、球员名称">
+  <view slot="action" bind:tap="onClickSearch" class="btn">搜索</view>
 </van-search>
 <view class="container">
-  <view class="matches">
-    <joined-card items="{{ matches }}"></joined-card>
-  </view>
-  <view class="teams"></view>
-  <view class="users"></view>
+  <van-tabs active="{{ active }}">
+    <van-tab title="比赛">
+      <matches-items isSearch="{{ true }}"></matches-items>
+    </van-tab>
+    <van-tab title="队伍">
+
+    </van-tab>
+    <van-tab title="用户">
+
+    </van-tab>
+  </van-tabs>
 </view>

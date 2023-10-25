@@ -1,4 +1,4 @@
-import Common from 'models/common'
+import Common from '$/common'
 
 App({
   onLaunch() {

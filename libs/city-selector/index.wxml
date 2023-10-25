@@ -1,6 +1,4 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
-<!-- 占位 -->
-<!-- <view style="height:{{navBarHeight}}px;"></view> -->
 
 <scroll-view scroll-y="true" style="height:100vh" scroll-into-view="{{scrollTopId}}" scroll-top="{{scrollTop}}">
   <van-search shape="round" custom-class="search" value="{{ inputName }}" placeholder="输入城市名或拼音查询" bind:change="bindKeyInput">
@@ -9,7 +7,6 @@
   <ul class="ul">
     <li wx:for="{{completeList}}" wx:key="*this" bindtap="bindCity" data-city="{{item.city}}" data-code="{{item.code}}" class="li">{{item.city}}</li>
   </ul>
-
 
   <view class="location">
     <view class="title">当前定位</view>

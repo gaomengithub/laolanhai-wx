@@ -1,15 +1,10 @@
-// libs/calendar/index.js
-const app = getApp()
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { match } from "../../stores/match-store";
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    navTitle: "时间",
+    navTitle: "日期选择",
     radio: "",
     type: "multiple",
-    navBarHeight: app.globalData.navBarHeight,
   },
   onChange(e) {
     const key = e.detail
@@ -37,19 +32,24 @@ Page({
   // 将时间戳转为日期的函数
   formatDate(timestamp) {
     let date = new Date(timestamp)
-    return `${date.getMonth() + 1}-${date.getDate()}`
+    return `${date.getMonth() + 1}.${date.getDate()}`
   },
 
   onConfirm() {
     const calendar = this.selectComponent('.calendar');
     const currDate = calendar.data.currentDate
-    let formatedDate = "" 
-    if (this.isConsecutive(currDate)){
+    let formatedDate = ""
+    if (this.isConsecutive(currDate)) {
       formatedDate = `${this.formatDate(currDate[0])} - ${this.formatDate(currDate[currDate.length - 1])}`
-    }else{
+    } else {
       formatedDate = currDate.map(timestamp => this.formatDate(timestamp)).join(', ')
     }
-    app.globalData.currDate = formatedDate
+
+    const filter = {
+      date: formatedDate
+    }
+    this.modifyOptions(filter)
+    
     wx.navigateBack()
 
   },
@@ -57,59 +57,15 @@ Page({
     const calendar = this.selectComponent('.calendar');
     calendar.reset()
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
+
   onLoad(options) {
-
+    this.storeBindings = createStoreBindings(this, {
+      store: match,
+      actions: ["modifyOptions"],
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload() {
-
+    this.storeBindings.destroyStoreBindings();
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })
