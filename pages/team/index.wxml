@@ -1,36 +1,36 @@
-<nav-bar title="{{navTitle}}"></nav-bar>
-<!-- <view style="height:{{navBarHeight}}px;"></view> -->
+<nav-bar title="{{ navTitle }}"></nav-bar>
+
 
 <view class="container">
-  <auth-show expect="yes45" id="team-card">
-    <top-line name="我的球队" subName=""></top-line>
+  <top-line name="我的球队" more="{{ false }}"></top-line>
+  <view wx:if="{{ myTeams }}">
     <swiper class="team-swiper" indicator-dots="{{ true }}">
-      <swiper-item wx:for="{{teamCards}}" wx:key="index">
-        <team-card team="{{item}}">
+      <swiper-item wx:for="{{ myTeams }}" wx:key="index">
+        <team-card team="{{ item }}">
           <navigator url="/pages/sub/details/team/index?id={{ item.id }}" open-type="navigate">
             <view class="active">
               <text>详情</text>
-              <image class="arrow" src="{{arrow}}" mode="aspectFill" />
+              <image class="arrow" src="{{ arrow }}" mode="aspectFill" />
             </view>
           </navigator>
         </team-card>
       </swiper-item>
     </swiper>
-  </auth-show>
+  </view>
+  <view wx:else>
+    <view class="tip">
+      您还没有加入球队，请选择球队加入
+    </view>
+  </view>
 
 
   <view class="list">
-    <top-line name="球队列表" subName="<创建球队>" bind:handleButtomClick="ToTeamCreate"></top-line>
-    <auth-show expect="no45" id="team-list">
-      <view class="tip">
-        您还没有加入球队，请选择球队加入
-      </view>
-    </auth-show>
-    <view wx:if="{{teamList!=[]}}">
-      <enlist-card wx:for="{{teamList}}" wx:key="index" team="{{item}}"></enlist-card>
+    <top-line name="球队列表" more="<创建球队>" bind:handleButtomClick="ToTeamCreate"></top-line>
+    <view wx:if="{{notMyTeams}}">
+      <enlist-card wx:for="{{notMyTeams}}" wx:key="index" team="{{item}}"></enlist-card>
     </view>
-    <view wx:else class="tip-plain">
-      可加入的球队列表为空
+    <view wx:else class="tip">
+      可加入的球队列表为空，您可以点击创建自己的球队
     </view>
   </view>
 </view>

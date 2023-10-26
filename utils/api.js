@@ -118,7 +118,7 @@ export async function getUserInfoByID() {
 }
 
 
-export async function getTeamList() {
+export async function getTeamsList() {
   let obj = {
     url: '/team/list',
     method: 'POST',

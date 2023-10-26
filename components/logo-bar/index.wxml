@@ -1,5 +1,5 @@
 <view class="bar">
-  <image class="logo" src="{{logo}}" mode="scaleToFill"/>
+  <image class="logo" src="{{ logo }}" mode="scaleToFill"/>
   <view class="text">
   — 当打之年，就好玩 —
   </view>

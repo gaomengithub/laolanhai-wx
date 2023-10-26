@@ -46,6 +46,7 @@ Page({
       store: match,
       actions: ["updateMatches", "modifyOptions"],
     });
+    this.updateMatches()
   },
   onUnload() {
     this.storeBindings.destroyStoreBindings();

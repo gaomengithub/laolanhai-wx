@@ -1,0 +1,49 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 252rpx;
+  width: 702rpx;
+  border-radius: 44rpx;
+
+  background: linear-gradient(to top right, #FFFFFF, #FFFAF4)
+}
+
+.avatar {
+  position: relative;
+  margin-top: -102rpx;
+  width: 200rpx;
+  height: 200rpx;
+  border: 8rpx solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.leader {
+  width: 100rpx;
+  height: 48rpx;
+  border-radius: 24rpx;
+  background-color: #FB8808;
+  text-align: center;
+  font-size: 26rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tags {
+  margin-top: 8rpx;
+}
+
+.name {
+  font-size: 42rpx;
+  font-weight: 600;
+}

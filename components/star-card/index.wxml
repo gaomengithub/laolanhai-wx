@@ -1,0 +1,38 @@
+<view class="container">
+  <image class="person" src="{{ personImg }}" mode="aspectFit" />
+  <view class="main">
+    <view class="name">{{ user.nickName }}</view>
+    <view class="data">
+      <view class="item">
+        <view class="title">球龄：</view>
+        <view class="content">26</view>
+      </view>
+      <view class="item">
+        <view class="title">身高：</view>
+        <view class="content">{{ user.height }}</view>
+      </view>
+      <view class="item">
+        <view class="title">位置：</view>
+        <view class="content">小前锋</view>
+      </view>
+      <view class="item">
+        <view class="title">来自：</view>
+        <view class="content">京城老男孩俱乐部</view>
+      </view>
+      <view class="item">
+        <view class="title">得分：</view>
+        <view class="content">23</view>
+      </view>
+      <view class="item">
+        <view class="title">罚球：</view>
+        <view class="content">5</view>
+      </view>
+      <view class="item">
+        <view class="title">三分：</view>
+        <view class="content">5</view>
+      </view>
+    </view>
+  </view>
+
+
+</view>

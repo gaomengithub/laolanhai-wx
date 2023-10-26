@@ -1,79 +1,30 @@
-import { getTeamList, getTeamDesc } from '$/api'
+
 import routeInterceptor from '$/router'
-import { iconUrls } from '$/urls'
-const app = getApp()
-
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { team } from "../../stores/team-store";
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    arrow: iconUrls.tabArrow,
+    arrow: 'https://openstore.obabyball.com/ui_v1/icon/tab-arrow-v1.svg',
     navTitle: "球队",
-    navBarHeight: app.globalData.navBarHeight,
-    teamList: [],
-    teamCards: [],
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-    this.loadMyTeamList()
-    this.loadTeamList()
-    const { globalData } = getApp()
-    globalData.setEvent('ON_TEAM_CHANGE', this.loadMyTeamList);
-    globalData.setEvent('ON_TEAM_CHANGE', this.loadTeamList);
+  onLoad() {
+    this.storeBindings = createStoreBindings(this, {
+      store: team,
+      fields: ["teams", "myTeams", "notMyTeams"],
+      actions: ["updateTeams"],
+    });
+    this.updateTeams()
   },
   onUnload() {
-    const { globalData } = getApp();
-    globalData.removeEvent('ON_TEAM_CHANGE', this.loadMyTeamList);
-    globalData.removeEvent('ON_TEAM_CHANGE', this.loadTeamList);
+    this.storeBindings.destroyStoreBindings();
   },
-  loadTeamList() {
-    getTeamList().then(res => {
-      const filter = res.data.items.filter(item => !item.isMyTeam)
-      if (filter.length > 0) {
-        this.setData({
-          teamList: filter,
-        })
-      }
-    })
-  },
-  loadMyTeamList() {
-    if (this.selectComponent("#team-card").data.auth) {
-      let teamCards = []
-      try {
-        const quals = wx.getStorageSync('quals')
-        const ls = quals.map(item => item.teamId).filter(item => item !== undefined)
-        for (let item of ls) {
-          getTeamDesc(item).then(res => {
-            teamCards.push(res.data)
-            this.setData({
-              teamCards
-            })
-          })
-        }
-      } catch {
-        console.log("加载我的球队数据失败")
-      }
-    }
-  },
+
   ToTeamCreate() {
     const path = '/pages/sub/diy-team/index?type=create'
     routeInterceptor.navigateTo(path)
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
@@ -81,43 +32,5 @@ Page({
         selected: 3
       })
     }
-
-
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  },
-
 })

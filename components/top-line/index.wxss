@@ -3,12 +3,20 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  height: 90rpx;
+  justify-content: center;
+  width: 100%;
 }
 
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 90rpx;
+  width: 90%;
+}
 
-.title {
+.name {
   position: relative;
   width: fit-content;
   font-size: 34rpx;
@@ -16,7 +24,7 @@
   z-index: 1;
 }
 
-.title::after {
+.name::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -28,7 +36,9 @@
 }
 
 .more {
+  width: fit-content;
   color: #969696;
+  position: relative;
 }
 
 

@@ -5,9 +5,18 @@ export const user = observable({
 
   approvals: [],
   matches: [],
-  userInfo: {
+  user: {
 
   },
+
+  get tags() {
+    const quals = this.user.quals.map(item => item.qual)
+    const tags = {
+      isTeamLeader: quals.includes(4)
+    }
+    return tags
+  },
+
   updateApprovals: action(async function () {
     // const data = await getMatchApprovals()
 
@@ -19,7 +28,7 @@ export const user = observable({
   updateUserInfo: action(async function () {
     try {
       const data = await getUserInfoByID()
-      this.userInfo = data
+      this.user = data
     } catch (e) {
 
     }

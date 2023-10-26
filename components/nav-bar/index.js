@@ -2,7 +2,7 @@ const app = getApp()
 
 const switchTabUrls = [
   "pages/home/index",
-  "pages/look/index",
+  "pages/status/index",
   "pages/team/index",
   "pages/mine/index"
 ]
@@ -20,27 +20,21 @@ Component({
     },
   },
   data: {
-    // navBarHeight: app.globalData.navBarHeight,
-    // menuRight: app.globalData.menuRight,
-    // menuTop: app.globalData.menuTop,
-    // menuHeight: app.globalData.menuHeight,
     navBarHeight: app.globalData.common.navBarHeight,
     menuRight: app.globalData.common.menuRight,
     menuTop: app.globalData.common.menuTop,
     menuHeight: app.globalData.common.menuHeight,
 
-
     showBackNav: false,
     placeholder: true
   },
   attached: function () {
-
     let pages = getCurrentPages();    //获取加载的页面
     let currentPage = pages[pages.length - 1];    //获取当前页面的对象
     let url = currentPage.route;    //当前页面url
     if (scrollSnapUrls.includes(url)) {
       this.setData({
-        placeholder:false
+        placeholder: false
       })
     }
     if (switchTabUrls.includes(url)) {
@@ -53,5 +47,7 @@ Component({
       })
     }
   },
-  methods: {}
+  methods: {
+
+  }
 })

@@ -1,0 +1,36 @@
+.container {
+  position: relative;
+  min-height: 100vh;
+  background-color: #EBEBEB;
+}
+
+.top-bg-img {
+  position: relative;
+  margin-top: -160rpx;
+  width: 750rpx;
+  height: 500rpx;
+  background-color: #EBEBEB;
+}
+
+.player-card {
+  position: relative;
+  margin-top: -160rpx;
+}
+
+.data-card {
+  background-color: #FFFFFF;
+  margin: 24rpx;
+  border-radius: 44rpx;
+}
+
+.data-charts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.star-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

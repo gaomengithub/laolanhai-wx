@@ -1,8 +1,10 @@
 <view class="container">
-  <view class="title">
-    {{name}}
-  </view>
-  <view class="more" hover-class="hover" hover-start-time="20" hover-stay-time="70" bind:tap="tiggerCoutomEvent">
-    {{subName}}
+  <view class="main">
+    <view class="name">
+      {{name}}
+    </view>
+    <view wx:if="{{ more!='false' }}" class="more" hover-class="hover" hover-start-time="20" hover-stay-time="70" bind:tap="tiggerCoutomEvent">
+      {{more}}
+    </view>
   </view>
 </view>

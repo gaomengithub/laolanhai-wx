@@ -1,0 +1,21 @@
+<nav-bar navTitle="老蓝孩俱乐部"></nav-bar>
+
+<view class="container">
+  <image src="{{ topBgImg }}" class="top-bg-img" mode="aspectFit" />
+  <view class="player-card">
+    <player-card></player-card>
+  </view>
+
+
+  <view class="data-card">
+    <top-line name="技术统计" more="{{ false }}">
+    </top-line>
+    <view class="data-charts">
+      <player-data-charts></player-data-charts>
+    </view>
+  </view>
+  <view class="star-card">
+    <star-card></star-card>
+  </view>
+  <logo-bar></logo-bar>
+</view>

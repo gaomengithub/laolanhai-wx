@@ -1,31 +1,23 @@
-import { imgUrls, iconUrls } from '$/urls'
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { user } from "../../stores/user-store"
 
 Page({
   data: {
-    userID: "",
-    items: [],
-    lightImg: imgUrls.mineLightImg,
-    teamIcon: iconUrls.mineTeam,
-    applyIcon: iconUrls.mineApply,
-    inIcon: iconUrls.mineIn,
-    editIcon: iconUrls.editIcon,
+    img: {
+      light: 'https://openstore.obabyball.com/ui_v1/img/mine-light-img-v1.svg',
+    },
+    icon: {
+      team: 'https://openstore.obabyball.com/ui_v1/icon/mine-team-v1.svg',
+      apply: 'https://openstore.obabyball.com/ui_v1/icon/mine-apply-v1.svg',
+      in: 'https://openstore.obabyball.com/ui_v1/icon/mine-in-v1.svg',
+      edit: 'https://openstore.obabyball.com/ui_v1/icon/mine-user-edit-v2.svg',
+      close: 'https://openstore.obabyball.com/ui_v1/icon/bar-close-v1.svg'
+    },
     showPopup: false,
-    closeIcon: iconUrls.barClose,
-
   },
   onCellClick(e) {
-    // const key  = e.currentTarget.key
-    wx.showModal({
-      title: '提示',
-      content: '该功能还在内测阶段，敬请期待',
-      showCancel: false,
-      complete: (res) => {
-        if (res.confirm) {
-
-        }
-      }
+    wx.navigateTo({
+      url: '/pages/sub/star/index',
     })
   },
   onClosePopup() {
@@ -44,26 +36,15 @@ Page({
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store: user,
-      fields: ["userInfo"],
-      actions: ["updateUserInfo","updateMatches"],
+      fields: ["user", "matches"],
+      actions: ["updateUserInfo", "updateMatches"],
     })
     this.updateUserInfo()
     this.updateMatches()
-
-
-    // getMyJoinMatch().then(res => {
-    //   this.setData({
-    //     items: res.data.matches
-    //   })
-    // })
-    // getMatchApprovalList().then(res=>{
-    //   console.log(res)
-    // })
   },
 
 
   onShow() {
-
     //tabbar
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {

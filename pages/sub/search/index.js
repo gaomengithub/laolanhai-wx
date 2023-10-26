@@ -1,4 +1,3 @@
-import { searchAngthing } from '$/api'
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { search } from "../../../stores/search-store";
 
@@ -6,7 +5,7 @@ Page({
 
   data: {
     navTitle: "搜索",
-    value: "",
+    value: "老",
     active: 0,
   },
   onLoad() {
