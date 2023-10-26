@@ -1,12 +1,12 @@
-<nav-bar title="{{navTitle}}"></nav-bar>
-<!-- <view style="height:{{navBarHeight}}px;"></view> -->
-<view class="contanier">
+<nav-bar title="{{ navTitle }}"></nav-bar>
   <wxs src="./index.wxs" module="tools" />
-  <auth-show expect="isOrganizer?{{match.organizer}}">
-    <navigator url="/pages/sub/diy-match/index?class=modify&type={{match.match_type}}&matchID={{ match.id }}">
-      <image class="edit" src="{{editUrl}}" mode="aspectFill" />
-    </navigator>
-  </auth-show>
+<view class="contanier">
+
+  <view wx:if="{{ match.organizer == id }}">
+    <image class="edit" src="{{icon.edit}}" mode="aspectFill" />
+  </view>
+
+
 
   <swiper circular indicator-dots indicator-color="#FFFFFF" style="height: {{swiperHeight}};" bindchange="swiperChange">
     <swiper-item>
@@ -62,9 +62,8 @@
       </text>
     </view>
   </view>
-
   <logo-bar />
 
 </view>
 
-<bottom-btn-bar name="{{isUser?'已报名':'立即报名'}}" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn" />
+<bottom-btn-bar name="{{tools.isEnterMatch(match.users,id)}}" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn" />

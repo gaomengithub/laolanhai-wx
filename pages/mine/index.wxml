@@ -16,27 +16,27 @@
     <score-card></score-card>
   </view>
   <view class="active-card">
-    <view class="cell" bind:tap="onCellClick" data-key="star">
+    <view class="cell" bind:tap="onCellClick" data-path="star">
       <image class="icon" src="{{ icon.team }}" mode="aspectFill" />
       <view class="text">
         球卡
       </view>
     </view>
-    <view class="cell" bind:tap="showPopup">
+    <view class="cell" bind:tap="onCellClick"  data-path="apply">
       <image class="icon" src="{{ icon.apply }}" mode="aspectFill" />
       <view class="text">
         申请
       </view>
     </view>
-    <view class="cell" bind:tap="onCellClick" data-key="in">
+    <view class="cell" bind:tap="onCellClick" data-path="enter">
       <image class="icon" src="{{ icon.in }}" mode="aspectFill" />
       <view class="text">
-        入驻
+        球馆入驻
       </view>
     </view>
   </view>
   <joined-card items="{{ matches }}" >
-    <top-line name="已参加的" subName=""></top-line>
+    <top-line name="已参加的" more="false"></top-line>
   </joined-card>
   <honor-card></honor-card>
 

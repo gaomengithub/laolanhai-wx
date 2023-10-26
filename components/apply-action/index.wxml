@@ -12,7 +12,7 @@
     <image class="arrow" src="{{greyArrow}}" mode="aspectFill" />
   </view>
 
-  <view class="item referee-item" bind:tap="onClick" data-path="/pages/to-do/index" border="{{ false }}" hover-class="hover" hover-start-time="20" hover-stay-time="70">
+  <view class="item referee-item" bind:tap="onClick" data-path="/pages/sub/referee/index" border="{{ false }}" hover-class="hover" hover-start-time="20" hover-stay-time="70">
     <image class="icon" src="{{ referee.icon }}" mode="aspectFill" />
     <view class="cell">
       <view class="title referee-title">

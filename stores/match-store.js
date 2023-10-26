@@ -1,9 +1,10 @@
 import { observable, action } from "mobx-miniprogram"
-import { getMatches, joinMatch } from '$/api'
+import { getMatches, joinMatch, getMatchDesc } from '$/api'
 
 export const match = observable({
-  matchesForSearch:[],
-  matches: [],
+  diy:null, // 创建和修改比赛
+  match: null,  //比赛详情
+  matches: null, 
   next_page_token: '',
   options: {
     city: '',
@@ -12,11 +13,21 @@ export const match = observable({
     page_token: '',
     team_id: '',
     user_id: '',
-    date:'全部时间' //后端还未添加该筛选条件
+    date: '全部时间' //后端还未添加该筛选条件
   },
+    
   modifyOptions: action(function (filter) {
     this.options = { ...this.options, ...filter }
     this.updateMatches()
+  }),
+
+  updateMatch: action(async function (id) {
+    try {
+      const data = await getMatchDesc(id)
+      this.match = data
+    } catch (e) {
+
+    }
   }),
   updateMatches: action(async function () {
     try {
@@ -25,7 +36,7 @@ export const match = observable({
         this.matches = data.matches
         this.next_page_token = data.next_page_token
       } else {
-        this.matches = []
+        this.matches = null
       }
     } catch (e) {
       wx.showModal({
@@ -40,12 +51,35 @@ export const match = observable({
       })
     }
   }),
-  joinMatch: action(async function (matchID) {
+  joinMatch: action(async function (id) {
     try {
-      await joinMatch(matchID)
+      wx.showLoading({ title: '请等待', mask: true, })
+      await joinMatch(id)
+      wx.hideLoading()
+      wx.showModal({
+        title: '报名成功',
+        content: '您已成功报名，请准时参加',
+        showCancel: false,
+        complete: (res) => {
+          if (res.confirm) {
+            this.updateMatch(id)
+          }
+        }
+      })
     } catch (e) {
+      if (e.statusCode == 400) {
+        wx.hideLoading()
+        wx.showModal({
+          title: '提示',
+          content: '您已经报过名，请勿重新报名',
+          showCancel: false,
+          complete: (res) => {
+            if (res.confirm) {
 
+            }
+          }
+        })
+      }
     }
-
   })
 });

@@ -1,5 +1,4 @@
 <nav-bar title="{{navTitle}}"></nav-bar>
-<!-- <view style="height:{{navBarHeight}}px;"></view> -->
 
 <view class="container">
   <!-- 图片上传 -->

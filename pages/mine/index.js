@@ -1,6 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { user } from "../../stores/user-store"
-
+import routeInterceptor from '$/router'
 Page({
   data: {
     img: {
@@ -16,9 +16,12 @@ Page({
     showPopup: false,
   },
   onCellClick(e) {
-    wx.navigateTo({
-      url: '/pages/sub/star/index',
-    })
+    if (e.currentTarget.dataset.path == 'apply') {
+      this.showPopup()
+      return
+    }
+    const path = `/pages/sub/${e.currentTarget.dataset.path}/index`
+    routeInterceptor.navigateTo(path)
   },
   onClosePopup() {
     this.setData({
@@ -37,10 +40,10 @@ Page({
     this.storeBindings = createStoreBindings(this, {
       store: user,
       fields: ["user", "matches"],
-      actions: ["updateUserInfo", "updateMatches"],
+      actions: ["updateUserInfo", "updateUserMatches"],
     })
     this.updateUserInfo()
-    this.updateMatches()
+    this.updateUserMatches()
   },
 
 

@@ -14,15 +14,28 @@ let routeInterceptor = {
       try {
         const quals = wx.getStorageSync('quals')
         const arr = quals.map(item => item.qual)
-        if (arr.includes(2)) {
-          wx.navigateTo({ url: '/pages/sub/user/index?type=create' })
+        if (arr) {
+          if (arr.includes(2)) {
+            wx.navigateTo({ url: '/pages/sub/user/index?type=create' })
+          } else {
+            wx.navigateTo({
+              url: path,
+            })
+          }
         } else {
-          wx.navigateTo({
-            url: path,
-          })
+          throw new Error('arr is not defined')
         }
-      } catch {
-        console.log("验证权限出错")
+      } catch (e) {
+        wx.showModal({
+          title: '错误',
+          content: '读取权限出错',
+          showCancel: false,
+          complete: (res) => {
+            if (res.confirm) {
+
+            }
+          }
+        })
       }
     }
   }

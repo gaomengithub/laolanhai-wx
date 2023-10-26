@@ -44,6 +44,7 @@ Page({
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store: match,
+      fields:["matches"],
       actions: ["updateMatches", "modifyOptions"],
     });
     this.updateMatches()

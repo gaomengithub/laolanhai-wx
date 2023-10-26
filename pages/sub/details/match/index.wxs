@@ -1,17 +1,30 @@
 
 
 var formatStartTime = function (str) {
-  if (str == undefined) return
+  if (!str) return
   return str.replace(":00+08:00", "").replace("T", "  ")
 }
 
 var formatLocation = function (str) {
-  if (str == undefined) return
+  if (!str) return
   return str.replace("||", "  ")
+}
+
+var isEnterMatch = function (users, id) {
+  if (!users || !id) return
+  var isJoined = '立即报名';
+  for (var i = 0; i < users.length; i += 1) {
+    if (users[i].id === id) {
+      isJoined = '已报名';
+      break;
+    }
+  }
+  return isJoined;
 }
 
 module.exports = {
 
-  formatLocation:formatLocation,
-  formatStartTime:formatStartTime
+  formatLocation: formatLocation,
+  formatStartTime: formatStartTime,
+  isEnterMatch: isEnterMatch,
 }

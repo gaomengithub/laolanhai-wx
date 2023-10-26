@@ -13,5 +13,14 @@
     </view>
     <filter-bar></filter-bar>
   </van-sticky>
-  <matches-items></matches-items>
+  <view wx:if="{{matches}}">
+    <matches-items></matches-items>
+  </view>
+  <view wx:else>
+    <no-data-tip></no-data-tip>
+  </view>
+  <view>
+    <logo-bar></logo-bar>
+    <view style="height: 188rpx;"></view>
+  </view>
 </view>

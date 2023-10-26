@@ -56,8 +56,3 @@
   margin-top: 44rpx;
 }
 
-.tip {
-  font-size: 36rpx;
-  text-align: center;
-  margin-top: 250rpx;
-}

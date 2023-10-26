@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 120rpx;
+}
+
+.img {
+  width: 205rpx;
+  height: 205rpx;
+}
+
+.tip {
+  font-size: 36rpx;
+  text-align: center;
+  letter-spacing: 4rpx;
+}

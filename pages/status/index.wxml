@@ -1,13 +1,18 @@
-<!--pages/look/look.wxml-->
-<nav-bar title="{{navTitle}}" ></nav-bar>
-<!-- <view style="height:{{navBarHeight}}px;"></view> -->
+<nav-bar title="{{navTitle}}"></nav-bar>
+
 <view class="container">
 
 
-<van-tabs active="{{ active }}" bind:change="onChange">
-  <van-tab title="赛事">
-  <look-card></look-card>
-  </van-tab>
-  <van-tab disabled title="新闻"></van-tab>
-</van-tabs>
+  <van-tabs active="{{ active }}" bind:change="onChange">
+    <van-tab title="赛事">
+      <look-card></look-card>
+    </van-tab>
+    <van-tab title="资讯">
+    <view class="create">
+      <van-button custom-class="create-btn" block round color="linear-gradient(to right, #4bb0ff, #6149f6)" bind:click="onBtnClick">
+        我要发布
+      </van-button>
+    </view>
+    </van-tab>
+  </van-tabs>
 </view>

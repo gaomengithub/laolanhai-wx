@@ -1,9 +1,11 @@
-import routeInterceptor from '$/router'
+// pages/sub/referee/index.js
 Page({
 
+  /**
+   * 页面的初始数据
+   */
   data: {
-    active: 0,
-    navTitle: "赛况",
+
   },
 
   /**
@@ -24,17 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 1
-      })
-    }
-  },
 
-  onBtnClick(e) {
-    const path = `/pages/sub/create-news/index`
-    routeInterceptor.navigateTo(path)
   },
 
   /**

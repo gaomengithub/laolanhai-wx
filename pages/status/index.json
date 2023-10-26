@@ -1,11 +1,12 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "van-sticky": "@vant/weapp/sticky/index",
+
+    "van-button": "@vant/weapp/button/index",
     "nav-bar": "/components/nav-bar/index",
     "van-tabs":"@vant/weapp/tabs/index",
     "van-tab":"@vant/weapp/tab/index",
-    "look-card":"/components/look-card/index",
-    "unwork":"/components/unwork/index"
+    "look-card":"/components/look-card/index"
+
   }
 }

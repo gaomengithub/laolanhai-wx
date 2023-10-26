@@ -14,7 +14,10 @@
     "libs/city-selector/index",
     "libs/calendar/index",
     "pages/to-do/index",
-    "pages/sub/star/index"
+    "pages/sub/star/index",
+    "pages/sub/enter/index",
+    "pages/sub/create-news/index",
+    "pages/sub/referee/index"
   ],
   "permission": {
     "scope.userFuzzyLocation": {

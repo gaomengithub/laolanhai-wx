@@ -1,57 +1,27 @@
-import { getMatchDesc, joinMatch } from '$/api'
+import { joinMatch } from '$/api'
 import { iconUrls } from '$/urls'
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { match } from "../../../../stores/match-store";
+import { user } from "../../../../stores/user-store"
 
 Page({
   data: {
     navTitle: "老蓝孩俱乐部",
-    matchID: "",
-    match: {},
-    isUser: false,
+    icon: {
+      edit: 'https://openstore.obabyball.com/ui_v1/icon/match-edit-v1.svg'
+    },
     swiperImgHeight: wx.getSystemInfoSync().windowWidth + 'px',
     swiperHeight: wx.getSystemInfoSync().windowWidth + 'px',
-    editUrl: iconUrls.edit,
     typeUrl: iconUrls.descUnofficialTag,
     clockUrl: iconUrls.descClock,
     locationUrl: iconUrls.descLocation,
     octagonalStar: iconUrls.octagonalStar,
     windowWidth: wx.getSystemInfoSync().windowWidth,
-    navBarHeight: getApp().globalData.navBarHeight,
   },
 
   onJoinBtn() {
-    console.log("e")
-    wx.showLoading({
-      title: '请等待',
-      mask: true,
-    })
-    if (this.data.matchID != "" || this.data.matchID != null) {
-      joinMatch(this.data.matchID).then(() => {
-        wx.hideLoading()
-        wx.showModal({
-          title: '报名成功',
-          content: '您已成功报名，请准时参加',
-          showCancel: false,
-          complete: (res) => {
-            if (res.confirm) {
-              this.onLoad()
-            }
-          }
-        })
-      }).catch(e => {
-        if (e.statusCode == 400) {
-          wx.hideLoading()
-          wx.showModal({
-            title: '提示',
-            content: '您已经报过名，请勿重新报名',
-            showCancel: false,
-            complete: (res) => {
-              if (res.confirm) {
-                // wx.navigateBack()
-              }
-            }
-          })
-        }
-      })
+    if (this.data.match.id) {
+      this.joinMatch(this.data.match.id)
     }
   },
   swiperChange(e) {
@@ -74,85 +44,40 @@ Page({
       }
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-    try {
-      this.setData({
-        matchID: options.matchID,
-        typeUrl: [iconUrls.descOfficialTag, iconUrls.descOfficialTag, iconUrls.descUnofficialTag][options.matchType - 1]
-      })
-    } catch (e) {
-      console.log("获取比赛ID失败")
-    }
-    this.loadMatchDesc(options.matchID)
-
-
-  },
-  loadMatchDesc(matchID) {
-    getMatchDesc(matchID).then(res => {
-      //判断是不是已经报名
-      const id = wx.getStorageSync('id')
-      const ls = res.data.users.map(item => item.id)
-      this.setData({
-        match: res.data,
-        isUser: ls.includes(id)
-      }, (() => {
-        const e = {
-          detail: { current: 0 }
-        }
-        this.swiperChange(e)
-      }))
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload() {
-
+    this.storeBindings.destroyStoreBindings();
+    this.storeBindings_.destroyStoreBindings();
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  onLoad(options) {
+    this.storeBindings = createStoreBindings(this, {
+      store: match,
+      fields: ["match"],
+      actions: ["updateMatch", "joinMatch"],
+    });
+    this.storeBindings_ = createStoreBindings(this, {
+      store: user,
+      fields: ["id"],
+    });
+    const id = options.id
+    if (id) {
+      this.updateMatch(id)
+    } else {
+      wx.showModal({
+        title: '错误',
+        content: '获取比赛出错id',
+        showCancel: false,
+        complete: (res) => {
+          if (res.confirm) {
+            wx.navigateBack()
+          }
+        }
+      })
+    }
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  onReady() {
+    const e = {
+      detail: { current: 0 }
+    }
+    this.swiperChange(e)
   }
 })

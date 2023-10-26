@@ -24,7 +24,7 @@
         <image class='avatar' wx:for="{{ item.users }}" wx:for-item="item_" wx:for-index="idx" src='{{ item_.avatar }}' mode="aspectFill" wx:key="idx" />
       </view>
       <text class="info">{{ tools.calcJoinedNum(item.users) }}人已报名</text>
-      <van-button custom-class="btn" bind:click="onJoinBtn">立即加入</van-button>
+      <van-button custom-class="btn" bind:click="handlerClick" data-id="{{item.id}}">立即加入</van-button>
     </view>
   </view>
 </view>

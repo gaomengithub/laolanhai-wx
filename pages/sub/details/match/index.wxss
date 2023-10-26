@@ -1,4 +1,4 @@
-.container{
+.container {
   position: relative;
 }
 
@@ -221,8 +221,9 @@
 
 .edit {
   position: fixed;
-  right: 15rpx;
-  height: 75rpx;
-  width: 75rpx;
+  margin-top: 25rpx;
+  right: 25rpx;
+  height: 65rpx;
+  width: 65rpx;
   z-index: 3;
 }

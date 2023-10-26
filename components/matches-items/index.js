@@ -1,6 +1,7 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { match } from "../../stores/match-store";
 import { search } from "../../stores/search-store";
+import routeInterceptor from '$/router'
 Component({
   properties: {
     isSearch: {
@@ -31,6 +32,12 @@ Component({
     }
   },
   methods: {
+    handlerClick(e) {
+      const id = e.currentTarget.dataset.id
+      const path = `/pages/sub/details/match/index?id=${id}`
+      console.log(path)
+      routeInterceptor.navigateTo(path)
+    }
 
   },
 });

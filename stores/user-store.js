@@ -1,12 +1,15 @@
 import { observable, action } from "mobx-miniprogram"
-import { getUserInfoByID, getMyJoinMatches, getMatchApprovals } from '$/api'
+import { getUserInfo, getMyJoinMatches, getMatchApprovals } from '$/api'
 
 export const user = observable({
 
   approvals: [],
   matches: [],
-  user: {
+  user: null,
 
+  get id() {
+    let id = wx.getStorageSync('id')
+    return id
   },
 
   get tags() {
@@ -21,13 +24,13 @@ export const user = observable({
     // const data = await getMatchApprovals()
 
   }),
-  updateMatches: action(async function () {
+  updateUserMatches: action(async function () {
     const data = await getMyJoinMatches()
     this.matches = data.matches
   }),
   updateUserInfo: action(async function () {
     try {
-      const data = await getUserInfoByID()
+      const data = await getUserInfo()
       this.user = data
     } catch (e) {
 

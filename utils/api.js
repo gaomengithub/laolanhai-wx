@@ -21,11 +21,11 @@ export async function joinMatch(matchID) {
   return await request_(obj)
 }
 
-export async function getMatchDesc(matchID) {
+export async function getMatchDesc(id) {
   let obj = {
     url: '/match/get',
     data: {
-      id: matchID
+      id: id
     }
   }
   return await request_(obj)
@@ -109,7 +109,7 @@ export async function searchAngthing(data) {
   return await request_(obj)
 }
 
-export async function getUserInfoByID() {
+export async function getUserInfo() {
   let obj = {
     url: '/user/get',
     method: 'POST',
