@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="card" wx:for="{{ overMatch }}" wx:key="id">
+    <image class="img" src="https://openstore.obabyball.com/ui_v1/img/test-look-v1.png" mode="aspectFill" />
+    <view class="active">
+      <view class="title">{{item.name}}</view>
+      <van-button custom-class="btn" round bind:click="HandlerClick">查看比赛</van-button>
+    </view>
+    <view class="data">
+      <image class="tag" src="{{item.match_type}}" mode="aspectFill" />
+      <view class="panel">
+        <van-grid column-num="{{ 3 }}" border="{{ false }}">
+          <van-grid-item class="cell" use-slot>
+            <view class="num">{{itme.score}}</view>
+            <view class="tag">比分</view>
+          </van-grid-item>
+          <van-grid-item class="cell" use-slot>
+            <view class="num">{{item.photos}}</view>
+            <view class="tag">高光时刻</view>
+          </van-grid-item>
+          <van-grid-item class="cell" use-slot>
+            <view class="num">{{item.users}}</view>
+            <view class="tag">参加人数</view>
+          </van-grid-item>
+        </van-grid>
+      </view>
+    </view>
+  </view>
+
+
+
+</view>

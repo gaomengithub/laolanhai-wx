@@ -51,7 +51,7 @@
 }
 
 
-.card .down {
+.card .data {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -61,20 +61,20 @@
 
 
 
-.card .down .panel {
+.card .data .panel {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.card .down .panel .item {
+.card .data .panel .item {
   position: relative;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
 }
 
-.card .down .panel .item .name {
+.card .data .panel .item .name {
   position: relative;
   font-size: 36rpx;
   font-weight: 600;
@@ -82,7 +82,7 @@
   z-index: 1;
 }
 
-.card .down .panel .name::after {
+.card .data .panel .name::after {
   content: "";
   position: absolute;
   bottom: 0;

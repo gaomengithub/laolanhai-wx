@@ -1,38 +1,50 @@
-<nav-bar title="{{ navTitle }}"></nav-bar>
+<nav-bar title="球界"></nav-bar>
 
+<van-tabs active="{{ active }}" sticky offset-top="{{ offset }}">
+  <van-tab title="球队">
+    <view class="container">
+      <top-line name="我的球队" more="{{ false }}"></top-line>
+      <view wx:if="{{ myTeams }}">
+        <swiper class="team-swiper" indicator-dots="{{ true }}">
+          <swiper-item wx:for="{{ myTeams }}" wx:key="index">
+            <team-card team="{{ item }}">
+              <navigator url="/pages/sub/details/team/index?id={{ item.id }}" open-type="navigate">
+                <view class="active">
+                  <text>详情</text>
+                  <image class="arrow" src="{{ arrow }}" mode="aspectFill" />
+                </view>
+              </navigator>
+            </team-card>
+          </swiper-item>
+        </swiper>
+      </view>
+      <view wx:else>
+        <view class="tip">
+          您还没有加入任何一支球队。
+        </view>
+      </view>
 
-<view class="container">
-  <top-line name="我的球队" more="{{ false }}"></top-line>
-  <view wx:if="{{ myTeams }}">
-    <swiper class="team-swiper" indicator-dots="{{ true }}">
-      <swiper-item wx:for="{{ myTeams }}" wx:key="index">
-        <team-card team="{{ item }}">
-          <navigator url="/pages/sub/details/team/index?id={{ item.id }}" open-type="navigate">
-            <view class="active">
-              <text>详情</text>
-              <image class="arrow" src="{{ arrow }}" mode="aspectFill" />
-            </view>
-          </navigator>
-        </team-card>
-      </swiper-item>
-    </swiper>
-  </view>
-  <view wx:else>
-    <view class="tip">
-      您还没有加入球队，请选择球队加入
+      <view class="list">
+        <top-line name="球队列表" more="<创建球队>" bind:handleButtomClick="ToTeamCreate"></top-line>
+        <view wx:if="{{notMyTeams}}">
+          <enlist-card wx:for="{{notMyTeams}}" wx:key="index" team="{{item}}"></enlist-card>
+        </view>
+        <view wx:else class="tip">
+          可加入的球队列表为空。
+        </view>
+      </view>
     </view>
-  </view>
+  </van-tab>
+
+  <van-tab title="场馆">
+    <view class="container">
+      <arena-items></arena-items>
+    </view>
+  </van-tab>
+</van-tabs>
 
 
-  <view class="list">
-    <top-line name="球队列表" more="<创建球队>" bind:handleButtomClick="ToTeamCreate"></top-line>
-    <view wx:if="{{notMyTeams}}">
-      <enlist-card wx:for="{{notMyTeams}}" wx:key="index" team="{{item}}"></enlist-card>
-    </view>
-    <view wx:else class="tip">
-      可加入的球队列表为空，您可以点击创建自己的球队
-    </view>
-  </view>
-</view>
+
+
 <!-- 占位 -->
 <view style="height: 188rpx;"></view>

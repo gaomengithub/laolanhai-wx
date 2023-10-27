@@ -1,1 +1,29 @@
-/* pages/sub/enter/index.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 22px;
+}
+
+.upload-bg-img {
+  width: 170rpx;
+  height: 174rpx;
+}
+.active {
+  width: 100%;
+  background-color: #ffffff;
+  position: fixed;
+  bottom: 0;
+  height: 166rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-custom-class {
+  margin-top: 16rpx;
+  width: 650rpx;
+  background-color: #FB8808 !important;
+  font-weight: 600;
+}

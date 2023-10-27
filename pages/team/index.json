@@ -5,6 +5,10 @@
     "van-button": "@vant/weapp/button/index",
     "nav-bar": "/components/nav-bar/index",
     "team-card":"/components/team-card/index",
-    "top-line":"/components/top-line/index"
+    "top-line":"/components/top-line/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "arena-items":"/components/arena-items/index",
+    "van-sticky": "@vant/weapp/sticky/index"
   }
 }

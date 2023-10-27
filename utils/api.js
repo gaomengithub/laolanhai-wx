@@ -1,5 +1,7 @@
 import { request_ } from "../modules/requestManager"
 
+
+
 export async function getMatches(data) {
   let obj = {
     url: '/match/list',
@@ -199,6 +201,23 @@ export async function deleteMatch(matchID) {
     data: {
       id: matchID
     }
+  }
+  return await request_(obj)
+}
+
+export async function createArena(data) {
+  let obj = {
+    url: '/user/CreateSportsHall',
+    method: 'POST',
+    data: data
+  }
+  return await request_(obj)
+}
+
+export async function getArenas() {
+  let obj = {
+    url: '/arena/listSportsHalls',
+    method: 'POST',
   }
   return await request_(obj)
 }

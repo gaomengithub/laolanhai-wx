@@ -1,19 +1,33 @@
-// pages/sub/enter/index.js
+import { iconUrls } from '$/urls'
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { arena } from "../../../stores/arena-store";
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
+    iconUrls: {
+      date: iconUrls.addCalendar,
+      startTime: iconUrls.addStartTime,
+      endTime: iconUrls.addEndTime,
+      startAge: iconUrls.addStartAge,
+      endAge: iconUrls.addEndAge,
+      cost: iconUrls.addCost,
+      upload: iconUrls.addUpload
+    },
 
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
+  onLoad() {
+    this.storeBindings = createStoreBindings(this, {
+      store: match,
+      actions: ["updateMatches", "modifyOptions"],
+    });
+    this.updateMatches()
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

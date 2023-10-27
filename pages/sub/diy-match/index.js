@@ -206,6 +206,7 @@ Page({
       })
       return false;
     }
+
     wx.showLoading({
       title: '请等待',
       mask: true

@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="card" wx:for="{{arenas}}" wx:key="index">
+    <image class="tag-img" src="{{tagImg}}" mode="scaleToFill" />
+    <view class="main">
+      <image class="poster" src="{{ item.poster }}" mode="aspectFill" />
+      <view class="desc">
+        <view class="name">{{ item.name }}</view>
+        <view class="content">
+          <view class="child">
+            <image class="icon" src="{{ icon.clock }}" mode="scaleToFill" />
+            {{ item.start_time + "-" + item.end_time }}
+          </view>
+          <view class="child">
+            <image class="icon" src="{{ icon.location }}" mode="scaleToFill" />
+            {{ item.region + "" + item.city + "" + item.address}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="active">
+      <view class="status">运营中</view>
+      <van-button round custom-class="btn" bind:click="handlerClick" data-id="{{item.id}}">立即加入</van-button>
+    </view>
+  </view>
+</view>

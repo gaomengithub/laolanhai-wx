@@ -25,7 +25,7 @@ Component({
       pagePath: "/pages/team/index",
       iconPath:  iconUrls.barTeamGrey,
       selectedIconPath: iconUrls.barTeam,
-      text: "球队"
+      text: "球界"
     }, {
       pagePath: "/pages/mine/index",
       iconPath:  iconUrls.barMineGrey,

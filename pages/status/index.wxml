@@ -5,7 +5,7 @@
 
   <van-tabs active="{{ active }}" bind:change="onChange">
     <van-tab title="赛事">
-      <look-card></look-card>
+      <over-match-items></over-match-items>
     </van-tab>
     <van-tab title="资讯">
     <view class="create">

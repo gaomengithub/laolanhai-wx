@@ -2,7 +2,7 @@ import { observable, action } from "mobx-miniprogram"
 import { getUserInfo, getMyJoinMatches, getMatchApprovals } from '$/api'
 
 export const user = observable({
-
+  
   approvals: [],
   matches: [],
   user: null,

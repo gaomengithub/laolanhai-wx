@@ -1,6 +1,6 @@
 <!--component/active-bar/index.wxml-->
+<view style="height: 166rpx;"></view>
 <view class="container" style="background-color: {{ containerBgColor }};">
   <!-- 占位 -->
-  <view style="height: 166rpx;"></view>
   <van-button custom-class="btn" custom-style="color:{{ textColor }};" color="{{ btnBgColor }}" round bind:click="triggerCustomEvent">{{name}}</van-button>
 </view>

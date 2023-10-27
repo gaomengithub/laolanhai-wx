@@ -2,20 +2,31 @@ import { observable, action } from "mobx-miniprogram"
 import { getMatches, joinMatch, getMatchDesc } from '$/api'
 
 export const match = observable({
-  diy:null, // 创建和修改比赛
+  over: {
+    name:"我在大桥下打篮球",
+    poster:'',
+    photos:[
+      '',
+      ''
+    ],
+    users:[
+      {},
+      {}
+    ]
+  },
   match: null,  //比赛详情
-  matches: null, 
+  matches: null,
   next_page_token: '',
   options: {
     city: '',
-    match_type: 0,
-    page_size: 0,
+    match_type: [],
+    page_size: 10,
     page_token: '',
     team_id: '',
     user_id: '',
     date: '全部时间' //后端还未添加该筛选条件
   },
-    
+
   modifyOptions: action(function (filter) {
     this.options = { ...this.options, ...filter }
     this.updateMatches()
