@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "nav-bar":"/components/nav-bar",
-    "van-field": "@vant/weapp/field/index",
-    "van-cell": "@vant/weapp/cell/index",
-    "van-button": "@vant/weapp/button/index"
-  }
-}

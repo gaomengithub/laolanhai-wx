@@ -33,7 +33,7 @@ Page({
   },
 
   onBtnClick(e) {
-    const path = `/pages/sub/create-news/index`
+    const path = `/pages/sub/create-modify-news/index`
     routeInterceptor.navigateTo(path)
   },
 

@@ -8,7 +8,7 @@
     <view class="name">
       {{user.nickName}}
     </view>
-    <navigator url="/pages/sub/user/index?id={{userID}}&type=modify" open-type="navigate">
+    <navigator url="/pages/sub/user/index?id={{id}}&page=modify" open-type="navigate">
       <image class="edit" src="{{icon.edit}}" mode="scaleToFill"></image>
     </navigator>
   </view>
@@ -22,20 +22,20 @@
         球卡
       </view>
     </view>
-    <view class="cell" bind:tap="onCellClick"  data-path="apply">
+    <view class="cell" bind:tap="onCellClick" data-path="apply">
       <image class="icon" src="{{ icon.apply }}" mode="aspectFill" />
       <view class="text">
         申请
       </view>
     </view>
-    <view class="cell" bind:tap="onCellClick" data-path="enter">
+    <view class="cell" bind:tap="onCellClick" data-path="create-modify-arena">
       <image class="icon" src="{{ icon.in }}" mode="aspectFill" />
       <view class="text">
         球馆入驻
       </view>
     </view>
   </view>
-  <joined-card items="{{ matches }}" >
+  <joined-card items="{{ matches }}">
     <top-line name="已参加的" more="false"></top-line>
   </joined-card>
   <honor-card></honor-card>

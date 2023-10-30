@@ -1,0 +1,52 @@
+<nav-bar title="球馆入驻"></nav-bar>
+<view class="container">
+  <!-- 球馆图片 -->
+  <van-uploader bind:delete='deleteImg' file-list="{{ arenaForm.files || []}}" bind:after-read="onAfterRead" max-count="8" image-fit="widthFix" accept="image">
+    <image class="upload-bg-img" src="{{ icon.upload }}" mode="aspectFill" />
+  </van-uploader>
+
+  <view class="form">
+    <!-- 日期 -->
+    <van-field left-icon="wap-home" value="{{ arenaForm.name || '' }}" bind:change="handler" data-key="name" input-align="right" placeholder="球馆名称">
+      <view slot="label">球馆名称</view>
+    </van-field>
+
+    <van-field class="field-input-class" value="{{ arenaForm.description || '' }}" type="textarea" autosize="{{ autoSize }}" bind:change="handler" data-key="description" placeholder="描述一下比赛规则、比赛内容、比赛奖励、推荐的人群、贴心tips等，叫大家一起打比赛吧~" />
+
+    <van-cell is-link icon="{{ icon.date }}" title="开业时间" value="{{ arenaForm.date || ''}}" bind:click="onDisplay" data-show="showCalendar" />
+
+    <van-popup show="{{ showCalendar }}" round position="bottom" custom-style="height: 50%" bind:close="onDisplay" data-show="showCalendar">
+      <van-datetime-picker type="year-month" value="{{ arenaForm.date }}"  data-key="date" bind:confirm="handler" bind:cancel="onDisplay" data-show="showCalendar" />
+    </van-popup>
+    <!-- <van-calendar show="{{ showCalendar }}" bind:close="onDisplay" data-show="showCalendar" bind:confirm="handler" data-key="date"  min-date="{{minDate}}" max-date="{{maxDate}}"/> -->
+
+    <!-- 开始、结束时间 -->
+    <van-cell is-link icon="{{ icon.start_time }}" title="营业开始时间" value="{{ arenaForm.start_time }}" bind:click="onDisplay" data-show="showStartTimePicker" />
+    <van-cell is-link icon="{{ icon.end_time }}" title="营业结束时间" value="{{ arenaForm.end_time }}" bind:click="onDisplay" data-show="showEndTimePicker" />
+    <van-popup show="{{ showStartTimePicker }}" round position="bottom" custom-style="height: 50%" bind:close="onDisplay" data-show="showStartTimePicker">
+      <van-datetime-picker type="time" value="{{ arenaForm.start_time }}" min-hour="{{ minHour }}" max-hour="{{ maxHour }}" bind:input="handler" data-key="start_time" bind:confirm="handler" data-show="showStartTimePicker" />
+    </van-popup>
+    <van-popup show="{{ showEndTimePicker }}" round position="bottom" custom-style="height: 50%" bind:close="onDisplay" data-show="showEndTimePicker">
+      <van-datetime-picker type="time" value="{{ arenaForm.end_time }}" min-hour="{{ minHour }}" max-hour="{{ maxHour }}" bind:input="handler" data-key="end_time" bind:confirm="handler" data-show="showEndTimePicker" />
+    </van-popup>
+
+    <!-- 地区 -->
+    <van-cell is-link icon="location" value="{{ arenaForm.region }}" readonly title="所在区域" bind:click="onDisplay" data-show="showAreaCascader" />
+    <van-popup show="{{ showAreaCascader }}" round position="bottom" custom-style="height: 50%" bind:close="onDisplay" data-show="showAreaCascader">
+      <van-cascader wx:if="{{ showAreaCascader }}" value="{{ arenaForm.region }}" title="请选择所在地区" options="{{ options }}" field-names="{{ fieldNames }}" active-color="#ee0a24" bind:close="onDisplay" data-show="showAreaCascader"  data-key="region" bind:finish="handler" />
+    </van-popup>
+
+    <van-field left-icon="wap-home" value="{{ arena.address || ''}}" bind:change="handler" data-key="address" input-align="right" placeholder="请输详细地址">
+      <view slot="label">详细地址</view>
+    </van-field>
+
+
+    <!-- 费用 -->
+    <van-field left-icon="wap-home" value="{{ arena.price || '' }}" bind:change="handler" data-key="price" input-align="right" placeholder="请输价格">
+      <view slot="label">价格</view>
+    </van-field>
+  </view>
+
+</view>
+
+<bottom-btn-bar name="{{ arenaForm.id ? '修改':'创建' }}" bind:handleButtonClick="handleClick"></bottom-btn-bar>

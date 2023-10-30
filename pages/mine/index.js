@@ -15,6 +15,7 @@ Page({
     },
     showPopup: false,
   },
+
   onCellClick(e) {
     if (e.currentTarget.dataset.path == 'apply') {
       this.showPopup()
@@ -23,6 +24,7 @@ Page({
     const path = `/pages/sub/${e.currentTarget.dataset.path}/index`
     routeInterceptor.navigateTo(path)
   },
+
   onClosePopup() {
     this.setData({
       showPopup: false
@@ -39,11 +41,11 @@ Page({
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store: user,
-      fields: ["user", "matches"],
+      fields: ["user", "matches", "id"],
       actions: ["updateUserInfo", "updateUserMatches"],
     })
     this.updateUserInfo()
-    this.updateUserMatches()
+    // this.updateUserMatches()
   },
 
 

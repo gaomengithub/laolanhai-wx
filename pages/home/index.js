@@ -1,11 +1,11 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { match } from "../../stores/match-store";
+
 const app = getApp()
 let isFixed = false
 
 Page({
   data: {
-    navTitle: "老蓝孩俱乐部",
     banner: 'https://openstore.obabyball.com/ui_v1/img/banner-img-v1.png',
     tabs: [
       { title: "热门", icon: 'https://openstore.obabyball.com/ui_v1/icon/tab-hot-v1.svg' },
@@ -47,7 +47,7 @@ Page({
       fields: ["matches"],
       actions: ["updateMatches", "modifyOptions"],
     });
-    this.updateMatches()
+    // this.updateMatches()
   },
   onUnload() {
     this.storeBindings.destroyStoreBindings();

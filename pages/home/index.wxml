@@ -1,11 +1,11 @@
-<nav-bar wx:if="{{ showNarBar }}" title="{{ navTitle }}"></nav-bar>
+<nav-bar wx:if="{{ showNarBar }}" title="老蓝孩"></nav-bar>
 
 <image class="banner" src="{{ banner }}" mode="widthFix" />
 
 <view class="container">
   <van-sticky offset-top="{{ offsetTop }}" bind:scroll="showNarBar">
     <view class="tabs">
-      <view wx:for="{{ tabs }}" wx:key="index" class="tab {{ active == index ? 'active':'' }}" bindtap="switchTab" data-index="{{index}}">
+      <view wx:for="{{ tabs }}" wx:key="index" class="tab {{ active == index ? 'active':'' }}" bindtap="switchTab" data-index="{{ index }}">
         <image class="icon" src="{{ item.icon }}"></image>
         <view class="title">{{ item.title }} </view>
         <view class="line" wx:if="{{ active == index }}"></view>
@@ -13,7 +13,7 @@
     </view>
     <filter-bar></filter-bar>
   </van-sticky>
-  <view wx:if="{{matches}}">
+  <view wx:if="{{ matches }}">
     <matches-items></matches-items>
   </view>
   <view wx:else>

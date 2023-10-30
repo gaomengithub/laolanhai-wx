@@ -2,9 +2,9 @@ import { observable, action } from "mobx-miniprogram"
 import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch } from '$/api'
 import { uploadImgWithToken } from '$/qiniu/qiniu'
 import { matchFormMessages, matchFormRules } from '$/validate-set'
+import WxValidate from '$/WxValidate'
 import { formatDate, formatTime } from '$/util'
 
-import WxValidate from '$/WxValidate'
 export const match = observable({
   validate: new WxValidate(matchFormRules, matchFormMessages),
   matchForm: {
@@ -151,6 +151,7 @@ export const match = observable({
     }
     else if (typeof params === 'number') {
       this.matchForm.files.splice(params, 1)
+      this.matchForm = Object.assign({}, this.matchForm, { files: this.matchForm.files })
     }
     else {
       this.matchForm = { ...this.matchForm, ...params }
@@ -178,6 +179,7 @@ export const match = observable({
       if (data.matches) {
         this.matches = data.matches
         this.next_page_token = data.next_page_token
+
       } else {
         this.matches = null
       }

@@ -85,6 +85,64 @@ export const matchFormMessages = {
   },
 }
 
+export const arenaFormRules = {
+  files_count: {
+    min: 2
+  },
+  name: {
+    required: true
+  },
+  description: {
+    required: true
+  },
+  date: {
+    required: true
+  },
+  time_diff: {
+    min: 60
+  },
+  region: {
+    required: true,
+  },
+  address: {
+    required: true,
+  },
+  price: {
+    required: true
+  },
+}
+
+export const arenaFormMessages = {
+  files_count: {
+    min: '图片需要上传两张'
+  },
+  name: {
+    required: '标题不能为空'
+  },
+  description: {
+    required: '描述不能为空'
+  },
+  date: {
+    required: '开业时间不能为空'
+  },
+  time_diff: {
+    min: '结束时间要大于开始时间60分钟'
+  },
+  region: {
+    required: '地区不能为空',
+  },
+  join_num: {
+    number: '参加的数量必须是数字',
+    required: '参加的数量（人、队伍）不能为空',
+  },
+  address: {
+    required: '详细地址不能为空',
+  },
+  price: {
+    required: '需要选择费用'
+  },
+}
+
 //创建球队
 export const teamFormRules = {
   name: {

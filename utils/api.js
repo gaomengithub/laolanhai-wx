@@ -203,7 +203,7 @@ export async function deleteMatch(matchID) {
 
 export async function createArena(data) {
   let obj = {
-    url: '/user/CreateSportsHall',
+    url: '/arena/createSportsHall',
     method: 'POST',
     data: data
   }

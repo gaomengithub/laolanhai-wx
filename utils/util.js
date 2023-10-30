@@ -6,6 +6,12 @@ export function formatDate(date) {
   return `${[year, month, day].map(formatNumber).join('-')}`
 }
 
+export function yearMonth(date) {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  return `${[year, month].map(formatNumber).join('-')}`
+}
+
 export function formatTime(date) {
   const hours = date.getHours().toString()
   const minutes = date.getMinutes().toString()

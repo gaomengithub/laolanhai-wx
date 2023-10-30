@@ -33,11 +33,10 @@ Component({
   },
   methods: {
     handlerClick(e) {
+      // id  为赛事id
       const id = e.currentTarget.dataset.id
-      const path = `/pages/sub/details/match/index?id=${id}`
-      console.log(path)
+      const path = `/pages/sub/match-details/index?id=${id}`
       routeInterceptor.navigateTo(path)
     }
-
   },
 });
