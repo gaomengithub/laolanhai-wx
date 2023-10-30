@@ -1,0 +1,57 @@
+<nav-bar title="创建/修改"></nav-bar>
+<wxs src="./index.wxs" module="tools" />
+<view class="container">
+
+  <!-- 图片上传 -->
+  <van-uploader bind:delete='deleteImg' file-list="{{ matchForm.files || [] }}" bind:after-read="onAfterRead" max-count="2" image-fit="widthFix" accept="image">
+    <image class="upload-bg-img" src="{{ icon.upload }}" mode="aspectFill" />
+  </van-uploader>
+
+  <!-- 名称 -->
+  <van-field value="{{ matchForm.name || ''}}" placeholder="清晰的活动标题" bind:change="handler" data-key="name" />
+
+  <!-- 详情描述 -->
+  <van-field class="field-input-class" value="{{ matchForm.description || '' }}" type="textarea" autosize="{{ autoSize }}" bind:change="handler" data-key="description" placeholder="描述一下比赛规则、比赛内容、比赛奖励、推荐的人群、贴心tips等，叫大家一起打比赛吧~" />
+
+  <!-- 日期 -->
+  <van-cell is-link icon="{{ icon.date }}" title="日期" value="{{ matchForm.date }}" bind:click="onDisplay" data-show="showCalendar" />
+  <van-calendar show="{{ showCalendar }}" bind:close="onDisplay" data-show="showCalendar" bind:confirm="handler" data-key="date" />
+
+  <!-- 开始、结束时间 -->
+  <van-cell is-link icon="{{ icon.start_time }}" title="开始时间" value="{{ matchForm.start_time }}" bind:click="onDisplay" data-show="showStartTimePicker" />
+  <van-popup show="{{ showStartTimePicker }}" round position="bottom" custom-style="height: 40%" bind:close="onDisplay" data-show="showStartTimePicker">
+    <van-datetime-picker toolbar-class="toolbar" type="time" value="{{ matchForm.start_time }}" min-hour="{{ minHour }}" max-hour="{{ maxHour }}" bind:cancel="onDisplay" data-key="start_time" title="选择开始时间" bind:confirm="handler" data-show="showStartTimePicker" />
+  </van-popup>
+
+  <van-cell is-link icon="{{ icon.end_time }}" title="结束时间" value="{{ matchForm.end_time  }}" bind:click="onDisplay" data-show="showEndTimePicker" />
+  <van-popup show="{{ showEndTimePicker }}" round position="bottom" custom-style="height: 40%" bind:close="onDisplay" data-show="showEndTimePicker">
+    <van-datetime-picker toolbar-class="toolbar" type="time" value="{{ matchForm.end_time }}" min-hour="{{ minHour }}" max-hour="{{ maxHour }}" data-key="end_time" bind:confirm="handler" data-show="showEndTimePicker" title="选择结束时间" bind:cancel="onDisplay" />
+  </van-popup>
+
+  <!-- 地区 -->
+  <van-cell is-link icon="location" value="{{ matchForm.region }}" readonly title="地区" bind:click="onDisplay" data-show="showAreaCascader" />
+  <van-popup show="{{ showAreaCascader }}" round position="bottom" custom-style="height: 50%" data-show="showAreaCascader">
+    <van-cascader wx:if="{{ showAreaCascader }}" value="{{ matchForm.region }}" title="请选择所在地区" options="{{ options }}" field-names="{{ fieldNames }}" active-color="#ee0a24" bind:close="onDisplay" data-show="showAreaCascader" data-key="region" bind:finish="handler" />
+  </van-popup>
+  <!-- 详细地址 -->
+  <van-field left-icon="wap-home" label="详细地址" value="{{ matchForm.address || ''}}" bind:change="handler" input-align="right" placeholder="请输详细地址" data-key="address">
+  </van-field>
+
+  <!-- 人数/队伍数量 -->
+  <van-field left-icon="friends" value="{{ matchForm.join_num || ''}}" bind:change="handler" input-align="right" placeholder="请输入人数" type="digit" data-key="join_num">
+    <view slot="label">{{ matchForm.match_type == '3' ? '人数' : '队伍数量' }}</view>
+  </van-field>
+
+
+  <van-field label="最小年龄" bind:change="handler" left-icon="{{icon.age_group_start}}" value="{{ matchForm.age_group_start || ''}}" input-align="right" placeholder="可参加的最小年龄" type="digit" data-key="age_group_start">
+  </van-field>
+  <van-field label="最大年龄" bind:change="handler" left-icon="{{ icon.age_group_end }}" value="{{ matchForm.age_group_end || ''}}" input-align="right" placeholder="可参加的最大年龄" type="digit" data-key="age_group_end">
+  </van-field>
+
+  <!-- 费用 -->
+  <van-cell icon="{{ icon.price }}" title="费用" value="{{ matchForm.cost }}" is-link bind:click="onDisplay" border="{{ false }}" data-show="showCostAction" />
+  <van-action-sheet show="{{ showCostAction }}" actions="{{ actions }}" bind:close="onDisplay" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" data-show="showCostAction" data-key="cost" />
+</view>
+
+<logo-bar></logo-bar>
+<bottom-btn-bar name="{{ matchForm.id ? '修改':'创建' }}" bind:handleButtonClick="handleClick"></bottom-btn-bar>

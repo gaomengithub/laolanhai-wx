@@ -11,7 +11,7 @@ var formatLocation = function (str) {
 }
 
 var isEnterMatch = function (users, id) {
-  if (!users || !id) return
+  if (!users || !id) return ''
   var isJoined = '立即报名';
   for (var i = 0; i < users.length; i += 1) {
     if (users[i].id === id) {

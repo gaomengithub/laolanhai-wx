@@ -17,7 +17,8 @@
     "pages/sub/star/index",
     "pages/sub/enter/index",
     "pages/sub/create-news/index",
-    "pages/sub/referee/index"
+    "pages/sub/referee/index",
+    "pages/sub/create-modify-match/index"
   ],
   "permission": {
     "scope.userFuzzyLocation": {

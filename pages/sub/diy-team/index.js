@@ -3,7 +3,7 @@ import { options } from '$/pca-code'
 import { addTeamMessages, addTeamRules } from '$/validate-set'
 import WxValidate from '$/WxValidate'
 import { createTeam, getTeamDesc, updateTeam } from '$/api'
-import { uploadImgWithToken } from '$/qiniu'
+import { uploadImgWithToken } from '$/qiniu/qiniu'
 
 let fileList = []
 let showFileList = []

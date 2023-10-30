@@ -1,4 +1,5 @@
-import { getUploadToken } from './api'
+import { getUploadToken } from '../api'
+
 const qiniuUploader = require("./qiniuUploader");
 
 let inited = false
@@ -17,11 +18,11 @@ function initQiniu() {
 
 export function uploadImgWithToken(path) {
   return new Promise(async function (resolve, reject) {
-    const res = await getUploadToken()
+    const data = await getUploadToken()
     if (!inited) {
       initQiniu()
     }
-    qiniuUploader.init({ uptoken: res.data.message })
+    qiniuUploader.init({ uptoken: data.message })
     qiniuUploader.upload(path, (res) => {
       resolve(res)
     }), (error) => {

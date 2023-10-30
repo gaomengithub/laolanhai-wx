@@ -1,42 +1,43 @@
 <view class="container">
-  <view class="item" border="{{ false }}" bind:tap="onClick" data-path="/pages/sub/diy-match/index?pageClass=create" hover-class="hover" hover-start-time="20" hover-stay-time="70">
-    <image class="icon" src="{{ diyPerson.icon }}" mode="aspectFill" />
+  <view class="item" bind:tap="onClick" data-path="/pages/sub/create-modify-match/index?page=new&match_type=3" hover-class="hover" hover-start-time="20" hover-stay-time="70">
+    <image class="icon" src="{{ icon.diySolo }}" mode="aspectFill" />
     <view class="cell">
       <view class="title">
-        {{ diyPerson.title }}
+        野球局
       </view>
       <view class="text">
-        {{ diyPerson.text }}
+        仅限个人参加
       </view>
     </view>
-    <image class="arrow" src="{{greyArrow}}" mode="aspectFill" />
+    <image class="arrow" src="{{icon.greyArrow}}" mode="aspectFill" />
   </view>
 
-  <view class="item" bind:tap="onClick" data-path="/pages/to-do/index" border="{{ false }}" hover-class="hover" hover-start-time="20" hover-stay-time="70">
-    <image class="icon" src="{{ diyTeam.icon }}" mode="aspectFill" />
+  <view class="item" bind:tap="onClick" data-path="/pages/to-do/index" hover-class="hover" hover-start-time="20" hover-stay-time="70">
+    <image class="icon" src="{{ icon.diyTeam }}" mode="aspectFill" />
     <view class="cell">
       <view class="title">
-        {{ diyTeam.title }}
+        野球战队赛
       </view>
       <view class="text">
-        {{ diyTeam.text }}
+        仅限战队参加
       </view>
     </view>
-    <image class="arrow" src="{{greyArrow}}" mode="aspectFill" />
+    <image class="arrow" src="{{icon.greyArrow}}" mode="aspectFill" />
   </view>
 
-  <view class="item official-item" bind:tap="onClick" data-path="/pages/to-do/index" border="{{ false }}" hover-class="hover" hover-start-time="20" hover-stay-time="70">
-    <image class="icon" src="{{ official.icon }}" mode="aspectFill" />
+  <view class="item official-item" bind:tap="onClick" data-path="/pages/to-do/index" hover-class="hover" hover-start-time="20" hover-stay-time="70">
+    <image class="icon" src="{{ icon.official }}" mode="aspectFill" />
     <view class="cell">
       <view class="title official-title">
-        {{ official.title }}
+        正赛
       </view>
       <view class="text official-text">
-        {{ official.text }}
+        仅限指定机构组织
       </view>
     </view>
-    <image class="arrow" src="{{blackArrow}}" mode="aspectFill" />
+    <image class="arrow" src="{{icon.blackArrow}}" mode="aspectFill" />
   </view>
+
   <view class="active">
     <slot></slot>
   </view>

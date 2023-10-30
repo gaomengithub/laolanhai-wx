@@ -4,7 +4,7 @@ import { options } from '$/pca-code'
 import { iconUrls } from '$/urls'
 import { getDifferenceInMinute, formatDate, splitDateTime, revertQiniuKey } from '$/util'
 import { addMatchMessages, addMatchRules } from '$/validate-set'
-import { uploadImgWithToken } from '$/qiniu'
+import { uploadImgWithToken } from '$/qiniu/qiniu'
 
 Page({
   data: {

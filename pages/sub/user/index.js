@@ -1,6 +1,6 @@
 import WxValidate from '$/WxValidate'
 import { updateUserInfo, getUserInfoByID } from '$/api'
-import { uploadImgWithToken } from '$/qiniu'
+import { uploadImgWithToken } from '$/qiniu/qiniu'
 import { formatDate } from '$/util'
 import Notify from '@vant/weapp/notify/notify';
 import { loginForToken } from "../../../modules/tokenManager/getToken"

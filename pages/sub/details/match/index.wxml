@@ -3,10 +3,8 @@
 <view class="contanier">
 
   <view wx:if="{{ match.organizer == id }}">
-    <image class="edit" src="{{icon.edit}}" mode="aspectFill" />
+    <image class="edit" src="{{ icon.edit }}" mode="aspectFill" bind:tap="onEditBtn" />
   </view>
-
-
 
   <swiper circular indicator-dots indicator-color="#FFFFFF" style="height: {{swiperHeight}};" bindchange="swiperChange">
     <swiper-item>
@@ -18,13 +16,13 @@
   </swiper>
 
   <view class="sub-container">
-    <image class="star-icon" src="{{ octagonalStar }}" mode="aspectFill" />
+    <image class="star-icon" src="{{ icon.star }}" mode="aspectFill" />
     <view class="cost-tip">
       {{match.price}}
     </view>
 
     <view class="mask">
-      <image class="type" src="{{ typeUrl }}" mode="widthFix"></image>
+      <image class="type" src="{{ icon.type }}" mode="widthFix"></image>
       <view class="name">
         {{match.name}}
       </view>
@@ -33,11 +31,11 @@
     <view class="mid">
       <view class="date-address">
         <view class="cell">
-          <image class=".child" src="{{clockUrl}}" mode="scaleToFill"> </image>
+          <image class=".child" src="{{icon.clock}}" mode="scaleToFill"> </image>
           {{ tools.formatStartTime(match.start_time) }}
         </view>
         <view class="cell">
-          <image class=".child" src="{{locationUrl}}" mode="scaleToFill"></image>
+          <image class=".child" src="{{icon.location}}" mode="scaleToFill"></image>
           {{ tools.formatLocation(match.location)}}
         </view>
       </view>

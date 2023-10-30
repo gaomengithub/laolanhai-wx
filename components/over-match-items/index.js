@@ -1,7 +1,7 @@
 import { iconUrls, imgUrls } from '$/urls'
 import routeInterceptor from '$/router'
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { user } from "../../stores/";
+import { user } from "../../stores/user-store";
 Component({
   properties: {
 

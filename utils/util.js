@@ -2,11 +2,14 @@ export function formatDate(date) {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
-  // const hour = date.getHours()
-  // const minute = date.getMinutes()
-  // const second = date.getSeconds()
 
   return `${[year, month, day].map(formatNumber).join('-')}`
+}
+
+export function formatTime(date) {
+  const hours = date.getHours().toString()
+  const minutes = date.getMinutes().toString()
+  return `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`
 }
 
 const formatNumber = n => {
@@ -38,12 +41,3 @@ export function getDifferenceInMinute(time1, time2) {
 }
 
 
-export function revertQiniuKey(str) {
-  try {
-    const key = str.replace("https://store.obabyball.com/","").split("?e=")[0]
-    return key
-  } catch {
-    return str
-  }
-
-}

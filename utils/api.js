@@ -78,10 +78,6 @@ export async function getUploadToken() {
 }
 
 
-export async function uploadImage(path, url) {
-  return await uploadImg(path, url)
-}
-
 
 export async function updateUserInfo(data) {
   let obj = {
