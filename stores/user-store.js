@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getUserInfo, getMyJoinMatches, getMatchApprovals } from '$/api'
+import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo } from '$/api'
 import { uploadImgWithToken } from '$/qiniu/qiniu'
 import { handleErr } from '../modules/errorHandler'
 export const user = observable({
@@ -16,6 +16,8 @@ export const user = observable({
     nickName: '',
     weight: '',
     avatarKey: '',
+    // 自有字段
+    date: ''  //vant 组件要求传入时间戳 birthDate为字符串
   },
 
   get id() {
@@ -55,13 +57,26 @@ export const user = observable({
     this.matches = data.matches
   }),
 
+  // 用于提交后端修改
+  modifyUserInfo: action(async function () {
+    try {
+      const patch = {
+        avatar: this.user.avatarKey
+      }
+      const form = { ...this.user, ...patch }
+      await updateUserInfo(form)
+    } catch (e) {
+
+    }
+  }),
+
   updateUserInfo: action(async function (form) {
     if (form) {
       if (form.avatarUrl) {
         // 修改头像
         const data = await uploadImgWithToken(form.avatarUrl)
+        console.log(data)
         this.user.avatarKey = data.key
-        // this.user.avatar = 
         this.user = Object.assign({}, this.user, { avatar: form.avatarUrl })
       }
       else {
@@ -71,12 +86,11 @@ export const user = observable({
     else {
       try {
         const data = await getUserInfo()
-        this.user = data
-        // 临时
-        if (!this.user.avatar) {
-          this.user.avatar = 'https://openstore.obabyball.com/ui_v1/icon/defult-avater.svg',
-            this.user.avatar_key = 'efult-avater.svg'
+        const date = new Date(data.birthDate)
+        const patch = {
+          date: date.getTime()
         }
+        this.user = { ...data, ...patch }
       } catch (e) {
 
       }

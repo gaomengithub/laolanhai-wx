@@ -1,4 +1,4 @@
-import { yearMonth } from '$/util'
+import { formatDate } from '$/util'
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { handleErr } from '../../../modules/errorHandler'
 import { user } from "../../../stores/user-store"
@@ -21,9 +21,7 @@ function formatter(type, value) {
   return `${value}日`;
 }
 
-// const computedBehavior = require('miniprogram-computed').behavior
 Page({
-  // behaviors: [computedBehavior],
   data: {
     heightColumns: [{ values: createColumns([140, 200], 'cm'), defaultIndex: 28 }],
     weightColumns: [{ values: createColumns([50, 100], 'kg'), defaultIndex: 18 }],
@@ -36,99 +34,8 @@ Page({
     showHeightPicker: false,
   },
 
-
-
-  onInput(event) {
-    this.setData({
-      date: event.detail,
-      currentDate: formatDate(new Date(event.detail)),
-    });
-  },
-  onChange(e) {
-    const type = e.currentTarget.dataset.type
-    this.setData({
-      [type]: e.detail.value[0]
-    })
-  },
-  // watch: {
-  //   'avatarUrl, nickName': function (a, n) {
-  //     if (a.length > 0 && n.length > 0) {
-  //       this.setData({
-  //         disabled: false
-  //       })
-  //     }
-  //     if (a.length == 0 || n.length == 0) {
-  //       this.setData({
-  //         disabled: true
-  //       })
-  //     }
-  //   }
-  // },
-  validate(e) {
-    // 头像填写的验证的折中方法
-    const key = e.currentTarget.dataset.key
-    let data = null
-    if (key == "showNameTip") {
-      data = {
-        nickName: this.data.nickName,
-        avatarUrl: "stand"
-      }
-    }
-
-    if (key == "showAvatarTip") {
-      data = {
-        nickName: 'stand',
-        avatarUrl: this.data.avatarUrl
-      }
-    }
-
-    if (!this.WxValidate.checkForm(data)) {
-      this.setData({
-        [key]: true
-      })
-    } else {
-      this.setData({
-        [key]: false,
-      })
-    }
-  },
-  onClose(e) {
-    const key = e.currentTarget.dataset.key
-    this.setData({
-      [key]: false
-    })
-  },
-
-
-
-  getPhoneNumber(e) {
-    wx.showLoading({
-      title: '请等待',
-    })
-    const userData = {
-      id: wx.getStorageSync('id'),
-      nickName: this.data.nickName,
-      phoneCode: e.detail.code,
-      avatar: this.data.avatarKey
-    }
-    updateUserInfo(userData).then(() => {
-      wx.hideLoading()
-      wx.showModal({
-        content: '注册成功',
-        showCancel: false,
-        complete: (res) => {
-          if (res.confirm) {
-            wx.switchTab({
-              url: '/pages/home/index',
-            })
-          }
-        }
-      })
-      // 主要是更新缓存
-      loginForToken().then(res => {
-        setStorage(res)
-      })
-    })
+  onUpdateUserInfo() {
+    this.modifyUserInfo()
   },
 
   onDisplay(e) {
@@ -148,37 +55,13 @@ Page({
   },
 
 
-
-
-
-
-
-  initValidate() {
-    const rules = {
-      avatarUrl: {
-        required: true
-      },
-      nickName: {
-        required: true
-      },
-    }
-    const messages = {
-      avatarUrl: {
-        required: '需要选择头像'
-      },
-      nickName: {
-        required: '昵称不能为空'
-      }
-    }
-    this.WxValidate = new WxValidate(rules, messages)
-  },
   handler(e) {
     console.log(e)
     const key = e.currentTarget.dataset.key
     let val = e.detail
     if (key == 'birthDate') {
       const date = new Date(e.detail)
-      val = yearMonth(date)
+      val = formatDate(date)
     }
     if (key == 'height' || key == 'weight') {
       val = e.detail.value[0]
@@ -191,11 +74,12 @@ Page({
     }
     this.updateUserInfo(form)
   },
+
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: user,
       fields: ["user", "isUser"],
-      actions: ["updateUserInfo"],
+      actions: ["updateUserInfo","modifyUserInfo"],
     });
 
     const id = options.id

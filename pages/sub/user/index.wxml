@@ -8,13 +8,13 @@
   <text wx:if="{{ showAvatarTip }}" class="tip" style="margin-top: -40rpx;">请选择有效的头像</text>
 
   <!-- 昵称 -->
-  <van-field label="昵称" value="{{ user.nickName }}" type="nickname" placeholder="请输入昵称" bind:change="handler" data-key="nickName" />
+  <van-field label="昵称" value="{{ user.nickName || '' }}" type="nickname" placeholder="请输入昵称" bind:change="handler" data-key="nickName" />
   <text wx:if="{{ showNameTip }}" class="tip"> 请输入有效的昵称 </text>
 
   <!-- 出生日期 -->
   <van-cell title="出生日期" is-link bind:click="onDisplay" value="{{ user.birthDate }}" data-show="showDatePicker" />
   <van-popup show="{{ showDatePicker }}" bind:close="onDisplay" position="bottom" custom-style="height: 40%;" data-show="showDatePicker">
-    <van-datetime-picker type="year-month" value="{{ user.birthDate }}" min-date="{{ minDate }}" formatter="{{ formatter }}" bind:confirm="handler" bind:cancel="onDisplay" data-key="birthDate" data-show="showDatePicker" />
+    <van-datetime-picker type="date" value="{{ user.date }}" min-date="{{ minDate }}" formatter="{{ formatter }}" bind:confirm="handler" bind:cancel="onDisplay" data-key="birthDate" data-show="showDatePicker" />
   </van-popup>
 
   <!-- 补充 -->
@@ -29,14 +29,14 @@
     <van-popup show="{{ showWeightPicker }}" bind:close="onDisplay" position="bottom" custom-style="height: 30%;" data-show="showWeightPicker">
       <van-picker columns="{{ weightColumns }}" show-toolbar="{{ true }}" title="选择体重" bind:confirm="onDisplay" bind:cancel="onDisplay" bind:change="handler" data-show="showWeightPicker" data-key="weight" />
     </van-popup>
-    <van-field label="自我介绍" border="{{ false }}" type="textarea" autosize="{{ { minHeight:50 } }}" value="{{ user.about }}" placeholder="请输入一段自我介绍" />
+    <van-field label="自我介绍" border="{{ false }}" type="textarea" autosize="{{ { minHeight:50 } }}" value="{{ user.about || '' }}" bind:change="handler" data-key="about" placeholder="请输入一段自我介绍" />
 
   </view>
 
 
   <!-- 提交 -->
   <view wx:if="{{ !isUser }}">
-    <van-button open-type="getPhoneNumber" bind:getphonenumber="getPhoneNumber" custom-class="btn">完善</van-button>
+    <van-button open-type="getPhoneNumber" bind:getphonenumber="onUpdateUserInfo" custom-class="btn">创建</van-button>
   </view>
   <view wx:if="{{ isUser }}">
     <van-button bind:click="onUpdateUserInfo" custom-class="btn">完善</van-button>
