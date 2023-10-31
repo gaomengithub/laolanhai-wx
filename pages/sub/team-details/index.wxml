@@ -1,0 +1,18 @@
+<nav-bar title="球队详情"></nav-bar>
+<image class="bg-img" src="{{ bgImg }}" mode="aspectFill" />
+
+<view class="container">
+  <view class="team-card">
+    <team-card team="{{ teamDetails }}"></team-card>
+  </view>
+  <view class="list">
+    <top-line name="我的队员" more="false"></top-line>
+    <player-items></player-items>
+  </view>
+  <view class="list">
+    <top-line name="待加入队员" more="false"></top-line>
+  </view>
+</view>
+<auth-show expect="no45?{{ items.id }}">
+  <bottom-btn-bar name="立即加入" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn"></bottom-btn-bar>
+</auth-show>

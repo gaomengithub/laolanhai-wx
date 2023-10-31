@@ -224,3 +224,24 @@
   height: 65rpx;
   width: 65rpx;
 }
+
+.cell-items {
+  width: 600rpx !important;
+  padding: 22rpx 0;
+  /* letter-spacing: 4rpx; */
+}
+
+.cell-title {
+  font-size: 32rpx !important;
+  font-weight: 600;
+}
+
+.btn {
+  color: #fff !important;
+  font-size: 36rpx !important;
+  font-weight: 600;
+  letter-spacing: 8rpx;
+  height: 100rpx !important;
+  border: none !important;
+  background-color: #FB8808 !important;
+}

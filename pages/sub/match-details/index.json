@@ -4,7 +4,12 @@
     "nav-bar": "/components/nav-bar/index",
     "bottom-btn-bar":"/components/bottom-btn-bar/index",
     "logo-bar":"/components/logo-bar/index",
-    "auth-show":"/components/auth-show/index",
-    "van-action-sheet": "@vant/weapp/action-sheet/index"
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-button": "@vant/weapp/button/index"
   }
 }

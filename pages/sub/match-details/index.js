@@ -5,8 +5,9 @@ import routeInterceptor from '$/router'
 Page({
   data: {
     show: false,
-    actions: [{ name: '结束比赛', color: '#ee0a24' }, { name: '编辑详情' }],
-
+    showPopup: false,
+    actions: [{ name: '变更比赛状态', color: '#ee0a24' }, { name: '编辑比赛详情' }],
+    radio: '1',
     icon: {
       edit: 'https://openstore.obabyball.com/ui_v1/icon/match-detail-edit-v2.svg',
       clock: 'https://openstore.obabyball.com/ui_v1/icon/desc-clock-v1.svg',
@@ -24,14 +25,35 @@ Page({
       this.joinMatch(this.data.match.id)
     }
   },
-  onDisplay() {
+  onDisplay(e) {
+    const show = e.currentTarget.dataset.show
+    const curr = this.data[show]
     this.setData({
-      show: !this.data.show
+      [show]: !curr
     })
   },
+
+  handleCatch() {
+
+  },
+
+  onChange(event) {
+    let radio = event.detail
+    const { name } = event.currentTarget.dataset;
+    if (name) {
+      radio = name
+    }
+    this.setData({
+      radio
+    });
+  },
+
   onSelect(e) {
-    if (e.detail.name == '结束比赛') {
-      this.updateMatchStatus(this.data.match.id, 4)
+    if (e.detail.name == '变更比赛状态') {
+      this.setData({
+        showPopup: true
+      })
+      
     } else {
       const path = `/pages/sub/create-modify-match/index?page=modify&id=${this.data.match.id}`
       routeInterceptor.navigateTo(path)
@@ -56,6 +78,12 @@ Page({
         })
       }
     })
+  },
+  handleClick() {
+    this.setData({
+      showPopup: false
+    })
+    // this.updateMatchStatus(this.data.match.id, 4)
   },
 
   onUnload() {

@@ -44,3 +44,11 @@
   padding: 22rpx;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
 }
+
+.edit {
+  bottom: 50rpx;
+  right: 50rpx;
+  position: fixed;
+  width: 80rpx;
+  height: 80rpx;
+}

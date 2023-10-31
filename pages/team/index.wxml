@@ -8,12 +8,10 @@
         <swiper class="team-swiper" indicator-dots="{{ true }}">
           <swiper-item wx:for="{{ myTeams }}" wx:key="index">
             <team-card team="{{ item }}">
-              <navigator url="/pages/sub/details/team/index?id={{ item.id }}" open-type="navigate">
-                <view class="active">
+                <view class="active" bind:tap="handleTap" data-id="{{ item.id }}">
                   <text>详情</text>
                   <image class="arrow" src="{{ arrow }}" mode="aspectFill" />
                 </view>
-              </navigator>
             </team-card>
           </swiper-item>
         </swiper>
