@@ -1,0 +1,27 @@
+<nav-bar title="资讯"></nav-bar>
+<view class="banner">
+  <view class="title">{{ newsDetails.title }}</view>
+  <view class="date">
+    #日期：#
+  </view>
+</view>
+
+<view class="container">
+  <view class="main">
+    <van-collapse value="{{ active }}" border="{{ false }}" bind:change="onChange">
+      <van-collapse-item name="1">
+        <view slot="title">
+          <top-line name="基本信息" more="false"></top-line>
+        </view>
+        这里是基本信息
+      </van-collapse-item>
+      <van-collapse-item name="2">
+        <view slot="title">
+          <top-line name="附件" more="false"></top-line>
+
+        </view>
+        这里是附件
+      </van-collapse-item>
+    </van-collapse>
+  </view>
+</view>

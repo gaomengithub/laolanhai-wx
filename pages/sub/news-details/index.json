@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "nav-bar":"/components/nav-bar",
+    "van-collapse": "@vant/weapp/collapse/index",
+    "van-collapse-item": "@vant/weapp/collapse-item/index",
+    "top-line":"/components/top-line/index"
+  }
+}

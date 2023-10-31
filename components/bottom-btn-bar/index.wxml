@@ -1,5 +1,12 @@
-<!--component/active-bar/index.wxml-->
 <view style="height: 166rpx;"></view>
+
 <view class="container" style="background-color: {{ containerBgColor }};">
-  <van-button custom-class="btn" custom-style="color:{{ textColor }};" color="{{ btnBgColor }}" round bind:click="triggerCustomEvent">{{ name }}</van-button>
+  <view class="main">
+    <van-button custom-class="btn" custom-style="color:{{ textColor }};" color="{{ btnBgColor }}" round bind:click="triggerCustomEvent">
+      {{ name }}
+    </van-button>
+    <slot></slot>
+  </view>
+
+
 </view>

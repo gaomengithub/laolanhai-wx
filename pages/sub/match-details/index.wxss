@@ -220,10 +220,7 @@
 }
 
 .edit {
-  position: fixed;
-  margin-top: 25rpx;
-  right: 25rpx;
+  margin-top: 6rpx;
   height: 65rpx;
   width: 65rpx;
-  z-index: 3;
 }

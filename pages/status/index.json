@@ -1,12 +1,11 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-
     "van-button": "@vant/weapp/button/index",
     "nav-bar": "/components/nav-bar/index",
     "van-tabs":"@vant/weapp/tabs/index",
     "van-tab":"@vant/weapp/tab/index",
-    "over-match-items":"/components/over-match-items/index"
-
+    "over-match-items":"/components/over-match-items/index",
+    "news-items":"/components/news-items/index"
   }
 }

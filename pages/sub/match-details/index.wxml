@@ -1,14 +1,12 @@
-<nav-bar title="{{ navTitle }}"></nav-bar>
+<nav-bar title="老蓝孩俱乐部"></nav-bar>
 <wxs src="./index.wxs" module="tools" />
 <view class="contanier">
 
-  <view wx:if="{{ match.organizer == id }}">
-    <image class="edit" src="{{ icon.edit }}" mode="aspectFill" bind:tap="onEditBtn" />
-  </view>
+
 
   <swiper circular indicator-dots indicator-color="#FFFFFF" style="height: {{swiperHeight}};" bindchange="swiperChange">
     <swiper-item>
-      <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{match.banner_attachments}}" mode="aspectFill" />
+      <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{match.banner_attachments || ''}}" mode="aspectFill" />
     </swiper-item>
     <swiper-item>
       <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{match.attachments}}" mode="aspectFill" />
@@ -64,4 +62,12 @@
 
 </view>
 
-<bottom-btn-bar name="{{tools.isEnterMatch(match.users,id)}}" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn" />
+<bottom-btn-bar name="{{ tools.isEnterMatch(match.users,id) }}" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn">
+
+  <view wx:if="{{ match.organizer == id }}">
+    <image class="edit" src="{{ icon.edit }}" mode="aspectFill" bind:tap="onDisplay" />
+  </view>
+
+</bottom-btn-bar>
+
+<van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onDisplay" bind:select="onSelect" />

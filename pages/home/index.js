@@ -47,7 +47,7 @@ Page({
       fields: ["matches"],
       actions: ["updateMatches", "modifyOptions"],
     });
-    // this.updateMatches()
+    this.updateMatches()
   },
   onUnload() {
     this.storeBindings.destroyStoreBindings();

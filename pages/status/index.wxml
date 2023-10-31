@@ -1,4 +1,4 @@
-<nav-bar title="{{navTitle}}"></nav-bar>
+<nav-bar title="赛况"></nav-bar>
 
 <view class="container">
 
@@ -8,11 +8,16 @@
       <over-match-items></over-match-items>
     </van-tab>
     <van-tab title="资讯">
-    <view class="create">
-      <van-button custom-class="create-btn" block round color="linear-gradient(to right, #4bb0ff, #6149f6)" bind:click="onBtnClick">
-        我要发布
-      </van-button>
-    </view>
+      <view class="create">
+        <image class="icon" src="{{ icon.news }}" mode="aspectFit" />
+        <view class="text">我有比赛资讯，我要发布~</view>
+        <van-button custom-class="btn" block round color="#000000" bind:click="onBtnClick">
+          <view class="text">去发布</view>
+        </van-button>
+      </view>
+      <view class="news-items">
+      <news-items></news-items>
+      </view>
     </van-tab>
   </van-tabs>
 </view>

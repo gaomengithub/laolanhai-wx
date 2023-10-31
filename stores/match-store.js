@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch } from '$/api'
+import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus } from '$/api'
 import { uploadImgWithToken } from '$/qiniu/qiniu'
 import { matchFormMessages, matchFormRules } from '$/validate-set'
 import WxValidate from '$/WxValidate'
@@ -131,6 +131,18 @@ export const match = observable({
           console.log("修改比赛失败")
         }
       }
+    }
+  }),
+
+  updateMatchStatus: action(async function (id, code) {
+    const data = {
+      id,
+      status: code
+    }
+    try {
+      await updateMatchStatus(data)
+    } catch (e) {
+
     }
   }),
 

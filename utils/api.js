@@ -217,3 +217,44 @@ export async function getArenas() {
   }
   return await request_(obj)
 }
+
+
+export async function createNews(data) {
+  let obj = {
+    url: '/match/createMatchNews',
+    method: 'POST',
+    data: data
+  }
+  return await request_(obj)
+}
+
+
+export async function getNewsList() {
+  let obj = {
+    url: '/match/listMatchNews',
+    method: 'GET',
+  }
+  return await request_(obj)
+}
+
+
+export async function getNewsDetails(id) {
+  let obj = {
+    url: '/match/getMatchNews',
+    method: 'GET',
+    data: {
+      id
+    }
+  }
+  return await request_(obj)
+}
+
+
+export async function updateMatchStatus(data) {
+  let obj = {
+    url: '/match/updateMatchStatus',
+    method: 'POST',
+    data: data
+  }
+  return await request_(obj)
+}

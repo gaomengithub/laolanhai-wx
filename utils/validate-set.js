@@ -143,6 +143,44 @@ export const arenaFormMessages = {
   },
 }
 
+export const newsFormRules = {
+  files_count: {
+    min: 1
+  },
+  title: {
+    required: true
+  },
+  description: {
+    required: true
+  },
+  date: {
+    required: true
+  },
+  region: {
+    required: true,
+  },
+
+}
+
+export const nesFormMessages = {
+  files_count: {
+    min: '需要上传必要图片'
+  },
+  title: {
+    required: '标题不能为空'
+  },
+  description: {
+    required: '描述不能为空'
+  },
+  date: {
+    required: '日期不能为空'
+  },
+  region: {
+    required: '地区不能为空',
+  },
+
+}
+
 //创建球队
 export const teamFormRules = {
   name: {

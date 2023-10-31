@@ -17,7 +17,8 @@
     "pages/sub/referee/index",
     "pages/sub/create-modify-arena/index",
     "pages/sub/create-modify-news/index",
-    "pages/sub/create-modify-match/index"
+    "pages/sub/create-modify-match/index",
+    "pages/sub/news-details/index"
   ],
   "permission": {
     "scope.userFuzzyLocation": {

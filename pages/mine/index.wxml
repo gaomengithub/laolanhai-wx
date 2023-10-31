@@ -3,6 +3,7 @@
 </view>
 
 <view class="container">
+  <image class="react" src="https://openstore.obabyball.com/ui_v1/icon/Rectangle-grey-round.svg" mode="aspectFill" />
   <view class="user">
     <image class="avatar" src="{{ user.avatar }}" mode="scaleToFill" />
     <view class="name">
@@ -23,7 +24,7 @@
       </view>
     </view>
     <view class="cell" bind:tap="onCellClick" data-path="apply">
-      <image class="icon" src="{{ icon.apply }}" mode="aspectFill" />
+      <image class="icon" src="{{ icon.apply }}" mode="widthFix" />
       <view class="text">
         申请
       </view>
@@ -38,6 +39,7 @@
   <joined-card items="{{ matches }}">
     <top-line name="已参加的" more="false"></top-line>
   </joined-card>
+
   <honor-card></honor-card>
 
 </view>

@@ -4,9 +4,11 @@ import { user } from "../../../stores/user-store"
 import routeInterceptor from '$/router'
 Page({
   data: {
-    navTitle: "老蓝孩俱乐部",
+    show: false,
+    actions: [{ name: '结束比赛', color: '#ee0a24' }, { name: '编辑详情' }],
+
     icon: {
-      edit: 'https://openstore.obabyball.com/ui_v1/icon/match-edit-v1.svg',
+      edit: 'https://openstore.obabyball.com/ui_v1/icon/match-detail-edit-v2.svg',
       clock: 'https://openstore.obabyball.com/ui_v1/icon/desc-clock-v1.svg',
       location: 'https://openstore.obabyball.com/ui_v1/icon/desc-location-v1.svg',
       star: 'https://openstore.obabyball.com/ui_v1/icon/octagonal-star.svg',
@@ -16,14 +18,23 @@ Page({
     swiperHeight: wx.getSystemInfoSync().windowWidth + 'px',
     windowWidth: wx.getSystemInfoSync().windowWidth,
   },
-  onEditBtn() {
-    const path = `/pages/sub/create-modify-match/index?page=modify&id=${this.data.match.id}`
-    routeInterceptor.navigateTo(path)
-  },
 
   onJoinBtn() {
     if (this.data.match.id) {
       this.joinMatch(this.data.match.id)
+    }
+  },
+  onDisplay() {
+    this.setData({
+      show: !this.data.show
+    })
+  },
+  onSelect(e) {
+    if (e.detail.name == '结束比赛') {
+      this.updateMatchStatus(this.data.match.id, 4)
+    } else {
+      const path = `/pages/sub/create-modify-match/index?page=modify&id=${this.data.match.id}`
+      routeInterceptor.navigateTo(path)
     }
   },
 
@@ -55,7 +66,7 @@ Page({
     this.storeBindings = createStoreBindings(this, {
       store: match,
       fields: ["match"],
-      actions: ["updateMatch", "joinMatch"],
+      actions: ["updateMatch", "joinMatch", "updateMatchStatus"],
     });
     this.storeBindings_ = createStoreBindings(this, {
       store: user,

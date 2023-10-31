@@ -4,6 +4,7 @@
     "nav-bar": "/components/nav-bar/index",
     "bottom-btn-bar":"/components/bottom-btn-bar/index",
     "logo-bar":"/components/logo-bar/index",
-    "auth-show":"/components/auth-show/index"
+    "auth-show":"/components/auth-show/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index"
   }
 }

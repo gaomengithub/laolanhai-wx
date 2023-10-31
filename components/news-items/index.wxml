@@ -1,0 +1,15 @@
+<!--components/news-items/index.wxml-->
+<view class="container">
+  <view class="card" wx:for="{{newsList || []}}" wx:key="id">
+    <view class="content">
+      <view class="title">{{ item.title }}</view>
+      <view class="date">日期：</view>
+    </view>
+    <view class="actvie">
+      <van-button custom-class="btn" round bind:click="handleClick" data-id="{{ item.id }}">
+        立即查看
+      </van-button>
+    </view>
+
+  </view>
+</view>
