@@ -2,8 +2,8 @@ const app = getApp()
 
 const switchTabUrls = [
   "pages/home/index",
-  "pages/status/index",
-  "pages/team/index",
+  "pages/result/index",
+  "pages/sphere/index",
   "pages/mine/index"
 ]
 

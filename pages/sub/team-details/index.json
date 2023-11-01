@@ -3,7 +3,6 @@
     "team-card":"/components/team-card/index",
     "nav-bar": "/components/nav-bar/index",
     "player-items":"/components/player-items/index",
-    "auth-show":"/components/auth-show/index",
     "apply-items":"/components/apply-items/index",
     "van-button": "@vant/weapp/button/index",
     "bottom-btn-bar":"/components/bottom-btn-bar/index",

@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getTeamsList, getTeamDesc, getTeamApprovalList, updateApproval } from '$/api'
+import { getTeamsList, getTeamDesc, getTeamApprovalList, updateApproval } from '$/utils/api'
 import { handleErr } from '../modules/msgHandler'
 export const team = observable({
   teamDetails: {

@@ -1,6 +1,6 @@
 import * as echarts from '../../libs/ec-canvas/echarts';
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { user } from "../../stores/user-store";
+import { user } from "$/stores/user-store";
 
 function setOption(chart) {
   var option = {

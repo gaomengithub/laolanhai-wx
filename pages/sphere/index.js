@@ -1,8 +1,8 @@
 
-import routeInterceptor from '$/router'
+import routeInterceptor from '$/utils/router'
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { team } from "../../stores/team-store";
-import { arena } from "../../stores/arena-store";
+import { team } from "$/stores/team-store";
+import { arena } from "$/stores/arena-store";
 Page({
   data: {
     offset: getApp().globalData.common.navBarHeight,

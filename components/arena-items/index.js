@@ -1,5 +1,5 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { arena } from "../../stores/arena-store";
+import { arena } from "$/stores/arena-store";
 Component({
   behaviors:[storeBindingsBehavior],
   properties: {

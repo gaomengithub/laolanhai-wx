@@ -258,3 +258,13 @@ export async function updateMatchStatus(data) {
   }
   return await request_(obj)
 }
+
+
+export async function updateMatchPhoto(data) {
+  let obj = {
+    url: '/match/uploadMatchPhoto',
+    method: 'POST',
+    data: data
+  }
+  return await request_(obj)
+}

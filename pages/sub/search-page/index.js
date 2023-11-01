@@ -1,5 +1,5 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { search } from "../../../stores/search-store";
+import { search } from "$/stores/search-store";
 
 Page({
 

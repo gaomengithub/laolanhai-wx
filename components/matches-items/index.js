@@ -1,7 +1,7 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { match } from "../../stores/match-store";
-import { search } from "../../stores/search-store";
-import routeInterceptor from '$/router'
+import { match } from "$/stores/match-store";
+import { search } from "$/stores/search-store";
+import routeInterceptor from '$/utils/router'
 Component({
   properties: {
     isSearch: {

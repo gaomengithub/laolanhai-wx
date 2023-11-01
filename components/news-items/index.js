@@ -1,6 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { news } from "../../stores/news-store";
-import routeInterceptor from '$/router'
+import { news } from "$/stores//news-store";
+import routeInterceptor from '$/utils/router'
 Component({
   behaviors: [storeBindingsBehavior],
   storeBindings: {

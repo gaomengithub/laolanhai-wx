@@ -1,4 +1,5 @@
 <view class="container">
+  <view class="eidt">编辑</view>
   <image class="person" src="{{ personImg }}" mode="aspectFit" />
   <view class="main">
     <view class="name">{{ user.nickName }}</view>

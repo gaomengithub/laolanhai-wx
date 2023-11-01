@@ -1,4 +1,0 @@
-<!--pages/to-do/index.wxml-->
-<nav-bar title="{{navTitle}}"></nav-bar>
-<view style="height:{{navBarHeight}}px;"></view>
-<unwork></unwork>

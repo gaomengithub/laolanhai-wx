@@ -1,7 +1,7 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { match } from "../../../stores/match-store";
-import { user } from "../../../stores/user-store"
-import routeInterceptor from '$/router'
+import { match } from "$/stores/match-store";
+import { user } from "$/stores/user-store"
+import routeInterceptor from '$/utils/router'
 import { handleErr } from '../../../modules/msgHandler'
 Page({
   data: {

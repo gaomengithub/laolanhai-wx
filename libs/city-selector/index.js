@@ -1,6 +1,6 @@
 import { searchLetter, cityList } from './city.js';
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { match } from "../../stores/match-store";
+import { match } from "$/stores/match-store";
 Page({
   data: {
     navTitle: "城市选择",

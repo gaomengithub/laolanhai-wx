@@ -1,8 +1,8 @@
 import { observable, action } from "mobx-miniprogram"
-import { newsFormMessages, newsFormRules } from '$/validate-set'
-import WxValidate from '$/WxValidate'
-import { createNews, getNewsList, getNewsDetails } from '$/api'
-import { uploadImgWithToken } from '$/qiniu/qiniu'
+import { newsFormMessages, newsFormRules } from '$/utils/validate/validate-set'
+import WxValidate from '$/utils/validate/WxValidate'
+import { createNews, getNewsList, getNewsDetails } from '$/utils/api'
+import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { handleErr } from '../modules/msgHandler'
 export const news = observable({
   validate: new WxValidate(newsFormRules, newsFormMessages),

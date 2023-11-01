@@ -1,7 +1,7 @@
-import routeInterceptor from '$/router'
+import routeInterceptor from '$/utils/router'
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { news } from "../../stores/news-store"
-import { match } from "../../stores/match-store"
+import { news } from "$/stores/news-store"
+import { match } from "$/stores/match-store"
 Page({
 
   data: {

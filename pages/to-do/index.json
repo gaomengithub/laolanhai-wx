@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "unwork":"../../components/unwork",
-    "nav-bar":"/components/nav-bar"
-  }
-}

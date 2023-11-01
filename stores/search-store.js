@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram";
-import { searchAngthing } from '$/api'
+import { searchAngthing } from '$/utils/api'
 import { handleErr } from '../modules/msgHandler'
 export const search = observable({
   matches: [],

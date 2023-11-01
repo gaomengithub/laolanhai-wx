@@ -1,4 +1,4 @@
-import { iconUrls } from '../../utils/urls'
+
 
 Component({
   /**

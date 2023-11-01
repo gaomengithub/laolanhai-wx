@@ -1,3 +1,0 @@
-<view wx:if="{{ auth }}">
-  <slot></slot>
-</view>

@@ -1,21 +1,20 @@
 {
   "pages": [
     "pages/home/index",
-    "pages/status/index",
-    "pages/team/index",
+    "pages/result/index",
+    "pages/sphere/index",
     "pages/mine/index",
-    "pages/sub/user/index",
-    "pages/sub/diy-team/index",
-    "pages/sub/search/index",
+    "pages/sub/user-form/index",
+    "pages/sub/team-form/index",
+    "pages/sub/search-page/index",
     "pages/sub/match-details/index",
     "libs/city-selector/index",
     "libs/calendar/index",
-    "pages/to-do/index",
-    "pages/sub/star/index",
-    "pages/sub/referee/index",
-    "pages/sub/create-modify-arena/index",
-    "pages/sub/create-modify-news/index",
-    "pages/sub/create-modify-match/index",
+    "pages/sub/star-page/index",
+    "pages/sub/referee-form/index",
+    "pages/sub/arena-form/index",
+    "pages/sub/news-form/index",
+    "pages/sub/match-form/index",
     "pages/sub/news-details/index",
     "pages/sub/team-details/index",
     "pages/sub/match-result/index"
@@ -38,11 +37,11 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/status/index",
+        "pagePath": "pages/result/index",
         "text": "赛况"
       },
       {
-        "pagePath": "pages/team/index",
+        "pagePath": "pages/sphere/index",
         "text": "球队"
       },
       {
@@ -55,6 +54,7 @@
   "useExtendedLib": {},
   "lazyCodeLoading": "requiredComponents",
   "resolveAlias": {
-    "$/*": "/utils/*"
+    "$/utils/*": "/utils/*",
+    "$/stores/*": "/stores/*"
   }
 }

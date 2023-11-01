@@ -1,9 +1,8 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { match } from "../../../stores/match-store"
+import { match } from "$/stores//match-store"
 Page({
   data: {
     active: ['1', '2'],
-    maxCount: 5,
   },
 
   onChange(event) {
@@ -14,7 +13,7 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: match,
-      fields: ["matchResult", ],
+      fields: ["matchResult",],
       actions: ["updateMatchResult"]
     });
     if (options.id) {
@@ -25,7 +24,8 @@ Page({
   onUnload() {
     this.storeBindings.destroyStoreBindings();
   },
-
-
-
+  afterRead(e) {
+    const { file } = e.detail;
+    this.updateMatchResult(file)
+  }
 })

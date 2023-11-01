@@ -1,5 +1,5 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { team } from "../../stores/team-store";
+import { team } from "$/stores/team-store";
 
 Component({
   behaviors: [storeBindingsBehavior],

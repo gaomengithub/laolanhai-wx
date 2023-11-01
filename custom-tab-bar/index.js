@@ -1,4 +1,3 @@
-import { iconUrls } from '../utils/urls'
 
 Component({
   data: {
@@ -7,29 +6,29 @@ Component({
     selected: 0,
     color: "#A3A3A3",
     selectedColor: "#000000",
-    addIcon:iconUrls.barAdd,
-    closeIcon:iconUrls.barClose,
+    addIcon: 'https://openstore.obabyball.com/ui_v1/icon/bar-add-v1.svg',
+    closeIcon: 'https://openstore.obabyball.com/ui_v1/icon/bar-close-v1.svg',
     list: [{
       pagePath: "/pages/home/index",
-      iconPath:  iconUrls.barHomeGrey,
-      selectedIconPath: iconUrls.barHome,
+      iconPath: 'https://openstore.obabyball.com/ui_v1/icon/bar-home-grey-v1.svg',
+      selectedIconPath: 'https://openstore.obabyball.com/ui_v1/icon/bar-home-v1.svg',
       text: "首页"
     }, {
-      pagePath: "/pages/status/index",
-      iconPath:  iconUrls.barLookGrey,
-      selectedIconPath: iconUrls.barLook,
+      pagePath: "/pages/result/index",
+      iconPath: 'https://openstore.obabyball.com/ui_v1/icon/bar-look-grey-v1.svg',
+      selectedIconPath: 'https://openstore.obabyball.com/ui_v1/icon/bar-look-v1.svg',
       text: "赛况"
     }, {
       //占位
     }, {
-      pagePath: "/pages/team/index",
-      iconPath:  iconUrls.barTeamGrey,
-      selectedIconPath: iconUrls.barTeam,
+      pagePath: "/pages/sphere/index",
+      iconPath: 'https://openstore.obabyball.com/ui_v1/icon/bar-team-grey-v1.svg',
+      selectedIconPath: 'https://openstore.obabyball.com/ui_v1/icon/bar-team-v1.svg',
       text: "球界"
     }, {
       pagePath: "/pages/mine/index",
-      iconPath:  iconUrls.barMineGrey,
-      selectedIconPath: iconUrls.barMine,
+      iconPath: 'https://openstore.obabyball.com/ui_v1/icon/bar-mine-grey-v1.svg',
+      selectedIconPath: 'https://openstore.obabyball.com/ui_v1/icon/bar-mine-v1.svg',
       text: "我的"
     }],
   },

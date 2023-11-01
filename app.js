@@ -1,4 +1,4 @@
-import Common from '$/common'
+import Common from '$/utils/common'
 import { loginForToken } from 'modules/tokenManager/getToken'
 
 App({
@@ -13,7 +13,7 @@ App({
 })
 
 async function initRegister() {
-  const keys = ['accessToken', 'expireAt', 'nickName', 'openId', 'quals', 'refreshToken' ,'id'];
+  const keys = ['accessToken', 'expireAt', 'nickName', 'openId', 'quals', 'refreshToken', 'id'];
   for (const key of keys) {
     const value = wx.getStorageSync(key);
     if (!value) {

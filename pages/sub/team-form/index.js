@@ -1,9 +1,8 @@
-import { iconUrls } from '$/urls'
-import { options } from '$/pca-code'
-import { addTeamMessages, addTeamRules } from '$/validate-set'
-import WxValidate from '$/WxValidate'
-import { createTeam, getTeamDesc, updateTeam } from '$/api'
-import { uploadImgWithToken } from '$/qiniu/qiniu'
+import { options } from '$/utils/pca-code'
+import { addTeamMessages, addTeamRules } from '$/utils/validate/validate-set'
+import WxValidate from '$/utils/validate/WxValidate'
+import { createTeam, getTeamDesc, updateTeam } from '$/utils/api'
+import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 
 let fileList = []
 let showFileList = []

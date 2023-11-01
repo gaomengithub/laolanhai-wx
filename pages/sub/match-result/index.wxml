@@ -20,11 +20,11 @@
         </view>
         <text>我上传的高光时刻：</text>
         <view class="mine">
-          <van-uploader class="img"  file-list="{{matchResult.imgs}}"/>
+          <van-uploader file-list="{{ matchResult.imgs || []}}" max-count="{{ 5 }}" bind:after-read="afterRead" />
         </view>
         <text>其他人上传的高光时刻</text>
         <view class="other">
-          <van-uploader class="img"  file-list="{{matchResult.imgs}}" deletable="{{false}}" />
+          <van-uploader file-list="{{ matchResult.imgs || []}}" max-count="{{  }}" deletable="{{false}}" />
         </view>
       </van-collapse-item>
     </van-collapse>

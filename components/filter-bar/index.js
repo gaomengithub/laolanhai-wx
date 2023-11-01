@@ -1,5 +1,5 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { match } from "../../stores/match-store";
+import { match } from "$/stores/match-store";
 Component({
   behaviors: [storeBindingsBehavior],
   storeBindings: {

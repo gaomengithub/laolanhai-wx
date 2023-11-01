@@ -1,8 +1,8 @@
 import { observable, action } from "mobx-miniprogram"
-import { createArena, getArenas } from '$/api'
-import { uploadImgWithToken } from '$/qiniu/qiniu'
-import { arenaFormMessages, arenaFormRules } from '$/validate-set'
-import WxValidate from '$/WxValidate'
+import { createArena, getArenas } from '$/utils/api'
+import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
+import { arenaFormMessages, arenaFormRules } from '$/utils/validate/validate-set'
+import WxValidate from '$/utils/validate/WxValidate'
 import { handleErr } from '../modules/msgHandler'
 
 export const arena = observable({

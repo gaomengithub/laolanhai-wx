@@ -1,5 +1,5 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { match } from "../../stores/match-store";
+import { match } from "$/stores/match-store";
 
 const app = getApp()
 let isFixed = false

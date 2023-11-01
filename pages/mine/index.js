@@ -1,6 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { user } from "../../stores/user-store"
-import routeInterceptor from '$/router'
+import { user } from "$/stores//user-store"
+import routeInterceptor from '$/utils/router'
 Page({
   data: {
     img: {

@@ -11,8 +11,8 @@
   padding: 22rpx;
 }
 
-.mine .img {
-  width: 170rpx;
-  height: 170rpx;
+.van-uploader__preview-image ,.van-uploader__upload {
+  width: 195rpx !important;
+  height: 195rpx !important;
   margin: 5rpx;
 }

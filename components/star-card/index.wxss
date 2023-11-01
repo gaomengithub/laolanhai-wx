@@ -57,3 +57,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.eidt {
+  width: 95%;
+  text-align: end;
+  line-height: 100rpx;
+  color: #969696;
+}

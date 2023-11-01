@@ -1,5 +1,5 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { user } from "../../stores/user-store";
+import { user } from "$/stores/user-store";
 Component({
   behaviors: [storeBindingsBehavior],
   properties: {

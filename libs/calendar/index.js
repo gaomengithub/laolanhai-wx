@@ -1,5 +1,5 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { match } from "../../stores/match-store";
+import { match } from "$/stores/match-store";
 Page({
   data: {
     navTitle: "日期选择",

@@ -1,5 +1,5 @@
-import { imgUrls } from '$/urls'
-import routeInterceptor from '$/router'
+
+import routeInterceptor from '$/utils/router'
 Component({
   /**
    * 组件的属性列表

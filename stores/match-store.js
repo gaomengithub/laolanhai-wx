@@ -1,10 +1,10 @@
 import { observable, action } from "mobx-miniprogram"
-import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus } from '$/api'
-import { uploadImgWithToken } from '$/qiniu/qiniu'
-import { matchFormMessages, matchFormRules } from '$/validate-set'
-import WxValidate from '$/WxValidate'
+import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto } from '$/utils/api'
+import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
+import { matchFormMessages, matchFormRules } from '$/utils/validate/validate-set'
+import WxValidate from '$/utils/validate/WxValidate'
 import { handleErr, handleInfo } from '../modules/msgHandler'
-import { formatDate, formatTime } from '$/util'
+import { formatDate, formatTime } from '$/utils/util'
 export const match = observable({
   validate: new WxValidate(matchFormRules, matchFormMessages),
   matchForm: {
@@ -51,12 +51,36 @@ export const match = observable({
     date: '全部时间' //后端还未添加该筛选条件
   },
 
-  updateMatchResult: action(async function (id) {
-    if (id) {
-      const data = await getMatchDesc(id)
+
+  updateMatchResult: action(async function (params) {
+    // console.log(obj)
+    if (params.tempFilePath) {
+      var _this = this
+      wx.compressImage({
+        src: params.tempFilePath,
+        quality: 10,
+        success: async function (res) {
+          const data = await uploadImgWithToken(res.tempFilePath)
+          const item = { url: params.tempFilePath, isImage: true }
+          _this.matchResult.imgs.push(item)
+          _this.matchResult.photo.push(data.key)
+          console.log(_this.matchResult.photo)
+          _this.matchResult = Object.assign({}, _this.matchResult, { imgs: _this.matchResult.imgs })
+          const obj = {
+            match_id: _this.matchResult.id,
+            photo: _this.matchResult.photo
+          }
+          await updateMatchPhoto(obj)
+        }
+      })
+
+    }
+    else if (typeof (params) === "string") {
+      const data = await getMatchDesc(params)
       const files = data.attachments.concat(data.banner_attachments, data.photo_for_user || [])
-      const imgs = { imgs: files.map(item => ({ url: item, isImage: true })) }
-      this.matchResult = { ...data, ...imgs }
+      const photo = [...data.attachments_key, data.banner_attachments_key]
+      const patch = { imgs: files.map(item => ({ url: item, isImage: true })), files: files, photo: photo }
+      this.matchResult = { ...data, ...patch }
     }
   }),
 

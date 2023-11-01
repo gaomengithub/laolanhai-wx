@@ -1,4 +1,4 @@
-import routeInterceptor from '$/router'
+import routeInterceptor from '$/utils/router'
 
 Component({
   properties: {
