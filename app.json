@@ -8,7 +8,6 @@
     "pages/sub/diy-team/index",
     "pages/sub/search/index",
     "pages/sub/match-details/index",
-    "pages/sub/details/look/index",
     "libs/city-selector/index",
     "libs/calendar/index",
     "pages/to-do/index",
@@ -18,7 +17,8 @@
     "pages/sub/create-modify-news/index",
     "pages/sub/create-modify-match/index",
     "pages/sub/news-details/index",
-    "pages/sub/team-details/index"
+    "pages/sub/team-details/index",
+    "pages/sub/match-result/index"
   ],
   "permission": {
     "scope.userFuzzyLocation": {
@@ -33,8 +33,7 @@
   },
   "tabBar": {
     "custom": true,
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/home/index",
         "text": "首页"
       },

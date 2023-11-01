@@ -2,6 +2,7 @@ import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { news } from "../../../stores/news-store"
 import { formatDate } from '$/util'
 import { options } from '$/pca-code'
+import { handleErr } from '../../../modules/msgHandler'
 Page({
   data: {
     options,

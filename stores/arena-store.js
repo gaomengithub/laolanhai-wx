@@ -3,7 +3,7 @@ import { createArena, getArenas } from '$/api'
 import { uploadImgWithToken } from '$/qiniu/qiniu'
 import { arenaFormMessages, arenaFormRules } from '$/validate-set'
 import WxValidate from '$/WxValidate'
-
+import { handleErr } from '../modules/msgHandler'
 
 export const arena = observable({
   validate: new WxValidate(arenaFormRules, arenaFormMessages),

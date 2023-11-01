@@ -3,8 +3,8 @@ import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMa
 import { uploadImgWithToken } from '$/qiniu/qiniu'
 import { matchFormMessages, matchFormRules } from '$/validate-set'
 import WxValidate from '$/WxValidate'
+import { handleErr, handleInfo } from '../modules/msgHandler'
 import { formatDate, formatTime } from '$/util'
-
 export const match = observable({
   validate: new WxValidate(matchFormRules, matchFormMessages),
   matchForm: {
@@ -15,6 +15,7 @@ export const match = observable({
     files: [],
     cost: '免费',
     //后端字段
+    sports_halls: '',
     age_group_end: '',
     age_group_start: '',
     attachments: [],
@@ -33,25 +34,15 @@ export const match = observable({
     price: '',
     start_time: '08:00',
   },
-
-  over: {
-    name: "我在大桥下打篮球",
-    poster: '',
-    photos: [
-      '',
-      ''
-    ],
-    users: [
-      {},
-      {}
-    ]
-  },
-
-  match: null,  //比赛详情
-  matches: null,
-  next_page_token: '',
+  overMatchesList: null,
+  matchResult: null, // 赛况中 完成了的比赛
+  matchDetails: null,  //比赛详情
+  matchesList: null,
+  next_page_token: '',  // 比赛列表的
+  // 筛选条件
   options: {
     city: '',
+    status: [0, 1],
     match_type: [],
     page_size: 10,
     page_token: '',
@@ -60,32 +51,32 @@ export const match = observable({
     date: '全部时间' //后端还未添加该筛选条件
   },
 
-  // 用于修改比赛信息
-  modifyMatchForm: action(async function (id) {
-    const data = await getMatchDesc(id)
-    // sports_halls存在问题
-    delete data['sports_halls'];
-
-    const start_date = new Date(data.start_time)
-    const end_date = new Date(data.end_time)
-    const start_time = formatTime(start_date)
-    const end_time = formatTime(end_date)
-    const date = formatDate(start_date)
-    const region = data.location.split("||")[0]
-    const address = data.location.split("||")[1]
-    const cost = ["免费", "约10元", "约20元", "约30元"][data.price[0]]
-    const patch = {
-      date,
-      start_time,
-      end_time,
-      region,
-      address,
-      cost,
-      files: [
-        { url: data.banner_attachments, isImage: true, key: data.banner_attachments_key },
-        { url: data.attachments[0], isImage: true, key: data.attachments_key[0] }]
+  updateMatchResult: action(async function (id) {
+    if (id) {
+      const data = await getMatchDesc(id)
+      const files = data.attachments.concat(data.banner_attachments, data.photo_for_user || [])
+      const imgs = { imgs: files.map(item => ({ url: item, isImage: true })) }
+      this.matchResult = { ...data, ...imgs }
     }
-    this.matchForm = { ...data, ...patch }
+  }),
+
+  initMatchForm: action(function (params) {
+    let backup = JSON.parse(JSON.stringify(matchFormBackup));
+    this.matchForm = JSON.parse(JSON.stringify(backup));
+  }),
+
+  updateMatchDetails: action(async function (id) {
+    if (id) {
+      try {
+        const data = await getMatchDesc(id)
+        this.matchDetails = data
+      } catch (e) {
+        handleErr("获取比赛详情失败")
+      }
+
+    } else {
+      handleErr("非法的比赛ID")
+    }
   }),
 
   activeMatch: action(async function () {
@@ -104,31 +95,29 @@ export const match = observable({
     const form = { ...this.matchForm, ...patch }
     if (!this.validate.checkForm(form)) {
       const error = this.validate.errorList[0];
-      wx.showModal({
-        title: '错误',
-        content: error.msg,
-        showCancel: false,
-        complete: (res) => {
-          if (res.confirm) {
-
-          }
-        }
-      })
+      handleErr(error.msg)
     }
+    // 如果表单校验合格后
     else {
       if (!this.matchForm.id) {
         //新建
         try {
           await createMatch(form)
+          handleInfo("创建成功", wx.navigateBack)
+          this.updateMatchesList()
         } catch (e) {
-          console.log("创建比赛失败")
+          handleErr("创建比赛失败")
         }
       }
+      // 修改
       else {
         try {
           await updateMatch(form)
+          // 即时刷新
+          this.updateMatchDetails(this.matchForm.id)
+          handleInfo("修改成功", wx.navigateBack)
         } catch (e) {
-          console.log("修改比赛失败")
+          handleErr("修改比赛失败")
         }
       }
     }
@@ -136,17 +125,18 @@ export const match = observable({
 
   updateMatchStatus: action(async function (id, code) {
     const data = {
-      id,
+      match_id: id,
       status: code
     }
     try {
       await updateMatchStatus(data)
     } catch (e) {
-
+      handleErr("更新失败")
     }
   }),
 
-  updateMatchForm: action(function (params) {
+  updateMatchForm: action(async function (params) {
+    // 更新图片
     if (params.tempFilePath) {
       var _this = this
       wx.compressImage({
@@ -161,12 +151,49 @@ export const match = observable({
         }
       })
     }
+    // 删除图片
     else if (typeof params === 'number') {
       this.matchForm.files.splice(params, 1)
       this.matchForm = Object.assign({}, this.matchForm, { files: this.matchForm.files })
     }
+    // 修改比赛，需要先获得比赛信息，修改form
+    else if (typeof params === 'string') {
+      try {
+        const data = await getMatchDesc(params)
+
+        const date = formatDate(new Date(data.start_time))
+        const start_time = formatTime(new Date(data.start_time))
+        const end_time = formatTime(new Date(data.end_time))
+        const [region, address] = data.location.split("||");
+        const cost = ["免费", "约10元", "约20元", "约30元"][data.price[0]]
+        const sports_halls = data.sports_halls.id
+        const files = [
+          { url: data.banner_attachments, isImage: true, key: data.banner_attachments_key },
+          { url: data.attachments[0], isImage: true, key: data.attachments_key[0] }
+        ]
+        const patch = {
+          date, start_time, end_time, region, address, cost, files, sports_halls
+        }
+
+        this.matchForm = { ...this.matchForm, ...data, ...patch }
+      } catch (e) {
+        handleErr("修改比赛，获得比赛信息失败")
+      }
+    }
+    // 更新其他字段
     else {
       this.matchForm = { ...this.matchForm, ...params }
+    }
+  }),
+
+
+  updateOverMatchesList: action(async function (patch) {
+    try {
+      const options = { ...this.options, ...patch }
+      const data = await getMatches(options)
+      this.overMatchesList = data.matches
+    } catch (e) {
+      handleErr("获取赛事错误")
     }
   }),
 
@@ -174,68 +201,30 @@ export const match = observable({
 
   modifyOptions: action(function (filter) {
     this.options = { ...this.options, ...filter }
-    this.updateMatches()
+    this.updateMatchesList()
   }),
 
-  updateMatch: action(async function (id) {
-    try {
-      const data = await getMatchDesc(id)
-      this.match = data
-    } catch (e) {
-
-    }
-  }),
-  updateMatches: action(async function () {
+  updateMatchesList: action(async function () {
     try {
       const data = await getMatches(this.options)
       if (data.matches) {
-        this.matches = data.matches
+        this.matchesList = data.matches
         this.next_page_token = data.next_page_token
-
       } else {
-        this.matches = null
+        this.matchesList = null
       }
     } catch (e) {
-      wx.showModal({
-        title: '错误',
-        content: '获取比赛列表时出现未知错误',
-        showCancel: false,
-        complete: (res) => {
-          if (res.confirm) {
-
-          }
-        }
-      })
+      handleErr("获取比赛列表错误")
     }
   }),
   joinMatch: action(async function (id) {
     try {
-      wx.showLoading({ title: '请等待', mask: true, })
       await joinMatch(id)
-      wx.hideLoading()
-      wx.showModal({
-        title: '报名成功',
-        content: '您已成功报名，请准时参加',
-        showCancel: false,
-        complete: (res) => {
-          if (res.confirm) {
-            this.updateMatch(id)
-          }
-        }
-      })
+      this.updateMatchDetails(id)
+      handleInfo("报名成功")
     } catch (e) {
       if (e.statusCode == 400) {
-        wx.hideLoading()
-        wx.showModal({
-          title: '提示',
-          content: '您已经报过名，请勿重新报名',
-          showCancel: false,
-          complete: (res) => {
-            if (res.confirm) {
-
-            }
-          }
-        })
+        handleErr("您已报名，请勿反复报名")
       }
     }
   })
@@ -243,10 +232,37 @@ export const match = observable({
 
 
 function getDiffInMinute(end, start) {
-
   const t1 = end.split(":");
   const t2 = start.split(":");
   const minute1 = parseInt(t1[0]) * 60 + parseInt(t1[1]);
   const minute2 = parseInt(t2[0]) * 60 + parseInt(t2[1]);
   return minute1 - minute2;
+}
+
+let matchFormBackup = {
+  //自有字段
+  date: '',
+  region: '',
+  address: '',
+  files: [],
+  cost: '免费',
+  //后端字段
+  sports_halls: '',
+  age_group_end: '',
+  age_group_start: '',
+  attachments: [],
+  attachments_key: [],
+  banner_attachments: '',
+  banner_attachments_key: '',
+  city: '',
+  description: '',
+  end_time: '10:00',
+  id: null,
+  join_num: '',
+  location: '',
+  match_type: '',
+  name: '',
+  organizer: '',
+  price: '',
+  start_time: '08:00',
 }

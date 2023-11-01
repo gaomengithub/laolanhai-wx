@@ -2,6 +2,7 @@ import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { arena } from "../../../stores/arena-store";
 import { yearMonth } from '$/util'
 import { options } from '$/pca-code'
+import { handleErr } from '../../../modules/msgHandler'
 Page({
 
   data: {

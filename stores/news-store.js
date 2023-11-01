@@ -3,6 +3,7 @@ import { newsFormMessages, newsFormRules } from '$/validate-set'
 import WxValidate from '$/WxValidate'
 import { createNews, getNewsList, getNewsDetails } from '$/api'
 import { uploadImgWithToken } from '$/qiniu/qiniu'
+import { handleErr } from '../modules/msgHandler'
 export const news = observable({
   validate: new WxValidate(newsFormRules, newsFormMessages),
   newsForm: {

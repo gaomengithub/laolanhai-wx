@@ -1,8 +1,11 @@
-<view class="item" wx:for="{{teamDetails.teamMember}}" wx:key="index">
-  <image class="avatar" src="{{item.avatar}}" mode="aspectFill"></image>
-  <view class="info">
-    <view class="name">
-      {{ item.nickName }}
+<view class="container">
+  <slot></slot>
+  <view class="item" wx:for="{{teamDetails.teamMember}}" wx:key="index">
+    <image class="avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+    <view class="info">
+      <view class="name">
+        {{ item.nickName }}
+      </view>
     </view>
   </view>
 </view>

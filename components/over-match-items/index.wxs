@@ -1,0 +1,9 @@
+var arrCount = function (arr) {
+  if(arr){
+    return arr.length
+  }
+}
+
+module.exports = {
+  arrCount:arrCount
+}

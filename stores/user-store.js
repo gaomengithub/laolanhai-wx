@@ -1,7 +1,7 @@
 import { observable, action } from "mobx-miniprogram"
 import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo } from '$/api'
 import { uploadImgWithToken } from '$/qiniu/qiniu'
-import { handleErr } from '../modules/errorHandler'
+import { handleErr } from '../modules/msgHandler'
 export const user = observable({
 
   approvals: [],

@@ -1,5 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { news } from "../../../stores/news-store";
+import { handleErr } from '../../../modules/msgHandler'
 Page({
   data: {
     show: false,

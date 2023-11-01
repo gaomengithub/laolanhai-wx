@@ -1,3 +1,10 @@
+.container {
+  width: 702rpx;
+  margin: 24rpx;
+  background: linear-gradient(to right, #FFFFFF, #FFFAF4);
+  border-radius: 44rpx;
+}
+
 .item {
   display: flex;
   flex-direction: row;
@@ -27,7 +34,7 @@
   color: #A3A3A3;
 }
 
-.item  .type {
+.item .type {
 
   background-color: #FB8808;
   font-size: 24rpx;

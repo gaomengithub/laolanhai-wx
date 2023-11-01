@@ -35,7 +35,7 @@ Page({
     this.setData({
       active
     })
-    // 0-hot 1-official 2-team 3-solo 4-arena
+    // []-hot 1-official 2-team 3-solo 4-arena
     const filter = {
       match_type: [[], [1], [3], [4]][active]
     }
@@ -44,10 +44,10 @@ Page({
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store: match,
-      fields: ["matches"],
-      actions: ["updateMatches", "modifyOptions"],
+      fields: ["matchesList"],
+      actions: ["updateMatchesList", "modifyOptions"],
     });
-    this.updateMatches()
+    this.updateMatchesList()
   },
   onUnload() {
     this.storeBindings.destroyStoreBindings();

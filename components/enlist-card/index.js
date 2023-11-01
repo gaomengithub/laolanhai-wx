@@ -29,7 +29,7 @@ Component({
   methods: {
     onBtnClick(e) {
       const teamID = e.currentTarget.dataset.id
-      const path = `/pages/sub/details/team/index?id=${teamID}`
+      const path = `/pages/sub/team-details/index?id=${teamID}`
       routeInterceptor.navigateTo(path)
     }
   }

@@ -25,7 +25,7 @@ Component({
       const bindSettings = {
         store: this.data.isSearch ? search : match,
         fields: {
-          matches: () => this.data.isSearch ? search.matches : match.matches
+          matchesList: () => this.data.isSearch ? search.matches : match.matchesList
         },
       }
       this.storeBindings = createStoreBindings(this, bindSettings)

@@ -13,7 +13,7 @@
     </view>
     <filter-bar></filter-bar>
   </van-sticky>
-  <view wx:if="{{ matches }}">
+  <view wx:if="{{ matchesList }}">
     <matches-items></matches-items>
   </view>
   <view wx:else>

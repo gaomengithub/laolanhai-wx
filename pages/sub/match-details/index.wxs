@@ -1,6 +1,4 @@
-
-
-var formatStartTime = function (str) {
+var formatDateTime = function (str) {
   if (!str) return
   return str.replace(":00+08:00", "").replace("T", "  ")
 }
@@ -23,8 +21,7 @@ var isEnterMatch = function (users, id) {
 }
 
 module.exports = {
-
   formatLocation: formatLocation,
-  formatStartTime: formatStartTime,
+  formatDateTime: formatDateTime,
   isEnterMatch: isEnterMatch,
 }

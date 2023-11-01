@@ -6,13 +6,16 @@
     <team-card team="{{ teamDetails }}"></team-card>
   </view>
   <view class="list">
-    <top-line name="我的队员" more="false"></top-line>
-    <player-items></player-items>
+    <player-items>
+      <top-line name="我的队员" more="false"></top-line>
+    </player-items>
   </view>
   <view class="list">
-    <top-line name="待加入队员" more="false"></top-line>
+    <apply-items>
+      <top-line name="待加入队员" more="false"></top-line>
+    </apply-items>
   </view>
 </view>
-<auth-show expect="no45?{{ items.id }}">
+<view wx:if="{{ !isInTeam }}">
   <bottom-btn-bar name="立即加入" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn"></bottom-btn-bar>
-</auth-show>
+</view>

@@ -76,14 +76,17 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: team,
-      fields: ["teamDetails"],
-      actions: ["updateTeamDetails"],
+      fields: ["teamDetails","isInTeam"],
+      actions: ["updateTeamDetails", "updateTeamApprovals"],
     });
+    const id = options.id
+    if (id) {
+      this.updateTeamApprovals(id)
+      this.updateTeamDetails(id)
+    }
   },
 
   onUnload() {
     this.storeBindings.destroyStoreBindings();
   },
-
-
 })

@@ -1,0 +1,18 @@
+.container {
+  background-color: #e2e2e2;
+  min-height: 100vh;
+  position: relative;
+}
+
+
+
+
+.card {
+  padding: 22rpx;
+}
+
+.mine .img {
+  width: 170rpx;
+  height: 170rpx;
+  margin: 5rpx;
+}

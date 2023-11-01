@@ -1,6 +1,6 @@
 import { formatDate } from '$/util'
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { handleErr } from '../../../modules/errorHandler'
+import { handleErr } from '../../../modules/msgHandler'
 import { user } from "../../../stores/user-store"
 
 function createColumns(range, unit) {

@@ -1,0 +1,24 @@
+<view class="container">
+  <slot></slot>
+  <view class="item" wx:for="{{teamApprovals}}" wx:key="index">
+    <image class="avatar" src="{{item.Applier.avatar || 'https://openstore.obabyball.com/ui_v1/icon/defult-avater.svg'}}"></image>
+    <view class="card">
+      <view class="sub-container">
+        <view class="name">
+          {{item.Applier.Applier || '占位'}}
+        </view>
+        <wxs module="format" src="./index.wxs"></wxs>
+        <view class="date">
+          申请时间：{{format.formatDate(item.CreatedAt)}}
+        </view>
+        <view class="comments">
+          入队申请：{{item.Comment}}
+        </view>
+        <view class="active">
+          <van-button custom-class="btn" round bind:click="onButtonClick" data-action="{{ 2 }}" data-id="{{ item.ID }}" data-rev="{{item.Rev}}">驳回</van-button>
+          <van-button custom-class="btn yes" round bind:click="onButtonClick" data-action="{{ 1 }}" data-id="{{item.ID}}" data-rev="{{item.Rev}}">同意</van-button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

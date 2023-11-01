@@ -28,6 +28,7 @@ Page({
   },
   onUnload() {
     this.storeBindings.destroyStoreBindings();
+    this.storeBindings_.destroyStoreBindings()
   },
 
   ToTeamCreate() {
@@ -38,8 +39,6 @@ Page({
   handleTap(e) {
     console.log(e)
     const id = e.currentTarget.dataset.id
-    this.updateTeamDetails(id)
-
     const path = `/pages/sub/team-details/index?id=${id}`
     routeInterceptor.navigateTo(path)
   },

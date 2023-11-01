@@ -1,31 +1,26 @@
+<wxs src="./index.wxs" module="tools" />
 <view class="container">
-  <view class="card" wx:for="{{ overMatch }}" wx:key="id">
-    <image class="img" src="https://openstore.obabyball.com/ui_v1/img/test-look-v1.png" mode="aspectFill" />
+  <view class="card" wx:for="{{ overMatchesList }}" wx:key="id">
+    <image class="img" src="{{item.banner_attachments}}" mode="aspectFill" />
     <view class="active">
       <view class="title">{{item.name}}</view>
-      <van-button custom-class="btn" round bind:click="HandlerClick">查看比赛</van-button>
+      <van-button custom-class="btn" round bind:click="HandlerClick" data-id="{{ item.id }}" >查看比赛</van-button>
     </view>
     <view class="data">
-      <image class="tag" src="{{item.match_type}}" mode="aspectFill" />
-      <view class="panel">
         <van-grid column-num="{{ 3 }}" border="{{ false }}">
-          <van-grid-item class="cell" use-slot>
-            <view class="num">{{itme.score}}</view>
+          <van-grid-item content-class="cell" use-slot>
+            <view class="num">{{itme.score || '65-36'}}</view>
             <view class="tag">比分</view>
           </van-grid-item>
           <van-grid-item class="cell" use-slot>
-            <view class="num">{{item.photos}}</view>
+            <view class="num">{{tools.arrCount(item.photo_for_user) || 3}}</view>
             <view class="tag">高光时刻</view>
           </van-grid-item>
           <van-grid-item class="cell" use-slot>
-            <view class="num">{{item.users}}</view>
-            <view class="tag">参加人数</view>
+            <view class="num">{{tools.arrCount(item.users)}}</view>
+            <view class="tag">参与人数</view>
           </van-grid-item>
         </van-grid>
-      </view>
     </view>
   </view>
-
-
-
 </view>

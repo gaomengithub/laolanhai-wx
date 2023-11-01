@@ -2,7 +2,7 @@ import { options } from '$/pca-code'
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { match } from "../../../stores/match-store"
 import { formatDate } from '$/util'
-
+import { handleErr } from '../../../modules/msgHandler'
 Page({
   data: {
     options: options,  //地区选择
@@ -37,19 +37,20 @@ Page({
     this.storeBindings = createStoreBindings(this, {
       store: match,
       fields: ["matchForm"],
-      actions: ["updateMatchForm", "activeMatch" ,"modifyMatchForm"],
+      actions: ["updateMatchForm", "activeMatch", "initMatchForm"],
     });
+
     if (options.page == 'new' && options.match_type) {
+      this.initMatchForm()
       const form = {
         match_type: parseInt(options.match_type)
       }
       this.updateMatchForm(form)
     }
     else if (options.page == 'modify' && options.id) {
-      
-      this.modifyMatchForm(options.id)
+      this.updateMatchForm(options.id)
     } else {
-
+      handleErr("参数非法")
     }
   },
 
@@ -115,5 +116,5 @@ Page({
 
   handleClick() {
     this.activeMatch()
-  },
+  }
 })

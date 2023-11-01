@@ -1,6 +1,7 @@
 import routeInterceptor from '$/router'
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { news } from "../../stores/news-store"
+import { match } from "../../stores/match-store"
 Page({
 
   data: {
@@ -17,10 +18,27 @@ Page({
       actions: ["updateNewsList"],
     })
     this.updateNewsList()
+    this.storeBindings_ = createStoreBindings(this, {
+      store: match,
+      fields: ["overMatchesList"],
+      actions: ["updateOverMatchesList"],
+    })
+    const patch = {
+      city: '',
+      status: [2, 3, 4],
+      match_type: [],
+      page_size: 10,
+      page_token: '',
+      team_id: '',
+      user_id: '',
+      date: '全部时间'
+    }
+    this.updateOverMatchesList(patch)
   },
 
   onUnload() {
     this.storeBindings.destroyStoreBindings();
+    this.storeBindings_.destroyStoreBindings();
   },
 
   onShow() {

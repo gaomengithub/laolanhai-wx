@@ -1,0 +1,32 @@
+<nav-bar title="赛况"></nav-bar>
+<view class="container">
+
+  <pic-swiper photos="{{ matchResult.files ||[] }}"></pic-swiper>
+
+  <view class="card">
+    <van-collapse value="{{ active }}" bind:change="onChange">
+      <van-collapse-item name="1">
+        <view slot="title">
+          <top-line name="基本信息" more="false"></top-line>
+        </view>
+        <view class="name">名称：{{ matchResult.name }}</view>
+        <view class="location">地点：{{matchResult.location}}</view>
+        <view class="desc">介绍：{{matchResult.description}}</view>
+
+      </van-collapse-item>
+      <van-collapse-item border="{{ false }}" name="2">
+        <view slot="title">
+          <top-line name="高光时刻" more="false"></top-line>
+        </view>
+        <text>我上传的高光时刻：</text>
+        <view class="mine">
+          <van-uploader class="img"  file-list="{{matchResult.imgs}}"/>
+        </view>
+        <text>其他人上传的高光时刻</text>
+        <view class="other">
+          <van-uploader class="img"  file-list="{{matchResult.imgs}}" deletable="{{false}}" />
+        </view>
+      </van-collapse-item>
+    </van-collapse>
+  </view>
+</view>

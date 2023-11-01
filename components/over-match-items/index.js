@@ -1,8 +1,8 @@
-import { iconUrls, imgUrls } from '$/urls'
 import routeInterceptor from '$/router'
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { user } from "../../stores/user-store";
+import { match } from "../../stores/match-store";
 Component({
+  behaviors: [storeBindingsBehavior],
   properties: {
 
   },
@@ -11,12 +11,13 @@ Component({
 
   },
   storeBindings: {
-    store: user,
-    fields: ["user"]
+    store: match,
+    fields: ["overMatchesList"]
   },
   methods: {
-    toMatchDesc(e) {
-      const path = "/pages/sub/details/look/index"
+    HandlerClick(e) {
+      const id =  e.currentTarget.dataset.id
+      const path = `/pages/sub/match-result/index?id=${id}`
       routeInterceptor.navigateTo(path)
     },
 

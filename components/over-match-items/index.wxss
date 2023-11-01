@@ -24,17 +24,22 @@
 }
 
 .active .title {
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   position: absolute;
   bottom: 0;
   left: 40rpx;
-  height: 108rpx;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  height: 128rpx;
+  line-height: 64rpx;
   color: #ffffff;
   font-weight: 600;
-  font-size: 42rpx;
+  font-size: 34rpx;
   letter-spacing: 2rpx;
+  width: 400rpx;
 }
 
 .active .btn {
@@ -59,44 +64,14 @@
   height: 224rpx;
 }
 
-
-
-.card .data .panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card .data .panel .item {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-.card .data .panel .item .name {
-  position: relative;
-  font-size: 36rpx;
-  font-weight: 600;
-  width: fit-content;
-  z-index: 1;
-}
-
-.card .data .panel .name::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 40%;
-  background-color: #FB8808;
-  z-index: -1;
+.cell {
+  text-align: center;
 }
 
 .num {
   font-size: 36rpx;
   font-weight: 600;
-  width: max-content;
+  width: 200rpx;
   white-space: nowrap;
 }
 
@@ -114,27 +89,3 @@
   width: 50rpx;
   height: 26rpx;
 } */
-
-.avatar-item {
-  margin-left: 32rpx;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.avatar-outline {
-  width: 185rpx;
-  height: 185rpx;
-  position: absolute;
-}
-
-.avatar-item .avatar {
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  z-index: 1;
-  /* border-radius: 50%; */
-  clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
-}
