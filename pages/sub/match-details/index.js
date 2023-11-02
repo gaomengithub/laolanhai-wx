@@ -16,9 +16,9 @@ Page({
       star: 'https://openstore.obabyball.com/ui_v1/icon/octagonal-star.svg',
       type: 'https://openstore.obabyball.com/ui_v1/icon/desc-diy-tag-v1.svg',
     },
-    swiperImgHeight: wx.getSystemInfoSync().windowWidth + 'px',
-    swiperHeight: wx.getSystemInfoSync().windowWidth + 'px',
-    windowWidth: wx.getSystemInfoSync().windowWidth,
+    // swiperImgHeight: wx.getSystemInfoSync().windowWidth + 'px',
+    // swiperHeight: wx.getSystemInfoSync().windowWidth + 'px',
+    // windowWidth: wx.getSystemInfoSync().windowWidth,
   },
 
   onJoinBtn() {
@@ -60,25 +60,6 @@ Page({
     }
   },
 
-  swiperChange(e) {
-    const ls = [this.data.matchDetails.banner_attachments, ...this.data.matchDetails.attachments]
-    const currImg = ls[e.detail.current]
-    wx.getImageInfo({
-      src: currImg,
-      success: (res) => {
-        let scale = null
-        if (res.height >= res.width) {
-          scale = this.data.windowWidth * 4 / 3
-        } else {
-          scale = this.data.windowWidth * 3 / 4
-        }
-        this.setData({
-          swiperImgHeight: scale + 'px',
-          swiperHeight: scale + 'px'
-        })
-      }
-    })
-  },
   // 更改比赛状态
   handleClick() {
     this.setData({
@@ -108,10 +89,5 @@ Page({
     }
   },
 
-  onReady() {
-    const e = {
-      detail: { current: 0 }
-    }
-    this.swiperChange(e)
-  }
+
 })

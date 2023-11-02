@@ -1,0 +1,23 @@
+<view class="box">
+  <view class="sub">
+    <image class="avatar" src="https://openstore.obabyball.com/ui_v1/icon/defult-avater.svg" mode="aspectFit" />
+    <view class="name">陕西狼</view>
+  </view>
+  <view class="sub start-right">
+    <view class="name">山西醋</view>
+    <image class="avatar" src="https://openstore.obabyball.com/ui_v1/icon/defult-avater.svg" mode="aspectFit" />
+  </view>
+</view>
+<view class="box">
+  <view class="item">
+
+    <progress class="progress-bar-left" percent="{{ percent_ }}" activeColor="#EEEEEE" backgroundColor="#CCCCCC"></progress>
+    <view class="progress-block-left" style="left: {{offset_}}"></view>
+  </view>
+  <view class="item">
+
+
+    <progress class="progress-bar" percent="{{ percent }}" activeColor="#2C86DA" backgroundColor="#CCCCCC"></progress>
+    <view class="progress-block" style="left: {{offset}}"></view>
+  </view>
+</view>

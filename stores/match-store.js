@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto, getArenaList ,getMyJoinMatches } from '$/utils/api'
+import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto, getArenaList, getMyJoinMatches } from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { matchFormMessages, matchFormRules } from '$/utils/validate/validate-set'
 import WxValidate from '$/utils/validate/WxValidate'
@@ -36,9 +36,9 @@ export const match = observable({
   updateJoinedMatches: action(async function (params) {
     try {
       const data = await getMyJoinMatches()
-      
+
       this.JoinedMatches = data.list
-    }catch(e){
+    } catch (e) {
 
     }
   }),
@@ -96,7 +96,10 @@ export const match = observable({
     if (id) {
       try {
         const data = await getMatchDesc(id)
-        this.matchDetails = data
+        const patch = {
+          photos: [data.banner_attachments, ...data.attachments]
+        }
+        this.matchDetails = { ...data, ...patch }
       } catch (e) {
         handleErr("获取比赛详情失败")
       }

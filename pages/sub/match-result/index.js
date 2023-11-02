@@ -2,7 +2,7 @@ import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { match } from "$/stores//match-store"
 Page({
   data: {
-    active: ['1', '2'],
+    active: ['1', '2','3'],
   },
 
   onChange(event) {

@@ -1,0 +1,42 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0 0 10rpx #FB8808;
+  border-radius: 44rpx;
+  justify-content: space-around;
+  padding: 22rpx;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  height: 150rpx;
+  width: 150rpx;
+}
+
+.name {
+  color: #222222;
+  font-size: 32rpx;
+  font-weight: 600;
+  letter-spacing: 3rpx;
+}
+
+.pionts {
+  font-weight: 700;
+  font-size: 48rpx;
+
+}
+
+.win {
+  color: #222222;
+}

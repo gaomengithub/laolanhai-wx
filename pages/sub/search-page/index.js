@@ -4,14 +4,13 @@ import { search } from "$/stores/search-store";
 Page({
 
   data: {
-    navTitle: "搜索",
-    value: "老",
+    value: "",
     active: 0,
   },
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store: search,
-      fields: ["matches", "teams", "users"],
+      fields: ["matchSearchResult", "teamSearchResult", "userSearchResult"],
       actions: ["search"],
     });
   },

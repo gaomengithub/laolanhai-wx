@@ -3,15 +3,7 @@
   <wxs src="./index.wxs" module="tools" />
 
   <view class="contanier">
-    <swiper circular indicator-dots indicator-color="#FFFFFF" style="height: {{ swiperHeight }};" bindchange="swiperChange">
-      <swiper-item>
-        <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{ matchDetails.banner_attachments || '' }}" mode="aspectFill" />
-      </swiper-item>
-      <swiper-item>
-        <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{ matchDetails.attachments }}" mode="aspectFill" />
-      </swiper-item>
-    </swiper>
-
+  <pic-swiper photos="{{matchDetails.photos || []}}"></pic-swiper>
     <view class="sub-container">
       <image class="star-icon" src="{{ icon.star }}" mode="aspectFill" />
       <view class="cost-tip">

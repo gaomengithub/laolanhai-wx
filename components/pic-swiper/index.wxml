@@ -1,5 +1,5 @@
 <swiper circular indicator-dots indicator-color="#FFFFFF" style="height: {{ swiperHeight }};" bindchange="swiperChange">
-  <swiper-item wx:for="{{ photos }}" wx:key="*this">
+  <swiper-item wx:for="{{ photos }}" wx:key="index">
     <image class="swiper-img" style="height: {{swiperImgHeight}};" src="{{  item || '' }}" mode="aspectFill" />
   </swiper-item>
 </swiper>

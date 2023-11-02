@@ -16,6 +16,14 @@
       </van-collapse-item>
       <van-collapse-item border="{{ false }}" name="2">
         <view slot="title">
+          <top-line name="技术统计" more="false"></top-line>
+        </view>
+        <!-- <points-points>      
+        </points-points> -->
+        <vs-bar></vs-bar>
+      </van-collapse-item>
+      <van-collapse-item border="{{ false }}" name="3">
+        <view slot="title">
           <top-line name="高光时刻" more="false"></top-line>
         </view>
         <text>我上传的高光时刻：</text>

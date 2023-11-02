@@ -5,6 +5,8 @@
     "van-collapse-item": "@vant/weapp/collapse-item/index",
     "top-line":"/components/top-line/index",
     "van-uploader": "@vant/weapp/uploader/index",
-    "pic-swiper":"/components/pic-swiper/index"
+    "pic-swiper":"/components/pic-swiper/index",
+    "points-points":"/components/technical-statistics/points-points/index",
+    "vs-bar":"/components/technical-statistics/vs-bar/index"
   }
 }

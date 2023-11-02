@@ -1,12 +1,13 @@
-import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { match } from "$/stores/match-store";
 import { search } from "$/stores/search-store";
 import routeInterceptor from '$/utils/router'
 Component({
+  behaviors:[storeBindingsBehavior],
   properties: {
-    isSearch: {
-      type: Boolean,
-      value: false
+    switchIdx: {
+      type: Number,
+      value: 0
     }
   },
   data: {
@@ -19,17 +20,28 @@ Component({
       location: 'https://openstore.obabyball.com/ui_v1/icon/match-card-location-v1.svg'
     }
   },
+  storeBindings: [
+    {
+      store: match,
+      fields: ["matchesList"]
+    },
+    {
+      store: search,
+      fields: ["matchSearchResult"]
+    }
+  ],
+
 
   lifetimes: {
-    attached() {
-      const bindSettings = {
-        store: this.data.isSearch ? search : match,
-        fields: {
-          matchesList: () => this.data.isSearch ? search.matches : match.matchesList
-        },
-      }
-      this.storeBindings = createStoreBindings(this, bindSettings)
-    }
+    // attached() {
+    //   const bindSettings = {
+    //     store: this.data.isSearch ? search : match,
+    //     fields: {
+    //       matchesList: () => this.data.isSearch ? search.matches : match.matchesList
+    //     },
+    //   }
+    //   this.storeBindings = createStoreBindings(this, bindSettings)
+    // }
   },
   methods: {
     handlerClick(e) {

@@ -1,0 +1,29 @@
+<view class="container">
+  <slot></slot>
+  <view class="card">
+    <view class="item">
+      <image class="avatar" src="{{points.home.avatar}}" mode="aspectFit" />
+      <view class="name">
+        {{points.home.name}}
+      </view>
+    </view>
+    <view class="item">
+      <view class="pionts">
+        <span class="{{ points.home.points > points.away.points ? 'win' : ''}}">
+          {{points.home.points}}</span>
+        <span>:</span>
+        <span class="{{ points.home.points > points.away.points ? '' : 'win'}}">
+          {{points.away.points}}</span>
+      </view>
+      <view class="date">
+        {{ points.date }}
+      </view>
+    </view>
+    <view class="item">
+      <image class="avatar" src="{{points.away.avatar}}" mode="aspectFit" />
+      <view class="name">
+        {{ points.away.name }}
+      </view>
+    </view>
+  </view>
+</view>

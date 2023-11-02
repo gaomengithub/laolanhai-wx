@@ -1,12 +1,14 @@
-<nav-bar title="{{navTitle}}"></nav-bar>
+<nav-bar title="搜索"></nav-bar>
+
 
 <van-search shape="round" value="{{ value }}" bind:change="onInputChange" use-action-slot placeholder="请输入你需要搜索的球队、球员名称">
   <view slot="action" bind:tap="onClickSearch" class="btn">搜索</view>
 </van-search>
+
 <view class="container">
   <van-tabs active="{{ active }}">
     <van-tab title="比赛">
-      <matches-items isSearch="{{ true }}"></matches-items>
+      <matches-items switchIdx="{{ 1 }}"></matches-items>
     </van-tab>
     <van-tab title="队伍">
 

@@ -4,6 +4,7 @@
 }
 
 .btn {
+  
   padding-left: 24rpx;
   padding-right: 24rpx;
 }

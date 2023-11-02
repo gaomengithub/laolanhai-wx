@@ -1,5 +1,5 @@
 <view class="container">
-  <view class="card" wx:for="{{ matchesList }}" wx:key="index">
+  <view class="card" wx:for="{{ [matchesList,matchSearchResult][switchIdx] }}" wx:key="index">
     <image class="tag-img" src="{{ item.match_type == 3 ? tagImg.diy :tagImg.official }}" mode="scaleToFill" />
     <view class="main">
       <wxs src="./index.wxs" module="tools" />

@@ -2,16 +2,16 @@ import { observable, action } from "mobx-miniprogram";
 import { searchAngthing } from '$/utils/api'
 import { handleErr } from '../modules/msgHandler'
 export const search = observable({
-  matches: [],
-  teams: [],
-  users: [],
+  matchSearchResult: [],
+  teamSearchResult: [],
+  userSearchResult: [],
 
   search: action(async function (val) {
     try {
       const data = await searchAngthing(val)
-      this.matches = data.matches,
-        this.teams = data.teams,
-        this.users = data.users
+      this.matchSearchResult = data.matches
+      this.teamSearchResult = data.teams
+      this.userSearchResult = data.users
 
     } catch (e) {
       wx.showModal({
