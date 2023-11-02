@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto } from '$/utils/api'
+import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto, getArenaList ,getMyJoinMatches } from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { matchFormMessages, matchFormRules } from '$/utils/validate/validate-set'
 import WxValidate from '$/utils/validate/WxValidate'
@@ -7,37 +7,12 @@ import { handleErr, handleInfo } from '../modules/msgHandler'
 import { formatDate, formatTime } from '$/utils/util'
 export const match = observable({
   validate: new WxValidate(matchFormRules, matchFormMessages),
-  matchForm: {
-    //自有字段
-    date: '',
-    region: '',
-    address: '',
-    files: [],
-    cost: '免费',
-    //后端字段
-    sports_halls: '',
-    age_group_end: '',
-    age_group_start: '',
-    attachments: [],
-    attachments_key: [],
-    banner_attachments: '',
-    banner_attachments_key: '',
-    city: '',
-    description: '',
-    end_time: '10:00',
-    id: null,
-    join_num: '',
-    location: '',
-    match_type: '',
-    name: '',
-    organizer: '',
-    price: '',
-    start_time: '08:00',
-  },
+  matchForm: null,
   overMatchesList: null,
   matchResult: null, // 赛况中 完成了的比赛
   matchDetails: null,  //比赛详情
   matchesList: null,
+  JoinedMatches: null,
   next_page_token: '',  // 比赛列表的
   // 筛选条件
   options: {
@@ -52,8 +27,23 @@ export const match = observable({
   },
 
 
+
+  // 我组织的比赛
+  get getMyMatches() {
+
+  },
+
+  updateJoinedMatches: action(async function (params) {
+    try {
+      const data = await getMyJoinMatches()
+      
+      this.JoinedMatches = data.list
+    }catch(e){
+
+    }
+  }),
+
   updateMatchResult: action(async function (params) {
-    // console.log(obj)
     if (params.tempFilePath) {
       var _this = this
       wx.compressImage({
@@ -61,32 +51,45 @@ export const match = observable({
         quality: 10,
         success: async function (res) {
           const data = await uploadImgWithToken(res.tempFilePath)
-          const item = { url: params.tempFilePath, isImage: true }
-          _this.matchResult.imgs.push(item)
-          _this.matchResult.photo.push(data.key)
-          console.log(_this.matchResult.photo)
-          _this.matchResult = Object.assign({}, _this.matchResult, { imgs: _this.matchResult.imgs })
+          _this.matchResult.myPhotos.push({ url: params.tempFilePath, isImage: true, photo_key: data.key })
+          _this.matchResult = Object.assign({}, _this.matchResult, { myPhotos: _this.matchResult.myPhotos })
           const obj = {
             match_id: _this.matchResult.id,
-            photo: _this.matchResult.photo
+            photo: _this.matchResult.myPhotos.map(item => item.photo_key)
           }
           await updateMatchPhoto(obj)
         }
       })
 
     }
+    // 传参id 
     else if (typeof (params) === "string") {
       const data = await getMatchDesc(params)
-      const files = data.attachments.concat(data.banner_attachments, data.photo_for_user || [])
-      const photo = [...data.attachments_key, data.banner_attachments_key]
-      const patch = { imgs: files.map(item => ({ url: item, isImage: true })), files: files, photo: photo }
+      data.photo_for_user.map(item => (item.url = item.photo))
+      data.photo_for_user.map(item => (item.isImage = true))
+      const patch = {
+        myPhotos: data.photo_for_user.filter(item => item.is_my_upload),
+        otherPhotos: data.photo_for_user.filter(item => !item.is_my_upload),
+        allPhotos: [...data.attachments, data.banner_attachments, ...data.photo_for_user.map(item => item.photo)]
+      }
       this.matchResult = { ...data, ...patch }
+    }
+    // 删除
+    else if (typeof (params) === "number") {
+
     }
   }),
 
-  initMatchForm: action(function (params) {
+  initMatchForm: action(async function (params) {
     let backup = JSON.parse(JSON.stringify(matchFormBackup));
     this.matchForm = JSON.parse(JSON.stringify(backup));
+    const data = await getArenaList({
+      isMySportsHall: true
+    })
+    const patch = {
+      myArenas: data.list
+    }
+    this.matchForm = { ...this.matchForm, ...patch }
   }),
 
   updateMatchDetails: action(async function (id) {
@@ -270,6 +273,7 @@ let matchFormBackup = {
   address: '',
   files: [],
   cost: '免费',
+  myArenas: null,
   //后端字段
   sports_halls: '',
   age_group_end: '',

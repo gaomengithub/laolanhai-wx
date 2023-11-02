@@ -35,7 +35,7 @@
   z-index: 1;
 }
 
-.card .bg-img {
+.card .img {
   position: absolute;
   top: -40rpx;
   right: 35rpx;

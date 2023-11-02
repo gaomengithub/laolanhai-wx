@@ -1,15 +1,13 @@
 <view class="filter">
-  <navigator class="cell" url="/libs/city-selector/index">
+  <van-button custom-class="cell" bind:click="onBtnClick" data-path="/libs/city-selector/index">
     <view class="child">{{ city == '' ? '全国' : city }}</view>
     <image class="icon" src="{{ icon.arrow }}" />
-  </navigator>
-  <navigator class="cell" url="/libs/calendar/index">
+  </van-button>
+  <van-button custom-class="cell" bind:click="onBtnClick" data-path="/libs/calendar/index">
     <view class="child">{{ date }}</view>
     <image class="icon" src="{{ icon.arrow }}" />
-  </navigator>
-  <navigator url="/pages/sub/search/index">
-    <van-button custom-class="search">
-      <image class="search" src="{{ icon.search }}"></image>
-    </van-button>
-  </navigator>
+  </van-button>
+  <van-button custom-class="small" bind:click="onBtnClick" data-path="/pages/sub/search-page/index">
+    <image class="search" src="{{ icon.search }}"></image>
+  </van-button>
 </view>

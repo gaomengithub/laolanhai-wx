@@ -1,7 +1,7 @@
 <nav-bar title="赛况"></nav-bar>
 <view class="container">
 
-  <pic-swiper photos="{{ matchResult.files ||[] }}"></pic-swiper>
+  <pic-swiper photos="{{ matchResult.allPhotos ||[] }}"></pic-swiper>
 
   <view class="card">
     <van-collapse value="{{ active }}" bind:change="onChange">
@@ -20,11 +20,11 @@
         </view>
         <text>我上传的高光时刻：</text>
         <view class="mine">
-          <van-uploader file-list="{{ matchResult.imgs || []}}" max-count="{{ 5 }}" bind:after-read="afterRead" />
+          <van-uploader file-list="{{ matchResult.myPhotos || []}}" max-count="{{ 5 }}" bind:after-read="afterRead" />
         </view>
         <text>其他人上传的高光时刻</text>
         <view class="other">
-          <van-uploader file-list="{{ matchResult.imgs || []}}" max-count="{{  }}" deletable="{{false}}" />
+          <van-uploader file-list="{{ matchResult.otherPhotos || []}}" max-count="{{  }}" deletable="{{false}}" />
         </view>
       </van-collapse-item>
     </van-collapse>

@@ -12,6 +12,7 @@ function setOption(chart) {
       startAngle: 75
     },
     radiusAxis: {
+      show:false,
       type: 'category',
       data: ['罚球', '三分', '得分']
     },
@@ -23,7 +24,14 @@ function setOption(chart) {
       label: {
         show: true,
         position: 'middle',
-        formatter: '{c}'
+        formatter: '{b}-{c}'
+      },
+      roundCap:true,
+      itemStyle: {
+        color: function(params) {
+          var colorList = ['#03c3d7', '#76e806', '#f62a78'];
+          return colorList[params.dataIndex]
+        }
       }
     }
   };

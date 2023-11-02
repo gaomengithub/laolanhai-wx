@@ -1,41 +1,55 @@
 <view class="container">
-  <view class="item" bind:tap="onClick" data-path="/pages/sub/create-modify-match/index?page=new&match_type=3" hover-class="hover" hover-start-time="20" hover-stay-time="70">
-    <image class="icon" src="{{ icon.diySolo }}" mode="aspectFill" />
-    <view class="cell">
-      <view class="title">
-        野球局
+  <view class="sub-container">
+    <view class="item" bind:tap="onClick" data-path="/pages/sub/match-form/index?page=new&match_type=3" hover-class="hover" hover-start-time="20" hover-stay-time="70">
+      <image class="icon" src="{{ icon.diySolo }}" mode="widthFix" />
+      <view class="cell">
+        <view class="title">
+          野球局
+        </view>
+        <view class="text">
+          仅限个人参加
+        </view>
       </view>
-      <view class="text">
-        仅限个人参加
-      </view>
+      <image class="arrow" src="{{icon.greyArrow}}" mode="widthFix" />
     </view>
-    <image class="arrow" src="{{icon.greyArrow}}" mode="aspectFill" />
+    <view class="item" bind:tap="onClick" data-path="/pages/sub/match-form/index?page=new&match_type=2" hover-class="hover" hover-start-time="20" hover-stay-time="70">
+      <image class="icon" src="{{ icon.diyTeam }}" mode="widthFix" />
+      <view class="cell">
+        <view class="title">
+          战队赛
+        </view>
+        <view class="text">
+          仅限战队参加
+        </view>
+      </view>
+      <image class="arrow" src="{{icon.greyArrow}}" mode="widthFix" />
+    </view>
   </view>
-
-  <view class="item" bind:tap="onClick" data-path="/pages/to-do/index" hover-class="hover" hover-start-time="20" hover-stay-time="70">
-    <image class="icon" src="{{ icon.diyTeam }}" mode="aspectFill" />
-    <view class="cell">
-      <view class="title">
-        野球战队赛
+  <view class="sub-container">
+    <!-- <view class="item official-item" bind:tap="onClick" data-path="/pages/sub/match-form/index?page=new&match_type=1" hover-class="hover" hover-start-time="20" hover-stay-time="70">
+      <image class="icon" src="{{ icon.arena }}" mode="widthFix" />
+      <view class="cell">
+        <view class="title official-title">
+          球馆赛
+        </view>
+        <view class="text official-text">
+          仅限入驻球馆组织
+        </view>
       </view>
-      <view class="text">
-        仅限战队参加
+      <image class="arrow" src="{{icon.blackArrow}}" mode="widthFix" />
+    </view> -->
+    <view class="item official-item" bind:tap="onClick" data-path="/pages/sub/match-form/index?page=new&match_type=1" hover-class="hover" hover-start-time="20" hover-stay-time="70">
+      <image class="icon" src="{{ icon.official }}" mode="widthFix" />
+      <view class="cell">
+        <view class="title official-title">
+          正赛
+        </view>
+        <view class="text official-text">
+          仅限指定机构组织
+        </view>
       </view>
+      <image class="arrow" src="{{icon.blackArrow}}" mode="widthFix" />
     </view>
-    <image class="arrow" src="{{icon.greyArrow}}" mode="aspectFill" />
-  </view>
-
-  <view class="item official-item" bind:tap="onClick" data-path="/pages/to-do/index" hover-class="hover" hover-start-time="20" hover-stay-time="70">
-    <image class="icon" src="{{ icon.official }}" mode="aspectFill" />
-    <view class="cell">
-      <view class="title official-title">
-        正赛
-      </view>
-      <view class="text official-text">
-        仅限指定机构组织
-      </view>
-    </view>
-    <image class="arrow" src="{{icon.blackArrow}}" mode="aspectFill" />
   </view>
 
   <view class="active">

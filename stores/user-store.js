@@ -30,6 +30,12 @@ export const user = observable({
     }
   },
 
+  // 预留  用来判断是否能组织正赛
+  get isOrg() {
+    const quals = this.user.quals.map(item => item.qual)
+    return quals.includes(1)
+  },
+
   get isUser() {
     const quals = this.user.quals.map(item => item.qual)
     return !quals.includes(2)
@@ -83,16 +89,15 @@ export const user = observable({
         this.user = { ...this.user, ...form }
       }
     }
+    // 获取用户信息更新user
     else {
       try {
         const data = await getUserInfo()
         const date = new Date(data.birthDate)
-        const patch = {
-          date: date.getTime()
-        }
+        const patch = { date: date.getTime() }
         this.user = { ...data, ...patch }
       } catch (e) {
-
+        handleErr("获得用户信息失败")
       }
     }
   }),

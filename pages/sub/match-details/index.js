@@ -55,7 +55,7 @@ Page({
         showPopup: true
       })
     } else {
-      const path = `/pages/sub/create-modify-match/index?page=modify&id=${this.data.matchDetails.id}`
+      const path = `/pages/sub/match-form/index?page=modify&id=${this.data.matchDetails.id}`
       routeInterceptor.navigateTo(path)
     }
   },

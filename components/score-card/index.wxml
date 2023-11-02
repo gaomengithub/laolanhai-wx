@@ -1,7 +1,7 @@
 <view class="card">
-  <top-line name="我的战绩" subName="" bind:handleButtomClick="onMineMoreBtn" />
+  <top-line name="我的战绩" more="false" />
   <van-grid custom-class="grid" border="{{false}}">
-    <van-grid-item content-class="item" custom-class="" use-slot>
+    <van-grid-item content-class="item" use-slot>
       <view class="num">
         {{ joinedNum }}
       </view>
@@ -34,5 +34,4 @@
       </view>
     </van-grid-item>
   </van-grid>
-  <!-- <image class="active" src="{{arrowDown}}" mode="aspectFill" class="active" /> -->
 </view>

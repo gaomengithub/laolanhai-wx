@@ -268,3 +268,13 @@ export async function updateMatchPhoto(data) {
   }
   return await request_(obj)
 }
+
+
+export async function getArenaList(data) {
+  let obj = {
+    url: '/arena/listSportsHalls',
+    method: 'POST',
+    data: data
+  }
+  return await request_(obj)
+}

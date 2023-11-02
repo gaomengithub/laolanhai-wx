@@ -23,21 +23,23 @@ Component({
   methods: {
     swiperChange(e) {
       const currImg = this.data.photos[e.detail.current]
-      wx.getImageInfo({
-        src: currImg,
-        success: (res) => {
-          let scale = null
-          if (res.height >= res.width) {
-            scale = this.data.windowWidth * 4 / 3
-          } else {
-            scale = this.data.windowWidth * 3 / 4
+      if (currImg) {
+        wx.getImageInfo({
+          src: currImg,
+          success: (res) => {
+            let scale = null
+            if (res.height >= res.width) {
+              scale = this.data.windowWidth * 4 / 3
+            } else {
+              scale = this.data.windowWidth * 3 / 4
+            }
+            this.setData({
+              swiperImgHeight: scale + 'px',
+              swiperHeight: scale + 'px'
+            })
           }
-          this.setData({
-            swiperImgHeight: scale + 'px',
-            swiperHeight: scale + 'px'
-          })
-        }
-      })
+        })
+      }
     },
   }
 })

@@ -11,9 +11,9 @@
     </player-items>
   </view>
   <view class="list">
-    <apply-items>
+    <team-apply-items>
       <top-line name="待加入队员" more="false"></top-line>
-    </apply-items>
+    </team-apply-items>
   </view>
 </view>
 <view wx:if="{{ !isInTeam }}">

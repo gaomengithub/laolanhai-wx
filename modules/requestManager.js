@@ -1,6 +1,6 @@
 import { getAvailableAccessToken } from '../modules/tokenManager/tokenToken'
+import { handleErr } from "./msgHandler"
 
-var log = require('../utils/log')
 const BASE_URL = "https://api.obabyball.com"
 
 export function request_(obj, retry = 0, force = false) {
@@ -15,6 +15,7 @@ function requestWithToken(obj, accessToken, retry) {
     var data = obj.data || {};
     var contentType = obj.contentType || 'application/json';
     var method = obj.method || 'GET';
+    wx.showLoading({ title: '请等待', })
     wx.request({
       url: BASE_URL + obj.url,
       data: data,
@@ -26,7 +27,8 @@ function requestWithToken(obj, accessToken, retry) {
       success: function (res) {
         if (res.statusCode == "200") {
           resolve(res.data)
-        } else if (res.statusCode == "401") {
+        }
+        else if (res.statusCode == "401") {
           let retryTimeout = null
           if (retry < 2) {
             retryTimeout = setTimeout(() => {
@@ -36,37 +38,17 @@ function requestWithToken(obj, accessToken, retry) {
             }, 1000)
           } else {
             reject(new Error('重试超过最大次数'))
-            log.error('重试超过最大次数')
-            wx.showModal({
-              title: '错误',
-              content: '获取token的重试次数超过最大值',
-              showCancel: false,
-              complete: (res) => {
-                if (res.confirm) {
-
-                }
-              }
-            })
+            handleErr("获取token的重试次数超过最大值")
           }
         } else {
           reject(res)
         }
       },
       fail: function (err) {
-        wx.showModal({
-          title: '错误',
-          content: '请求出错，请检查网络连接后重试',
-          showCancel: false,
-          complete: (res) => {
-            if (res.confirm) {
-
-            }
-          }
-        })
-
-        log.error(JSON.stringify(err))
+        handleErr("请求出错，请检查网络连接后重试")
       },
       complete: function () {
+        wx.hideLoading()
       }
     });
   });

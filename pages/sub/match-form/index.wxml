@@ -51,6 +51,13 @@
   <!-- 费用 -->
   <van-cell icon="{{ icon.price }}" title="费用" value="{{ matchForm.cost }}" is-link bind:click="onDisplay" border="{{ false }}" data-show="showCostAction" />
   <van-action-sheet show="{{ showCostAction }}" actions="{{ actions }}" bind:close="onDisplay" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" data-show="showCostAction" data-key="cost" />
+
+  <!-- 球馆 -->
+  <view wx:if="{{matchForm.myArenas}}">
+    <van-cell icon="{{ icon.arena }}" title="关联球馆" value="{{ matchForm.arena.name }}" is-link bind:click="onDisplay" border="{{ false }}" data-show="showArenaAction" />
+    <van-action-sheet show="{{ showArenaAction }}" actions="{{ matchForm.myArenas }}" bind:close="onDisplay" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" data-show="showArenaAction" data-key="arena" />
+  </view>
+
 </view>
 
 <logo-bar></logo-bar>

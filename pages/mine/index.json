@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "score-card":"/components/score-card/index",
-    "joined-card":"/components/joined-card/index",
+    "joined-match-items":"/components/joined-match-items/index",
     "apply-action":"/components/apply-action/index",
     "van-popup": "@vant/weapp/popup/index",
     "honor-card":"/components/honor-card/index",

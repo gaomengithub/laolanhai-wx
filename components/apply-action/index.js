@@ -8,15 +8,15 @@ Component({
   },
 
   data: {
-    greyArrow: iconUrls.greyArrow,
-    blackArrow: iconUrls.blackArrow,
+    greyArrow: 'https://openstore.obabyball.com/ui_v1/icon/arrow-grey.svg',
+    blackArrow: 'https://openstore.obabyball.com/ui_v1/icon/arrow-black.svg',
     manager: {
-      icon: iconUrls.addActionUnofficial,
+      // icon: iconUrls.addActionUnofficial,
       title: "申请成为大区旋风",
       text: "管理大区相关事务",
     },
     referee: {
-      icon: iconUrls.mineReferee,
+      icon: 'https://openstore.obabyball.com/ui_v1/icon/mine-referee-v1.svg',
       title: "申请成为裁判",
       text: "限有裁判资格者申请",
     },

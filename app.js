@@ -1,11 +1,13 @@
 import Common from '$/utils/common'
 import { loginForToken } from 'modules/tokenManager/getToken'
-
+import { user } from "$/stores/user-store"
 App({
   onLaunch() {
     this.globalData.common = new Common()
     // 初始化注册
     initRegister()
+    // 初始化user
+    user.updateUserInfo()
   },
   globalData: {
     common: null,

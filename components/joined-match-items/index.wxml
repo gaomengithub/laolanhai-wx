@@ -1,0 +1,25 @@
+<view class="container">
+  <slot></slot>
+  <view class="card"  wx:for="{{ joinedMatches }}" wx:key="id">
+    <view class="item">
+      <image class="type-icon" src="{{ }}" mode="aspectFill" />
+      <view class="content">
+        <view class="name">
+          {{item.name}}
+        </view>
+        <view class="type">
+          <wxs src="./index.wxs" module="tools" />
+          <block>
+            {{ tools.getTypeName(item.match_type) }}
+          </block>
+        </view>
+      </view>
+      <view class="status {{ ['start','mid','end'][item.status] }}">
+        {{ ["报名中","已开赛","已结束"][item.status] }}
+      </view>
+      <navigator url="/pages/sub/match-details/index?id={{ item.id }}">
+        <image class="link" src="{{link}}" mode="aspectFill" />
+      </navigator>
+    </view>
+  </view>
+</view>

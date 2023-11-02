@@ -1,7 +1,7 @@
 {
 
   "usingComponents": {
-    "enlist-card":"/components/enlist-card/index",
+    "enlist-items":"/components/enlist-items/index",
     "van-button": "@vant/weapp/button/index",
     "nav-bar": "/components/nav-bar/index",
     "team-card":"/components/team-card/index",

@@ -5,13 +5,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    team: {
+    teams: {
       type: Object,
-      value: {
-        name:"老蓝孩",
-        logo:"",
-        id:"",
-      }
+      value: []
     }
   },
 
@@ -19,13 +15,11 @@ Component({
    * 组件的初始数据
    */
   data: {
-    bgImg: imgUrls.enListBgImg,
-    avatarOutline: imgUrls.enListAvatarOutlineImg,
+    img: 'https://openstore.obabyball.com/ui_v1/img/enlist-bg-img-v2.svg',
+    avatarOutline: 'https://openstore.obabyball.com/ui_v1/img/enlist-avatar-outline-v1.svg',
   },
 
-  /**
-   * 组件的方法列表
-   */
+
   methods: {
     onBtnClick(e) {
       const teamID = e.currentTarget.dataset.id

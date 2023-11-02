@@ -14,7 +14,8 @@ Page({
       age_group_start: 'https://openstore.obabyball.com/ui_v1/icon/add-up-v1.png',
       age_group_end: 'https://openstore.obabyball.com/ui_v1/icon/add-down-v1.png',
       price: 'https://openstore.obabyball.com/ui_v1/icon/add-cost-v1.png',
-      upload: 'https://openstore.obabyball.com/ui_v1/icon/add-upload-v1.svg'
+      upload: 'https://openstore.obabyball.com/ui_v1/icon/add-upload-v1.svg',
+      arena: 'https://openstore.obabyball.com/ui_v1/icon/match-form-arena.svg'
     },
     // 页面控制
     minHour: 8,
@@ -60,33 +61,23 @@ Page({
 
   handler(e) {
     const key = e.currentTarget.dataset.key
-    let val = null
-    if (e.type == 'confirm' || e.type == 'finish') {
-      this.onDisplay(e)
-      if (key == 'date') {
-        const date = new Date(e.detail)
-        val = formatDate(date)
-      }
-      else if (key == 'region') {
-        const { selectedOptions } = e.detail
-        val = selectedOptions.map((option) => option.text).join('/');
-      } else {
-        val = e.detail
-      }
+    let val = e.detail
+    if (key == 'date') {
+      const date = new Date(e.detail)
+      val = formatDate(date)
     }
-    else if (e.type == 'select') {
+    else if (key == 'region') {
+      const { selectedOptions } = e.detail
+      val = selectedOptions.map((option) => option.text).join('/');
+    }
+    else if (key == 'cost') {
       val = e.detail.name
     }
-    else if (e.type == 'change') {
-      const str = e.detail
-      if (Number(str) && parseInt(str)) {
-        val = parseInt(str)
-      } else {
-        val = str
-      }
+    else if (key == 'arena') {
+      val = { name: e.detail.name, id: e.detail.id }
     }
-    else {
-      //未知的类型
+    else if (key == 'join_num' || key == 'age_group_start' || key == 'age_group_end') {
+      val = parseInt(e.detail)
     }
 
     const form = {

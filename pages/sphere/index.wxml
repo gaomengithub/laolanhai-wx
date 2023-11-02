@@ -1,5 +1,4 @@
 <nav-bar title="球界"></nav-bar>
-
 <van-tabs active="{{ active }}" sticky offset-top="{{ offset }}">
   <van-tab title="球队">
     <view class="container">
@@ -25,7 +24,7 @@
       <view class="list">
         <top-line name="球队列表" more="<创建球队>" bind:handleButtomClick="ToTeamCreate"></top-line>
         <view wx:if="{{notMyTeams}}">
-          <enlist-card wx:for="{{notMyTeams}}" wx:key="index" team="{{item}}"></enlist-card>
+          <enlist-items teams="{{ notMyTeams }}"></enlist-items>
         </view>
         <view wx:else class="tip">
           可加入的球队列表为空。
