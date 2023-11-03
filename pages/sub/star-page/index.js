@@ -1,10 +1,19 @@
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { user } from "$/stores/user-store"
 
 Page({
   data: {
-    topBgImg:'https://openstore.obabyball.com/ui_v1/img/detail-team-bg-img-v1-compress-v2.png'
+    id: wx.getStorageSync('id'),
+    topBgImg: 'https://openstore.obabyball.com/ui_v1/img/detail-team-bg-img-v1-compress-v2.png'
   },
 
   onLoad(options) {
+    this.storeBindings = createStoreBindings(this, {
+      store: user,
+      fields: ["starDetails"],
+      actions: ["updateStarDetails", ],
+    });
+      this.updateStarDetails()
 
   },
 
@@ -33,7 +42,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    this.storeBindings.destroyStoreBindings();
   },
 
   /**
@@ -54,6 +63,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+    return {
+      title: '球星卡',
+      path: `/pages/sub/star-page/index?userID${this.data.id}`
+    }
   }
 })

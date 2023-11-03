@@ -5,6 +5,7 @@ Page({
   data: {
     img: {
       light: 'https://openstore.obabyball.com/ui_v1/img/mine-light-img-v1.svg',
+      react:'https://openstore.obabyball.com/ui_v1/icon/Rectangle-grey-round.svg'
     },
     icon: {
       team: 'https://openstore.obabyball.com/ui_v1/icon/mine-team-v1.svg',
@@ -41,7 +42,7 @@ Page({
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store: user,
-      fields: ["user", "matches", "id","updateJoinedMatches"],
+      fields: ["user", "matches", "id"],
       actions: ["updateUserInfo", "updateUserMatches","updateJoinedMatches"],
     })
     // 在第一次加载的已经更新了用户信息

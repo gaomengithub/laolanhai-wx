@@ -5,6 +5,7 @@ import { formatDate } from '$/utils/util'
 import { handleErr } from '../../../modules/msgHandler'
 Page({
   data: {
+    regionVal: "",
     options: options,  //地区选择
     autoSize: { minHeight: 80 },
     icon: {
@@ -20,6 +21,11 @@ Page({
     // 页面控制
     minHour: 8,
     maxHour: 18,
+    maxDate: function () {
+      const curr = new Date();
+      curr.setMonth(curr.getMonth() + 2);
+      return curr.getTime();
+    }(),
     fieldNames: {
       text: 'text',
       value: 'text',
@@ -67,8 +73,10 @@ Page({
       val = formatDate(date)
     }
     else if (key == 'region') {
-      const { selectedOptions } = e.detail
-      val = selectedOptions.map((option) => option.text).join('/');
+      const { selectedOptions, value } = e.detail;
+      const fieldValue = selectedOptions.map((option) => option.text).join('/');
+      val = fieldValue
+      this.setData({ regionVal: value })
     }
     else if (key == 'cost') {
       val = e.detail.name
@@ -78,6 +86,10 @@ Page({
     }
     else if (key == 'join_num' || key == 'age_group_start' || key == 'age_group_end') {
       val = parseInt(e.detail)
+    }
+
+    if (e.type == "confirm" || e.type == "select" || e.type == "finish") {
+      this.onDisplay(e)
     }
 
     const form = {

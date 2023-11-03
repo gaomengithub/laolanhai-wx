@@ -3,14 +3,14 @@
 
 <view class="container">
   <view class="team-card">
-    <team-card team="{{ teamDetails }}"></team-card>
+    <team-card team="{{ teamDetails || null}}"></team-card>
   </view>
   <view class="list">
     <player-items>
       <top-line name="我的队员" more="false"></top-line>
     </player-items>
   </view>
-  <view class="list">
+  <view class="list" wx:if="{{ teamDetails.isMyTeam }}">
     <team-apply-items>
       <top-line name="待加入队员" more="false"></top-line>
     </team-apply-items>

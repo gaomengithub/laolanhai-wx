@@ -1,9 +1,22 @@
 import { observable, action } from "mobx-miniprogram"
-import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo } from '$/utils/api'
+import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData } from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { handleErr } from '../modules/msgHandler'
 export const user = observable({
-
+  starDetails: {},
+  starForm: {
+    files: [],
+    age: 0,
+    assist: 0,
+    block: 0,
+    height: 0,
+    image: '',
+    position: '',
+    score: 0,
+    steal: 0,
+    threePoint: 0,
+    userId: ''
+  },
   approvals: [],
   matches: [], // 用户创建的比赛
   user: {
@@ -54,6 +67,68 @@ export const user = observable({
     }
   },
 
+  updateStarDetails: action(async function (params) {
+    let id = null
+    if (params) {
+      id = params
+    } else {
+      id = wx.getStorageSync('id')
+    }
+    try {
+      const data = await getStarData(id)
+      this.starDetails = data
+    } catch (e) {
+
+    }
+  }),
+  activeStar: action(async function name(params) {
+    try {
+      const patch = {
+        image: this.starForm.files[0].key,
+        userId: this.id
+      }
+      const data = { ...this.starForm, ...patch }
+      await updateStarData(data)
+    } catch {
+    }
+  }),
+
+  updateStarForm: action(async function (params) {
+    // 更新图片
+    if (params.tempFilePath) {
+      var _this = this
+      wx.compressImage({
+        src: params.tempFilePath,
+        quality: 10,
+        success: async function (res) {
+          const data = await uploadImgWithToken(res.tempFilePath)
+          const item = { url: params.tempFilePath, isImage: true }
+          _this.starForm.files.push({ ...data, ...item })
+          // 部分更新
+          _this.starForm = Object.assign({}, _this.starForm, { files: _this.starForm.files })
+        }
+      })
+    }
+    // 删除图片
+    else if (typeof params === 'number') {
+      this.starForm.files.splice(params, 1)
+      this.starForm = Object.assign({}, this.starForm, { files: this.starForm.files })
+    }
+    // 修改比赛，需要先获得比赛信息，修改form
+    else if (typeof params === 'string') {
+      try {
+        const data = await getStarData(params)
+        this.starForm = { ...this.starForm, ...data }
+      } catch (e) {
+        handleErr("修改比赛，获得比赛信息失败")
+      }
+    }
+    // 更新其他字段
+    else {
+      this.starForm = { ...this.starForm, ...params }
+    }
+  }),
+
   updateApprovals: action(async function () {
     // const data = await getMatchApprovals()
 
@@ -67,7 +142,8 @@ export const user = observable({
   modifyUserInfo: action(async function () {
     try {
       const patch = {
-        avatar: this.user.avatarKey
+        avatar: this.user.avatarKey,
+        height: '170'
       }
       const form = { ...this.user, ...patch }
       await updateUserInfo(form)

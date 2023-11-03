@@ -5,6 +5,7 @@ import { options } from '$/utils/pca-code'
 import { handleErr } from '../../../modules/msgHandler'
 Page({
   data: {
+    regionVal: '',
     options,
     icon: {
       date: 'https://openstore.obabyball.com/ui_v1/icon/add-calendar-v1.png',
@@ -13,14 +14,25 @@ Page({
       upload: 'https://openstore.obabyball.com/ui_v1/icon/add-upload-v1.svg'
     },
     autoSize: { minHeight: 50 },
+    fieldNames: {
+      text: 'text',
+      value: 'text',
+      children: 'children',
+    },
   },
 
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: news,
       fields: ["newsForm"],
-      actions: ["updateNewsForm", "activeNews", "modifyNewsForm"],
+      actions: ["updateNewsForm", "activeNews", "modifyNewsForm","initNewsForm"],
     });
+    if (options.page == "new") {
+      this.initNewsForm()
+    }
+    else if (options.page == "modify" && options.id) {
+      this.updateNewsForm(options.id)
+    }
   },
 
   onUnload() {
@@ -49,20 +61,23 @@ Page({
   },
 
   handler(e) {
-    console.log(e)
     const key = e.currentTarget.dataset.key
     let val = e.detail
     if (key == 'date') {
       const date = new Date(e.detail)
       val = formatDate(date)
     }
-    if (key == 'region') {
-      const { selectedOptions } = e.detail
-      val = selectedOptions.map((option) => option.text).join('/')
+    else if (key == 'region') {
+      const { selectedOptions, value } = e.detail;
+      const fieldValue = selectedOptions.map((option) => option.text).join('/');
+      val = fieldValue
+      this.setData({ regionVal: value })
     }
-    if (e.type == 'confirm') {
+
+    if (e.type == "confirm" || e.type == "select" || e.type == "finish") {
       this.onDisplay(e)
     }
+
     const form = {
       [key]: val
     }

@@ -27,5 +27,10 @@ Page({
   afterRead(e) {
     const { file } = e.detail;
     this.updateMatchResult(file)
-  }
+  },
+  deleteImg(e) {
+    const index = e.detail.index
+    this.updateMatchResult(index)
+  },
+
 })

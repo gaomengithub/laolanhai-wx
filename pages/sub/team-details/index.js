@@ -3,14 +3,14 @@ import { team } from "$/stores/team-store"
 Page({
 
   data: {
-    arrow: iconUrls.tabArrow,
+    arrow: 'https://openstore.obabyball.com/ui_v1/icon/tab-arrow-v1.svg',
     items: {},
     active: 0,
     teamID: "",
     // showComments: false,
     comments: "",
     autosize: { minHeight: 50 },
-    bgImg: imgUrls.detailTeamBgImg,
+    bgImg: 'https://openstore.obabyball.com/ui_v1/img/detail-team-bg-img-v1-compress-v2.png',
 
   },
   onChange(e) {
@@ -23,13 +23,13 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: team,
-      fields: ["teamDetails","isInTeam"],
+      fields: ["teamDetails", "isInTeam"],
       actions: ["updateTeamDetails", "updateTeamApprovals"],
     });
-    const id = options.id
-    if (id) {
-      this.updateTeamApprovals(id)
-      this.updateTeamDetails(id)
+
+    if (options.id) {
+      this.updateTeamApprovals(options.id)
+      this.updateTeamDetails(options.id)
     }
   },
 

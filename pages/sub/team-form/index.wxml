@@ -1,37 +1,36 @@
-<nav-bar title="{{navTitle}}"></nav-bar>
-<!-- <view style="height:{{navBarHeight}}px;"></view> -->
+<nav-bar title="创建/修改球队"></nav-bar>
+
 <view class="container">
-  <van-uploader file-list="{{ showFileList }}" bind:after-read="onAfterRead" max-count="1" image-fit="widthFix" accept="image" bind:delete="onDelete">
-    <image class="upload-icon" src="{{ iconUrls.upload }}" mode="aspectFill" />
+  <van-uploader file-list="{{ teamForm.files }}" bind:after-read="onAfterRead" max-count="1" image-fit="widthFix" accept="image" bind:delete="onDelete">
+    <image class="upload-icon" src="{{ icon.upload }}" mode="aspectFill" />
   </van-uploader>
   <view class="input-container"></view>
-  <van-field model:value="{{ name }}" placeholder="请填写球队名称">
+  <van-field value="{{ teamForm.name || '' }}" placeholder="请填写球队名称">
     <view class="title" slot="label">球队名称</view>
-    <image class="field-icon" slot="left-icon" src="{{ iconUrls.name }}" mode="scaleToFill" />
+    <image class="field-icon" slot="left-icon" src="{{ icon.name }}" mode="aspectFill" />
   </van-field>
-  <van-field class="field-input-class" model:value="{{ intro }}" type="textarea" autosize="{{autoSize}}" placeholder="请填写球队简介。比如我们的老年篮球队是由一群热爱篮球运动的老人组成的。虽然我们的年龄不同，但是我们都有一颗想要锻炼身体、结交朋友、展示自己的热情。">
+  <van-field class="field-input-class" value="{{ teamForm.desc || '' }}" type="textarea" autosize="{{autoSize}}" placeholder="请填写球队简介。比如我们的老年篮球队是由一群热爱篮球运动的老人组成的。虽然我们的年龄不同，但是我们都有一颗想要锻炼身体、结交朋友、展示自己的热情。">
     <view class="title" slot="label">球队简介</view>
-    <image class="field-icon" slot="left-icon" src="{{ iconUrls.intro }}" mode="scaleToFill" />
+    <image class="field-icon" slot="left-icon" src="{{ icon.intro }}" mode="aspectFill" />
   </van-field>
-  <van-cell is-link model:value="{{ currCity }}" readonly bind:click="onDisplay" data-show="showAreaCascader">
+  <van-cell is-link value="{{ teamForm.city }}" readonly bind:click="onDisplay" data-show="showAreaCascader">
     <view class="title" slot="title">所在城市</view>
-    <image class="field-icon" slot='icon' src="{{iconUrls.location}}" mode="scaleToFill" />
+    <image class="field-icon" slot='icon' src="{{icon.location}}" mode="aspectFill" />
   </van-cell>
-  <van-field model:value="{{ location }}" placeholder="主要活动位置" type="text">
+  <van-field value="{{ teamForm.location || ''}}" placeholder="主要活动位置" type="text">
     <view class="title" slot="label">活动位置</view>
-    <image class="field-icon" slot='left-icon' src="{{iconUrls.address}}" mode="scaleToFill" />
+    <image class="field-icon" slot='left-icon' src="{{icon.address}}" mode="aspectFill" />
   </van-field>
-  <van-field model:value="{{ memberNum }}" placeholder="期望的队伍人数" type="number" border="{{ false }}">
+  <van-field value="{{ teamForm.number || '' }}" placeholder="期望的队伍人数" type="number" border="{{ false }}">
     <view class="title" slot="label">人数上限</view>
-    <image style="height:55rpx;width: 55rpx; margin-right: 3rpx;" slot='left-icon' src="{{iconUrls.member}}" mode="aspectFill" />
+    <image class="field-icon" slot='left-icon' src="{{icon.member}}" mode="aspectFill" />
   </van-field>
 </view>
 
 <!-- 占位 -->
 <view style="height: 166rpx;"></view>
 
-<bottom-btn-bar name="{{ type=='create' ?'创建':'修改' }}" bind:handleButtonClick="onBtnClick"></bottom-btn-bar>
-
+<bottom-btn-bar name="{{ teamForm.id ? '修改':'创建' }}" bind:handleButtonClick="onBtnClick"></bottom-btn-bar>
 
 
 <van-popup show="{{ showAreaCascader }}" round position="bottom" custom-style="height: 50%" bind:close="onClose" data-show="showAreaCascader">

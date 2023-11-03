@@ -52,3 +52,8 @@
   width: 80rpx;
   height: 80rpx;
 }
+
+.img {
+  width: 650rpx;
+  height: 650rpx;
+}

@@ -5,7 +5,7 @@
   <van-field value="{{ newsForm.title || ''}}" placeholder="赛事名称" bind:change="handler" data-key="title" />
 
   <!-- 详情描述 -->
-  <van-field class="field-input-class" value="{{ newsForm.description || '' }}" type="textarea" autosize="{{ autoSize }}" bind:change="handler" data-key="description" placeholder="简要描述比赛" />
+  <van-field class="field-input-class" value="{{ newsForm.content || '' }}" type="textarea" autosize="{{ autoSize }}" bind:change="handler" data-key="content" placeholder="简要描述比赛" />
 
   <!-- 日期 -->
   <van-cell is-link icon="{{ icon.date }}" title="日期" value="{{ newsForm.date }}" bind:click="onDisplay" data-show="showCalendar" />
@@ -14,13 +14,15 @@
   <!-- 地区 -->
   <van-cell is-link icon="location" value="{{ newsForm.region }}" readonly title="地区" bind:click="onDisplay" data-show="showAreaCascader" />
   <van-popup show="{{ showAreaCascader }}" round position="bottom" custom-style="height: 50%" data-show="showAreaCascader">
-    <van-cascader wx:if="{{ showAreaCascader }}" value="{{ newsForm.region }}" title="请选择所在地区" options="{{ options }}" field-names="{{ fieldNames }}" active-color="#ee0a24" bind:close="onDisplay" data-show="showAreaCascader" data-key="region" bind:finish="handler" />
+    <van-cascader wx:if="{{ showAreaCascader }}" value="{{ regionVal }}" title="请选择所在地区" options="{{ options }}" field-names="{{ fieldNames }}" active-color="#ee0a24" bind:close="onDisplay" data-show="showAreaCascader" data-key="region" bind:finish="handler" />
   </van-popup>
 
+  <view class="attachments">
+    <van-uploader bind:delete='deleteImg' file-list="{{ newsForm.files || [] }}" bind:after-read="onAfterRead" max-count="5" image-fit="widthFix" accept="image">
+      <image class="upload-bg-img" src="{{ icon.upload }}" mode="aspectFill" />
+    </van-uploader>
+  </view>
 
-  <van-uploader bind:delete='deleteImg' file-list="{{ newsForm.files || [] }}" bind:after-read="onAfterRead" max-count="2" image-fit="widthFix" accept="image">
-    <image class="upload-bg-img" src="{{ icon.upload }}" mode="aspectFill" />
-  </van-uploader>
 </view>
 
-<bottom-btn-bar name="创建" bind:handleButtonClick="handleClick"></bottom-btn-bar>
+<bottom-btn-bar name="{{ news.id ? '修改' :'创建' }}" bind:handleButtonClick="handleClick"></bottom-btn-bar>

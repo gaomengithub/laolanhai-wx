@@ -11,7 +11,7 @@
     <top-line name="技术统计" more="编辑">
     </top-line>
     <view class="data-charts">
-      <player-data-charts></player-data-charts>
+      <player-data-charts arr="{{ [starDetails.steal,starDetails.threePoint,starDetails.score] }}"></player-data-charts>
     </view>
   </view>
 

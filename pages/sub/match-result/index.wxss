@@ -11,8 +11,15 @@
   padding: 22rpx;
 }
 
-.van-uploader__preview-image ,.van-uploader__upload {
-  width: 195rpx !important;
-  height: 195rpx !important;
+.van-uploader__preview-image,
+.van-uploader__upload {
+  width: 190rpx !important;
+  height: 190rpx !important;
   margin: 5rpx;
+}
+
+.bar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 22rpx;
 }

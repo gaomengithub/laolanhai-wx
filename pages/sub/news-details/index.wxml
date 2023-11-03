@@ -13,14 +13,14 @@
         <view slot="title">
           <top-line name="基本信息" more="false"></top-line>
         </view>
-        这里是基本信息
+        {{ newsDetails.content }}
       </van-collapse-item>
       <van-collapse-item name="2">
         <view slot="title">
           <top-line name="附件" more="false"></top-line>
 
         </view>
-        这里是附件
+        <image class="img" wx:for="{{ newsDetails.attachments }}" src="{{item}}" wx:key="index" mode="aspectFit" />
       </van-collapse-item>
     </van-collapse>
   </view>
@@ -28,5 +28,4 @@
 
 
 <image class="edit" src="{{icon.edit}}" mode="aspectFit" bind:tap="handleClick" />
-<van-action-sheet cancel-text="取消" bind:cancel="onDisplay" show="{{ show }}" actions="{{ actions }}" bind:close="onDisplay" bind:select="onSelect" data-show="show"/>
-
+<van-action-sheet cancel-text="取消" bind:cancel="onDisplay" show="{{ show }}" actions="{{ actions }}" bind:close="onDisplay" bind:select="onSelect" data-show="show" />

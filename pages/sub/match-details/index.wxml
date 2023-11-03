@@ -29,7 +29,7 @@
           </view>
         </view>
         <view class="part">
-          <view class="title">已参加的人员</view>
+          <view class="title">已参加的人员/队伍</view>
           <view class="avatars">
             <image class='avatar' wx:for="{{matchDetails.users}}" wx:key="index" src="{{ item.avatar }}" />
             <image class='avatar' wx:for="{{matchDetails.teams}}" wx:key="index" src="{{ item.avatar }}" />

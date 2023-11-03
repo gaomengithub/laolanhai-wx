@@ -32,7 +32,7 @@ Page({
   },
 
   ToTeamCreate() {
-    const path = '/pages/sub/diy-team/index?type=create'
+    const path = '/pages/sub/team-form/index?page=new'
     routeInterceptor.navigateTo(path)
   },
 

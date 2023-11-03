@@ -1,0 +1,7 @@
+.container {
+  padding: 22rpx;
+}
+.upload-bg-img{
+  width: 200rpx;
+  height: 200rpx;
+}

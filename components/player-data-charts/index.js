@@ -2,7 +2,7 @@ import * as echarts from '../../libs/ec-canvas/echarts';
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { user } from "$/stores/user-store";
 
-function setOption(chart) {
+function setOption(chart, arr) {
   var option = {
     polar: {
       radius: [30, '85%']
@@ -12,13 +12,13 @@ function setOption(chart) {
       startAngle: 75
     },
     radiusAxis: {
-      show:false,
+      show: false,
       type: 'category',
       data: ['罚球', '三分', '得分']
     },
     series: {
       type: 'bar',
-      data: [4, 9, 18.5],
+      data: arr,
       silent: true, //禁用此饼图的鼠标悬停交互
       coordinateSystem: 'polar',
       label: {
@@ -26,9 +26,9 @@ function setOption(chart) {
         position: 'middle',
         formatter: '{b}-{c}'
       },
-      roundCap:true,
+      roundCap: true,
       itemStyle: {
-        color: function(params) {
+        color: function (params) {
           var colorList = ['#03c3d7', '#76e806', '#f62a78'];
           return colorList[params.dataIndex]
         }
@@ -42,10 +42,13 @@ function setOption(chart) {
 Component({
   behaviors: [storeBindingsBehavior],
   properties: {
-
+    arr: {
+      type: Array,
+      value: [4, 9, 18.5]
+    }
   },
   storeBindings: {
-    store:user,
+    store: user,
     fields: ["user"]
   },
 
@@ -83,7 +86,7 @@ Component({
           height: height,
           devicePixelRatio: dpr // new
         });
-        setOption(chart);
+        setOption(chart, this.data.arr);
 
         // 将图表实例绑定到 this 上，可以在其他成员函数（如 dispose）中访问
         this.chart = chart;

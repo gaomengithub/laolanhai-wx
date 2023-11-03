@@ -1,6 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { news } from "$/stores/news-store";
-import { handleErr } from '../../../modules/msgHandler'
+import routeInterceptor from '$/utils/router'
 Page({
   data: {
     show: false,
@@ -24,9 +24,9 @@ Page({
   },
   onSelect(e) {
     if (e.detail.name == '删除资讯') {
-
+      this.deleteNews(this.data.newsDetails.id)
     } else {
-      const path = `/pages/sub/create-modify-news/index?page=modify&id=${this.data.match.id}`
+      const path = `/pages/sub/news-form/index?page=modify&id=${this.data.newsDetails.id}`
       routeInterceptor.navigateTo(path)
     }
   },
@@ -43,7 +43,7 @@ Page({
     this.storeBindings = createStoreBindings(this, {
       store: news,
       fields: ["newsDetails"],
-      actions: ["updateNewsDetails"]
+      actions: ["updateNewsDetails", "deleteNews"]
     });
     const id = options.id
     if (id) {

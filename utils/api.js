@@ -1,6 +1,38 @@
 import { request_ } from "../modules/requestManager"
 
 
+export async function delNews(id) {
+  let obj = {
+    url: '/match/deleteMatchNews',
+    method: 'GET',
+    data: {
+      id
+    }
+  }
+  return await request_(obj)
+}
+
+export async function getStarData(id) {
+  let obj = {
+    url: '/user/getBallStarCard',
+    method: 'GET',
+    data: {
+      userId: id
+    }
+  }
+  return await request_(obj)
+}
+
+
+export async function updateStarData(data) {
+  let obj = {
+    url: '/user/updateBallStarCard',
+    method: 'POST',
+    data: data
+  }
+  return await request_(obj)
+}
+
 
 export async function getMatches(data) {
   let obj = {

@@ -150,7 +150,7 @@ export const newsFormRules = {
   title: {
     required: true
   },
-  description: {
+  content: {
     required: true
   },
   date: {
@@ -169,7 +169,7 @@ export const nesFormMessages = {
   title: {
     required: '标题不能为空'
   },
-  description: {
+  content: {
     required: '描述不能为空'
   },
   date: {

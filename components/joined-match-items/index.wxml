@@ -1,8 +1,8 @@
 <view class="container">
   <slot></slot>
-  <view class="card"  wx:for="{{ joinedMatches }}" wx:key="id">
+  <view class="card" wx:for="{{ items }}" wx:key="id">
     <view class="item">
-      <image class="type-icon" src="{{ }}" mode="aspectFill" />
+      <image class="avater" src="https://openstore.obabyball.com/ui_v1/icon/btn_basketball.svg" mode="aspectFill" />
       <view class="content">
         <view class="name">
           {{item.name}}
@@ -15,7 +15,7 @@
         </view>
       </view>
       <view class="status {{ ['start','mid','end'][item.status] }}">
-        {{ ["报名中","已开赛","已结束"][item.status] }}
+        {{ ["报名中","报名中","报名结束","进行中","比赛结束"][item.status] }}
       </view>
       <navigator url="/pages/sub/match-details/index?id={{ item.id }}">
         <image class="link" src="{{link}}" mode="aspectFill" />

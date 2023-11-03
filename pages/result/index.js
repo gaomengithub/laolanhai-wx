@@ -51,7 +51,7 @@ Page({
   },
 
   onBtnClick(e) {
-    const path = `/pages/sub/create-modify-news/index`
+    const path = `/pages/sub/news-form/index?`
     routeInterceptor.navigateTo(path)
   },
 })

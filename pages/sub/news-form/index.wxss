@@ -19,3 +19,7 @@
 .toolbar {
   --picker-action-font-size: 32rpx !important;
 }
+
+.attachments {
+  margin-top: 22rpx;
+}

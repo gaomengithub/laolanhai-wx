@@ -4,11 +4,14 @@ import { match } from "$/stores/match-store";
 Component({
   behaviors: [storeBindingsBehavior],
   properties: {
-
+    items: {
+      type: Object,
+      value: []
+    }
   },
   storeBindings: {
     store: match,
-    fields: ["joinedMatches"]
+    // fields: ["joinedMatches"]
   },
 
   data: {

@@ -15,7 +15,7 @@
 
   <!-- 日期 -->
   <van-cell is-link icon="{{ icon.date }}" title="日期" value="{{ matchForm.date }}" bind:click="onDisplay" data-show="showCalendar" />
-  <van-calendar show="{{ showCalendar }}" bind:close="onDisplay" data-show="showCalendar" bind:confirm="handler" data-key="date" />
+  <van-calendar max-date="{{maxDate}}" row-height="{{ 48 }}" color="#FB8808" show="{{ showCalendar }}" bind:close="onDisplay" data-show="showCalendar" bind:confirm="handler" data-key="date" />
 
   <!-- 开始、结束时间 -->
   <van-cell is-link icon="{{ icon.start_time }}" title="开始时间" value="{{ matchForm.start_time }}" bind:click="onDisplay" data-show="showStartTimePicker" />
@@ -31,7 +31,7 @@
   <!-- 地区 -->
   <van-cell is-link icon="location" value="{{ matchForm.region }}" readonly title="地区" bind:click="onDisplay" data-show="showAreaCascader" />
   <van-popup show="{{ showAreaCascader }}" round position="bottom" custom-style="height: 50%" data-show="showAreaCascader">
-    <van-cascader wx:if="{{ showAreaCascader }}" value="{{ matchForm.region }}" title="请选择所在地区" options="{{ options }}" field-names="{{ fieldNames }}" active-color="#ee0a24" bind:close="onDisplay" data-show="showAreaCascader" data-key="region" bind:finish="handler" />
+    <van-cascader wx:if="{{ showAreaCascader }}" value="{{ regionVal }}" title="请选择所在地区" options="{{ options }}" field-names="{{ fieldNames }}" active-color="#ee0a24" bind:close="onDisplay" data-show="showAreaCascader" data-key="region" bind:finish="handler" />
   </van-popup>
   <!-- 详细地址 -->
   <van-field left-icon="wap-home" label="详细地址" value="{{ matchForm.address || ''}}" bind:change="handler" input-align="right" placeholder="请输详细地址" data-key="address">
@@ -50,12 +50,12 @@
 
   <!-- 费用 -->
   <van-cell icon="{{ icon.price }}" title="费用" value="{{ matchForm.cost }}" is-link bind:click="onDisplay" border="{{ false }}" data-show="showCostAction" />
-  <van-action-sheet show="{{ showCostAction }}" actions="{{ actions }}" bind:close="onDisplay" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" data-show="showCostAction" data-key="cost" />
+  <van-action-sheet show="{{ showCostAction }}" actions="{{ actions }}" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" data-show="showCostAction" data-key="cost" />
 
   <!-- 球馆 -->
   <view wx:if="{{matchForm.myArenas}}">
     <van-cell icon="{{ icon.arena }}" title="关联球馆" value="{{ matchForm.arena.name }}" is-link bind:click="onDisplay" border="{{ false }}" data-show="showArenaAction" />
-    <van-action-sheet show="{{ showArenaAction }}" actions="{{ matchForm.myArenas }}" bind:close="onDisplay" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" data-show="showArenaAction" data-key="arena" />
+    <van-action-sheet show="{{ showArenaAction }}" actions="{{ matchForm.myArenas }}" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" data-show="showArenaAction" data-key="arena" />
   </view>
 
 </view>

@@ -44,20 +44,26 @@ export const match = observable({
   }),
 
   updateMatchResult: action(async function (params) {
+    // 上传照片
     if (params.tempFilePath) {
       var _this = this
       wx.compressImage({
         src: params.tempFilePath,
         quality: 10,
         success: async function (res) {
-          const data = await uploadImgWithToken(res.tempFilePath)
-          _this.matchResult.myPhotos.push({ url: params.tempFilePath, isImage: true, photo_key: data.key })
-          _this.matchResult = Object.assign({}, _this.matchResult, { myPhotos: _this.matchResult.myPhotos })
-          const obj = {
-            match_id: _this.matchResult.id,
-            photo: _this.matchResult.myPhotos.map(item => item.photo_key)
+          try {
+            const data = await uploadImgWithToken(res.tempFilePath)
+            _this.matchResult.myPhotos.push({ url: params.tempFilePath, isImage: true, photo_key: data.key })
+            _this.matchResult = Object.assign({}, _this.matchResult, { myPhotos: _this.matchResult.myPhotos })
+            const obj = {
+              match_id: _this.matchResult.id,
+              photo: _this.matchResult.myPhotos.map(item => item.photo_key)
+            }
+            await updateMatchPhoto(obj)
+            handleInfo("上传成功")
+          } catch (e) {
+            handleErr("上传照片出错")
           }
-          await updateMatchPhoto(obj)
         }
       })
 
@@ -76,7 +82,18 @@ export const match = observable({
     }
     // 删除
     else if (typeof (params) === "number") {
-
+      try {
+        this.matchResult.myPhotos.splice(params, 1)
+        this.matchResult = Object.assign({}, this.matchResult, { myPhotos: this.matchResult.myPhotos })
+        const obj = {
+          match_id: this.matchResult.id,
+          photo: this.matchResult.myPhotos.map(item => item.photo_key)
+        }
+        await updateMatchPhoto(obj)
+        handleInfo("删除成功")
+      } catch (e) {
+        handleErr("删除失败")
+      }
     }
   }),
 
@@ -110,6 +127,7 @@ export const match = observable({
   }),
 
   activeMatch: action(async function () {
+
     const patch = {
       age_diff: this.matchForm.age_group_end - this.matchForm.age_group_start,
       time_diff: getDiffInMinute(this.matchForm.end_time, this.matchForm.start_time),
@@ -120,7 +138,10 @@ export const match = observable({
       location: `${this.matchForm.region}||${this.matchForm.address}`,
       banner_attachments: this.matchForm.files.map(item => item.key)[0],
       attachments: this.matchForm.files.slice(1).map(item => item.key),
-      price: { "免费": "0", "约10元": "10", "约20元": "20", "约30元": "30" }[this.matchForm.cost]
+      price: { "免费": "0", "约10元": "10", "约20元": "20", "约30元": "30" }[this.matchForm.cost],
+      // 组织者
+      organizer: wx.getStorageSync('id'),
+      sports_halls: this.matchForm.arena.id
     }
     const form = { ...this.matchForm, ...patch }
     if (!this.validate.checkForm(form)) {
@@ -277,6 +298,10 @@ let matchFormBackup = {
   files: [],
   cost: '免费',
   myArenas: null,
+  arena: {
+    name: "",
+    id: ""
+  },
   //后端字段
   sports_halls: '',
   age_group_end: '',

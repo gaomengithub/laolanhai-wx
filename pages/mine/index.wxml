@@ -3,7 +3,7 @@
 </view>
 
 <view class="container">
-  <image class="react" src="https://openstore.obabyball.com/ui_v1/icon/Rectangle-grey-round.svg" mode="aspectFill" />
+  <image class="react" src="{{img.react}}" mode="aspectFill" />
   <view class="user">
     <image class="avatar" src="{{ user.avatar }}" mode="scaleToFill" />
     <view class="name">
@@ -36,11 +36,11 @@
       </view>
     </view>
   </view>
-  <joined-match-card items="{{ matches }}">
+  <joined-match-items items="{{ matches }}">
     <top-line name="已参加的" more="false"></top-line>
-  </joined-match-card>
+  </joined-match-items>
 
-  <honor-card></honor-card>
+  <!-- <honor-card></honor-card> -->
 
 </view>
 <!-- 188占位的基础上减去container的top-44 -->

@@ -18,9 +18,12 @@
         <view slot="title">
           <top-line name="技术统计" more="false"></top-line>
         </view>
-        <!-- <points-points>      
-        </points-points> -->
-        <vs-bar></vs-bar>
+        <points-points>
+        </points-points>
+        <view class="bar-container">
+          <vs-bar></vs-bar>
+
+        </view>
       </van-collapse-item>
       <van-collapse-item border="{{ false }}" name="3">
         <view slot="title">
@@ -28,7 +31,7 @@
         </view>
         <text>我上传的高光时刻：</text>
         <view class="mine">
-          <van-uploader file-list="{{ matchResult.myPhotos || []}}" max-count="{{ 5 }}" bind:after-read="afterRead" />
+          <van-uploader file-list="{{ matchResult.myPhotos || []}}" max-count="{{ 5 }}" bind:after-read="afterRead" bind:delete="deleteImg" />
         </view>
         <text>其他人上传的高光时刻</text>
         <view class="other">
