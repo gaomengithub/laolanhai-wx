@@ -1,21 +1,21 @@
 
-var formatStartTime = function (str) {
-  if (str == undefined) return
-  return str.replace(":00+08:00", "").replace("T", "  ")
+var formatTime = function (str) {
+  if (str) return str.replace(":00+08:00", "").replace("T", "  ")
+
 }
 
 var formatLocation = function (str) {
-  if (str == undefined) return
-  return str.replace("||", "  ")
+  if (str) return str.split("/")[1].replace("||", "  ")
 }
 
 var calcJoinedNum = function (arr) {
-  if (arr == undefined) return
-  return arr.length
+  if (arr) return arr.length
 }
+
+
 
 module.exports = {
   formatLocation: formatLocation,
-  formatStartTime: formatStartTime,
-  calcJoinedNum:calcJoinedNum
+  formatTime: formatTime,
+  calcJoinedNum: calcJoinedNum
 }

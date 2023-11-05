@@ -3,9 +3,12 @@
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "nav-bar": "/components/nav-bar/index",
-    "van-tabs":"@vant/weapp/tabs/index",
-    "van-tab":"@vant/weapp/tab/index",
-    "over-match-items":"/components/over-match-items/index",
-    "news-items":"/components/news-items/index"
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "over-match-items": "/components/over-match-items/index",
+    "news-items": "/components/news-items/index",
+    "van-sticky": "@vant/weapp/sticky/index",
+    "no-data-tip": "/components/no-data-tip/index",
+    "logo-bar": "/components/logo-bar/index"
   }
 }

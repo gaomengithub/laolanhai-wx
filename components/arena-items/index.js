@@ -1,14 +1,13 @@
-import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { arena } from "$/stores/arena-store";
+
 Component({
-  behaviors:[storeBindingsBehavior],
   properties: {
+    items: {
+      type: Object,
+      value: []
+    }
 
   },
-  storeBindings: {
-    store:arena,
-    fields: ["arenas"]
-  },
+
   data: {
     tagImg: 'https://openstore.obabyball.com/ui_v1/img/arena-bg-tag.svg',
     icon: {

@@ -41,10 +41,9 @@
   </joined-match-items>
 
   <!-- <honor-card></honor-card> -->
+  <logo-bar placeholder="188rpx"></logo-bar>
 
 </view>
-<!-- 188占位的基础上减去container的top-44 -->
-<view style="height: 144rpx;"></view>
 
 
 

@@ -1,15 +1,20 @@
+.container {
+  position: relative;
+}
+
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 44rpx;
-  margin: 24rpx;
   height: 310rpx;
-  padding: 26rpx;
-  position: relative;
+  width: 652rpx;
+  padding: 26rpx 26rpx 16rpx 26rpx;
+  margin: 24rpx;
+  border-radius: 44rpx;
   background: linear-gradient(to top right, #FFFFFF, #FFFAF4)
 }
 
-.tag-img {
+.img {
   position: absolute;
   width: 180rpx;
   height: 180rpx;
@@ -17,37 +22,30 @@
   right: 0;
 }
 
-.card .main {
+.main {
   display: flex;
-  height: 222rpx;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-bottom: 18rpx;
+  height: 222rpx;
 }
 
-.card .main .poster {
-  width: 182rpx;
+.poster {
+  width: 192rpx;
   height: 222rpx;
   border-radius: 12rpx;
-  margin-right: 30rpx;
 }
 
-
-
-.card .main .desc {
-  width: 428rpx;
+.item {
   display: flex;
   flex-direction: column;
+  width: 400rpx;
+  padding: 0 30rpx;
 }
 
-.card .main .desc .name {
+.name {
   font-size: 36rpx;
-  font-weight: 600;
+  font-weight: bold;
   height: 96rpx;
   line-height: 48rpx;
-  width: 428rpx;
-  margin-bottom: 12rpx;
   letter-spacing: 2rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -57,32 +55,33 @@
   -webkit-box-orient: vertical;
 }
 
-.card .main .desc .content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.details {
+  width: 358rpx;
+  height: 126rpx;
   font-size: 16px;
   color: #424242;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.card .main .desc .content .child {
-  margin-bottom: 10rpx;
+.child {
+  height: 50rpx;
   overflow: hidden;
   white-space: nowrap;
-  width: 428rpx;
   text-overflow: ellipsis;
 }
 
-.card .active {
+.active {
   position: relative;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 16rpx;
+  height: 88rpx;
 }
 
-.active .status {
+.type {
   font-size: 24rpx;
   height: 44rpx;
   width: 110rpx;
@@ -103,7 +102,6 @@
   width: 104rpx;
   overflow: hidden;
   white-space: nowrap;
-  
 }
 
 .avatar {
@@ -118,20 +116,21 @@
 
 .btn {
   position: absolute;
-  top: -20rpx;
+  top: 0;
   right: 10rpx;
   width: 210rpx;
-  font-weight: 600;
+  font-weight: bold;
+  font-size: medium;
   height: 80rpx;
+  padding: 4rpx 0;
   border-radius: 42rpx;
   background-color: #FB8808;
 }
 
 .icon {
   margin-right: 12rpx;
-  height: 26.3rpx;
-  width: 26.3rpx;
-
+  height: 26rpx;
+  width: 26rpx;
 }
 
 .info {
@@ -142,4 +141,13 @@
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.arena {
+  position: absolute;
+  background-color: #569C89;
+  border-radius: 12rpx 0 12rpx 0;
+  padding: 5rpx 10rpx;
+  color: #FFFFFF;
+  letter-spacing: 2rpx;
 }

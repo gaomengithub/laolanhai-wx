@@ -16,6 +16,6 @@
     </team-apply-items>
   </view>
 </view>
-<view wx:if="{{ !isInTeam }}">
+<view wx:if="{{ !teamDetails.isMyJoinTeam }}">
   <bottom-btn-bar name="立即加入" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn"></bottom-btn-bar>
 </view>

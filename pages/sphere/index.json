@@ -9,6 +9,8 @@
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "arena-items":"/components/arena-items/index",
-    "van-sticky": "@vant/weapp/sticky/index"
+    "van-sticky": "@vant/weapp/sticky/index",
+    "logo-bar":"/components/logo-bar/index",
+    "no-data-tip":"/components/no-data-tip/index"
   }
 }

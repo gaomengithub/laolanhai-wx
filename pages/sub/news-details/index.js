@@ -6,7 +6,7 @@ Page({
     show: false,
     actions: [{ name: '删除资讯', color: '#ee0a24' }, { name: '编辑资讯' }],
     poster: 'https://openstore.obabyball.com/ui_v1/img/news-details-poster-compress.jpg',
-    active: ['1'],
+    active: ['1','2'],
     icon: {
       edit: 'https://openstore.obabyball.com/ui_v1/icon/match-detail-edit-v2.svg',
     },

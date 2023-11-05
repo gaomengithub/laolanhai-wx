@@ -1,5 +1,5 @@
 import { getUploadToken } from '../api'
-
+import { handleErr } from "../../modules/msgHandler"
 const qiniuUploader = require("./qiniuUploader");
 
 let inited = false
@@ -28,5 +28,21 @@ export function uploadImgWithToken(path) {
     }), (error) => {
       reject(error)
     }
+  })
+}
+
+export function compressUploadImg(params) {
+  return new Promise(async (resolve, reject) => {
+    wx.compressImage({
+      src: params,
+      quality: 10,
+      success: function (res) {
+        uploadImgWithToken(res.tempFilePath).then(res => {resolve(res.key) })
+      },
+      fail: (e) => {
+        handleErr("压缩图片失败")
+        reject(e);
+      }
+    })
   })
 }

@@ -1,9 +1,9 @@
-<!--components/news-items/index.wxml-->
+<wxs src="./index.wxs" module="tools"/>
 <view class="container">
-  <view class="card" wx:for="{{newsList || []}}" wx:key="id">
+  <view class="card" wx:for="{{items}}" wx:key="id">
     <view class="content">
       <view class="title">{{ item.title }}</view>
-      <view class="date">日期：</view>
+      <view class="date">日期：{{ tools.formatDate(item.created_at) }}</view>
     </view>
     <view class="actvie">
       <van-button custom-class="btn" round bind:click="handleClick" data-id="{{ item.id }}">

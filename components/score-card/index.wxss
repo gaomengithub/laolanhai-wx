@@ -1,13 +1,16 @@
+.container {
+  position: relative;
+}
 .card {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   border-radius: 44rpx;
-  padding-left: 24rpx;
-  padding-right: 24rpx;
   background-color: white;
   position: relative;
   height: 230rpx;
+  width: 702rpx;
+  margin: 24rpx;
 }
 
 .grid {

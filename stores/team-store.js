@@ -63,11 +63,11 @@ export const team = observable({
   },
   get myTeams() {
     let filteredTeams = this.teams.filter(item => item.isMyTeam)
-    return filteredTeams
+    return filteredTeams.length > 0 ? filteredTeams : false;
   },
   get notMyTeams() {
     let filteredTeams = this.teams.filter(item => !item.isMyTeam)
-    return filteredTeams
+    return filteredTeams.length > 0 ? filteredTeams : false;
   },
 
   activeApprove: action(async function (obj) {

@@ -1,6 +1,6 @@
 import { observable, action } from "mobx-miniprogram"
 import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto, getArenaList, getMyJoinMatches } from '$/utils/api'
-import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
+import { uploadImgWithToken, compressUploadImg } from '$/utils/qiniu/qiniu'
 import { matchFormMessages, matchFormRules } from '$/utils/validate/validate-set'
 import WxValidate from '$/utils/validate/WxValidate'
 import { handleErr, handleInfo } from '../modules/msgHandler'
@@ -26,50 +26,35 @@ export const match = observable({
     date: '全部时间' //后端还未添加该筛选条件
   },
 
-
-
-  // 我组织的比赛
-  get getMyMatches() {
-
-  },
-
   updateJoinedMatches: action(async function (params) {
     try {
       const data = await getMyJoinMatches()
-
       this.JoinedMatches = data.list
     } catch (e) {
-
+      handleErr("获取我参加的比赛失败")
     }
   }),
 
   updateMatchResult: action(async function (params) {
     // 上传照片
     if (params.tempFilePath) {
-      var _this = this
-      wx.compressImage({
-        src: params.tempFilePath,
-        quality: 10,
-        success: async function (res) {
-          try {
-            const data = await uploadImgWithToken(res.tempFilePath)
-            _this.matchResult.myPhotos.push({ url: params.tempFilePath, isImage: true, photo_key: data.key })
-            _this.matchResult = Object.assign({}, _this.matchResult, { myPhotos: _this.matchResult.myPhotos })
-            const obj = {
-              match_id: _this.matchResult.id,
-              photo: _this.matchResult.myPhotos.map(item => item.photo_key)
-            }
-            await updateMatchPhoto(obj)
-            handleInfo("上传成功")
-          } catch (e) {
-            handleErr("上传照片出错")
-          }
-        }
-      })
+      try {
+        const key = await compressUploadImg(params.tempFilePath)
 
+        this.matchResult.myPhotos.push({ url: params.tempFilePath, isImage: true, photo_key: key })
+        this.matchResult = Object.assign({}, this.matchResult, { myPhotos: this.matchResult.myPhotos })
+        const payload = {
+          match_id: this.matchResult.id,
+          photo: this.matchResult.myPhotos.map(item => item.photo_key)
+        }
+        await updateMatchPhoto(payload)
+        handleInfo("上传成功")
+      } catch (e) {
+        handleErr("上传照片出错")
+      }
     }
     // 传参id 
-    else if (typeof (params) === "string") {
+    else if (typeof params === "string") {
       const data = await getMatchDesc(params)
       data.photo_for_user.map(item => (item.url = item.photo))
       data.photo_for_user.map(item => (item.isImage = true))
@@ -189,18 +174,15 @@ export const match = observable({
   updateMatchForm: action(async function (params) {
     // 更新图片
     if (params.tempFilePath) {
-      var _this = this
-      wx.compressImage({
-        src: params.tempFilePath,
-        quality: 10,
-        success: async function (res) {
-          const data = await uploadImgWithToken(res.tempFilePath)
-          const item = { url: params.tempFilePath, isImage: true }
-          _this.matchForm.files.push({ ...data, ...item })
-          // 部分更新
-          _this.matchForm = Object.assign({}, _this.matchForm, { files: _this.matchForm.files })
-        }
-      })
+      try {
+        const key = await compressUploadImg(params.tempFilePath)
+        const item = { url: params.tempFilePath, isImage: true }
+        this.matchForm.files.push({ key, ...item })
+        // 部分更新
+        this.matchForm = Object.assign({}, this.matchForm, { files: this.matchForm.files })
+      } catch (e) {
+        handleErr("上传图片失败")
+      }
     }
     // 删除图片
     else if (typeof params === 'number') {

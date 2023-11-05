@@ -1,37 +1,39 @@
-<view class="card">
-  <top-line name="我的战绩" more="false" />
-  <van-grid custom-class="grid" border="{{false}}">
-    <van-grid-item content-class="item" use-slot>
-      <view class="num">
-        {{ joinedNum }}
-      </view>
-      <view class="tag">
-        参赛数
-      </view>
-    </van-grid-item>
-    <van-grid-item content-class="item" use-slot>
-      <view class="num">
-        {{ score }}
-      </view>
-      <view class="tag">
-        正赛得分
-      </view>
-    </van-grid-item>
-    <van-grid-item content-class="item" use-slot>
-      <view class="num">
-        {{ win }}
-      </view>
-      <view class="tag">
-        获胜
-      </view>
-    </van-grid-item>
-    <van-grid-item content-class="item" use-slot>
-      <view class="num">
-        {{ pointer }}
-      </view>
-      <view class="tag">
-        积分
-      </view>
-    </van-grid-item>
-  </van-grid>
+<view class="container">
+  <view class="card">
+    <top-line name="我的战绩" more="false" />
+    <van-grid custom-class="grid" border="{{false}}">
+      <van-grid-item content-class="item" use-slot>
+        <view class="num">
+          {{ joinedNum }}
+        </view>
+        <view class="tag">
+          参赛数
+        </view>
+      </van-grid-item>
+      <van-grid-item content-class="item" use-slot>
+        <view class="num">
+          {{ score }}
+        </view>
+        <view class="tag">
+          正赛得分
+        </view>
+      </van-grid-item>
+      <van-grid-item content-class="item" use-slot>
+        <view class="num">
+          {{ win }}
+        </view>
+        <view class="tag">
+          获胜
+        </view>
+      </van-grid-item>
+      <van-grid-item content-class="item" use-slot>
+        <view class="num">
+          {{ pointer }}
+        </view>
+        <view class="tag">
+          积分
+        </view>
+      </van-grid-item>
+    </van-grid>
+  </view>
 </view>

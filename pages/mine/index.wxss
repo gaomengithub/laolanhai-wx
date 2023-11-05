@@ -78,6 +78,8 @@
   justify-content: space-around;
   height: 180rpx;
   margin-bottom: 24rpx;
+  width: 702rpx;
+  margin: 0 24rpx;
 
 }
 
@@ -94,8 +96,6 @@
 
 .score {
   position: relative;
-  margin-bottom: 24rpx;
-
 }
 
 .close-icon {

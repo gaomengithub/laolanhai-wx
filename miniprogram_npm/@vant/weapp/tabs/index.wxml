@@ -29,8 +29,10 @@
             style="{{ computed.tabStyle({ active: index === currentIndex, ellipsis, color, type, disabled: item.disabled, titleActiveColor, titleInactiveColor, swipeThreshold, scrollable }) }}"
             bind:tap="onTap"
           >
+          
             <view class="{{ ellipsis ? 'van-ellipsis' : '' }}" style="{{ item.titleStyle }}">
               {{ item.title }}
+              
               <van-info
                 wx:if="{{ item.info !== null || item.dot }}"
                 info="{{ item.info }}"

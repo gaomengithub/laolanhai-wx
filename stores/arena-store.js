@@ -21,21 +21,7 @@ export const arena = observable({
     price: '',
     date: '',
   },
-  arenas: [
-    {
-      address: "玄武路233号",
-      city: "西安市",
-      desc: "string",
-      id: "string",
-      name: "天天向上球馆",
-      start_time: "8:00",
-      end_time: "18:00",
-      phone: "string",
-      price: "string",
-      region: "陕西省",
-      poster: "https://openstore.obabyball.com/ui_v1/img/test-arena-poster.jpg"
-    }
-  ],
+  arenasList: null,
 
   activeArena: action(async function () {
     const patch = {
@@ -45,16 +31,7 @@ export const arena = observable({
     const form = { ...this.arenaForm, ...patch }
     if (!this.validate.checkForm(form)) {
       const error = this.validate.errorList[0];
-      wx.showModal({
-        title: '错误',
-        content: error.msg,
-        showCancel: false,
-        complete: (res) => {
-          if (res.confirm) {
-
-          }
-        }
-      })
+      handleErr(error.msg)
     }
     else {
       if (!this.arenaForm.id) {
@@ -95,22 +72,16 @@ export const arena = observable({
 
 
 
-
-
-  updateArenas: action(async function () {
+  updateArenasList: action(async function () {
     try {
       const data = await getArenas()
       if (data.list) {
-        // this.arenas = data.list
+        this.arenasList = data.list.filter(item => item.name)
       } else {
-        // this.arenas = null
-        throw new Error("获取球馆列表错误")
+        this.arenas = null
       }
-
     } catch (e) {
-
+      handleErr("获取场馆列表出错")
     }
-
   }),
-
 })

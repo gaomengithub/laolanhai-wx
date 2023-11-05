@@ -1,14 +1,17 @@
 .container {
+  position: relative;
   background-color: #FFFFFF;
   border-radius: 44rpx;
-  padding: 22rpx;
+  width: 702rpx;
+  margin: 24rpx;
+
 }
 
 .card {
   position: relative;
   height: max-content;
-  background-color: #ffffff;
   border-radius: 44rpx;
+  margin: 12rpx 24rpx;
 }
 
 
@@ -64,10 +67,9 @@
   position: relative;
   color: #ffffff;
   background-color: #E6E6E6;
-  padding-left: 10rpx;
-  padding-right: 10rpx;
-  padding-top: 10rpx;
-  padding-bottom: 10rpx;
+  padding: 5rpx;
+  width: 110rpx;
+  text-align: center;
   border-radius: 8rpx;
   font-size: 26rpx;
   margin-left: 22rpx;

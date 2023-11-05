@@ -1,12 +1,10 @@
-<view style="height: 166rpx;"></view>
-
-<view class="container" style="background-color: {{ containerBgColor }};">
-  <view class="main">
-    <van-button custom-class="btn" custom-style="color:{{ textColor }};" color="{{ btnBgColor }}" round bind:click="triggerCustomEvent">
-      {{ name }}
-    </van-button>
-    <slot></slot>
+<view id="bottom-btn-bar">
+  <view class="container" style="background-color: {{ containerBgColor }};">
+    <view class="main">
+      <van-button custom-class="btn" custom-style="color:{{ textColor }};" color="{{ btnBgColor }}" round bind:click="triggerCustomEvent">
+        {{ name }}
+      </van-button>
+      <slot></slot>
+    </view>
   </view>
-
-
 </view>

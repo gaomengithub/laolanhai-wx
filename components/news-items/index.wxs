@@ -1,0 +1,13 @@
+var formatDate = function (str) {
+  if (str) {
+    var parts = str.split('-');
+    var year = parts[0];
+    var month = parts[1];
+    var day = parts[2].split("T")[0];
+    return year + "-" + month + "-" + day;
+  }
+}
+
+module.exports = {
+  formatDate: formatDate
+}

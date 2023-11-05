@@ -1,8 +1,6 @@
 .container {
-  padding-top: 24rpx;
   background-color: #EBEBEB;
-  padding: 24rpx;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .team-swiper {
@@ -22,7 +20,7 @@
   border-radius: 44rpx;
 }
 
-.tip-plain{
+.tip-plain {
   text-align: center;
   font-size: 32;
   letter-spacing: 2rpx;
@@ -40,3 +38,6 @@
   height: 30rpx;
 }
 
+.tab {
+  font-size: 32rpx !important;
+}

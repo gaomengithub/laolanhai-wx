@@ -118,5 +118,5 @@ Page({
 
   handleClick() {
     this.activeMatch()
-  }
+  },
 })

@@ -1,11 +1,14 @@
 <nav-bar title="赛况"></nav-bar>
 
 <view class="container">
-
-
-  <van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tabs active="{{ active }}" sticky offset-top="{{ offset }}" tab-class="tab" color="#FB8808">
     <van-tab title="赛事">
-      <over-match-items></over-match-items>
+      <view wx:if="{{ overMatchesList }}">
+        <over-match-items items="{{ overMatchesList }}"></over-match-items>
+      </view>
+      <view wx:else>
+        <no-data-tip></no-data-tip>
+      </view>
     </van-tab>
     <van-tab title="资讯">
       <view class="create">
@@ -15,9 +18,13 @@
           <view class="text">去发布</view>
         </van-button>
       </view>
-      <view class="news-items">
-      <news-items></news-items>
+      <view class="news-items" wx:if="{{ newsList }}">
+        <news-items items="{{ newsList }}"></news-items>
+      </view>
+      <view wx:else>
+        <no-data-tip></no-data-tip>
       </view>
     </van-tab>
   </van-tabs>
+  <logo-bar placeholder="188rpx"></logo-bar>
 </view>

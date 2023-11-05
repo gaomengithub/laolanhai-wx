@@ -28,3 +28,7 @@
 .btn .text {
   color: #FB8808;
 }
+
+.tab {
+  font-size: 32rpx !important;
+}

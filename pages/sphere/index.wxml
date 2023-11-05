@@ -1,7 +1,8 @@
 <nav-bar title="球界"></nav-bar>
-<van-tabs active="{{ active }}" sticky offset-top="{{ offset }}">
-  <van-tab title="球队">
-    <view class="container">
+<view class="container">
+  <van-tabs active="{{ active }}" sticky offset-top="{{ offset }}" tab-class="tab">
+
+    <van-tab title="球队">
       <top-line name="我的球队" more="{{ false }}"></top-line>
       <view wx:if="{{ myTeams }}">
         <swiper class="team-swiper" indicator-dots="{{ true }}">
@@ -30,18 +31,20 @@
           可加入的球队列表为空。
         </view>
       </view>
-    </view>
-  </van-tab>
 
-  <van-tab title="场馆">
-    <view class="container">
-      <arena-items></arena-items>
-    </view>
-  </van-tab>
-</van-tabs>
+    </van-tab>
 
+    <van-tab title="场馆">
+      <view class="container">
+        <view wx:if="{{ arenasList }}">
+          <arena-items items="{{ arenasList }}"></arena-items>
+        </view>
+        <view wx:else>
+          <no-data-tip></no-data-tip>
+        </view>
+      </view>
+    </van-tab>
+  </van-tabs>
 
-
-
-<!-- 占位 -->
-<view style="height: 188rpx;"></view>
+  <logo-bar placeholder="188rpx"></logo-bar>
+</view>

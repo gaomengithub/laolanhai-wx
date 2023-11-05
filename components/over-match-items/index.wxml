@@ -1,6 +1,6 @@
 <wxs src="./index.wxs" module="tools" />
 <view class="container">
-  <view class="card" wx:for="{{ overMatchesList }}" wx:key="id">
+  <view class="card" wx:for="{{ items }}" wx:key="id">
     <image class="img" src="{{item.banner_attachments}}" mode="aspectFill" />
     <view class="active">
       <view class="title">{{item.name}}</view>

@@ -60,5 +60,5 @@
 
 </view>
 
-<logo-bar></logo-bar>
+<logo-bar placeholder="188rpx"></logo-bar>
 <bottom-btn-bar name="{{ matchForm.id ? '修改':'创建' }}" bind:handleButtonClick="handleClick"></bottom-btn-bar>

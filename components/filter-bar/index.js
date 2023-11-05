@@ -22,7 +22,7 @@ Component({
   },
 
   methods: {
-    onBtnClick(e){
+    onBtnClick(e) {
       const path = e.currentTarget.dataset.path
       routeInterceptor.navigateTo(path)
     }

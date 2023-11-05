@@ -1,15 +1,17 @@
+<wxs src="./index.wxs" module="tools" />
+
 <view class="container">
-  <view class="card" wx:for="{{ [matchesList,matchSearchResult][switchIdx] }}" wx:key="index">
-    <image class="tag-img" src="{{ item.match_type == 3 ? tagImg.diy :tagImg.official }}" mode="scaleToFill" />
+  <view class="card" wx:for="{{ items }}" wx:key="id">
+    <image class="img" src="{{ img }}" mode="aspectFit" />
+    <view class="arena" wx:if="{{ item.sports_halls.id }}">球馆</view>
     <view class="main">
-      <wxs src="./index.wxs" module="tools" />
       <image class="poster" src="{{ item.banner_attachments }}" mode="aspectFill" />
-      <view class="desc">
+      <view class="item">
         <view class="name">{{ item.name }}</view>
-        <view class="content">
+        <view class="details">
           <view class="child">
             <image class="icon" src="{{ icon.clock }}" mode="scaleToFill" />
-            {{ tools.formatStartTime(item.start_time) }}
+            {{ tools.formatTime(item.start_time) }}
           </view>
           <view class="child">
             <image class="icon" src="{{ icon.location }}" mode="scaleToFill" />
@@ -19,7 +21,7 @@
       </view>
     </view>
     <view class="active">
-      <view class="status">{{ ["报名中","报名中", "报名结束", "比赛中", "比赛结束", "比赛取消"][item.status] }}</view>
+      <view class="type">{{ ["报名中","报名中", "报名结束", "比赛中", "比赛结束", "比赛取消"][item.status] }}</view>
       <view class="avatar-wrap">
         <image class='avatar' wx:for="{{ item.users }}" wx:for-item="item_" wx:for-index="idx" src='{{ item_.avatar }}' mode="aspectFill" wx:key="idx" />
       </view>

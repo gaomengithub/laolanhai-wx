@@ -1,22 +1,19 @@
 import routeInterceptor from '$/utils/router'
-import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { match } from "$/stores/match-store";
 Component({
-  behaviors: [storeBindingsBehavior],
   properties: {
-
+    items: {
+      type: Object,
+      value: []
+    }
   },
 
   data: {
 
   },
-  storeBindings: {
-    store: match,
-    fields: ["overMatchesList"]
-  },
+
   methods: {
     HandlerClick(e) {
-      const id =  e.currentTarget.dataset.id
+      const id = e.currentTarget.dataset.id
       const path = `/pages/sub/match-result/index?id=${id}`
       routeInterceptor.navigateTo(path)
     },

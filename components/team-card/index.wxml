@@ -1,37 +1,37 @@
-<view class="card">
-  <image class="avatar" src="{{ team.logo }}" mode="aspectFill" />
-  <text class="name">
-    {{team.name}}
-  </text>
-  <wxs src="./index.wxs" module="format" />
-  <van-grid custom-class="data" column-num="3" border="{{ false }}">
-    <van-grid-item use-slot>
-      <view class="num">
-        {{format.formatMemberNum(team.teamMember) }}
-      </view>
-      <view class="tag">
-        成员数
-      </view>
-    </van-grid-item>
-    <van-grid-item use-slot>
-      <view class="num">
-        {{ format.formatFounded(team.founded) }}
-      </view>
-      <view class="tag">
-        成立年份
-      </view>
-    </van-grid-item>
-    <van-grid-item use-slot>
-      <view class="num">
-        {{ format.formatAverage(team.teamMember) }}
-      </view>
-      <view class="tag">
-        平均年龄
-      </view>
-    </van-grid-item>
-  </van-grid>
-  <!-- 箭头 -->
-  <view class="slot">
-    <slot></slot>
+<view class="container">
+  <view class="card">
+    <image class="avatar" src="{{ team.logo }}" mode="aspectFill" />
+    <text class="name">{{team.name}}</text>
+    <wxs src="./index.wxs" module="format" />
+    <van-grid custom-class="data" column-num="3" border="{{ false }}">
+      <van-grid-item use-slot>
+        <view class="num">
+          {{format.formatMemberNum(team.teamMember) }}
+        </view>
+        <view class="tag">
+          成员数
+        </view>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <view class="num">
+          {{ format.formatFounded(team.founded) }}
+        </view>
+        <view class="tag">
+          成立年份
+        </view>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <view class="num">
+          {{ format.formatAverage(team.teamMember) }}
+        </view>
+        <view class="tag">
+          平均年龄
+        </view>
+      </van-grid-item>
+    </van-grid>
+    <!-- 箭头 -->
+    <view class="slot">
+      <slot></slot>
+    </view>
   </view>
 </view>

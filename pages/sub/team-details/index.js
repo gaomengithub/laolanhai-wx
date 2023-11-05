@@ -7,7 +7,6 @@ Page({
     items: {},
     active: 0,
     teamID: "",
-    // showComments: false,
     comments: "",
     autosize: { minHeight: 50 },
     bgImg: 'https://openstore.obabyball.com/ui_v1/img/detail-team-bg-img-v1-compress-v2.png',
@@ -23,7 +22,7 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: team,
-      fields: ["teamDetails", "isInTeam"],
+      fields: ["teamDetails",],
       actions: ["updateTeamDetails", "updateTeamApprovals"],
     });
 

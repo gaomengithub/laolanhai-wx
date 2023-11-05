@@ -8,16 +8,18 @@ Page({
     active: 0,
     icon: {
       news: 'https://openstore.obabyball.com/ui_v1/icon/news-create.svg'
-    }
+    },
+    offset: getApp().globalData.common.navBarHeight,
   },
 
-  onLoad(options) {
+  onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store: news,
-      fields: ["newsForm"],
+      fields: ["newsList"],
       actions: ["updateNewsList"],
     })
     this.updateNewsList()
+
     this.storeBindings_ = createStoreBindings(this, {
       store: match,
       fields: ["overMatchesList"],

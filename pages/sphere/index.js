@@ -13,17 +13,17 @@ Page({
     this.storeBindings = createStoreBindings(this, {
       store: team,
       fields: ["teams", "myTeams", "notMyTeams"],
-      actions: ["updateTeams","updateTeamDetails"],
+      actions: ["updateTeams", "updateTeamDetails"],
     });
     this.updateTeams()
 
     this.storeBindings_ = createStoreBindings(this, {
       store: arena,
-      fields: ["arenas"],
-      actions: ["updateArenas"],
+      fields: ["arenasList"],
+      actions: ["updateArenasList"],
     });
 
-    this.updateArenas()
+    this.updateArenasList()
 
   },
   onUnload() {
@@ -37,7 +37,6 @@ Page({
   },
 
   handleTap(e) {
-    console.log(e)
     const id = e.currentTarget.dataset.id
     const path = `/pages/sub/team-details/index?id=${id}`
     routeInterceptor.navigateTo(path)

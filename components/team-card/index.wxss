@@ -1,7 +1,13 @@
+.container {
+  position: relative;
+}
+
 .card {
   position: relative;
   border-radius: 44rpx;
   height: 360rpx;
+  width: 702rpx;
+  margin: 0 24rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +26,7 @@
 }
 
 .card .name {
-  margin-top: 102rpx;
+  margin-top: 142rpx;
   font-size: 40rpx;
   font-weight: 600;
   letter-spacing: 2rpx;
@@ -52,5 +58,3 @@
   align-items: center;
   color: #A2A2A2;
 }
-
-

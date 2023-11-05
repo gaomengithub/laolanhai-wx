@@ -5,6 +5,7 @@
     "apply-action":"/components/apply-action/index",
     "van-popup": "@vant/weapp/popup/index",
     "honor-card":"/components/honor-card/index",
-    "top-line":"/components/top-line/index"
+    "top-line":"/components/top-line/index",
+    "logo-bar":"/components/logo-bar/index"
   }
 }

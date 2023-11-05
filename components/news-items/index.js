@@ -1,14 +1,12 @@
-import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { news } from "$/stores//news-store";
+
 import routeInterceptor from '$/utils/router'
 Component({
-  behaviors: [storeBindingsBehavior],
-  storeBindings: {
-    store: news,
-    fields: ["newsList"]
-  },
-  properties: {
 
+  properties: {
+    items: {
+      type: Array,
+      value: []
+    },
   },
 
   data: {

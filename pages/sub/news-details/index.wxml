@@ -1,8 +1,9 @@
+<wxs src="./index.wxs" module="tools"/>
 <nav-bar title="资讯"></nav-bar>
 <view class="banner">
   <view class="title">{{ newsDetails.title }}</view>
   <view class="date">
-    #日期：#
+    #日期：{{ tools.formatDate(newsDetails.created_at) }}#
   </view>
 </view>
 
@@ -20,7 +21,7 @@
           <top-line name="附件" more="false"></top-line>
 
         </view>
-        <image class="img" wx:for="{{ newsDetails.attachments }}" src="{{item}}" wx:key="index" mode="aspectFit" />
+        <image class="img" wx:for="{{ newsDetails.attachments }}" src="{{ item }}" wx:key="index" mode="aspectFit" />
       </van-collapse-item>
     </van-collapse>
   </view>
