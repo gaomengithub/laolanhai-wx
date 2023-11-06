@@ -1,14 +1,16 @@
 import { observable, action } from "mobx-miniprogram"
-import { getTeamsList, getTeamDesc, getTeamApprovalList, updateApproval } from '$/utils/api'
-import { handleErr } from '../modules/msgHandler'
+import { getTeamsList, getTeamDesc, getTeamApprovalList, updateApproval, createTeam, updateTeam } from '$/utils/api'
+import { handleErr ,handleInfo } from '../modules/msgHandler'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
+import { teamFormMessages, teamFormRules } from '$/utils/validate/validate-set'
+import WxValidate from '$/utils/validate/WxValidate'
 export const team = observable({
+  validate: new WxValidate(teamFormRules, teamFormMessages),
   teamDetails: {
-
   },
   teamForm: null,
   teamApprovals: null,
-  teams: [],
+  teamsList: [],
 
   initTeamForm: action(async function (params) {
     let backup = JSON.parse(JSON.stringify(teamFormBackup));
@@ -27,7 +29,7 @@ export const team = observable({
         success: async function (res) {
           const data = await uploadImgWithToken(res.tempFilePath)
           const item = { url: params.tempFilePath, isImage: true }
-          _this.teamForm.files.push({ ...data, ...item })
+          _this.teamForm.files = [{ ...data, ...item }]
           // 部分更新
           _this.teamForm = Object.assign({}, _this.teamForm, { files: _this.teamForm.files })
         }
@@ -42,7 +44,13 @@ export const team = observable({
     else if (typeof params === 'string') {
       try {
         const data = await getTeamDesc(params)
-        console.log(data)
+        const [region, address] = data.region.split("||")
+        const patch = {
+          region,
+          address,
+          files: [{ url: data.logo, isImage: true, key: data.logoKey }]
+        }
+        this.initTeamForm()
         this.teamForm = { ...this.teamForm, ...data, ...patch }
       } catch (e) {
         handleErr("修改比赛，获得球队信息失败")
@@ -62,11 +70,11 @@ export const team = observable({
     }
   },
   get myTeams() {
-    let filteredTeams = this.teams.filter(item => item.isMyTeam)
+    let filteredTeams = this.teamsList.filter(item => item.isMyTeam)
     return filteredTeams.length > 0 ? filteredTeams : false;
   },
   get notMyTeams() {
-    let filteredTeams = this.teams.filter(item => !item.isMyTeam)
+    let filteredTeams = this.teamsList.filter(item => !item.isMyTeam)
     return filteredTeams.length > 0 ? filteredTeams : false;
   },
 
@@ -89,6 +97,43 @@ export const team = observable({
         }
       }
     })
+  }),
+
+  activeTeam: action(async function () {
+    const patch = {
+      imgCount: this.teamForm.files.length,
+      region: this.teamForm.region + '||' + this.teamForm.address,
+      logo: this.teamForm.files[0].key
+    }
+    const form = { ...this.teamForm, ...patch }
+    if (!this.validate.checkForm(form)) {
+      const error = this.validate.errorList[0];
+      handleErr(error.msg)
+    }
+    // 如果表单校验合格后
+    else {
+      if (!this.teamForm.id) {
+        //新建
+        try {
+          await createTeam(form)
+          handleInfo("创建成功", wx.navigateBack)
+          this.updateTeamsList()
+        } catch (e) {
+          handleErr("创建比赛失败")
+        }
+      }
+      // 修改
+      else {
+        try {
+          await updateTeam(form)
+          // 即时刷新
+          this.updateTeamDetails(this.teamForm.id)
+          handleInfo("修改成功", wx.navigateBack)
+        } catch (e) {
+          handleErr("修改比赛失败")
+        }
+      }
+    }
   }),
 
 
@@ -117,15 +162,17 @@ export const team = observable({
     }
   }),
 
-  updateTeams: action(async function () {
+  updateTeamsList: action(async function () {
     const data = await getTeamsList()
-    this.teams = data.items
+    this.teamsList = data.items
   })
 })
 
 let teamFormBackup = {
   // 自有字段
   files: [],
+  address: '',
+
   name: '',
   city: '',
   desc: '',

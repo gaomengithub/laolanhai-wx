@@ -8,10 +8,10 @@
 
 
   <view class="data-card">
-    <top-line name="技术统计" more="编辑">
+    <top-line name="技术统计" more="false">
     </top-line>
     <view class="data-charts">
-      <player-data-charts arr="{{ [starDetails.steal,starDetails.threePoint,starDetails.score] }}"></player-data-charts>
+      <player-data-charts arr="{{ [starDetails.steal || 5,starDetails.threePoint|| 4,starDetails.score|| 22] }}"></player-data-charts>
     </view>
   </view>
 

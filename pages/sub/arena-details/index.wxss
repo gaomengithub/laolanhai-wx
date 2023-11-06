@@ -1,0 +1,33 @@
+.container {
+  background-color: #e2e2e2;
+  min-height: 100vh;
+}
+
+.name {
+  font-size: 96rpx;
+  /* color: #FFFFFF; */
+  font-weight: bolder;
+  text-align: center;
+  padding: 48rpx 0;
+}
+
+.card {
+  width: 654rpx;
+  padding: 24rpx;
+  background-color: #FFFFFF;
+  margin: 24rpx;
+  border-radius: 44rpx;
+}
+
+.img {
+  width: 630rpx;
+  margin: 12rpx;
+}
+
+.edit {
+  bottom: 50rpx;
+  right: 50rpx;
+  position: fixed;
+  width: 80rpx;
+  height: 80rpx;
+}

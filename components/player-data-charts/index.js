@@ -86,6 +86,7 @@ Component({
           height: height,
           devicePixelRatio: dpr // new
         });
+        
         setOption(chart, this.data.arr);
 
         // 将图表实例绑定到 this 上，可以在其他成员函数（如 dispose）中访问

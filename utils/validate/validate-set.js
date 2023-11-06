@@ -186,20 +186,20 @@ export const teamFormRules = {
   name: {
     required: true
   },
-  intro: {
+  desc: {
     required: true
   },
-  city: {
+  region: {
     required: true
   },
-  location: {
+  address:{
     required: true
   },
   imgCount: {
     min: 1
   },
-  memberNum: {
-    min: 1
+  number: {
+    min: 8
   },
 
 }
@@ -208,19 +208,19 @@ export const teamFormMessages = {
   name: {
     required: '球队名称不能为空'
   },
-  intro: {
+  desc: {
     required: '球队简介不能为空'
   },
-  city: {
-    required: '需要选择城市'
+  region: {
+    required: '填写所在区域'
   },
-  location: {
-    required: '填写主要活动位置'
+  address:{
+    required: '填写活动位置'
   },
   imgCount: {
     min: '需要上传队徽'
   },
-  memberNum: {
+  number: {
     min: '球队人数不能少于8人'
   },
 

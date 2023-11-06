@@ -1,4 +1,4 @@
-
+import routeInterceptor from "$/utils/router"
 Component({
   properties: {
     items: {
@@ -17,6 +17,9 @@ Component({
   },
 
   methods: {
-
+    handlerClick(e) {
+      const path = `/pages/sub/arena-details/index?id=${e.currentTarget.dataset.id}`
+      routeInterceptor.navigateTo(path)
+    }
   }
 })

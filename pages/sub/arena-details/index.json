@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-divider": "@vant/weapp/divider/index",
+    "nav-bar":"/components/nav-bar/index",
+    "top-line":"/components/top-line/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index"
+  }
+}

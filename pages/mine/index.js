@@ -22,8 +22,7 @@ Page({
       this.showPopup()
       return
     }
-    const path = `/pages/sub/${e.currentTarget.dataset.path}/index`
-    routeInterceptor.navigateTo(path)
+    routeInterceptor.navigateTo(e.currentTarget.dataset.path)
   },
 
   onClosePopup() {
@@ -42,7 +41,7 @@ Page({
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store: user,
-      fields: ["user", "matches", "id"],
+      fields: ["user", "joinedMatches", "id"],
       actions: ["updateUserInfo", "updateUserMatches","updateJoinedMatches"],
     })
     // 在第一次加载的已经更新了用户信息

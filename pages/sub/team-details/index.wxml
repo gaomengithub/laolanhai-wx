@@ -19,3 +19,8 @@
 <view wx:if="{{ !teamDetails.isMyJoinTeam }}">
   <bottom-btn-bar name="立即加入" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn"></bottom-btn-bar>
 </view>
+
+<view wx:if="{{ teamDetails.isMyTeam }}">
+  <image class="edit" src="{{icon.edit}}" mode="aspectFit" bind:tap="handleClick" />
+  <van-action-sheet cancel-text="取消" bind:cancel="onDisplay" show="{{ show }}" actions="{{ actions }}" bind:close="onDisplay" bind:select="onSelect" data-show="show" />
+</view>

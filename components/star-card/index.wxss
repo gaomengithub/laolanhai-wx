@@ -8,10 +8,10 @@
 
 .person {
   position: absolute;
-  width: 600rpx;
-  height: 880rpx;
+  width: 702rpx;
   bottom: 0;
-  right: 10rpx;
+  border-radius: 44rpx;
+  z-index: 0;
 }
 
 .main {
@@ -59,8 +59,8 @@
 }
 
 .eidt {
-  width: 95%;
-  text-align: end;
-  line-height: 100rpx;
-  color: #969696;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  z-index: 1;
 }

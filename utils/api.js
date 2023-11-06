@@ -12,6 +12,29 @@ export async function delNews(id) {
   return await request_(obj)
 }
 
+export async function delArena(id) {
+  let obj = {
+    url: '/arena/deleteSportsHall',
+    method: 'GET',
+    data: {
+      id
+    }
+  }
+  return await request_(obj)
+}
+
+
+export async function getArenaDetails(id) {
+  let obj = {
+    url: '/arena/getSportsHall',
+    method: 'GET',
+    data: {
+      id
+    }
+  }
+  return await request_(obj)
+}
+
 export async function getStarData(id) {
   let obj = {
     url: '/user/getBallStarCard',

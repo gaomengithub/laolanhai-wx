@@ -1,0 +1,21 @@
+<nav-bar title="场馆" />
+<view class="container">
+  <view class="name">{{arenaDetails.name}}</view>
+  <view class="card">
+    <view class="item">
+      <view class="desc">
+        <top-line name="基本信息" more="false">
+          {{arenaDetails.desc}}
+        </top-line>
+      </view>
+    </view>
+    <van-divider />
+    <view class="item">
+      <view class="photos">
+        <image class="img" wx:for="{{ arenaDetails.attachments }}" wx:key="index" src="{{item}}" mode="widthFix" />
+      </view>
+    </view>
+  </view>
+</view>
+<image class="edit" src="{{icon.edit}}" mode="aspectFit" bind:tap="handleClick" />
+<van-action-sheet cancel-text="取消" bind:cancel="onDisplay" show="{{ show }}" actions="{{ actions }}" bind:close="onDisplay" bind:select="onSelect" data-show="show" />

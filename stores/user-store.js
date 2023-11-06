@@ -1,7 +1,7 @@
 import { observable, action } from "mobx-miniprogram"
 import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData } from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
-import { handleErr } from '../modules/msgHandler'
+import { handleErr, handleInfo } from '../modules/msgHandler'
 export const user = observable({
   starDetails: {},
   starForm: {
@@ -18,7 +18,7 @@ export const user = observable({
     userId: ''
   },
   approvals: [],
-  matches: [], // 用户创建的比赛
+  joinedMatches: [], // 用户参加的比赛
   user: {
     about: '',
     avatar: '',
@@ -68,14 +68,8 @@ export const user = observable({
   },
 
   updateStarDetails: action(async function (params) {
-    let id = null
-    if (params) {
-      id = params
-    } else {
-      id = wx.getStorageSync('id')
-    }
     try {
-      const data = await getStarData(id)
+      const data = await getStarData(params)
       this.starDetails = data
     } catch (e) {
 
@@ -89,7 +83,9 @@ export const user = observable({
       }
       const data = { ...this.starForm, ...patch }
       await updateStarData(data)
+      handleInfo("成功", wx.navigateBack)
     } catch {
+      handleErr("失败")
     }
   }),
 
@@ -118,9 +114,12 @@ export const user = observable({
     else if (typeof params === 'string') {
       try {
         const data = await getStarData(params)
-        this.starForm = { ...this.starForm, ...data }
+        const patch = {
+          files: [{ url: data.image, isImage: true, key: data.imageKey }]
+        }
+        this.starForm = { ...this.starForm, ...data, ...patch }
       } catch (e) {
-        handleErr("修改比赛，获得比赛信息失败")
+        handleErr("获取数据失败")
       }
     }
     // 更新其他字段
@@ -135,7 +134,7 @@ export const user = observable({
   }),
   updateUserMatches: action(async function () {
     const data = await getMyJoinMatches()
-    this.matches = data.matches
+    this.joinedMatches = data.matches
   }),
 
   // 用于提交后端修改

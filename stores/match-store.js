@@ -1,6 +1,6 @@
 import { observable, action } from "mobx-miniprogram"
 import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto, getArenaList, getMyJoinMatches } from '$/utils/api'
-import { uploadImgWithToken, compressUploadImg } from '$/utils/qiniu/qiniu'
+import { compressUploadImg } from '$/utils/qiniu/qiniu'
 import { matchFormMessages, matchFormRules } from '$/utils/validate/validate-set'
 import WxValidate from '$/utils/validate/WxValidate'
 import { handleErr, handleInfo } from '../modules/msgHandler'

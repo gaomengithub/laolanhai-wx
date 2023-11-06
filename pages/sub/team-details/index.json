@@ -8,6 +8,7 @@
     "bottom-btn-bar":"/components/bottom-btn-bar/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
-    "top-line":"/components/top-line/index"
+    "top-line":"/components/top-line/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index"
   }
 }

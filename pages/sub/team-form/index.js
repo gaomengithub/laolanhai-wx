@@ -4,6 +4,7 @@ import { team } from "$/stores/team-store"
 
 Page({
   data: {
+    regionVal: '',
     options: options,
     fieldNames: {
       text: 'text',
@@ -26,6 +27,29 @@ Page({
     this.storeBindings.destroyStoreBindings();
   },
 
+  handler(e) {
+    const key = e.currentTarget.dataset.key
+    let val = e.detail
+    if (key == 'region') {
+      const { selectedOptions, value } = e.detail;
+      const fieldValue = selectedOptions.map((option) => option.text).join('/');
+      val = fieldValue
+      this.setData({ regionVal: value })
+    }
+    else if (key == 'number') {
+      val = parseInt(e.detail)
+    }
+
+    if (e.type == "confirm" || e.type == "select" || e.type == "finish") {
+      this.onDisplay(e)
+    }
+
+    const form = {
+      [key]: val
+    }
+    this.updateTeamForm(form)
+  },
+
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: team,
@@ -42,13 +66,25 @@ Page({
       handleErr("参数非法")
     }
   },
-  onBtnClick() {
-    //校验表单
-
-
-
+  deleteImg(e) {
+    const index = e.detail.index
+    this.updateTeamForm(index)
   },
-  onAfterRead(event) {
+
+  onDisplay(e) {
+    const show = e.currentTarget.dataset.show
+    const curr = this.data[show]
+    this.setData({
+      [show]: !curr
+    })
+  },
+
+  onBtnClick() {
+    this.activeTeam()
+  },
+  onAfterRead(e) {
+    const { file } = e.detail;
+    this.updateTeamForm(file)
   },
 
 })

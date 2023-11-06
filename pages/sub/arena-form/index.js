@@ -1,11 +1,12 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { arena } from "$/stores/arena-store";
 import { yearMonth } from '$/utils/util'
+
 import { options } from '$/utils/pca-code'
-import { handleErr } from '../../../modules/msgHandler'
 Page({
 
   data: {
+    regionVal:"",
     options: options,  //地区选择，
     autoSize: { minHeight: 50 },
     icon: {
@@ -25,40 +26,24 @@ Page({
     showStartTimePicker: false,
     showEndTimePicker: false,
     showCalendar: false,
-    showMatchTpyePicker: false,
     showAreaCascader: false,
-    showCostAction: false,
   },
   handler(e) {
     const key = e.currentTarget.dataset.key
-    let val = null
-    if (e.type == 'confirm' || e.type == 'finish') {
+    let val = e.detail
+    if (key == 'date') {
+      const date = new Date(e.detail)
+      val = yearMonth(date)
+    }
+    else if (key == 'region') {
+      const { selectedOptions, value } = e.detail;
+      const fieldValue = selectedOptions.map((option) => option.text).join('/');
+      val = fieldValue
+      this.setData({ regionVal: value })
+    }
+
+    if (e.type == "confirm" || e.type == "select" || e.type == "finish") {
       this.onDisplay(e)
-      if (key == 'date') {
-        const date = new Date(e.detail)
-        // vant 组件要求传入时间戳 
-        val = yearMonth(date)
-      }
-      else if (key == 'region') {
-        const { selectedOptions } = e.detail
-        val = selectedOptions.map((option) => option.text).join('/');
-      } else {
-        val = e.detail
-      }
-    }
-    else if (e.type == 'select') {
-      val = e.detail.name
-    }
-    else if (e.type == 'change') {
-      const str = e.detail
-      if (Number(str) && parseInt(str)) {
-        val = parseInt(str)
-      } else {
-        val = str
-      }
-    }
-    else {
-      //未知的类型
     }
 
     const form = {
@@ -88,12 +73,17 @@ Page({
     this.activeArena()
   },
 
-  onLoad() {
+  onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: arena,
       fields: ["arenaForm"],
-      actions: ["updateArenaForm", "activeArena"],
+      actions: ["updateArenaForm", "activeArena", "initArenaForm"],
     });
+    if (options.page == 'new') {
+      this.initArenaForm()
+    } else if (options.page == 'modify' && options.id) {
+      this.updateArenaForm(options.id)
+    }
   },
   onUnload() {
     this.storeBindings.destroyStoreBindings();

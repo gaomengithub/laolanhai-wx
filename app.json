@@ -18,7 +18,8 @@
     "pages/sub/news-details/index",
     "pages/sub/team-details/index",
     "pages/sub/match-result/index",
-    "pages/sub/star-data-form/index"
+    "pages/sub/star-data-form/index",
+    "pages/sub/arena-details/index"
   ],
   "permission": {
     "scope.userFuzzyLocation": {

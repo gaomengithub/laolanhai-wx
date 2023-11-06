@@ -12,10 +12,10 @@ Page({
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store: team,
-      fields: ["teams", "myTeams", "notMyTeams"],
-      actions: ["updateTeams", "updateTeamDetails"],
+      fields: ["teamsList", "myTeams", "notMyTeams"],
+      actions: ["updateTeamsList", "updateTeamDetails"],
     });
-    this.updateTeams()
+    this.updateTeamsList()
 
     this.storeBindings_ = createStoreBindings(this, {
       store: arena,

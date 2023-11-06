@@ -96,3 +96,16 @@
   flex-direction: row;
   align-items: center;
 }
+
+.edit {
+  bottom: 50rpx;
+  right: 50rpx;
+  position: fixed;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.img {
+  width: 650rpx;
+  height: 650rpx;
+}

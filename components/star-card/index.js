@@ -8,7 +8,7 @@ Component({
   },
   storeBindings: {
     store: user,
-    fields: ["starDetails"]
+    fields: ["starDetails","id"]
   },
   data: {
     bgImg: "https://openstore.obabyball.com/ui_v1/img/star-card-bg-img.png",
@@ -17,8 +17,7 @@ Component({
 
   methods: {
     onEditClick(e) {
-
-      const path = `/pages/sub/star-data-form/index?id=${e.currentTarget.dataset.id}`
+      const path = `/pages/sub/star-data-form/index?id=${this.data.id}`
       routeInterceptor.navigateTo(path)
     }
   }
