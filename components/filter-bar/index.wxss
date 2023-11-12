@@ -31,7 +31,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* 如果文本超出部分被隐藏，则显示省略号 */
+  font-size: 32rpx;
+  letter-spacing: 2rpx;
 }
 
 
@@ -49,5 +50,4 @@
   border-radius: 40rpx;
   display: flex;
   flex-direction: column;
-
 }

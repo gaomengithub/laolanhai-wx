@@ -1,7 +1,6 @@
 <nav-bar title="球界"></nav-bar>
 <view class="container">
-  <van-tabs active="{{ active }}" sticky offset-top="{{ offset }}" tab-class="tab">
-
+  <van-tabs active="{{ active }}" sticky offset-top="{{ offset }}" tab-class="tab" custom-class="tabs" color="#FB8808">
     <van-tab title="球队">
       <top-line name="我的球队" more="{{ false }}"></top-line>
       <view wx:if="{{ myTeams }}">
@@ -25,13 +24,14 @@
       <view class="list">
         <top-line name="球队列表" more="<创建球队>" bind:handleButtomClick="ToTeamCreate"></top-line>
         <view wx:if="{{notMyTeams}}">
-          <enlist-items teams="{{ notMyTeams }}"></enlist-items>
+          <enlist-items items="{{ notMyTeams }}"></enlist-items>
         </view>
         <view wx:else class="tip">
           可加入的球队列表为空。
         </view>
       </view>
 
+      <logo-bar placeholder="188rpx"></logo-bar>
     </van-tab>
 
     <van-tab title="场馆">
@@ -43,8 +43,7 @@
           <no-data-tip></no-data-tip>
         </view>
       </view>
+      <logo-bar placeholder="188rpx"></logo-bar>
     </van-tab>
   </van-tabs>
-
-  <logo-bar placeholder="188rpx"></logo-bar>
 </view>

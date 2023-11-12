@@ -1,6 +1,9 @@
 .container {
+  position: relative;
+}
+
+.tabs {
   background-color: #EBEBEB;
-  min-height: 100vh;
 }
 
 .team-swiper {

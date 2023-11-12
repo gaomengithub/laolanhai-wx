@@ -1,4 +1,7 @@
-/* component/recruit/index.wxss */
+.container {
+  position: relative;
+}
+
 .card {
   display: flex;
   flex-direction: row;
@@ -6,6 +9,8 @@
   align-items: center;
   border-radius: 44rpx;
   position: relative;
+  width: 702rpx;
+  margin: 24rpx;
   height: 216rpx;
   background: linear-gradient(to right, #FFFFFF, #FFFAF4);
 }

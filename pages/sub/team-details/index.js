@@ -40,12 +40,16 @@ Page({
       routeInterceptor.navigateTo(path)
     }
   },
+  onJoinBtn(e) {
+    const id = e.currentTarget.dataset.id
+    this.joinTeam(id)
+  },
 
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: team,
       fields: ["teamDetails",],
-      actions: ["updateTeamDetails", "updateTeamApprovals"],
+      actions: ["updateTeamDetails", "updateTeamApprovals", "joinTeam"],
     });
 
     if (options.id) {

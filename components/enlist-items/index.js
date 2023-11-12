@@ -5,8 +5,8 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    teams: {
-      type: Object,
+    items: {
+      type: Array,
       value: []
     }
   },

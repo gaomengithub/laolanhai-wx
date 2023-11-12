@@ -12,7 +12,7 @@ export const match = observable({
   matchResult: null, // 赛况中 完成了的比赛
   matchDetails: null,  //比赛详情
   matchesList: null,
-  JoinedMatches: null,
+  joinedMatches: null,
   next_page_token: '',  // 比赛列表的
   // 筛选条件
   options: {
@@ -23,13 +23,14 @@ export const match = observable({
     page_token: '',
     team_id: '',
     user_id: '',
-    date: '全部时间' //后端还未添加该筛选条件
+    date: '全部时间', //后端还未添加该筛选条件
+    currentDate: null
   },
 
   updateJoinedMatches: action(async function (params) {
     try {
       const data = await getMyJoinMatches()
-      this.JoinedMatches = data.list
+      this.joinedMatches = data.list
     } catch (e) {
       handleErr("获取我参加的比赛失败")
     }
@@ -112,7 +113,6 @@ export const match = observable({
   }),
 
   activeMatch: action(async function () {
-
     const patch = {
       age_diff: this.matchForm.age_group_end - this.matchForm.age_group_start,
       time_diff: getDiffInMinute(this.matchForm.end_time, this.matchForm.start_time),
@@ -140,6 +140,7 @@ export const match = observable({
         try {
           await createMatch(form)
           handleInfo("创建成功", wx.navigateBack)
+          // 刷新比赛列表
           this.updateMatchesList()
         } catch (e) {
           handleErr("创建比赛失败")
@@ -253,6 +254,7 @@ export const match = observable({
   joinMatch: action(async function (id) {
     try {
       await joinMatch(id)
+      // 强制刷新比赛详情
       this.updateMatchDetails(id)
       handleInfo("报名成功")
     } catch (e) {

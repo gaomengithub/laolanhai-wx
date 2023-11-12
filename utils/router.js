@@ -1,4 +1,4 @@
-import { handleErr } from "../modules/msgHandler"
+import { handleErr, handleInfo } from "../modules/msgHandler"
 import { user } from "$/stores/user-store"
 
 const orgItems = [
@@ -15,14 +15,17 @@ let routeInterceptor = {
 
     try {
       if (!user.isUser) {
-        wx.navigateTo({ url: '/pages/sub/user-form/index?type=create' })
+        handleInfo("您需要先进行注册", function () {
+          wx.navigateTo({ url: '/pages/sub/user-form/index?page=create' })
+        })
       } else {
         wx.navigateTo({
           url: path,
         })
       }
     } catch (e) {
-      handleErr("路由未知错误")
+      handleErr("权限错误，请重试")
+      user.updateUserInfo()
     }
   }
 

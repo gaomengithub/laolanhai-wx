@@ -46,6 +46,7 @@
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
+  "testRoot": "minitest/",
   "packOptions": {
     "ignore": [
       {
@@ -55,6 +56,5 @@
     ],
     "include": []
   },
-  "appid": "wx37e5287e6bf69802",
-  "testRoot": "minitest/"
+  "appid": "wx37e5287e6bf69802"
 }

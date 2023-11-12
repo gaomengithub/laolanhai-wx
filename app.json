@@ -30,7 +30,8 @@
     "getFuzzyLocation"
   ],
   "window": {
-    "navigationStyle": "custom"
+    "navigationStyle": "custom",
+    "backgroundColor": "#EBEBEB"
   },
   "tabBar": {
     "custom": true,
@@ -45,7 +46,7 @@
       },
       {
         "pagePath": "pages/sphere/index",
-        "text": "球队"
+        "text": "球界"
       },
       {
         "pagePath": "pages/mine/index",

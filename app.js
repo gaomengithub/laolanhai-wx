@@ -4,9 +4,9 @@ import { user } from "$/stores/user-store"
 App({
   onLaunch() {
     this.globalData.common = new Common()
-    // 初始化注册
+    // 初始化注册"
     initRegister()
-    // 初始化user
+    // 更新用户信息
     user.updateUserInfo()
   },
   globalData: {

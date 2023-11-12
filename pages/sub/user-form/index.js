@@ -79,18 +79,17 @@ Page({
     this.storeBindings = createStoreBindings(this, {
       store: user,
       fields: ["user", "isUser"],
-      actions: ["updateUserInfo","modifyUserInfo"],
+      actions: ["updateUserInfo", "modifyUserInfo"],
     });
 
     const id = options.id
     const page = options.page
-    if (id && page) {
-
+    if (page && page == 'create') {
+      this.updateUserInfo()
     }
-    else {
-      handleErr("页面参数错误")
+    else if (page && page == "modify" && id) {
+      this.updateUserInfo(id)
     }
-
   },
 
   onUnload() {

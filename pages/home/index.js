@@ -15,7 +15,6 @@ Page({
     ],
     showNarBar: false,
     active: 0,
-    match_type: [],
     offsetTop: app.globalData.common.navBarHeight,
   },
 

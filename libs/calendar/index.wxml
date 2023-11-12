@@ -1,16 +1,16 @@
 <!--libs/calendar/index.wxml-->
-<nav-bar title="{{navTitle}}"></nav-bar>
+<nav-bar title="日期选择"></nav-bar>
 
 
 <van-radio-group class="bar" value="{{ radio }}" bind:change="onChange" direction="horizontal">
-  <van-radio class="child {{ radio == '7' ? 'checked' : '' }}" name="7" use-icon-slot >七天内</van-radio>
-  <van-radio class="child {{ radio == '15' ? 'checked' : '' }}" name="15" use-icon-slot >十五天内</van-radio>
-  <van-radio class="child {{ radio == '30' ? 'checked' : '' }}" name="30" use-icon-slot >一个月内</van-radio>
+  <van-radio class="child {{ radio == '7' ? 'checked' : '' }}" name="7" use-icon-slot>七天内</van-radio>
+  <van-radio class="child {{ radio == '15' ? 'checked' : '' }}" name="15" use-icon-slot>十五天内</van-radio>
+  <van-radio class="child {{ radio == '30' ? 'checked' : '' }}" name="30" use-icon-slot>一个月内</van-radio>
 </van-radio-group>
 
-<van-calendar type="{{ type }}" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" show-title="{{false}}" value="{{ date }}">
+<van-calendar type="{{ type }}" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" show-title="{{false}}" max-date="{{ maxDate }}">
 </van-calendar>
 <view class="active">
-<van-button custom-class="resetBtn" bind:click="onReset">重置</van-button>
-<van-button custom-class="ConfirmBtn" bind:click="onConfirm">确定</van-button>
+  <van-button custom-class="resetBtn" bind:click="onReset">重置</van-button>
+  <van-button custom-class="confirmBtn" bind:click="onConfirm">确定</van-button>
 </view>

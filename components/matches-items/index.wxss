@@ -82,9 +82,9 @@
 }
 
 .type {
-  font-size: 24rpx;
+  font-size: 30rpx;
   height: 44rpx;
-  width: 110rpx;
+  width: 120rpx;
   background-color: #FB8808;
   border-radius: 8rpx;
   text-align: center;
@@ -93,7 +93,7 @@
   justify-content: center;
   color: #ffffff;
   margin-left: 6rpx;
-  margin-right: 36rpx;
+  margin-right: 24rpx;
 }
 
 .avatar-wrap {
@@ -136,8 +136,8 @@
 .info {
   color: #000000;
   opacity: 0.6;
-  font-size: 28rpx;
-  width: 146rpx;
+  font-size: 30rpx;
+  width: 166rpx;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;

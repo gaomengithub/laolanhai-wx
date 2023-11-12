@@ -50,8 +50,14 @@ export const user = observable({
   },
 
   get isUser() {
-    const quals = this.user.quals.map(item => item.qual)
-    return !quals.includes(2)
+    try {
+      // 可能是因为微信小程序内存回收机制的问题，user 可能是被清理
+      // const quals = wx.getStorageSync('quals').map(item => item.qual)
+      const quals = this.user.quals.map(item => item.qual)
+      return !quals.includes(2)
+    } catch (e) {
+      return false
+    }
   },
 
   get tags() {

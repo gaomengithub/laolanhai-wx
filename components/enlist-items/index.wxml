@@ -1,5 +1,5 @@
 <view class="container">
-  <view class="card" wx:for="{{ teams }}" wx:key="index">
+  <view class="card" wx:for="{{ items }}" wx:key="index">
     <image class="img" src="{{ img }}" mode="aspectFit" />
     <image class="avatar-outline" src="{{ avatarOutline }}" mode="aspectFit" />
     <view class="avatar-container">

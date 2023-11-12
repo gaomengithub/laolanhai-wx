@@ -1,20 +1,36 @@
 <nav-bar title="搜索"></nav-bar>
 
+<!-- <view class="container">
+  <van-search shape="round" value="{{ value }}" bind:change="onInputChange" use-action-slot placeholder="请输入你需要搜索的球队、球员名称">
+    <view slot="action" bind:tap="onClickSearch" class="btn">搜索</view>
+  </van-search>
 
-<van-search shape="round" value="{{ value }}" bind:change="onInputChange" use-action-slot placeholder="请输入你需要搜索的球队、球员名称">
-  <view slot="action" bind:tap="onClickSearch" class="btn">搜索</view>
-</van-search>
 
-<view class="container">
-  <van-tabs active="{{ active }}">
+  <van-tabs active="{{ active }}" color="#FB8808" custom-class="tabs">
     <van-tab title="比赛">
-      <matches-items switchIdx="{{ 1 }}"></matches-items>
+      <view wx:if="{{ matchSearchResult }}">
+        <matches-items items="{{ matchSearchResult ||[] }}"></matches-items>
+      </view>
+      <view wx:else>
+        sdfas
+        <no-data-tip></no-data-tip>
+      </view>
     </van-tab>
     <van-tab title="队伍">
-
+      <view wx:if="{{ teamSearchResult }}">
+        <enlist-items items="{{ teamSearchResult|| [] }}"></enlist-items>
+      </view>
+      <view wx:else>
+        <no-data-tip></no-data-tip>
+      </view>
     </van-tab>
     <van-tab title="用户">
-
+      <view wx:if="{{ userSearchResult }}">
+        <player-items items="{{ userSearchResult || [] }}"></player-items>
+      </view>
+      <view wx:else>
+        <no-data-tip></no-data-tip>
+      </view>
     </van-tab>
   </van-tabs>
-</view>
+</view> -->

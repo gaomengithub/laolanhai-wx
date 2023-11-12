@@ -1,25 +1,24 @@
-.calendar {
-  --calendar-height: 100vh;
-}
-.bar{
+.bar {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  height: 100rpx;
   align-items: center;
 }
-.bar .child{
-  background-color: #ffffff;
-  margin: 12rpx;
+
+.bar .child {
+  background-color: #eeeeee;
+  margin: 32rpx 12rpx;
   padding: 12rpx;
-  border-radius: 22rpx;
-  font-size: 28rpx;
+  border-radius: 12rpx;
+  font-size: 34rpx;
+
 }
 
-.checked{
-  background-color: #ee0a24 !important;
+.checked {
+  background-color: #FB8808 !important;
 }
-.active{
+
+.active {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -32,14 +31,26 @@
   box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.resetBtn{
+.resetBtn {
   border-radius: 44rpx !important;
   width: 166rpx;
-  font-weight: 600;
+  font-size: 32rpx !important;
+  letter-spacing: 4rpx;
 }
-.ConfirmBtn{
+
+.confirmBtn {
   width: 322rpx;
   border-radius: 44rpx !important;
-  background-color:#FB8808 !important;
-  font-weight: 600;
+  background-color: #FB8808 !important;
+  color: #ffffff !important;
+  font-size: 32rpx !important;
+  letter-spacing: 4rpx;
+}
+
+.van-calendar__day--end,
+.van-calendar__day--multiple-middle,
+.van-calendar__day--multiple-selected,
+.van-calendar__day--start,
+.van-calendar__day--start-end {
+  --calendar-range-edge-background-color: #FB8808
 }

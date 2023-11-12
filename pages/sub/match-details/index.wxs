@@ -1,11 +1,22 @@
-var formatDateTime = function (str) {
-  if (!str) return
-  return str.replace(":00+08:00", "").replace("T", "  ")
+var formatDateTime = function (start, end) {
+  if (start && end) {
+    var start = start.replace(":00+08:00", "").replace("T", "  ")
+    var end = end.replace(":00+08:00", "").split("T")[1]
+    return start + " - " + end
+  }
 }
 
 var formatLocation = function (str) {
-  if (!str) return
-  return str.replace("||", "  ")
+  if (str) {
+    return str.replace("||", "  ")
+  }
+}
+
+var formatPrice = function (str) {
+  if (str) {
+    var idx = parseInt(str[0])
+    return ['免费', '约10元', '约20元', '约30元'][idx]
+  }
 }
 
 var isEnterMatch = function (users, id) {
@@ -24,4 +35,5 @@ module.exports = {
   formatLocation: formatLocation,
   formatDateTime: formatDateTime,
   isEnterMatch: isEnterMatch,
+  formatPrice: formatPrice
 }

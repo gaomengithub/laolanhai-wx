@@ -12,8 +12,6 @@ var calcJoinedNum = function (arr) {
   if (arr) return arr.length
 }
 
-
-
 module.exports = {
   formatLocation: formatLocation,
   formatTime: formatTime,

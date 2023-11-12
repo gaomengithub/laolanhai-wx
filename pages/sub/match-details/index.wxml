@@ -1,13 +1,14 @@
+<wxs src="./index.wxs" module="tools" />
 <page-meta page-style="{{ showPopup ? 'overflow: hidden;' : '' }}">
-  <nav-bar title="老蓝孩俱乐部"></nav-bar>
-  <wxs src="./index.wxs" module="tools" />
-
+  <nav-bar title="老篮孩俱乐部"></nav-bar>
   <view class="contanier">
-  <pic-swiper photos="{{matchDetails.photos || []}}"></pic-swiper>
+    <pic-swiper photos="{{matchDetails.photos || []}}"></pic-swiper>
     <view class="sub-container">
-      <image class="star-icon" src="{{ icon.star }}" mode="aspectFill" />
-      <view class="cost-tip">
-        {{ matchDetails.price }}
+      <view class="price-item">
+        <!-- <image class="star-icon" src="{{ icon.star }}" mode="aspectFill" /> -->
+        <view class="cost-tip">
+          {{ tools.formatPrice(matchDetails.price) }}
+        </view>
       </view>
 
       <view class="mask">
@@ -21,7 +22,7 @@
         <view class="date-address">
           <view class="cell">
             <image class=".child" src="{{icon.clock}}" mode="scaleToFill"> </image>
-            {{ tools.formatDateTime(matchDetails.start_time)}}
+            {{ tools.formatDateTime(matchDetails.start_time,matchDetails.end_time)}}
           </view>
           <view class="cell">
             <image class=".child" src="{{icon.location}}" mode="scaleToFill"></image>
@@ -29,7 +30,7 @@
           </view>
         </view>
         <view class="part">
-          <view class="title">已参加的人员/队伍</view>
+          <view class="title">已参加的人员 / 队伍</view>
           <view class="avatars">
             <image class='avatar' wx:for="{{matchDetails.users}}" wx:key="index" src="{{ item.avatar }}" />
             <image class='avatar' wx:for="{{matchDetails.teams}}" wx:key="index" src="{{ item.avatar }}" />
@@ -55,7 +56,7 @@
 
   <bottom-btn-bar name="{{ tools.isEnterMatch(matchDetails.users,id) }}" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn">
 
-    <view wx:if="{{ matchDetails.organizer == id }}">
+    <view wx:if="{{ matchDetails.isMyCreate }}">
       <image class="edit" src="{{ icon.edit }}" mode="aspectFill" bind:tap="onDisplay" data-show="show" />
     </view>
 

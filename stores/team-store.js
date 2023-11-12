@@ -1,6 +1,6 @@
 import { observable, action } from "mobx-miniprogram"
-import { getTeamsList, getTeamDesc, getTeamApprovalList, updateApproval, createTeam, updateTeam } from '$/utils/api'
-import { handleErr ,handleInfo } from '../modules/msgHandler'
+import { getTeamsList, getTeamDesc, getTeamApprovalList, updateApproval, createTeam, updateTeam, joinTeam } from '$/utils/api'
+import { handleErr, handleInfo } from '../modules/msgHandler'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { teamFormMessages, teamFormRules } from '$/utils/validate/validate-set'
 import WxValidate from '$/utils/validate/WxValidate'
@@ -78,6 +78,18 @@ export const team = observable({
     return filteredTeams.length > 0 ? filteredTeams : false;
   },
 
+  joinTeam: action(async function (id) {
+    try {
+      await joinTeam(id)
+      handleInfo("加入成功")
+    } catch (e) {
+      if (e.statusCode == '400') {
+        handleInfo("已经在审批中，请勿反复加入")
+      } else {
+        handleErr("加入队伍发生错误，请重试")
+      }
+    }
+  }),
   activeApprove: action(async function (obj) {
     wx.showModal({
       title: '填写回执',

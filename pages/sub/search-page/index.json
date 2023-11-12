@@ -4,6 +4,10 @@
     "van-search": "@vant/weapp/search/index",
     "matches-items":"/components/matches-items/index",
     "van-tab": "@vant/weapp/tab/index",
-    "van-tabs": "@vant/weapp/tabs/index"
-  }
+    "van-tabs": "@vant/weapp/tabs/index",
+    "player-items":"/components/player-items/index",
+    "enlist-items":"/components/enlist-items/index",
+    "no-data-tip":"/components/no-data-tip/index"
+  } 
+
 }

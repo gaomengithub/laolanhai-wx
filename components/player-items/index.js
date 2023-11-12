@@ -1,20 +1,17 @@
-import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { team } from "$/stores/team-store";
 
 Component({
-  behaviors: [storeBindingsBehavior],
   properties: {
+    items: {
+      type: Array,
+      value: []
+    }
 
   },
 
   data: {
 
   },
-  storeBindings: {
-    store: team,
-    fields: ["teamDetails"],
-    actions: [],
-  },
+
   methods: {
 
   }
