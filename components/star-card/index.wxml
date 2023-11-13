@@ -1,7 +1,8 @@
 <view class="container">
-  <van-icon class="eidt" name="records" bind:tap="onEditClick" data-id="{{ id }}" size="25px"/>
-  <!-- <view class="eidt" bind:tap="onEditClick" data-id="{{ id }}">编辑</view> -->
-  <image class="person" src="{{ starDetails.image }}" mode="widthFix" />
+  <view class="edit-bg">
+    <van-icon class="eidt" name="records" bind:tap="onEditClick" data-id="{{ id }}" size="25px" />
+  </view>
+  <image class="person" src="{{ starDetails.image }}" mode="aspectFill"  bind:tap="translate" />
   <view class="main">
     <view class="name">{{ starDetails.userName }}</view>
     <view class="data">

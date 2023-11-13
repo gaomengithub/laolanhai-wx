@@ -20,6 +20,7 @@ function setOption(chart, arr) {
       type: 'bar',
       data: arr,
       silent: true, //禁用此饼图的鼠标悬停交互
+      clickable:false,
       coordinateSystem: 'polar',
       label: {
         show: true,
@@ -57,6 +58,7 @@ Component({
     isDisposed: false,
     ec: {
       lazyLoad: true,
+      disableTouch: true,
     }
   },
   lifetimes: {

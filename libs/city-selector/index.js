@@ -11,6 +11,7 @@ Page({
     scrollTop: 0,//置顶高度
     scrollTopId: '',//置顶id
     city: "定位中...",
+    province:"",
     hotcityList: ["全国", "北京市", "成都市", "西安市", "海口市", "大连市", "南京市", "天津市", "深圳市"],
     inputName: '',
     completeList: [],
@@ -53,7 +54,8 @@ Page({
           const city = res.data.result.address_component.city
           const province = res.data.result.address_component.province
           this.setData({
-            city: province + "\/" + city
+            city: city,
+            province: province
           })
         }
       }
@@ -77,7 +79,7 @@ Page({
       city: e.currentTarget.dataset.city == '全国' ? '' : e.currentTarget.dataset.city
     }
     this.modifyOptions(filter)
-    
+
     this.setData({
       // city: e.currentTarget.dataset.city,
       scrollTop: 0,

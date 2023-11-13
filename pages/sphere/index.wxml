@@ -35,14 +35,14 @@
     </van-tab>
 
     <van-tab title="场馆">
-      <view class="container">
-        <view wx:if="{{ arenasList }}">
-          <arena-items items="{{ arenasList }}"></arena-items>
-        </view>
-        <view wx:else>
-          <no-data-tip></no-data-tip>
-        </view>
+
+      <view wx:if="{{ arenasList }}">
+        <arena-items items="{{ arenasList }}"></arena-items>
       </view>
+      <view wx:else>
+        <no-data-tip></no-data-tip>
+      </view>
+
       <logo-bar placeholder="188rpx"></logo-bar>
     </van-tab>
   </van-tabs>

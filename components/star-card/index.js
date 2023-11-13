@@ -8,7 +8,7 @@ Component({
   },
   storeBindings: {
     store: user,
-    fields: ["starDetails","id"]
+    fields: ["starDetails", "id"]
   },
   data: {
     bgImg: "https://openstore.obabyball.com/ui_v1/img/star-card-bg-img.png",

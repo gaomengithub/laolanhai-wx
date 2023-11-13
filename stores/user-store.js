@@ -56,7 +56,13 @@ export const user = observable({
       const quals = this.user.quals.map(item => item.qual)
       return !quals.includes(2)
     } catch (e) {
-      return false
+      const quals = wx.getStorageSync('quals')
+      if (quals) {
+        const arr = quals.map(item => item.qual)
+        return !arr.includes(2)
+      } else {
+        throw new Error("权限读取错误")
+      }
     }
   },
 
@@ -89,6 +95,7 @@ export const user = observable({
       }
       const data = { ...this.starForm, ...patch }
       await updateStarData(data)
+      this.updateStarDetails(this.id)
       handleInfo("成功", wx.navigateBack)
     } catch {
       handleErr("失败")

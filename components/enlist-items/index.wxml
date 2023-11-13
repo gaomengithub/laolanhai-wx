@@ -9,7 +9,7 @@
     <view style="width: 220rpx; "></view>
     <view class="info">
       <view class="name">
-        {{ team.name }}
+        {{ item.name }}
       </view>
       <wxs src="./index.wxs" module="tools" />
       <view class="num">

@@ -1,3 +1,6 @@
+page{
+  background-color: #ebebeb;
+}
 .container {
   position: relative;
 }

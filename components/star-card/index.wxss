@@ -1,15 +1,16 @@
 .container {
   position: relative;
-  width: 702rpx;
+  height: 1350rpx;
   height: 936rpx;
   background-color: #FFFFFF;
   border-radius: 44rpx;
 }
 
 .person {
-  position: absolute;
+  position: relative;
+  height: 1250rpx;
   width: 702rpx;
-  bottom: 0;
+  top: 0;
   border-radius: 44rpx;
   z-index: 0;
 }
@@ -58,9 +59,14 @@
   text-overflow: ellipsis;
 }
 
-.eidt {
+.edit-bg {
   position: absolute;
-  right: 20rpx;
-  top: 20rpx;
+  background-color: #FB8808;
+  left: 0;
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 44rpx 0;
   z-index: 1;
+  display: flex;
+  justify-content: center;
 }

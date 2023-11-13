@@ -254,8 +254,9 @@ export const match = observable({
   joinMatch: action(async function (id) {
     try {
       await joinMatch(id)
-      // 强制刷新比赛详情
+      // 强制刷新比赛详情 列表
       this.updateMatchDetails(id)
+      this.updateMatchesList()
       handleInfo("报名成功")
     } catch (e) {
       if (e.statusCode == 400) {

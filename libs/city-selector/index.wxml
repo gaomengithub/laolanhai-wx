@@ -12,8 +12,8 @@
     <view class="title">当前定位</view>
     <view class="currCity">
       <image class="icon" src="{{ locationIcon }}" mode="aspectFill" />
-      <view>
-        {{ city }}
+      <view bind:tap="bindCity" data-city="{{city}}">
+        {{ province + " " + city }}
       </view>
     </view>
   </view>

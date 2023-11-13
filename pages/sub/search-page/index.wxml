@@ -1,6 +1,6 @@
 <nav-bar title="搜索"></nav-bar>
 
-<!-- <view class="container">
+<view class="container">
   <van-search shape="round" value="{{ value }}" bind:change="onInputChange" use-action-slot placeholder="请输入你需要搜索的球队、球员名称">
     <view slot="action" bind:tap="onClickSearch" class="btn">搜索</view>
   </van-search>
@@ -12,7 +12,6 @@
         <matches-items items="{{ matchSearchResult ||[] }}"></matches-items>
       </view>
       <view wx:else>
-        sdfas
         <no-data-tip></no-data-tip>
       </view>
     </van-tab>
@@ -33,4 +32,4 @@
       </view>
     </van-tab>
   </van-tabs>
-</view> -->
+</view> 
