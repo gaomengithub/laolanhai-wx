@@ -2,8 +2,8 @@
   <view class="edit-bg">
     <van-icon class="eidt" name="records" bind:tap="onEditClick" data-id="{{ id }}" size="25px" />
   </view>
-  <image class="person" src="{{ starDetails.image }}" mode="aspectFill"  bind:tap="translate" />
-  <view class="main">
+  <image class="person" src="{{ starDetails.image }}" mode="aspectFill" bind:tap="translate" />
+  <view class="main" style="left:{{ leftOffset  }} ; bottom: {{ bottomOffset }}" bind:tap="translateByClick">
     <view class="name">{{ starDetails.userName }}</view>
     <view class="data">
       <view class="item">

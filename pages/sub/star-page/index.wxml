@@ -3,7 +3,14 @@
 <view class="container">
   <image src="{{ topBgImg }}" class="top-bg-img" mode="aspectFit" />
   <view class="player-card">
-    <player-card></player-card>
+    <player-card item="{{ starDetails || [] }}"></player-card>
+  </view>
+
+  <view class="about-card">
+    <top-line name="自我介绍" more="false"></top-line>
+    <view class="about">
+      {{starDetails.about }}
+    </view>
   </view>
 
 

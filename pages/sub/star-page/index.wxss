@@ -36,3 +36,17 @@ page {
   align-items: center;
   height: 1250rpx;
 }
+
+
+.about-card {
+  background-color: #FFFFFF;
+  width: 702rpx;
+  margin: 24rpx;
+  border-radius: 44rpx;
+  padding: 24rpx 0;
+}
+
+.about {
+  margin: 0 48rpx;
+  font-size: 36rpx;
+}

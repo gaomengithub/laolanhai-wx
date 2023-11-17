@@ -15,7 +15,7 @@ function requestWithToken(obj, accessToken, retry) {
     var data = obj.data || {};
     var contentType = obj.contentType || 'application/json';
     var method = obj.method || 'GET';
-    wx.showLoading({ title: '请等待', })
+    wx.showLoading({ title: '请等待', mask:true})
     wx.request({
       url: BASE_URL + obj.url,
       data: data,

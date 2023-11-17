@@ -1,9 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { user } from "$/stores/user-store"
 
-
-import { handleErr } from '../../../modules/msgHandler'
-
 Page({
 
   /**

@@ -19,7 +19,8 @@
     "pages/sub/team-details/index",
     "pages/sub/match-result/index",
     "pages/sub/star-data-form/index",
-    "pages/sub/arena-details/index"
+    "pages/sub/arena-details/index",
+    "pages/sub/manager-form/index"
   ],
   "permission": {
     "scope.userFuzzyLocation": {

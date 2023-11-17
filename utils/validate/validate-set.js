@@ -162,7 +162,7 @@ export const newsFormRules = {
 
 }
 
-export const nesFormMessages = {
+export const newsFormMessages = {
   files_count: {
     min: '需要上传必要图片'
   },

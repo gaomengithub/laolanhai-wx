@@ -11,7 +11,7 @@ Component({
     greyArrow: 'https://openstore.obabyball.com/ui_v1/icon/arrow-grey.svg',
     blackArrow: 'https://openstore.obabyball.com/ui_v1/icon/arrow-black.svg',
     manager: {
-      // icon: iconUrls.addActionUnofficial,
+      icon: 'https://openstore.obabyball.com/ui_v1/icon/mine-referee-v1.svg',
       title: "申请成为大区旋风",
       text: "管理大区相关事务",
     },

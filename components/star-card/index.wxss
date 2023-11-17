@@ -1,7 +1,6 @@
 .container {
   position: relative;
-  height: 1350rpx;
-  height: 936rpx;
+  height: 1250rpx;
   background-color: #FFFFFF;
   border-radius: 44rpx;
 }
@@ -17,8 +16,6 @@
 
 .main {
   position: absolute;
-  left: 40rpx;
-  bottom: 40rpx;
   width: 320rpx;
   padding: 15rpx;
 }

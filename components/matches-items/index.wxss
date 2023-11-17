@@ -82,8 +82,8 @@
 }
 
 .type {
-  font-size: 30rpx;
-  height: 44rpx;
+  font-size: 28rpx;
+  height: 46rpx;
   width: 120rpx;
   background-color: #FB8808;
   border-radius: 8rpx;

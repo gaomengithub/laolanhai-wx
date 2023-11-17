@@ -4,10 +4,13 @@ Component({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
     store: team,
-    fields: ["teamApprovals"],
-    actions:["activeApprove"]
+    actions: ["activeApprove"]
   },
   properties: {
+    items: {
+      type: Array,
+      value: []
+    }
 
   },
 

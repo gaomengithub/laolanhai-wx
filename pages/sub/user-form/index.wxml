@@ -20,7 +20,7 @@
   <!-- 补充 -->
   <view wx:if="{{ isUser }}">
     <!-- 身高 -->
-    <van-cell title="身高" is-link bind:click="onDisplay" value="{{ user.height }}" data-show="showHeightPicker" />
+    <van-cell title="身高" is-link bind:click="onDisplay" value="{{ user.height + 'cm' }}" data-show="showHeightPicker" />
     <van-popup show="{{ showHeightPicker }}" bind:close="onDisplay" position="bottom" custom-style="height: 30%;" data-show="showHeightPicker">
       <van-picker columns="{{ heightColumns }}" show-toolbar="{{ true }}" title="选择身高" bind:confirm="onDisplay" bind:cancel="onDisplay" bind:change="handler" bind:confirm="handler" data-show="showHeightPicker" data-key="height" />
     </van-popup>

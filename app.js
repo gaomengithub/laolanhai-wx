@@ -4,22 +4,22 @@ import { user } from "$/stores/user-store"
 App({
   onLaunch() {
     this.globalData.common = new Common()
-    // 初始化注册"
-    initRegister()
+    // 检查缓存
+    checkStorage()
     // 更新用户信息
-    user.updateUserInfo()
+    // user.updateUserInfo()
   },
   globalData: {
     common: null,
   }
 })
 
-async function initRegister() {
+async function checkStorage() {
   const keys = ['accessToken', 'expireAt', 'nickName', 'openId', 'quals', 'refreshToken', 'id'];
   for (const key of keys) {
     const value = wx.getStorageSync(key);
     if (!value) {
-      await loginForToken()
+      return loginForToken()
     }
   }
 } 

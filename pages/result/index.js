@@ -53,7 +53,7 @@ Page({
   },
 
   onBtnClick(e) {
-    const path = `/pages/sub/news-form/index?`
+    const path = `/pages/sub/news-form/index?page=new`
     routeInterceptor.navigateTo(path)
   },
 })

@@ -33,6 +33,7 @@ export const user = observable({
     date: ''  //vant 组件要求传入时间戳 birthDate为字符串
   },
 
+
   get id() {
     let id = wx.getStorageSync('id')
     if (id) {
@@ -67,38 +68,69 @@ export const user = observable({
   },
 
   get tags() {
-    const quals = this.user.quals.map(item => item.qual)
+    const quals = wx.getStorageSync('quals')
     if (quals) {
+      const arr = quals.map(item => item.qual)
       const tags = {
-        isTeamLeader: quals.includes(4)
+        isTeamLeader: arr.includes(4)
       }
       return tags
     }
     else {
-      handleErr("获取tags错误")
+      return {
+        isTeamLeader: false
+      }
     }
   },
 
-  updateStarDetails: action(async function (params) {
-    try {
-      const data = await getStarData(params)
-      this.starDetails = data
-    } catch (e) {
 
+  initStarForm: action(function () {
+    let backup = JSON.parse(JSON.stringify(starFormBackup));
+    this.starForm = JSON.parse(JSON.stringify(backup));
+  }),
+
+  updateStarDetails: action(async function (id) {
+    if (!this.isUser) {
+      handleInfo("您还没有完成注册，请先完成注册再查看。",
+        function () {
+          wx.navigateTo({ url: '/pages/sub/user-form/index?page=create' })
+        }
+      )
+      return
+    }
+    try {
+      const data = await getStarData(id)
+      if (!data.imageKey) {
+        throw new Error("球星卡信息不完整")
+      }
+      const part = await getUserInfo(id)
+      const arr = part.quals.map(item => item.qual)
+      const patch = {
+        isTeamLeader: arr.includes(4)
+      }
+      this.starDetails = { ...data, ...patch, ...part }
+    } catch (e) {
+      handleInfo("球星卡信息不完整，请填写信息",
+        function () {
+          wx.navigateTo({ url: '/pages/sub/star-data-form/index?id=' + id })
+        }
+      )
     }
   }),
-  activeStar: action(async function name(params) {
+
+
+  activeStar: action(async function () {
     try {
       const patch = {
         image: this.starForm.files[0].key,
         userId: this.id
       }
       const data = { ...this.starForm, ...patch }
-      await updateStarData(data)
-      this.updateStarDetails(this.id)
+      await updateStarData(data) 
+      await this.updateStarDetails(this.id)
       handleInfo("成功", wx.navigateBack)
     } catch {
-      handleErr("失败")
+      handleErr("输入的数据可能存在异常")
     }
   }),
 
@@ -132,7 +164,9 @@ export const user = observable({
         }
         this.starForm = { ...this.starForm, ...data, ...patch }
       } catch (e) {
-        handleErr("获取数据失败")
+        // 如果是新建 那么上面的内容必要报错
+        // handleErr("获取数据失败")
+        this.initStarForm()
       }
     }
     // 更新其他字段
@@ -155,12 +189,13 @@ export const user = observable({
     try {
       const patch = {
         avatar: this.user.avatarKey,
-        height: '170'
+        height: this.user.height.replace("cm", "")
       }
       const form = { ...this.user, ...patch }
       await updateUserInfo(form)
+      handleInfo("更新成功", wx.navigateBack)
     } catch (e) {
-
+      handleErr("更新出错")
     }
   }),
 
@@ -190,3 +225,17 @@ export const user = observable({
     }
   }),
 })
+
+let starFormBackup = {
+  files: [],
+  age: 0,
+  assist: 0,
+  block: 0,
+  height: 0,
+  image: '',
+  position: '',
+  score: 0,
+  steal: 0,
+  threePoint: 0,
+  userId: ''
+}

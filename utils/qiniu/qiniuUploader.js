@@ -52,7 +52,7 @@
         console.error('qiniu UploadTokenFunction result is null, please check the return value');
         return
       }
-      
+
       doUpload(filePath, success, fail, options, progress, cancelTask);
     } else {
       console.error('qiniu uploader need one of [uptoken, uptokenURL, uptokenFunc]');
@@ -77,8 +77,8 @@
     if (!config.qiniuShouldUseQiniuFileName) {
       formData['key'] = fileName
     }
-    
-    wx.showLoading({ title: '等待上传', })
+
+    wx.showLoading({ title: '等待上传', mask: true })
     var uploadTask = wx.uploadFile({
       url: url,
       filePath: filePath,
@@ -107,7 +107,7 @@
           fail(error);
         }
       },
-      complete:function () {
+      complete: function () {
         wx.hideLoading()
       }
     })

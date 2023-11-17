@@ -1,11 +1,11 @@
 <view class="container">
   <slot></slot>
-  <view class="item" wx:for="{{teamApprovals}}" wx:key="index">
-    <image class="avatar" src="{{item.Applier.avatar || 'https://openstore.obabyball.com/ui_v1/icon/defult-avater.svg'}}"></image>
+  <view class="item" wx:for="{{items}}" wx:key="index">
+    <image class="avatar" src="{{item.Applier.Avatar || 'https://openstore.obabyball.com/ui_v1/icon/defult-avater.svg'}}"></image>
     <view class="card">
       <view class="sub-container">
         <view class="name">
-          {{item.Applier.Applier || '占位'}}
+          {{item.Applier.UserName || '占位'}}
         </view>
         <wxs module="format" src="./index.wxs"></wxs>
         <view class="date">
@@ -20,5 +20,8 @@
         </view>
       </view>
     </view>
+  </view>
+  <view wx:if="{{items == '' }}">
+    <no-data-tip text="暂无审批"></no-data-tip>
   </view>
 </view>

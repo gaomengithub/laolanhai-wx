@@ -1,14 +1,15 @@
 {
   "usingComponents": {
-    "team-card":"/components/team-card/index",
+    "team-card": "/components/team-card/index",
     "nav-bar": "/components/nav-bar/index",
-    "player-items":"/components/player-items/index",
-    "team-apply-items":"/components/team-apply-items/index",
+    "player-items": "/components/player-items/index",
+    "team-apply-items": "/components/team-apply-items/index",
     "van-button": "@vant/weapp/button/index",
-    "bottom-btn-bar":"/components/bottom-btn-bar/index",
+    "bottom-btn-bar": "/components/bottom-btn-bar/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
-    "top-line":"/components/top-line/index",
+    "top-line": "/components/top-line/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index"
+
   }
 }

@@ -1,11 +1,13 @@
 <view class="container">
   <view class="card">
-    <image class="avatar" src="{{ user.avatar  }}"></image>
+    <image class="avatar" src="{{ item.avatar  }}"></image>
     <view class="name">
-      {{ user.nickName }}
+      {{ item.userName }}
     </view>
     <view class="tags">
-      <view class="leader">队长</view>
+      <view wx:if="{{item.isTeamLeader}}">
+        <view class="leader">队长</view>
+      </view>
     </view>
   </view>
 </view>

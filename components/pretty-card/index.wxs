@@ -1,0 +1,12 @@
+var matchesCount = function (arr) {
+  if (arr) {
+    // 后期添加筛选条件
+    return arr.length
+  } else {
+    return 0
+  }
+}
+
+module.exports = {
+  matchesCount: matchesCount
+}

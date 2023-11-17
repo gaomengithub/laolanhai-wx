@@ -41,3 +41,4 @@ page {
 .van-notify {
   --notify-font-size: 18px
 }
+

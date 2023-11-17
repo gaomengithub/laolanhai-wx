@@ -1,2 +1,6 @@
-<!--pages/sub/referee/index.wxml-->
-<text>pages/sub/referee/index.wxml</text>
+<view class="container">
+  <image class="img" src="{{ img }}" mode="aspectFit" />
+  <view class="title">建设中</view>
+  <view class="text">该小程序页面正在努力建设中，敬请期待。</view>
+  <van-button custom-class="btn"  round bind:click="onBtnClick">返回</van-button>
+</view>

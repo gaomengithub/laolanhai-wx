@@ -1,6 +1,5 @@
 import { formatDate } from '$/utils/util'
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { handleErr } from '../../../modules/msgHandler'
 import { user } from "$/stores/user-store"
 
 function createColumns(range, unit) {
@@ -50,13 +49,11 @@ Page({
     const form = {
       avatarUrl: e.detail.avatarUrl
     }
-    console.log(form)
     this.updateUserInfo(form)
   },
 
 
   handler(e) {
-    console.log(e)
     const key = e.currentTarget.dataset.key
     let val = e.detail
     if (key == 'birthDate') {
@@ -85,7 +82,7 @@ Page({
     const id = options.id
     const page = options.page
     if (page && page == 'create') {
-      this.updateUserInfo()
+      this.updateUserInfo(id)
     }
     else if (page && page == "modify" && id) {
       this.updateUserInfo(id)

@@ -162,10 +162,13 @@ export async function searchAngthing(data) {
   return await request_(obj)
 }
 
-export async function getUserInfo() {
+export async function getUserInfo(id) {
   let obj = {
     url: '/user/get',
     method: 'POST',
+    data: {
+      id
+    }
   }
   return await request_(obj)
 }

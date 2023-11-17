@@ -14,7 +14,7 @@
         <view class="desc">介绍：{{matchResult.description}}</view>
 
       </van-collapse-item>
-      <van-collapse-item border="{{ false }}" name="2">
+      <!-- <van-collapse-item border="{{ false }}" name="2">
         <view slot="title">
           <top-line name="技术统计" more="false"></top-line>
         </view>
@@ -22,9 +22,8 @@
         </points-points>
         <view class="bar-container">
           <vs-bar></vs-bar>
-
         </view>
-      </van-collapse-item>
+      </van-collapse-item> -->
       <van-collapse-item border="{{ false }}" name="3">
         <view slot="title">
           <top-line name="高光时刻" more="false"></top-line>

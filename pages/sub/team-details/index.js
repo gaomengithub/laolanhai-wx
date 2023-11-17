@@ -48,7 +48,7 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: team,
-      fields: ["teamDetails",],
+      fields: ["teamDetails", "teamApprovals"],
       actions: ["updateTeamDetails", "updateTeamApprovals", "joinTeam"],
     });
 

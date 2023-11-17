@@ -7,16 +7,7 @@ import { handleErr, handleInfo } from '../modules/msgHandler'
 
 export const news = observable({
   validate: new WxValidate(newsFormRules, newsFormMessages),
-  newsForm: {
-    id: '',
-    title: '',
-    content: '',
-    date: '',
-    region: '',
-    attachments: [],
-    // 自有字段
-    files: []
-  },
+  newsForm: null,
   newsList: null,
   newsDetails: null,
 
@@ -27,7 +18,7 @@ export const news = observable({
   deleteNews: action(async function (id) {
     try {
       await delNews(id)
-      this.updateNewsForm()
+      this.updateNewsList()
       handleInfo("删除成功", wx.navigateBack)
     } catch (e) {
       handleErr("删除失败")
@@ -79,7 +70,8 @@ export const news = observable({
   }),
   activeNews: action(async function (params) {
     const patch = {
-      attachments: this.newsForm.files.map(item => item.key)
+      attachments: this.newsForm.files.map(item => item.key),
+      files_count: this.newsForm.files.length
     }
     const form = { ...this.newsForm, ...patch }
     if (!this.validate.checkForm(form)) {
@@ -90,7 +82,8 @@ export const news = observable({
         // 新建
         try {
           await createNews(form)
-          handleInfo("创建资讯功")
+          this.updateNewsList()
+          handleInfo("创建资讯功", wx.navigateBack)
         } catch {
           handleErr("创建资讯失败")
         }

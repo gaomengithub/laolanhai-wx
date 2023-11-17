@@ -81,7 +81,7 @@ export const team = observable({
   joinTeam: action(async function (id) {
     try {
       await joinTeam(id)
-      handleInfo("加入成功")
+      handleInfo("申请成功")
     } catch (e) {
       if (e.statusCode == '400') {
         handleInfo("已经在审批中，请勿反复加入")
@@ -100,12 +100,9 @@ export const team = observable({
 
         }
         if (res.confirm) {
-          wx.showLoading({
-            title: '请等待',
-          })
           await updateApproval(obj)
-          this.updateTeamApprovals(obj.id)
-          wx.hideLoading()
+          this.updateTeamApprovals(this.teamDetails.id)
+          this.updateTeamDetails(this.teamDetails.id)
         }
       }
     })
@@ -153,13 +150,9 @@ export const team = observable({
   updateTeamApprovals: action(async function (id) {
     try {
       const data = await getTeamApprovalList(id)
-      if (data) {
-        const ids = data.map(item => item.Applier.ID)
-        //临时方案
-      }
       this.teamApprovals = data
     } catch (e) {
-
+      handleErr("获取队伍审批列表失败")
     }
   }),
 
@@ -169,7 +162,7 @@ export const team = observable({
         const data = await getTeamDesc(id)
         this.teamDetails = data
       } catch (e) {
-
+        handleErr("获得球队详情失败")
       }
     }
   }),

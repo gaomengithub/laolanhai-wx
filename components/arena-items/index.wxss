@@ -86,9 +86,9 @@
 }
 
 .active .status {
-  font-size: 24rpx;
-  height: 44rpx;
-  width: 100rpx;
+  font-size: 30rpx;
+  height: 55rpx;
+  width: 150rpx;
   background-color: #FB8808;
   border-radius: 8rpx;
   text-align: center;

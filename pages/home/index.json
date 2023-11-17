@@ -5,6 +5,7 @@
     "van-sticky": "@vant/weapp/sticky/index",
     "filter-bar":"/components/filter-bar/index",
     "no-data-tip":"/components/no-data-tip/index",
-    "logo-bar":"/components/logo-bar/index"
+    "logo-bar":"/components/logo-bar/index",
+    "pretty-card":"/components/pretty-card/index"
   }
 }

@@ -1,1 +1,37 @@
-/* pages/sub/referee/index.wxss */
+page {
+  background-color: #ebebeb;
+}
+
+.container {
+  margin-top: 412rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.img {
+  height: 290rpx;
+  width: 256rpx;
+}
+
+.title {
+  margin: 24rpx 0;
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.text {
+  font-weight: lighter;
+  font-size: 34rpx;
+}
+
+.btn {
+  width: 702rpx !important;
+  background-color: #fb8808 !important;
+  font-size: 36rpx !important;
+  font-weight: bold;
+  letter-spacing: 16rpx;
+  color: #ffffff !important;
+  margin: 24rpx;
+}

@@ -2,6 +2,7 @@
   position: relative;
   background-color: #FFFFFF;
   margin: 24rpx;
+  padding-bottom: 24rpx;
   border-radius: 44rpx;
 }
 

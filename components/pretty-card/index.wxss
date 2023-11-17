@@ -1,0 +1,86 @@
+.container {
+  position: relative;
+}
+
+.card {
+  width: 702rpx;
+  height: 228rpx;
+  margin: 24rpx;
+  background-color: #FFFAF4;
+  border-radius: 44rpx;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  color: #989898;
+  margin: 12rpx 0;
+}
+
+.text {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #FB8808;
+}
+
+.avatar {
+  position: relative;
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  border: 10rpx solid #FB8808;
+  z-index: 1;
+  animation: breathe 2s infinite;
+}
+
+.img {
+  position: absolute;
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+}
+
+.avatar::before {
+  z-index: 10;
+  content: '';
+  position: absolute;
+  top: -20rpx;
+  left: -20rpx;
+  height: calc(100% + 20rpx);
+  width: calc(100% + 20rpx);
+  border-radius: 50%;
+  border: 10rpx solid #FFFFFF;
+  /* 请在此处输入你想要的颜色 */
+}
+
+@keyframes breathe {
+  0%, 100% { 
+    box-shadow: 0 0 0 10rpx rgba(251, 136, 8, 0.5);
+  }
+  50% { 
+    box-shadow: 0 0 0 20rpx rgba(251, 136, 8, 0.5); 
+  }
+}
+
+.tip {
+  color: #989898;
+  font-size: 28rpx;
+  margin-top: 18rpx ;
+}
+
+.bg-img {
+  position: absolute;
+  bottom: -65rpx;
+  left:  -40rpx;
+  width: 150rpx;
+  height: 150rpx;
+}

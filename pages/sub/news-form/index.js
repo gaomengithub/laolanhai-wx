@@ -2,7 +2,6 @@ import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { news } from "$/stores/news-store"
 import { formatDate } from '$/utils/util'
 import { options } from '$/utils/pca-code'
-import { handleErr } from '../../../modules/msgHandler'
 Page({
   data: {
     regionVal: '',
@@ -25,7 +24,7 @@ Page({
     this.storeBindings = createStoreBindings(this, {
       store: news,
       fields: ["newsForm"],
-      actions: ["updateNewsForm", "activeNews", "modifyNewsForm","initNewsForm"],
+      actions: ["updateNewsForm", "activeNews", "modifyNewsForm", "initNewsForm"],
     });
     if (options.page == "new") {
       this.initNewsForm()

@@ -17,5 +17,5 @@
     </view>
   </view>
 </view>
-<image class="edit" src="{{icon.edit}}" mode="aspectFit" bind:tap="handleClick" />
+<image wx:if="{{ arenaDetails.isMySportsHall }}" class="edit" src="{{icon.edit}}" mode="aspectFit" bind:tap="handleClick" />
 <van-action-sheet cancel-text="取消" bind:cancel="onDisplay" show="{{ show }}" actions="{{ actions }}" bind:close="onDisplay" bind:select="onSelect" data-show="show" />

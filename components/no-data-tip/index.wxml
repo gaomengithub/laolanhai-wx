@@ -1,6 +1,6 @@
 <view class="container">
   <image class="img" src="{{icon}}" mode="aspectFit" />
   <view class="tip">
-    暂无数据
+    {{ text }}
   </view>
 </view>

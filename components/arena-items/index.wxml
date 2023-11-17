@@ -2,13 +2,13 @@
   <view class="card" wx:for="{{items}}" wx:key="index">
     <image class="tag-img" src="{{tagImg}}" mode="scaleToFill" />
     <view class="main">
-      <image class="poster" src="{{ item.poster }}" mode="aspectFill" />
+      <image class="poster" src="{{ item.attachments[0] }}" mode="aspectFill" />
       <view class="desc">
         <view class="name">{{ item.name }}</view>
         <view class="content">
           <view class="child">
             <image class="icon" src="{{ icon.clock }}" mode="scaleToFill" />
-            {{ item.start_time + "-" + item.end_time }}
+            {{ item.startTime + "-" + item.endTime }}
           </view>
           <view class="child">
             <image class="icon" src="{{ icon.location }}" mode="scaleToFill" />

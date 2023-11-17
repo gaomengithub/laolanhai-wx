@@ -1,6 +1,9 @@
-.container {
+page {
   background-color: #E2E2E2;
-  min-height: 100vh;
+}
+.container {
+
+  padding: 24rpx 0;
 }
 
 .bg-img {
