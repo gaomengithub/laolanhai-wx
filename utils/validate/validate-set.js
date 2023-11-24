@@ -1,3 +1,69 @@
+export const userFormRules = {
+  avatar: {
+    required: true
+  },
+  nickName: {
+    required: true
+  },
+  birthDate: {
+    required: true
+  },
+  height: {
+    required: true
+  },
+  weight: {
+    required: true,
+  },
+  about: {
+    required: true,
+  },
+
+}
+
+export const userFormMessages = {
+  avatar: {
+    required: "需要上传头像",
+  },
+  nickName: {
+    required: '昵称不能为空'
+  },
+  birthDate: {
+    required: '需要选择出生日期'
+  },
+  height: {
+    required: '需要输入身高',
+  },
+  weight: {
+    required: '需要输入体重',
+  },
+  about: {
+    required: '需要输入自我介绍'
+  },
+}
+
+export const userFormRules_ = {
+  avatar: {
+    required: true
+  },
+  nickName: {
+    required: true
+  },
+  birthDate: {
+    required: true
+  },
+}
+
+export const userFormMessages_ = {
+  avatar: {
+    required: "需要上传头像",
+  },
+  nickName: {
+    required: '昵称不能为空'
+  },
+  birthDate: {
+    required: '需要选择出生日期'
+  }
+}
 
 export const matchFormRules = {
   files_count: {
@@ -192,7 +258,7 @@ export const teamFormRules = {
   region: {
     required: true
   },
-  address:{
+  address: {
     required: true
   },
   imgCount: {
@@ -214,7 +280,7 @@ export const teamFormMessages = {
   region: {
     required: '填写所在区域'
   },
-  address:{
+  address: {
     required: '填写活动位置'
   },
   imgCount: {

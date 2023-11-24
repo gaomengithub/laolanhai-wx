@@ -5,21 +5,34 @@ App({
   onLaunch() {
     this.globalData.common = new Common()
     // 检查缓存
-    checkStorage()
-    // 更新用户信息
-    // user.updateUserInfo()
+    checkStorage().then(() => {
+      user.updateUserInfo()
+    }).catch(e => {
+
+    })
   },
   globalData: {
     common: null,
   }
 })
 
-async function checkStorage() {
-  const keys = ['accessToken', 'expireAt', 'nickName', 'openId', 'quals', 'refreshToken', 'id'];
-  for (const key of keys) {
-    const value = wx.getStorageSync(key);
-    if (!value) {
-      return loginForToken()
+function checkStorage() {
+  return new Promise((resolve, reject) => {
+    const keys = ['accessToken', 'expireAt', 'nickName', 'openId', 'quals', 'refreshToken', 'id']
+
+    let isAllKeyExist = true;
+    for (const key of keys) {
+      const value = wx.getStorageSync(key)
+      if (!value) {
+        isAllKeyExist = false;
+        break;
+      }
     }
-  }
-} 
+
+    if (isAllKeyExist) {
+      resolve()
+    } else {
+      loginForToken().then(() => resolve()).catch((error) => reject(error));
+    }
+  });
+}

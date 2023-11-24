@@ -1,6 +1,6 @@
 <view class="container">
   <view class="card">
-    <top-line name="我的战绩" more="false" />
+    <top-line name="我的数据" more="更多" bind:handleButtomClick="handleClick" data-path="/pages/sub/player-data-page/index"/>
     <van-grid custom-class="grid" border="{{false}}">
       <van-grid-item content-class="item" use-slot>
         <view class="num">
@@ -12,26 +12,26 @@
       </van-grid-item>
       <van-grid-item content-class="item" use-slot>
         <view class="num">
-          {{ score }}
+          {{ win }}
         </view>
         <view class="tag">
-          正赛得分
+          获胜场
         </view>
       </van-grid-item>
-      <van-grid-item content-class="item" use-slot>
+      <!-- <van-grid-item content-class="item" use-slot>
         <view class="num">
           {{ win }}
         </view>
         <view class="tag">
           获胜
         </view>
-      </van-grid-item>
+      </van-grid-item> -->
       <van-grid-item content-class="item" use-slot>
         <view class="num">
           {{ pointer }}
         </view>
         <view class="tag">
-          积分
+          总得分
         </view>
       </van-grid-item>
     </van-grid>

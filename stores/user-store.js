@@ -2,7 +2,12 @@ import { observable, action } from "mobx-miniprogram"
 import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData } from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { handleErr, handleInfo } from '../modules/msgHandler'
+import { userFormRules, userFormMessages, userFormRules_, userFormMessages_ } from '$/utils/validate/validate-set'
+import WxValidate from '$/utils/validate/WxValidate'
 export const user = observable({
+  validate: new WxValidate(userFormRules, userFormMessages),
+  validate_: new WxValidate(userFormRules_, userFormMessages_),
+  showStarPage: true,
   starDetails: {},
   starForm: {
     files: [],
@@ -89,33 +94,49 @@ export const user = observable({
     this.starForm = JSON.parse(JSON.stringify(backup));
   }),
 
-  updateStarDetails: action(async function (id) {
-    if (!this.isUser) {
-      handleInfo("您还没有完成注册，请先完成注册再查看。",
-        function () {
-          wx.navigateTo({ url: '/pages/sub/user-form/index?page=create' })
-        }
-      )
-      return
-    }
-    try {
+  updateStarDetails: action(async function (id, share) {
+    if (share) {
       const data = await getStarData(id)
-      if (!data.imageKey) {
-        throw new Error("球星卡信息不完整")
-      }
       const part = await getUserInfo(id)
       const arr = part.quals.map(item => item.qual)
       const patch = {
         isTeamLeader: arr.includes(4)
       }
       this.starDetails = { ...data, ...patch, ...part }
-    } catch (e) {
-      handleInfo("球星卡信息不完整，请填写信息",
-        function () {
-          wx.navigateTo({ url: '/pages/sub/star-data-form/index?id=' + id })
-        }
-      )
     }
+    else {
+      if (!this.isUser) {
+        handleInfo("您还没有完成注册，请先完成注册再查看。",
+          function () {
+            wx.navigateTo({ url: '/pages/sub/user-form/index?page=create' })
+          }
+        )
+        return
+      }
+      try {
+        const data = await getStarData(id)
+        if (!data.imageKey) {
+          throw new Error("球星卡信息不完整")
+        }
+        const part = await getUserInfo(id)
+        const arr = part.quals.map(item => item.qual)
+        const patch = {
+          isTeamLeader: arr.includes(4)
+        }
+        this.starDetails = { ...data, ...patch, ...part }
+      } catch (e) {
+        handleInfo("球星卡信息不完整，请填写信息",
+          function () {
+            wx.navigateTo({ url: '/pages/sub/star-data-form/index?id=' + id })
+          }
+        )
+      }
+    }
+
+
+
+
+
   }),
 
 
@@ -126,9 +147,9 @@ export const user = observable({
         userId: this.id
       }
       const data = { ...this.starForm, ...patch }
-      await updateStarData(data) 
+      await updateStarData(data)
       await this.updateStarDetails(this.id)
-      handleInfo("成功", wx.navigateBack)
+      handleInfo("录入成功", wx.navigateBack)
     } catch {
       handleErr("输入的数据可能存在异常")
     }
@@ -184,19 +205,48 @@ export const user = observable({
     this.joinedMatches = data.matches
   }),
 
-  // 用于提交后端修改
+  // 用于提交后端修改  其实应该是active
   modifyUserInfo: action(async function () {
-    try {
+    let form = null
+    let isVali = false
+    let error = null
+    if (!this.isUser) {
+      form = {
+        id: this.id,
+        avatar: this.user.avatarKey,
+        birthDate: this.user.birthDate,
+        nickName: this.user.nickName
+      }
+    } else {
       const patch = {
         avatar: this.user.avatarKey,
         height: this.user.height.replace("cm", "")
       }
-      const form = { ...this.user, ...patch }
-      await updateUserInfo(form)
-      handleInfo("更新成功", wx.navigateBack)
-    } catch (e) {
-      handleErr("更新出错")
+      form = { ...this.user, ...patch }
     }
+    if (!this.isUser) {
+      isVali = this.validate_.checkForm(form)
+      error = this.validate_.errorList[0];
+    } else {
+      isVali = this.validate.checkForm(form)
+      error = this.validate.errorList[0];
+    }
+    if (!isVali) {
+      handleErr(error.msg)
+    } else {
+      try {
+        await updateUserInfo(form)
+        await this.updateUserInfo()
+        handleInfo("更新成功", wx.navigateBack)
+      } catch (e) {
+        handleErr("更新出错")
+      }
+    }
+  }),
+
+  initUserInfo: action(async function (params) {
+    let backup = JSON.parse(JSON.stringify(userBackup));
+    this.user = JSON.parse(JSON.stringify(backup));
   }),
 
   updateUserInfo: action(async function (form) {
@@ -215,8 +265,14 @@ export const user = observable({
     // 获取用户信息更新user
     else {
       try {
+        this.initUserInfo()
         const data = await getUserInfo()
-        const date = new Date(data.birthDate)
+        let date = null
+        if (data.birthDate) {
+          date = new Date(data.birthDate)
+        } else {
+          date = new Date("1949-01-01")
+        }
         const patch = { date: date.getTime() }
         this.user = { ...data, ...patch }
       } catch (e) {
@@ -238,4 +294,19 @@ let starFormBackup = {
   steal: 0,
   threePoint: 0,
   userId: ''
+}
+
+
+let userBackup = {
+  about: '',
+  avatar: '',
+  birthDate: '',
+  height: '',
+  honors: '',
+  id: '',
+  nickName: '',
+  weight: '',
+  avatarKey: '',
+  // 自有字段
+  date: ''  //vant 组件要求传入时间戳 birthDate为字符串
 }

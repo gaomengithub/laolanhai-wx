@@ -1,3 +1,10 @@
+.box {
+  height: 430rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
 .container {
   width: 100%;
   display: flex;
@@ -13,7 +20,6 @@
   height: 252rpx;
   width: 702rpx;
   border-radius: 44rpx;
-
   background: linear-gradient(to top right, #FFFFFF, #FFFAF4)
 }
 

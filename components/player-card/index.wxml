@@ -1,12 +1,14 @@
-<view class="container">
-  <view class="card">
-    <image class="avatar" src="{{ item.avatar  }}"></image>
-    <view class="name">
-      {{ item.userName }}
-    </view>
-    <view class="tags">
-      <view wx:if="{{item.isTeamLeader}}">
-        <view class="leader">队长</view>
+<view class="box">
+  <view class="container">
+    <view class="card">
+      <image class="avatar" src="{{ item.avatar  }}"></image>
+      <view class="name">
+        {{ item.userName }}
+      </view>
+      <view class="tags">
+        <view wx:if="{{item.isTeamLeader}}">
+          <view class="leader">队长</view>
+        </view>
       </view>
     </view>
   </view>

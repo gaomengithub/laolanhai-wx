@@ -5,7 +5,7 @@
   <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
     <image class="avatar" src="{{user.avatar}}" mode="aspectFit"></image>
   </button>
-  <text wx:if="{{ showAvatarTip }}" class="tip" style="margin-top: -40rpx;">请选择有效的头像</text>
+  <!-- <text wx:if="{{ showAvatarTip }}" class="tip" style="margin-top: -40rpx;">请选择有效的头像</text> -->
 
   <!-- 昵称 -->
   <van-field label="昵称" value="{{ user.nickName || '' }}" type="nickname" placeholder="请输入昵称" bind:change="handler" data-key="nickName" />
@@ -20,7 +20,7 @@
   <!-- 补充 -->
   <view wx:if="{{ isUser }}">
     <!-- 身高 -->
-    <van-cell title="身高" is-link bind:click="onDisplay" value="{{ user.height + 'cm' }}" data-show="showHeightPicker" />
+    <van-cell title="身高" is-link bind:click="onDisplay" value="{{ user.height ? user.height + 'cm' : ''  }}" data-show="showHeightPicker" />
     <van-popup show="{{ showHeightPicker }}" bind:close="onDisplay" position="bottom" custom-style="height: 30%;" data-show="showHeightPicker">
       <van-picker columns="{{ heightColumns }}" show-toolbar="{{ true }}" title="选择身高" bind:confirm="onDisplay" bind:cancel="onDisplay" bind:change="handler" bind:confirm="handler" data-show="showHeightPicker" data-key="height" />
     </van-popup>

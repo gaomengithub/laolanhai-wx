@@ -1,0 +1,68 @@
+page {
+  background-color: #EBEBEB;
+}
+
+.items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12rpx;
+}
+
+.circles {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 12rpx;
+}
+
+.icon {
+  width: 95rpx;
+  height: 95rpx;
+}
+
+.text {
+  width: 155rpx;
+  height: 95rpx;
+  display: flex;
+  font-size: 36rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.win-loss {
+  background-color: #ffffff;
+  width: 702rpx;
+  margin: 24rpx;
+  border-radius: 44rpx;
+  padding: 24rpx 0;
+}
+
+.rate {
+  background-color: #ffffff;
+  width: 702rpx;
+  margin: 24rpx;
+  border-radius: 44rpx;
+  padding: 24rpx 0;
+}
+
+.circle {
+
+  text-align: center;
+}
+
+.rate-text {
+  color: #989898;
+  padding: 12rpx 0;
+}
+
+.van-tab {
+  --tabs-default-color: #FB8808;
+  border-right: none !important;
+}
+
+.van-tabs__scroll--card {
+  border: none !important;
+}

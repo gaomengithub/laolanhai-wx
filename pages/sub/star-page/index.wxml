@@ -1,5 +1,5 @@
 <nav-bar navTitle="老蓝孩俱乐部"></nav-bar>
-
+<van-overlay show="{{ show }}" bind:click="onClickHide" />
 <view class="container">
   <image src="{{ topBgImg }}" class="top-bg-img" mode="aspectFit" />
   <view class="player-card">

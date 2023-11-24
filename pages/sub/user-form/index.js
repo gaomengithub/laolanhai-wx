@@ -78,15 +78,13 @@ Page({
       fields: ["user", "isUser"],
       actions: ["updateUserInfo", "modifyUserInfo"],
     });
-
-    const id = options.id
-    const page = options.page
-    if (page && page == 'create') {
-      this.updateUserInfo(id)
-    }
-    else if (page && page == "modify" && id) {
-      this.updateUserInfo(id)
-    }
+    this.updateUserInfo()
+    // if (options.page == 'create') {
+    //   this.updateUserInfo()
+    // }
+    // else if (options.page == "modify" && options.id) {
+    //   this.updateUserInfo()
+    // }
   },
 
   onUnload() {

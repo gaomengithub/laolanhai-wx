@@ -5,3 +5,7 @@
   width: 200rpx;
   height: 200rpx;
 }
+
+.label {
+  font-size: 32rpx;
+}

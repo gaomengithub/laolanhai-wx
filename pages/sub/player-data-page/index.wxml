@@ -1,0 +1,63 @@
+<nav-bar title="我的数据"></nav-bar>
+
+<view class="container">
+  <view class="play-card">
+    <player-card item="{{ user }}" />
+  </view>
+
+  <view class="win-loss">
+    <top-line name="我的战绩" more="false"></top-line>
+    <view class="items">
+      <image class="icon" src="{{icon.win}}" mode="aspectFit" />
+      <view class="text">
+        {{ 0 }} 胜
+      </view>
+      <image class="icon" src="{{icon.loss}}" mode="aspectFit" />
+      <view class="text">
+        {{ 0 }} 负
+      </view>
+    </view>
+  </view>
+
+  <view class="rate">
+    <top-line name="我的命中率" more="false"></top-line>
+    <view class="circles">
+      <view class="circle">
+        <van-circle type="2d" value="{{ 30 }}" color="{{ gradientColor }}" layer-color="#ebebeb">
+          <view style="color: #fb8808; font-size: 42rpx;">{{ 0.0 }}%</view>
+          <view style="color:#989898; margin-top: 22rpx;">1分</view>
+        </van-circle>
+        <view class="rate-text">0/0</view>
+      </view>
+      <view class="circle">
+        <van-circle type="2d" value="{{ 40 }}" color="{{ gradientColor }}" layer-color="#ebebeb">
+          <view style="color: #fb8808; font-size: 42rpx;">{{ 0.0 }}%</view>
+          <view style="color:#989898; margin-top: 22rpx;">2分</view>
+        </van-circle>
+        <view class="rate-text">0/0</view>
+      </view>
+      <view class="circle">
+        <van-circle type="2d" value="{{ 50 }}" color="{{ gradientColor }}" layer-color="#ebebeb">
+          <view style="color: #fb8808; font-size: 42rpx;">{{ 0.0 }}%</view>
+          <view style="color:#989898; margin-top: 22rpx;">3分</view>
+        </van-circle>
+        <view class="rate-text">0/0</view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="count">
+    <van-tabs active="{{ active }}" type="card" tab-active-class="tab-active" animated>
+      <van-tab title="场均">内容 1</van-tab>
+      <van-tab title="总计">内容 2</van-tab>
+    </van-tabs>
+
+
+  </view>
+
+
+  <view class="data-item"></view>
+
+
+</view>

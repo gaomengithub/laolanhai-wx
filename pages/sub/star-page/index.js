@@ -5,6 +5,9 @@ Page({
   data: {
     topBgImg: 'https://openstore.obabyball.com/ui_v1/img/detail-team-bg-img-v1-compress-v2.png'
   },
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
+  },
 
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
@@ -14,12 +17,12 @@ Page({
     });
     // 从其他页面跳转
     if (options.id) {
-      this.updateStarDetails(options.id)
+      this.updateStarDetails(options.id, false)
     }
     else if (options.userID) {
-      this.updateStarDetails(options.userID)
+      this.updateStarDetails(options.userID, true)
     }
-    
+
   },
 
   onShareAppMessage() {

@@ -6,6 +6,8 @@
     "van-popup": "@vant/weapp/popup/index",
     "honor-card":"/components/honor-card/index",
     "top-line":"/components/top-line/index",
-    "logo-bar":"/components/logo-bar/index"
+    "logo-bar":"/components/logo-bar/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index"
   }
 }

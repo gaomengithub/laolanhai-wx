@@ -5,6 +5,7 @@
     "player-data-charts":"/components/player-data-charts",
     "top-line":"/components/top-line/index",
     "star-card":"/components/star-card/index",
-    "logo-bar":"/components/logo-bar/index"
+    "logo-bar":"/components/logo-bar/index",
+    "van-overlay": "@vant/weapp/overlay/index"
   }
 }

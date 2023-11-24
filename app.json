@@ -20,7 +20,8 @@
     "pages/sub/match-result/index",
     "pages/sub/star-data-form/index",
     "pages/sub/arena-details/index",
-    "pages/sub/manager-form/index"
+    "pages/sub/manager-form/index",
+    "pages/sub/player-data-page/index"
   ],
   "permission": {
     "scope.userFuzzyLocation": {
