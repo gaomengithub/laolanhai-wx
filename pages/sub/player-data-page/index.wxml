@@ -48,16 +48,71 @@
   </view>
 
   <view class="count">
+    <top-line name="详细数据" more="false"></top-line>
     <van-tabs active="{{ active }}" type="card" tab-active-class="tab-active" animated>
-      <van-tab title="场均">内容 1</van-tab>
-      <van-tab title="总计">内容 2</van-tab>
+      <van-tab title="场均">
+        <view class="grid">
+          <view class="cell">
+            <view style="color: #989898;">得分</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">0.0</view>
+          </view>
+          <view class="cell">
+            <view style="color: #989898;">篮板</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">0.0</view>
+          </view>
+          <view class="cell">
+            <view style="color: #989898;">助攻</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">0.0</view>
+          </view>
+          <view class="cell">
+            <view style="color: #989898;">3分命中数</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">0.0</view>
+          </view>
+          <view class="cell">
+            <view style="color: #989898;">抢断</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">0.0</view>
+          </view>
+          <view class="cell">
+            <view style="color: #989898;">盖帽</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">0.0</view>
+          </view>
+        </view>
+      </van-tab>
+      <van-tab title="总计">
+        <view class="grid">
+          <view class="cell">
+            <view style="color: #989898;">得分</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">0</view>
+          </view>
+          <view class="cell">
+            <view style="color: #989898;">篮板</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">0</view>
+          </view>
+          <view class="cell">
+            <view style="color: #989898;">助攻</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">0</view>
+          </view>
+          <view class="cell">
+            <view style="color: #989898;">3分命中数</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">0</view>
+          </view>
+          <view class="cell">
+            <view style="color: #989898;">抢断</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">0</view>
+          </view>
+          <view class="cell">
+            <view style="color: #989898;">盖帽</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">0</view>
+          </view>
+        </view>
+      </van-tab>
     </van-tabs>
 
 
   </view>
+  <logo-bar></logo-bar>
+  <!-- <view class="data-item">
+    <top-line name="比赛数据" more="false"></top-line>
 
-
-  <view class="data-item"></view>
-
-
+  </view> -->
 </view>

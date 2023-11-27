@@ -17,7 +17,7 @@ export const match = observable({
   // 筛选条件
   options: {
     city: '',
-    status: [0, 1],
+    status: [0, 1, 2, 3],
     match_type: [],
     page_size: 10,
     page_token: '',
@@ -168,7 +168,11 @@ export const match = observable({
     try {
       await updateMatchStatus(data)
     } catch (e) {
-      handleErr("更新失败")
+      if (e.statusCode == 400) {
+        // handleErr("更新失败，需要按步骤更新比赛")
+      } else {
+        handleErr("更新失败，未知错误")
+      }
     }
   }),
 

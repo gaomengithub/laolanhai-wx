@@ -21,12 +21,12 @@
       </view>
     </view>
     <view class="active">
-      <view class="type">{{ ["报名中","报名中", "报名结束", "比赛中", "比赛结束", "比赛取消"][item.status] }}</view>
+      <view class="type">{{ ["报名中","报名中", "待开赛", "比赛中", "比赛结束", "比赛取消"][item.status] }}</view>
       <view class="avatar-wrap">
         <image class='avatar' wx:for="{{ item.users }}" wx:for-item="item_" wx:for-index="idx" src='{{ item_.avatar }}' mode="aspectFill" wx:key="idx" />
       </view>
       <text class="info">{{ tools.calcJoinedNum(item.users) }}人已报名</text>
-      <van-button custom-class="btn" bind:click="handlerClick" data-id="{{item.id}}">{{ item.isMyMatch ? '立即查看': '立即加入'}}</van-button>
+      <van-button custom-class="btn" bind:click="handlerClick" data-id="{{item.id}}">{{ item.isMyMatch || item.status > 1  ? '立即查看': '立即加入'}}</van-button>
     </view>
   </view>
 </view>

@@ -3,7 +3,7 @@
     <view class="card">
       <image class="avatar" src="{{ item.avatar  }}"></image>
       <view class="name">
-        {{ item.userName }}
+        {{ item.userName || item.nickName }}
       </view>
       <view class="tags">
         <view wx:if="{{item.isTeamLeader}}">

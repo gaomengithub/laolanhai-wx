@@ -21,7 +21,7 @@
 }
 
 .item .info {
-  width: 300rpx;
+  width: 400rpx;
 }
 
 .item .info .name {

@@ -19,16 +19,24 @@ var formatPrice = function (str) {
   }
 }
 
-var isEnterMatch = function (users, id) {
-  if (!users || !id) return ''
-  var isJoined = '立即报名';
-  for (var i = 0; i < users.length; i += 1) {
-    if (users[i].id === id) {
-      isJoined = '已报名';
-      break;
-    }
+var isEnterMatch = function (isMyMatch, status) {
+  if (status > 1) {
+    return '报名已结束'
   }
-  return isJoined;
+  if (isMyMatch) {
+    return '已报名'
+  } else {
+    return '立即报名'
+  }
+  // if (!users || !id) return ''
+  // var isJoined = '立即报名';
+  // for (var i = 0; i < users.length; i += 1) {
+  //   if (users[i].id === id) {
+  //     isJoined = '已报名';
+  //     break;
+  //   }
+  // }
+  // return isJoined;
 }
 
 module.exports = {

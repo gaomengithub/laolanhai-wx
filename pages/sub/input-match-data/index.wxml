@@ -1,0 +1,63 @@
+<nav-bar title="录入比赛"></nav-bar>
+<view class="container">
+
+  <van-tabs type="card" sticky animated swipeable offset-top="{{ offset }}">
+    <van-tab title="主队：{{}}">
+      <view class="item">
+
+        <block wx:for="{{ homeTeamDetails.teamMember }}" wx:key="id">
+          <player-items items="{{ [item] }}" wx:if="{{ item.isPlaying }}" bind:tap="showPopup" data-item="{{item}}">
+            <van-switch checked="{{ item.isPlaying }}" catchtap="onPlayingChange" data-id="{{ item.id }}" size="24px" />
+          </player-items>
+        </block>
+        <van-divider contentPosition="center">
+          上场队员
+        </van-divider>
+        <block wx:for="{{ homeTeamDetails.teamMember }}" wx:key="id">
+          <player-items items="{{ [item] }}" wx:if="{{ !item.isPlaying }}">
+            <van-switch checked="{{ item.isPlaying }}" bind:change="onPlayingChange" data-id="{{ item.id }}" size="24px" />
+          </player-items>
+        </block>
+      </view>
+    </van-tab>
+    <van-tab title="客队：{{}}">
+      <block wx:for="{{ visitingTeamDetails.teamMember }}" wx:key="id">
+        <player-items items="{{ [item] }}">
+          <van-switch checked="{{ item.isPlaying }}" bind:change="onPlayingChange" data-id="{{ item.id }}" size="24px" />
+        </player-items>
+      </block>
+    </van-tab>
+  </van-tabs>
+
+</view>
+
+
+<van-dialog use-slot show="{{ show }}" show-cancel-button bind:close="onClose" width="654rpx" bind:confirm="handleRecord">
+  <view class="dialog-container">
+
+    <image class="avatar" src="{{ currAvatar }}" mode="aspectFit"></image>
+    <view class="name">{{ currName }}</view>
+    <van-radio-group value="{{ radio }}" bind:change="onRadioChange">
+      <view class="grid">
+        <view class="cell miss">
+          <van-radio name="2">罚球未命中</van-radio>
+        </view>
+        <view class="cell">
+          <van-radio name="1">罚球命中</van-radio>
+        </view>
+        <view class="cell miss">
+          <van-radio name="4">两分未命中</van-radio>
+        </view>
+        <view class="cell">
+          <van-radio name="3">两分命中</van-radio>
+        </view>
+        <view class="cell miss">
+          <van-radio name="6">三分未命中</van-radio>
+        </view>
+        <view class="cell">
+          <van-radio name="5">三分命中</van-radio>
+        </view>
+      </view>
+    </van-radio-group>
+  </view>
+</van-dialog>

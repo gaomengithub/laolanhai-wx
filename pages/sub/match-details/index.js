@@ -66,6 +66,11 @@ Page({
       showPopup: false
     })
     this.updateMatchStatus(this.data.matchDetails.id, parseInt(this.data.radio))
+    if (this.data.radio == '3') {
+      wx.navigateTo({
+        url: '/pages/sub/input-match-data/index?id=' + this.data.matchDetails.id,
+      })
+    }
   },
 
   onUnload() {

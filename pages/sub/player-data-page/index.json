@@ -5,6 +5,7 @@
     "top-line": "/components/top-line/index",
     "van-circle": "@vant/weapp/circle/index",
     "van-tab": "@vant/weapp/tab/index",
-    "van-tabs": "@vant/weapp/tabs/index"
+    "van-tabs": "@vant/weapp/tabs/index",
+    "logo-bar":"/components/logo-bar/index"
   }
 }

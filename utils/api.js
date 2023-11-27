@@ -1,6 +1,20 @@
 import { request_ } from "../modules/requestManager"
 
 
+export async function updatMatchePoints(match, user, score) {
+  let obj = {
+    url: '/match/createIntegral',
+    method: 'POST',
+    data: {
+      match_id: match,
+      member_id: user,
+      current_score: score,
+    }
+  }
+  return await request_(obj)
+}
+
+
 export async function delNews(id) {
   let obj = {
     url: '/match/deleteMatchNews',
@@ -187,11 +201,16 @@ export async function getTeamsList() {
 }
 
 
-export async function getTeamDesc(teamID) {
+
+/**
+ * 
+ * @param {string} id 队伍id
+ */
+export async function getTeamDesc(id) {
   let obj = {
     url: '/team/get',
     data: {
-      id: teamID
+      id: id
     }
   }
   return await request_(obj)

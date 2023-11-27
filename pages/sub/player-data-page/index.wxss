@@ -66,3 +66,25 @@ page {
 .van-tabs__scroll--card {
   border: none !important;
 }
+
+.count{
+  width: 702rpx;
+  margin: 12rpx 24rpx;
+  background-color: #ffffff;
+  border-radius: 44rpx;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.cell {
+  width: 234rpx;
+  height: 180rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

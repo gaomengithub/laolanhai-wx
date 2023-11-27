@@ -11,7 +11,7 @@ Page({
       '0%': '#FB8808',
       '100%': '#FAFAFA',
     },
-    active: 1,
+    active: 0,
   },
 
   onUnload() {
