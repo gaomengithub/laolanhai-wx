@@ -40,3 +40,59 @@ page {
 .miss {
   background-color: #989898;
 }
+
+.tabs {
+  --tabs-card-height: 80rpx;
+  --tab-font-size: 32rpx;
+}
+
+.select {
+  width: 654rpx;
+  margin: 24rpx;
+  background-color: #ffffff;
+  border-radius: 44rpx;
+  padding: 24rpx 24rpx 2rpx 24rpx;
+}
+
+
+.img {
+  width: 90rpx;
+  height: 90rpx;
+  margin: 12rpx 24rpx 0 24rpx;
+}
+
+.tip {
+  font-size: 38rpx;
+  line-height: 56rpx;
+  color: #989898;
+  padding: 0 24rpx;
+  height: fit-content;
+}
+
+.dropdown {
+  box-shadow: none !important;
+  margin: 24rpx;
+
+}
+
+.van-dropdown-menu__title:after {
+  border-top-width: 6px !important;
+  border-right-width: 6px !important;
+  border-bottom-width: 6px !important;
+  border-left-width: 6px !important;
+  right: 2rpx !important;
+  top: 35% !important;
+}
+
+.dropdown-title {
+  font-size: 42rpx !important;
+  font-weight: bold;
+  --dropdown-menu-title-line-height: fit-content;
+}
+
+.dropdown-item {
+  font-size: 36rpx;
+  letter-spacing: 2rpx;
+  height: 64rpx;
+}
+

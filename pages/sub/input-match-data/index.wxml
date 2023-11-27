@@ -1,10 +1,17 @@
 <nav-bar title="录入比赛"></nav-bar>
 <view class="container">
+  <view class="select">
+    <top-line name="选择队伍" more="false"></top-line>
+    <view class="tip">点击选择要记录的比赛。</view>
+    <van-dropdown-menu custom-class="dropdown" title-class="dropdown-title" >
+      <van-dropdown-item value="{{ value }}" options="{{ option }}"  item-title-class="dropdown-item" custom-class="dropdown-items" title="点击选择"/>
+    </van-dropdown-menu>
+    <!-- <image class="img" src="{{ img }}" mode="aspectFit" bind:tap="showAction"></image> -->
+  </view>
 
-  <van-tabs type="card" sticky animated swipeable offset-top="{{ offset }}">
+  <van-tabs type="card" animated swipeable custom-class="tabs">
     <van-tab title="主队：{{}}">
       <view class="item">
-
         <block wx:for="{{ homeTeamDetails.teamMember }}" wx:key="id">
           <player-items items="{{ [item] }}" wx:if="{{ item.isPlaying }}" bind:tap="showPopup" data-item="{{item}}">
             <van-switch checked="{{ item.isPlaying }}" catchtap="onPlayingChange" data-id="{{ item.id }}" size="24px" />

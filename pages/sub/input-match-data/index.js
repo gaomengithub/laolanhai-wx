@@ -4,13 +4,17 @@ import { input } from "$/stores/input-store";
 Page({
 
   data: {
-    offset: getApp().globalData.common.navBarHeight,
+    option: [
+      { text: '队伍1 VS 队伍2  ', value: 0 },
+      { text: '队伍2 VS 队伍3  ', value: 1 },
+      { text: '队伍1 VS 队伍3  ', value: 2 },
+    ],
     radio: "",
     show: false,
     currMatchId: "",
     currAvatar: "",
     currName: "",
-    currUserId: ""
+    currUserId: "",
   },
 
   onLoad(options) {
