@@ -23,3 +23,16 @@
   justify-content: center;
   margin-top: 22rpx;
 }
+
+.tabs {
+  margin-top: 24rpx;
+}
+
+.cell-group {
+  margin-top: 12rpx !important;
+}
+
+.steps {
+  margin: 12rpx 32rpx;
+  border-radius: 12rpx;
+}

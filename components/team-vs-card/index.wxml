@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="title">{{ item.title }}</view>
+  <view class="card">
+    <view class="team">
+      <image class="avatar" src="{{ item.home.avatar }}" mode="aspectFit" />
+      <view class="name">{{ item.home.name }}</view>
+    </view>
+    <view class="score">
+      <span style="font-size: 48rpx;">{{ item.home.score }}</span> vs <span style="font-size: 48rpx;">{{ item.visiting.score }}</span>
+    </view>
+    <view class="team">
+      <image  class="avatar" src="{{ item.visiting.avatar }}" mode="aspectFit" />
+      <view class="name">{{ item.visiting.name }}</view>
+    </view>
+  </view>
+</view>

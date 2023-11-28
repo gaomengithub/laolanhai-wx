@@ -7,6 +7,12 @@
     "van-uploader": "@vant/weapp/uploader/index",
     "pic-swiper":"/components/pic-swiper/index",
     "points-points":"/components/technical-statistics/points-points/index",
-    "vs-bar":"/components/technical-statistics/vs-bar/index"
+    "vs-bar":"/components/technical-statistics/vs-bar/index",
+    "team-vs-card":"/components/team-vs-card/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-steps": "@vant/weapp/steps/index"
   }
 }

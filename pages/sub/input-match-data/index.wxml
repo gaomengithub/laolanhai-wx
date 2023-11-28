@@ -1,15 +1,60 @@
-<nav-bar title="录入比赛"></nav-bar>
+<nav-bar title="篮球计分器"></nav-bar>
 <view class="container">
   <view class="select">
-    <top-line name="选择队伍" more="false"></top-line>
-    <view class="tip">点击选择要记录的比赛。</view>
-    <van-dropdown-menu custom-class="dropdown" title-class="dropdown-title" >
-      <van-dropdown-item value="{{ value }}" options="{{ option }}"  item-title-class="dropdown-item" custom-class="dropdown-items" title="点击选择"/>
+    <van-dropdown-menu custom-class="dropdown red-team" title-class="dropdown-title" overlay="{{ false }}">
+      <van-dropdown-item options="{{ homeOption }}" item-title-class="dropdown-item" custom-class="dropdown-items" title="{{ homeTeam }}" bind:change="onDropdownChange" data-key="homeTeam" use-before-toggle bind:before-toggle="onBeforeChange" />
     </van-dropdown-menu>
-    <!-- <image class="img" src="{{ img }}" mode="aspectFit" bind:tap="showAction"></image> -->
+    <image class="vs-icon" src="{{ icon.vs }}" mode="aspectFit" />
+    <van-dropdown-menu custom-class="dropdown blue-team" title-class="dropdown-title" overlay="{{ false }}">
+      <van-dropdown-item options="{{ visitingOption }}" item-title-class="dropdown-item" custom-class="dropdown-items" title="{{ visitingTeam }}" bind:change="onDropdownChange" data-key="visitingTeam" use-before-toggle bind:before-toggle="onBeforeChange" />
+    </van-dropdown-menu>
+  </view>
+  <view class="teams">
+    <view class="team">
+      <view class="board red-board">
+        0
+      </view>
+      <view class="items">
+        <view class="item succeed">命中</view>
+        <!-- <view class="item succeed">三分命中</view>
+        <view class="item succeed">罚球命中</view> -->
+        <view class="item miss">未命中</view>
+        <!-- <view class="item miss">三分不中</view>
+        <view class="item miss">罚球不中</view> -->
+        <view class="item foul">犯规</view>
+      </view>
+      <!-- <view class="score">
+      <view>-</view> <view>得分</view><view>+</view> 
+      </view>
+      <view class="foul">
+        <view>-</view> <view>犯规</view><view>+</view> 
+      </view> -->
+    </view>
+    <view class="team">
+      <view class="board blue-board">
+        0
+      </view>
+      <view class="items">
+        <view class="item succeed-blue">命中</view>
+        <!-- <view class="item succeed">三分命中</view>
+        <view class="item succeed">罚球命中</view> -->
+        <view class="item miss-blue">未命中</view>
+        <!-- <view class="item miss">三分不中</view>
+        <view class="item miss">罚球不中</view> -->
+        <view class="item foul-blue">犯规</view>
+      </view>
+      <!-- <view class="score">
+        <view>-</view> <view>得分</view><view>+</view> 
+      
+      </view>
+      <view class="foul">
+        <view>-</view> <view>犯规</view><view>+</view> 
+      </view> -->
+
+    </view>
   </view>
 
-  <van-tabs type="card" animated swipeable custom-class="tabs">
+  <!-- <van-tabs type="card" animated swipeable custom-class="tabs">
     <van-tab title="主队：{{}}">
       <view class="item">
         <block wx:for="{{ homeTeamDetails.teamMember }}" wx:key="id">
@@ -34,9 +79,10 @@
         </player-items>
       </block>
     </van-tab>
-  </van-tabs>
-
+  </van-tabs> -->
 </view>
+
+<logo-bar></logo-bar>
 
 
 <van-dialog use-slot show="{{ show }}" show-cancel-button bind:close="onClose" width="654rpx" bind:confirm="handleRecord">

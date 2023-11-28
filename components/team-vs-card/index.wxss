@@ -1,0 +1,32 @@
+.container {
+  height: 376rpx;
+  padding: 48rpx;
+  background: linear-gradient(to bottom, #FFF8F4, #FB8808);
+  border-bottom-left-radius: 44rpx;
+  border-bottom-right-radius: 44rpx;
+}
+
+.title {
+  font-weight: bolder;
+  font-size: 48rpx;
+  letter-spacing: 2rpx;
+  margin: 24rpx 0;
+}
+
+.avatar {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 44rpx;
+  display: flex;
+  align-items: center;
+  height: 276rpx;
+  justify-content: space-around;
+}
+
+.team {
+  text-align: center;
+}

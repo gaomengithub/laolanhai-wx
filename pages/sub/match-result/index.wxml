@@ -1,9 +1,33 @@
 <nav-bar title="赛况"></nav-bar>
 <view class="container">
 
-  <pic-swiper photos="{{ matchResult.allPhotos ||[] }}"></pic-swiper>
+  <team-vs-card></team-vs-card>
 
-  <view class="card">
+  <van-tabs type="card" custom-class="tabs" active="{{ active }}">
+    <van-tab title="基本信息">
+      <van-cell-group inset custom-class="cell-group">
+        <van-cell title="比赛时间" value="2023-10-11" />
+        <van-cell title="比赛地点" value="庞各庄" />
+        <van-cell title="年龄范围" value="45-55岁" />
+        <van-cell title="比赛介绍" label="{{ description }}" border="{{ false }}" />
+
+      </van-cell-group>
+    </van-tab>
+    <van-tab title="赛况">
+      <van-steps steps="{{ steps }}"  direction="vertical"  custom-class="steps"  active-color="#969799" activeIcon="play"/>
+    </van-tab>
+    <van-tab title="数据">
+
+    </van-tab>
+    <van-tab title="高光时刻">
+
+    </van-tab>
+  </van-tabs>
+
+
+
+  <!-- <pic-swiper photos="{{ matchResult.allPhotos ||[] }}"></pic-swiper> -->
+  <!-- <view class="card">
     <van-collapse value="{{ active }}" bind:change="onChange">
       <van-collapse-item name="1">
         <view slot="title">
@@ -14,16 +38,6 @@
         <view class="desc">介绍：{{matchResult.description}}</view>
 
       </van-collapse-item>
-      <!-- <van-collapse-item border="{{ false }}" name="2">
-        <view slot="title">
-          <top-line name="技术统计" more="false"></top-line>
-        </view>
-        <points-points>
-        </points-points>
-        <view class="bar-container">
-          <vs-bar></vs-bar>
-        </view>
-      </van-collapse-item> -->
       <van-collapse-item border="{{ false }}" name="3">
         <view slot="title">
           <top-line name="高光时刻" more="false"></top-line>
@@ -38,5 +52,5 @@
         </view>
       </van-collapse-item>
     </van-collapse>
-  </view>
+  </view> -->
 </view>
