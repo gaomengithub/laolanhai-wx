@@ -38,6 +38,25 @@ Page({
     currUserId: "",
   },
 
+  start() {
+    const countDown = this.selectComponent('.control-count-down');
+    countDown.start();
+  },
+
+  pause() {
+    const countDown = this.selectComponent('.control-count-down');
+    countDown.pause();
+  },
+
+  reset() {
+    const countDown = this.selectComponent('.control-count-down');
+    countDown.reset();
+  },
+
+  finished() {
+    Toast('倒计时结束');
+  },
+
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: input,
@@ -62,12 +81,12 @@ Page({
   },
 
   showPopup(e) {
-    const item = e.currentTarget.dataset.item
+    // const item = e.currentTarget.dataset.item
     this.setData({
       show: true,
-      currAvatar: item.avatar,
-      currName: item.nickName,
-      currUserId: item.id
+      // currAvatar: item.avatar,
+      // currName: item.nickName,
+      // currUserId: item.id
     })
   },
   handleRecord(e) {

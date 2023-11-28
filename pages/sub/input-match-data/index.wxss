@@ -200,3 +200,19 @@ page {
   border: 8rpx solid #1989fa ;
 }
 
+.popup {
+  padding: 24rpx;
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24rpx 0;
+  width: 702rpx;
+  margin: 24rpx;
+  background-color: #ffffff;
+  border-radius: 44rpx;
+}
+

@@ -15,13 +15,13 @@
         0
       </view>
       <view class="items">
-        <view class="item succeed">命中</view>
+        <view class="item succeed" bind:tap="showPopup">命中</view>
         <!-- <view class="item succeed">三分命中</view>
         <view class="item succeed">罚球命中</view> -->
-        <view class="item miss">未命中</view>
+        <view class="item miss" bind:tap="showPopup">未命中</view>
         <!-- <view class="item miss">三分不中</view>
         <view class="item miss">罚球不中</view> -->
-        <view class="item foul">犯规</view>
+        <view class="item foul" bind:tap="showPopup">犯规</view>
       </view>
       <!-- <view class="score">
       <view>-</view> <view>得分</view><view>+</view> 
@@ -35,13 +35,13 @@
         0
       </view>
       <view class="items">
-        <view class="item succeed-blue">命中</view>
+        <view class="item succeed-blue" bind:tap="showPopup">命中</view>
         <!-- <view class="item succeed">三分命中</view>
         <view class="item succeed">罚球命中</view> -->
-        <view class="item miss-blue">未命中</view>
+        <view class="item miss-blue" bind:tap="showPopup">未命中</view>
         <!-- <view class="item miss">三分不中</view>
         <view class="item miss">罚球不中</view> -->
-        <view class="item foul-blue">犯规</view>
+        <view class="item foul-blue" bind:tap="showPopup">犯规</view>
       </view>
       <!-- <view class="score">
         <view>-</view> <view>得分</view><view>+</view> 
@@ -80,12 +80,26 @@
       </block>
     </van-tab>
   </van-tabs> -->
+  <view class="count">
+    <view>比赛倒计时</view> 
+    <van-count-down class="control-count-down" time="{{ 30*60*1000 }}" auto-start="{{ false }}" format="mm 分 ss 秒" bind:finish="finished" />
+
+    <!-- <van-grid clickable column-num="3">
+      <van-grid-item text="开始" icon="play-circle-o" bindclick="start" />
+      <van-grid-item text="暂停" icon="pause-circle-o" bindclick="pause" />
+      <van-grid-item text="重置" icon="replay" bindclick="reset" />
+    </van-grid> -->
+
+  </view>
+  <van-button round block bindclick="start">开始</van-button>
+  <van-button round block bindclick="pause">暂停</van-button>
+
 </view>
 
 <logo-bar></logo-bar>
 
 
-<van-dialog use-slot show="{{ show }}" show-cancel-button bind:close="onClose" width="654rpx" bind:confirm="handleRecord">
+<!-- <van-dialog use-slot show="{{ show }}" show-cancel-button bind:close="onClose" width="654rpx" bind:confirm="handleRecord">
   <view class="dialog-container">
 
     <image class="avatar" src="{{ currAvatar }}" mode="aspectFit"></image>
@@ -113,4 +127,19 @@
       </view>
     </van-radio-group>
   </view>
-</van-dialog>
+</van-dialog> -->
+
+
+<van-popup custom-class="popup" show="{{ show }}" round position="bottom" custom-style="height: 45%" bind:close="onClose">
+  <van-field value="{{ username }}" clearable label="号码" placeholder="请输入队员号码" type="number" bind:click-icon="onClickIcon" size="large" />
+  <view class="active">
+    <view class="cell">二分</view>
+    <view class="cell">三分</view>
+    <view class="cell">罚球（一分）</view>
+
+
+  </view>
+
+
+
+</van-popup>
