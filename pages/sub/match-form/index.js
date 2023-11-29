@@ -16,7 +16,8 @@ Page({
       age_group_end: 'https://openstore.obabyball.com/ui_v1/icon/add-down-v1.png',
       price: 'https://openstore.obabyball.com/ui_v1/icon/add-cost-v1.png',
       upload: 'https://openstore.obabyball.com/ui_v1/icon/add-upload-v1.svg',
-      arena: 'https://openstore.obabyball.com/ui_v1/icon/match-form-arena.svg'
+      arena: 'https://openstore.obabyball.com/ui_v1/icon/match-form-arena.svg',
+      team:"https://openstore.obabyball.com/ui_v1/icon/%E5%85%B3%E8%81%94%E9%98%9F%E4%BC%8D.svg"
     },
     // 页面控制
     minHour: 8,
@@ -37,6 +38,7 @@ Page({
     showMatchTpyePicker: false,
     showAreaCascader: false,
     showCostAction: false,
+    showTeamAction: false,
     actions: [{ name: "免费" }, { name: "约10元" }, { name: "约20元" }, { name: "约30元" }],
   },
 
@@ -81,7 +83,7 @@ Page({
     else if (key == 'cost') {
       val = e.detail.name
     }
-    else if (key == 'arena') {
+    else if (key == 'arena' || key == 'team') {
       val = { name: e.detail.name, id: e.detail.id }
     }
     else if (key == 'join_num' || key == 'age_group_start' || key == 'age_group_end') {

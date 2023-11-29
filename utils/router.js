@@ -13,6 +13,11 @@ let routeInterceptor = {
       return
     }
 
+    if (path == '/pages/sub/match-form/index?page=new&match_type=2' && !user.isTeamLeader) {
+      handleErr("只有队长能够组织战队赛", wx.navigateBack)
+      return
+    }
+
     try {
       if (!user.isUser) {
         handleInfo("您需要先进行注册", function () {

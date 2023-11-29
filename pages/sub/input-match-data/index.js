@@ -1,41 +1,16 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { input } from "$/stores/input-store";
 
-const homeOption = [
-  { text: '队伍1', value: "队伍1", icon: "" },
-  { text: '队伍2', value: "队伍2", icon: "" },
-  { text: '队伍3', value: "队伍3", icon: "" },
-]
-const visitingOption = [
-  { text: '队伍1', value: "队伍1", icon: "" },
-  { text: '队伍2', value: "队伍2", icon: "" },
-  { text: '队伍3', value: "队伍3", icon: "" },
-]
-
 Page({
-
   data: {
-    homeTeam: "选择队伍",
-    visitingTeam: "选择队伍",
+    redTeamOptions: [],
+    blueTeamOptions: [],
     icon: {
       vs: "https://openstore.obabyball.com/ui_v1/icon/vs-v2.svg"
     },
-    homeOption: [
-      { text: '队伍1', value: "队伍1", icon: "" },
-      { text: '队伍2', value: "队伍2", icon: "" },
-      { text: '队伍3', value: "队伍3", icon: "" },
-    ],
-    visitingOption: [
-      { text: '队伍1', value: "队伍1", icon: "" },
-      { text: '队伍2', value: "队伍2", icon: "" },
-      { text: '队伍3', value: "队伍3", icon: "" },
-    ],
     radio: "",
     show: false,
-    currMatchId: "",
-    currAvatar: "",
-    currName: "",
-    currUserId: "",
+    currPlayer: {}
   },
 
   start() {
@@ -60,14 +35,11 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: input,
-      fields: ["homeTeamDetails", "visitingTeamDetails"],
-      actions: ["getMatchTeams", "updatePlaying", "updateMatchPoints"],
+      fields: ["matchTeamsList", "redTeamDetails", "blueTeamDetails"],
+      actions: ["updateMatchTeamsList", "updatePlaying", "updateMatchPoints", "updateTeamDetails"],
     });
     if (options.id) {
-      this.getMatchTeams(options.id)
-      this.setData({
-        currMatchId: options.id
-      })
+      this.updateMatchTeamsList(options.id)
     }
   },
 
@@ -77,16 +49,15 @@ Page({
 
   onPlayingChange(e) {
     const id = e.currentTarget.dataset.id
-    this.updatePlaying(id)
+    const key = e.currentTarget.dataset.key
+    this.updatePlaying(key, id)
   },
 
   showPopup(e) {
-    // const item = e.currentTarget.dataset.item
+    const item = e.currentTarget.dataset.item
     this.setData({
       show: true,
-      // currAvatar: item.avatar,
-      // currName: item.nickName,
-      // currUserId: item.id
+      currPlayer: item
     })
   },
   handleRecord(e) {
@@ -104,8 +75,8 @@ Page({
   },
   onBeforeChange({ detail: { status, callback } }) {
     this.setData({
-      visitingOption: visitingOption.filter(option => option.text !== this.data.homeTeam),
-      homeOption: homeOption.filter(option => option.text !== this.data.visitingTeam)
+      redTeamOptions: this.data.matchTeamsList.filter(option => option.text !== this.data.blueTeamDetails.name),
+      blueTeamOptions: this.data.matchTeamsList.filter(option => option.text !== this.data.redTeamDetails.name)
     }, () => {
       callback(true)
     });
@@ -113,8 +84,6 @@ Page({
   },
   onDropdownChange(e) {
     const key = e.currentTarget.dataset.key
-    this.setData({
-      [key]: e.detail
-    })
+    this.updateTeamDetails(key, e.detail)
   }
 })

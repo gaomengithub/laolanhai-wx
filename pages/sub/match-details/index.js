@@ -6,8 +6,8 @@ import { handleErr } from '../../../modules/msgHandler'
 Page({
   data: {
     show: false,
-    showPopup: false,
-    actions: [{ name: '变更比赛状态', color: '#ee0a24' }, { name: '编辑比赛详情' }],
+    // showPopup: false,
+    actions: [{ name: '开始比赛', color: '#ee0a24' }, { name: '编辑比赛详情' }],
     radio: '0',
     icon: {
       edit: 'https://openstore.obabyball.com/ui_v1/icon/match-detail-edit-v2.svg',
@@ -50,28 +50,29 @@ Page({
   },
 
   onSelect(e) {
-    if (e.detail.name == '变更比赛状态') {
-      this.setData({
-        showPopup: true
-      })
-    } else {
-      const path = `/pages/sub/match-form/index?page=modify&id=${this.data.matchDetails.id}`
-      routeInterceptor.navigateTo(path)
+    let path = ""
+    if (e.detail.name == '开始比赛') {
+      path = '/pages/sub/input-match-data/index?id=' + this.data.matchDetails.id
     }
+    else if (e.detail.name == "编辑比赛详情") {
+      path = `/pages/sub/match-form/index?page=modify&id=${this.data.matchDetails.id}`
+
+    }
+    routeInterceptor.navigateTo(path)
   },
 
   // 更改比赛状态
-  handleClick() {
-    this.setData({
-      showPopup: false
-    })
-    this.updateMatchStatus(this.data.matchDetails.id, parseInt(this.data.radio))
-    if (this.data.radio == '3') {
-      wx.navigateTo({
-        url: '/pages/sub/input-match-data/index?id=' + this.data.matchDetails.id,
-      })
-    }
-  },
+  // handleClick() {
+  //   this.setData({
+  //     showPopup: false
+  //   })
+  //   this.updateMatchStatus(this.data.matchDetails.id, parseInt(this.data.radio))
+  //   if (this.data.radio == '3') {
+  //     wx.navigateTo({
+  //       url: '/pages/sub/input-match-data/index?id=' + this.data.matchDetails.id,
+  //     })
+  //   }
+  // },
 
   onUnload() {
     this.storeBindings.destroyStoreBindings();

@@ -1,11 +1,11 @@
 {
   "usingComponents": {
-    "matches-items":"/components/matches-items/index",
+    "matches-items": "/components/matches-items/index",
     "nav-bar": "/components/nav-bar/index",
     "van-sticky": "@vant/weapp/sticky/index",
-    "filter-bar":"/components/filter-bar/index",
-    "no-data-tip":"/components/no-data-tip/index",
-    "logo-bar":"/components/logo-bar/index",
-    "pretty-card":"/components/pretty-card/index"
+    "filter-bar": "/components/filter-bar/index",
+    "no-data-tip": "/components/no-data-tip/index",
+    "logo-bar": "/components/logo-bar/index",
+    "pretty-card": "/components/pretty-card/index"
   }
 }

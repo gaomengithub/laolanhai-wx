@@ -5,15 +5,15 @@ import { matchFormMessages, matchFormRules } from '$/utils/validate/validate-set
 import WxValidate from '$/utils/validate/WxValidate'
 import { handleErr, handleInfo } from '../modules/msgHandler'
 import { formatDate, formatTime } from '$/utils/util'
+
 export const match = observable({
-  validate: new WxValidate(matchFormRules, matchFormMessages),
+  validate: new WxValidate(matchFormRules, matchFormMessages),  // 创建比赛表单验证
   matchForm: null,
   overMatchesList: null,
   matchResult: null, // 赛况中 完成了的比赛
   matchDetails: null,  //比赛详情
-  matchesList: null,
+  matchesList: [],
   joinedMatches: null,
-  next_page_token: '',  // 比赛列表的
   // 筛选条件
   options: {
     city: '',
@@ -86,13 +86,20 @@ export const match = observable({
   initMatchForm: action(async function (params) {
     let backup = JSON.parse(JSON.stringify(matchFormBackup));
     this.matchForm = JSON.parse(JSON.stringify(backup));
-    const data = await getArenaList({
-      isMySportsHall: true
-    })
-    const patch = {
-      myArenas: data.list
+    try {
+      const data = await getArenaList({
+        isMySportsHall: true
+      })
+      const data_ = await getMyTeams()
+
+      const patch = {
+        myArenas: data.list,
+        myteams: data_.list
+      }
+      this.matchForm = { ...this.matchForm, ...patch }
+    } catch (e) {
+      handleErr("获取相关信息失败")
     }
-    this.matchForm = { ...this.matchForm, ...patch }
   }),
 
   updateMatchDetails: action(async function (id) {
@@ -141,7 +148,7 @@ export const match = observable({
           await createMatch(form)
           handleInfo("创建成功", wx.navigateBack)
           // 刷新比赛列表
-          this.updateMatchesList()
+          this.updateMatchesList(true)
         } catch (e) {
           handleErr("创建比赛失败")
         }
@@ -242,29 +249,36 @@ export const match = observable({
     this.updateMatchesList()
   }),
 
-  updateMatchesList: action(async function () {
+  // 每当this.options发生变化
+  /**
+   * @param {boolean} force 强制刷新
+   */
+  updateMatchesList: action(async function (force) {
+    if (force) {
+      this.matchesList = []
+      this.options.page_token = ""
+    }
     try {
       const data = await getMatches(this.options)
       if (data.matches) {
-        this.matchesList = data.matches
-        this.next_page_token = data.next_page_token
-      } else {
-        this.matchesList = null
+        this.matchesList = [...this.matchesList, ...data.matches]
+        this.options.page_token = data.next_page_token
       }
     } catch (e) {
-      handleErr("获取比赛列表错误")
+      handleErr("获取比赛列表中出现错误。")
     }
   }),
   joinMatch: action(async function (id) {
     try {
       await joinMatch(id)
       // 强制刷新比赛详情 列表
-      this.updateMatchDetails(id)
-      this.updateMatchesList()
+      await this.updateMatchDetails(id)
+      await this.updateMatchesList(true)
       handleInfo("报名成功")
     } catch (e) {
       if (e.statusCode == 400) {
-        handleErr("您已报名，请勿反复报名")
+        if (e.data.message == "已报名") handleErr("您已报名，请勿反复报名")
+        if (e.data.message == "队长") handleErr("此比赛为战队赛，需要队长报名")
       }
     }
   })
@@ -288,6 +302,11 @@ let matchFormBackup = {
   cost: '免费',
   myArenas: null,
   arena: {
+    name: "",
+    id: ""
+  },
+  myteams: null,
+  team: {
     name: "",
     id: ""
   },

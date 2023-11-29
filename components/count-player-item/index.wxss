@@ -1,0 +1,41 @@
+.container {
+  position: relative;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 22rpx 0;
+  /* border: 4rpx solid #ee0a24; */
+  padding: 0 12rpx 0 0;
+  border-radius: 44rpx;
+}
+
+.red-item {
+  background-color: #fff0f5;
+}
+
+.blue-item {
+  background-color: #E0F4FF;
+
+}
+
+.avatar {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.red {
+
+  border: 4rpx solid #ee0a24;
+}
+
+.blue {
+ 
+  border: 4rpx solid #1989fa;
+}

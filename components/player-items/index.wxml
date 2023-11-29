@@ -1,5 +1,5 @@
 <view class="container">
-  <!-- <slot></slot> -->
+  <slot></slot>
   <view class="item" wx:for="{{items}}" wx:key="index">
     <image class="avatar" src="{{item.avatar}}" mode="aspectFill"></image>
     <view class="info">
@@ -8,7 +8,7 @@
       </view>
     </view>
     <view class="active">
-    <slot></slot>
+      <!-- <slot></slot> -->
     </view>
   </view>
 </view>

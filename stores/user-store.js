@@ -55,6 +55,8 @@ export const user = observable({
     return quals.includes(1)
   },
 
+
+
   get isUser() {
     try {
       // 可能是因为微信小程序内存回收机制的问题，user 可能是被清理
@@ -71,6 +73,22 @@ export const user = observable({
       }
     }
   },
+
+  get isTeamLeader() {
+    try {
+      const quals = this.user.quals.map(item => item.qual)
+      return quals.includes(4)
+    } catch (e) {
+      const quals = wx.getStorageSync('quals')
+      if (quals) {
+        const arr = quals.map(item => item.qual)
+        return arr.includes(4)
+      } else {
+        throw new Error("权限读取错误")
+      }
+    }
+  },
+
 
   get tags() {
     const quals = wx.getStorageSync('quals')

@@ -25,14 +25,19 @@ page {
   margin: 24rpx 0;
 }
 
+.active {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .cell {
   display: flex;
   align-items: center;
   border-radius: 22rpx;
   justify-content: center;
-  width: 279rpx;
+  width: 186rpx;
   height: 95rpx;
-  margin: 12rpx 24rpx;
+  margin: 24rpx;
   background-color: #fb8808;
   color: #ffffff;
 }
@@ -99,7 +104,8 @@ page {
 
 .team {
   width: 330rpx;
-  height: 800rpx;
+  height: fit-content;
+  min-height: 800rpx;
   border-radius: 22rpx;
   background-color: #ffffff;
 }
@@ -152,67 +158,61 @@ page {
 }
 
 .items {
-  padding: 8rpx 44rpx;
+  padding: 8rpx 22rpx;
 }
+
+
 .item {
   font-weight: bold;
   border-radius: 22rpx;
   text-align: center;
   padding: 32rpx 0;
   width: 242rpx;
-  margin: 44rpx 0;
-
+  margin: 22rpx;
 }
 
 .succeed {
   color: #CC0000;
   background-color: #fff0f5;
-  border: 8rpx solid #ee0a24;
+  border: 2rpx solid #ee0a24;
 }
 
 .miss {
   background-color: #f5f5f5;
-  border: 8rpx solid #ee0a24 ;
+  border: 2rpx solid #989898 ;
   color: #989898;
 }
 
 .foul {
   color: #000000;
   background-color: #f5f5f5;
-  border: 8rpx solid #ee0a24 ;
+  border: 2rpx solid #ee0a24 ;
 }
 
-.succeed-blue {
-  color: #1989fa;
-  background-color: #1989fa2a;
-  border: 8rpx solid #1989fa;
-}
-
-.miss-blue {
-  background-color: #f5f5f5;
-  border: 8rpx solid #1989fa ;
-  color: #989898;
-}
-
-.foul-blue {
-  color: #000000;
-  background-color: #f5f5f5;
-  border: 8rpx solid #1989fa ;
-}
 
 .popup {
   padding: 24rpx;
+}
+
+.avatar {
+  margin: 0 301rpx;
+  color: #ffffff;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fb8808;
 }
 
 .count {
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 24rpx 0;
   width: 702rpx;
   margin: 24rpx;
   background-color: #ffffff;
   border-radius: 44rpx;
 }
-

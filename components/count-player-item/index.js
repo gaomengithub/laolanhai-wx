@@ -4,7 +4,14 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    isRedTeam: {
+      type: Boolean,
+      value: true
+    },
+    number: {
+      type: String,
+      value: 10
+    }
   },
 
   /**

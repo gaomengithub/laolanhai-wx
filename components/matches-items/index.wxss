@@ -82,15 +82,12 @@
 }
 
 .type {
-  font-size: 28rpx;
-  height: 46rpx;
+  font-size: 26rpx;
   width: 120rpx;
   background-color: #FB8808;
   border-radius: 8rpx;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 6rpx 0;
   color: #ffffff;
   margin-left: 6rpx;
   margin-right: 24rpx;

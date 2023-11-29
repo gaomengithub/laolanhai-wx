@@ -11,7 +11,6 @@ Page({
       { title: "热门", icon: 'https://openstore.obabyball.com/ui_v1/icon/tab-hot-v1.svg' },
       { title: "正赛", icon: 'https://openstore.obabyball.com/ui_v1/icon/tab-official-v1.svg' },
       { title: "野球", icon: 'https://openstore.obabyball.com/ui_v1/icon/tab-diy-game-v2.svg' },
-      // { title: "馆赛", icon: 'https://openstore.obabyball.com/ui_v1/icon/tab-arena-v1.svg' },
     ],
     showNarBar: false,
     active: 0,
@@ -34,12 +33,12 @@ Page({
     this.setData({
       active
     })
-    // []-hot 1-official 2-team 3-solo 4-arena
     const filter = {
       match_type: [[], [1], [3]][active]
     }
     this.modifyOptions(filter)
   },
+
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store: match,
@@ -48,6 +47,7 @@ Page({
     });
     this.updateMatchesList()
   },
+
   onUnload() {
     this.storeBindings.destroyStoreBindings();
   },
@@ -60,10 +60,17 @@ Page({
     }
   },
 
+  onReachBottom() {
+    if (match.options.page_token) {
+      this.modifyOptions()
+    }
+  },
+
   onShareAppMessage() {
     return {
       title: '老蓝孩',
       path: '/pages/home/index'
     }
   }
+
 })

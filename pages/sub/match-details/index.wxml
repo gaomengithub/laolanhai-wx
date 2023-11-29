@@ -64,8 +64,8 @@
 </page-meta>
 <van-action-sheet cancel-text="取消" bind:cancel="onDisplay" show="{{ show }}" actions="{{ actions }}" bind:close="onDisplay" bind:select="onSelect" data-show="show" />
 
-
-<van-popup show="{{ showPopup }}" round data-show="showPopup" bind:close="onDisplay">
+<!-- 
+  <van-popup show="{{ showPopup }}" round data-show="showPopup" bind:close="onDisplay">
   <van-radio-group value="{{ radio }}" bind:change="onChange">
     <van-cell-group custom-class="cell-items">
       <van-cell title="报名中" clickable data-name="1" bind:click="onChange" title-class="cell-title">
@@ -80,10 +80,11 @@
       <van-cell title="结束比赛" clickable data-name="4" bind:click="onChange" title-class="cell-title">
         <van-radio slot="right-icon" name="4" />
       </van-cell>
-      <!-- <van-cell title="取消比赛" border="{{ false }}" clickable data-name="5" bind:click="onChange" title-class="cell-title">
+      <van-cell title="取消比赛" border="{{ false }}" clickable data-name="5" bind:click="onChange" title-class="cell-title">
         <van-radio slot="right-icon" name="5" />
-      </van-cell> -->
+      </van-cell>
     </van-cell-group>
   </van-radio-group>
   <van-button block custom-class="btn" bind:click="handleClick">确定</van-button>
 </van-popup>
+ -->

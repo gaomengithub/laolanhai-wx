@@ -3,7 +3,7 @@
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "nav-bar": "/components/nav-bar/index",
-    "player-items": "/components/player-items/index",
+    "count-player-item": "/components/count-player-item/index",
     "van-switch": "@vant/weapp/switch/index",
     "van-divider": "@vant/weapp/divider/index",
     "van-dialog": "@vant/weapp/dialog/index",
@@ -15,10 +15,6 @@
     "logo-bar":"/components/logo-bar/index",
     "van-button": "@vant/weapp/button/index",
     "van-popup": "@vant/weapp/popup/index",
-    "van-field": "@vant/weapp/field/index",
-    "van-goods-action": "@vant/weapp/goods-action/index",
-    "van-goods-action-icon": "@vant/weapp/goods-action-icon/index",
-    "van-goods-action-button": "@vant/weapp/goods-action-button/index",
     "van-count-down": "@vant/weapp/count-down/index"
   }
 }
