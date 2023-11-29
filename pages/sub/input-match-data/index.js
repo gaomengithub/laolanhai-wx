@@ -32,6 +32,11 @@ Page({
     Toast('倒计时结束');
   },
 
+  // 防止滚定穿透
+  lock(){
+    
+  },
+
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: input,

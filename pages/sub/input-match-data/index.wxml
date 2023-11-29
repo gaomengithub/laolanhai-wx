@@ -17,14 +17,14 @@
       <view class="items">
         <block wx:for="{{ redTeamDetails.teamMember }}" wx:key="id">
           <count-player-item wx:if="{{ item.isPlaying }}" bind:tap="showPopup" data-item="{{ item }}" number="{{ item.jerseyNumber }}">
-            <van-switch checked="{{ item.isPlaying }}" catchtap="onPlayingChange" data-id="{{ item.id }}" data-key="redTeamDetails" size="16px" />
+            <van-switch checked="{{ item.isPlaying }}" catchtap="onPlayingChange" data-id="{{ item.id }}" data-key="redTeamDetails" size="20px" />
           </count-player-item>
         </block>
         <van-divider contentPosition="center"> 上下场线
         </van-divider>
         <block wx:for="{{ redTeamDetails.teamMember }}" wx:key="id">
           <count-player-item wx:if="{{ !item.isPlaying }}" data-item="{{ item }}" number="{{ item.jerseyNumber }}">
-            <van-switch checked="{{ item.isPlaying }}" catchtap="onPlayingChange" data-id="{{ item.id }}" data-key="redTeamDetails" size="16px" />
+            <van-switch checked="{{ item.isPlaying }}" catchtap="onPlayingChange" data-id="{{ item.id }}" data-key="redTeamDetails" size="20px" />
           </count-player-item>
         </block>
 
@@ -37,14 +37,14 @@
       <view class="items">
         <block wx:for="{{ blueTeamDetails.teamMember }}" wx:key="id">
           <count-player-item wx:if="{{ item.isPlaying }}" bind:tap="showPopup" isRedTeam="{{ false }}" number="{{ item.jerseyNumber }}">
-            <van-switch checked="{{ item.isPlaying }}" catchtap="onPlayingChange" data-id="{{ item.id }}" data-key="blueTeamDetails" size="16px" />
+            <van-switch checked="{{ item.isPlaying }}" catchtap="onPlayingChange" data-id="{{ item.id }}" data-key="blueTeamDetails" size="20px" />
           </count-player-item>
         </block>
         <van-divider contentPosition="center"> 上下场线
         </van-divider>
         <block wx:for="{{ blueTeamDetails.teamMember }}" wx:key="id">
           <count-player-item wx:if="{{ !item.isPlaying }}" isRedTeam="{{ false }}" number="{{ item.jerseyNumber }}">
-            <van-switch checked="{{ item.isPlaying }}" catchtap="onPlayingChange" data-id="{{ item.id }}" data-key="blueTeamDetails" size="16px" />
+            <van-switch checked="{{ item.isPlaying }}" catchtap="onPlayingChange" data-id="{{ item.id }}" data-key="blueTeamDetails" size="20px" />
           </count-player-item>
         </block>
 
@@ -59,15 +59,19 @@
     <view>比赛倒计时</view>
     <van-count-down class="control-count-down" time="{{ 30*60*1000 }}" auto-start="{{ false }}" format="mm 分 ss 秒" bind:finish="finished" />
   </view>
-  <van-button round block bindclick="start">开始</van-button>
-  <van-button round block bindclick="pause">暂停</van-button>
+  <view class="btn-items">
+    <van-button round block bindclick="start" custom-class="count-btn">开始</van-button>
+    <van-button round block bindclick="pause" custom-class="count-btn pause">暂停</van-button>
+    <van-button round block bindclick="reset" custom-class="count-btn">重置</van-button>
+  </view>
+
 
 </view>
 
 <logo-bar></logo-bar>
 
 
-<van-popup custom-class="popup" show="{{ show }}" round position="bottom" custom-style="height: 45%" bind:close="onClose">
+<van-popup custom-class="popup" show="{{ show }}" round position="bottom" custom-style="height: 45%" bind:close="onClose" catchtouchmove="lock">
   <view class="avatar"> {{currPlayer.jerseyNumber}}</view>
   <view class="active">
     <view class="cell succeed" bind:tap="showPopup">二分命中</view>
@@ -80,5 +84,5 @@
     <view class="cell foul" bind:tap="showPopup">技术犯规</view>
     <view class="cell foul" bind:tap="showPopup">违体犯规</view>
   </view>
-  <van-button round block>取消</van-button>
+  <van-button round block custom-class="btn">取消</van-button>
 </van-popup>
