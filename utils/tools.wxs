@@ -1,0 +1,72 @@
+// wxs 工具函数
+
+
+/**
+ * 
+ * @param {string} start 开始时间
+ * @param {string} end 结束时间
+ */
+var formatDateStartEndTime = function (start, end) {
+  if (start && end) {
+    var start = start.replace(":00+08:00", "").replace("T", "  ")
+    var end = end.replace(":00+08:00", "").split("T")[1]
+    return start + " - " + end
+  }
+}
+
+var formatLocation = function (str) {
+  if (str) {
+    return str.replace("||", "  ")
+  }
+}
+
+var formatPrice = function (str) {
+  if (str) {
+    var idx = parseInt(str[0])
+    return ['免费', '约10元', '约20元', '约30元'][idx]
+  }
+}
+
+
+var isEnterMatch = function (matchType, isMyMatch) {
+  var msg = "立即报名"
+  if (matchType == 2 && isMyMatch) {
+    msg = "战队已经报名"
+  }
+  else if (matchType == 3 && isMyMatch) {
+    msg = "您已报名"
+  }
+  return msg
+}
+
+
+
+
+var formatStartTime = function (str) {
+  if (str) return str.replace(":00+08:00", "").replace("T", "  ")
+}
+
+var formatShortLocation = function (str) {
+  if (str) return str.split("/")[1].replace("||", "  ")
+}
+
+var calcJoinedNum = function (arr) {
+  if (arr) {
+    if (arr.match_type == 2) {
+      return arr.teams.length + "队伍已报名"
+    }
+    else {
+      return arr.users.length + "人已报名"
+    }
+  }
+}
+
+module.exports = {
+  formatLocation: formatLocation,
+  formatDateStartEndTime: formatDateStartEndTime,
+  isEnterMatch: isEnterMatch,
+  formatPrice: formatPrice,
+  formatShortLocation: formatShortLocation,
+  formatStartTime: formatStartTime,
+  calcJoinedNum: calcJoinedNum
+}

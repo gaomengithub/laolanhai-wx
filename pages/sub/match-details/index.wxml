@@ -1,4 +1,4 @@
-<wxs src="./index.wxs" module="tools" />
+<wxs src="../../../utils/tools.wxs" module="tools" />
 <page-meta page-style="{{ showPopup ? 'overflow: hidden;' : '' }}">
   <nav-bar title="老篮孩俱乐部"></nav-bar>
   <view class="contanier">
@@ -22,7 +22,7 @@
         <view class="date-address">
           <view class="cell">
             <image class=".child" src="{{icon.clock}}" mode="scaleToFill"> </image>
-            {{ tools.formatDateTime(matchDetails.start_time,matchDetails.end_time)}}
+            {{ tools.formatDateStartEndTime(matchDetails.start_time,matchDetails.end_time)}}
           </view>
           <view class="cell">
             <image class=".child" src="{{icon.location}}" mode="scaleToFill"></image>
@@ -32,8 +32,12 @@
         <view class="part">
           <view class="title">已参加的人员 / 队伍</view>
           <view class="avatars">
-            <image class='avatar' wx:for="{{matchDetails.users}}" wx:key="index" src="{{ item.avatar }}" />
-            <image class='avatar' wx:for="{{matchDetails.teams}}" wx:key="index" src="{{ item.avatar }}" />
+            <block wx:if="{{ matchDetails.match_type == 2 }}">
+              <image class='avatar' wx:for="{{matchDetails.teams}}" wx:key="index" src="{{ item.logo }}" />
+            </block>
+            <block wx:if="{{ matchDetails.match_type == 3 }}">
+              <image class='avatar' wx:for="{{matchDetails.users}}" wx:key="index" src="{{ item.avatar }}" />
+            </block>
           </view>
         </view>
       </view>
@@ -54,7 +58,7 @@
 
   </view>
   <!-- <bottom-btn-bar name="{{ tools.isEnterMatch(matchDetails.users,id,matchDetails.status) }}" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn"></bottom-btn-bar> -->
-  <bottom-btn-bar name="{{ tools.isEnterMatch(matchDetails.isMyMatch,matchDetails.status) }}" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn">
+  <bottom-btn-bar name="{{ tools.isEnterMatch(matchDetails.match_type , matchDetails.isMyMatch) }}" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn">
 
     <view wx:if="{{ matchDetails.isMyCreate }}">
       <image class="edit" src="{{ icon.edit }}" mode="aspectFill" bind:tap="onDisplay" data-show="show" />
@@ -64,27 +68,18 @@
 </page-meta>
 <van-action-sheet cancel-text="取消" bind:cancel="onDisplay" show="{{ show }}" actions="{{ actions }}" bind:close="onDisplay" bind:select="onSelect" data-show="show" />
 
-<!-- 
-  <van-popup show="{{ showPopup }}" round data-show="showPopup" bind:close="onDisplay">
-  <van-radio-group value="{{ radio }}" bind:change="onChange">
-    <van-cell-group custom-class="cell-items">
-      <van-cell title="报名中" clickable data-name="1" bind:click="onChange" title-class="cell-title">
-        <van-radio slot="right-icon" name="1" />
-      </van-cell>
-      <van-cell title="待开赛" clickable data-name="2" bind:click="onChange" title-class="cell-title">
-        <van-radio slot="right-icon" name="2" />
-      </van-cell>
-      <van-cell title="开始比赛（记录数据）" clickable data-name="3" bind:click="onChange" title-class="cell-title">
-        <van-radio slot="right-icon" name="3" />
-      </van-cell>
-      <van-cell title="结束比赛" clickable data-name="4" bind:click="onChange" title-class="cell-title">
-        <van-radio slot="right-icon" name="4" />
-      </van-cell>
-      <van-cell title="取消比赛" border="{{ false }}" clickable data-name="5" bind:click="onChange" title-class="cell-title">
-        <van-radio slot="right-icon" name="5" />
-      </van-cell>
-    </van-cell-group>
-  </van-radio-group>
-  <van-button block custom-class="btn" bind:click="handleClick">确定</van-button>
-</van-popup>
- -->
+
+
+<van-dialog catchmove="handleCatch" use-slot title="选择战队" show="{{ showTeamSelect }}" show-cancel-button  bind:confirm="onJoinBtnForTeam">
+  <view class="radio-group">
+    <van-radio-group value="{{ radio }}"  bind:change="onRadioChange">
+      <van-cell-group>
+        <block wx:for="{{ user.myTeams }}" wx:key="id">
+          <van-cell title="{{ item.name }}" clickable data-name="{{ index }}" bind:click="onCellClick" >
+            <van-radio slot="right-icon" name="{{ index }}" />
+          </van-cell>
+        </block>
+      </van-cell-group>
+    </van-radio-group>
+  </view>
+</van-dialog>

@@ -78,10 +78,18 @@ export const team = observable({
     return filteredTeams.length > 0 ? filteredTeams : false;
   },
 
-  joinTeam: action(async function (id) {
+  /**
+   * @param { string } id  队伍id
+   */
+  joinTeam: action(async function (id,jerseyNumber) {
     try {
-      await joinTeam(id)
+      const data = {
+        team_id: id,
+        jerseyNumber: jerseyNumber
+      }
+      await joinTeam(data)
       handleInfo("申请成功")
+      // this.updateTeamDetails(id)
     } catch (e) {
       if (e.statusCode == '400') {
         handleInfo("已经在审批中，请勿反复加入")

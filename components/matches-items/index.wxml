@@ -1,9 +1,12 @@
-<wxs src="./index.wxs" module="tools" />
+<wxs src="../../utils/tools.wxs" module="tools" />
 
 <view class="container">
   <view class="card" wx:for="{{ items }}" wx:key="id">
     <image class="img" src="{{ img }}" mode="aspectFit" />
-    <view class="arena" wx:if="{{ item.sports_halls.id }}">球馆</view>
+    <view class="tip">
+      <view class="arena" wx:if="{{ item.sports_halls.id }}">球馆</view>
+      <view class="team" wx:if="{{ item.match_type == 2 }}">战队</view>
+    </view>
     <view class="main">
       <image class="poster" src="{{ item.banner_attachments }}" mode="aspectFill" />
       <view class="item">
@@ -11,11 +14,11 @@
         <view class="details">
           <view class="child">
             <image class="icon" src="{{ icon.clock }}" mode="scaleToFill" />
-            {{ tools.formatTime(item.start_time) }}
+            {{ tools.formatStartTime(item.start_time) }}
           </view>
           <view class="child">
             <image class="icon" src="{{ icon.location }}" mode="scaleToFill" />
-            {{ tools.formatLocation(item.location) }}
+            {{ tools.formatShortLocation(item.location) }}
           </view>
         </view>
       </view>
@@ -23,9 +26,14 @@
     <view class="active">
       <view class="type">{{ ["报名中","报名中", "待开赛", "比赛中", "比赛结束", "比赛取消"][item.status] }}</view>
       <view class="avatar-wrap">
-        <image class='avatar' wx:for="{{ item.users }}" wx:for-item="item_" wx:for-index="idx" src='{{ item_.avatar }}' mode="aspectFill" wx:key="idx" />
+        <block wx:if="{{item.match_type == 2}}">
+          <image class='avatar' wx:for="{{ item.teams }}" wx:for-item="item_" wx:for-index="idx" src='{{ item_.logo }}' mode="aspectFill" wx:key="idx" />
+        </block>
+        <block wx:else>
+          <image class='avatar' wx:for="{{ item.users }}" wx:for-item="item_" wx:for-index="idx" src='{{ item_.avatar }}' mode="aspectFill" wx:key="idx" />
+        </block>
       </view>
-      <text class="info">{{ tools.calcJoinedNum(item.users) }}已报名</text>
+      <text class="info">{{ tools.calcJoinedNum(item) }}</text>
       <van-button custom-class="btn" bind:click="handlerClick" data-id="{{item.id}}">{{ item.isMyMatch || item.status > 1 ? '立即查看': '立即加入'}}</van-button>
     </view>
   </view>

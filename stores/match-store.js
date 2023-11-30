@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto, getArenaList, getMyJoinMatches } from '$/utils/api'
+import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto, getArenaList, getMyJoinMatches, getTeamsList } from '$/utils/api'
 import { compressUploadImg } from '$/utils/qiniu/qiniu'
 import { matchFormMessages, matchFormRules } from '$/utils/validate/validate-set'
 import WxValidate from '$/utils/validate/WxValidate'
@@ -90,12 +90,13 @@ export const match = observable({
       const data = await getArenaList({
         isMySportsHall: true
       })
-      const data_ = await getMyTeams()
+      const data_ = await getTeamsList()
 
       const patch = {
         myArenas: data.list,
-        myteams: data_.list
+        myTeams: data_.items.filter(team => team.isMyTeam)
       }
+
       this.matchForm = { ...this.matchForm, ...patch }
     } catch (e) {
       handleErr("获取相关信息失败")
@@ -133,13 +134,23 @@ export const match = observable({
       price: { "免费": "0", "约10元": "10", "约20元": "20", "约30元": "30" }[this.matchForm.cost],
       // 组织者
       organizer: wx.getStorageSync('id'),
-      sports_halls: this.matchForm.arena.id
+      sports_halls: this.matchForm.arena.id,
+      team_id: this.matchForm.team.id
     }
+
     const form = { ...this.matchForm, ...patch }
     if (!this.validate.checkForm(form)) {
       const error = this.validate.errorList[0];
       handleErr(error.msg)
+      return
     }
+
+    // 特殊判定：
+    if (this.matchForm.match_type == 2 && !this.matchForm.team.id) {
+      handleErr("你选择创建的是战队赛，请选择关联球队")
+      return
+    }
+
     // 如果表单校验合格后
     else {
       if (!this.matchForm.id) {
@@ -204,6 +215,8 @@ export const match = observable({
     // 修改比赛，需要先获得比赛信息，修改form
     else if (typeof params === 'string') {
       try {
+        await this.initMatchForm()
+
         const data = await getMatchDesc(params)
 
         const date = formatDate(new Date(data.start_time))
@@ -211,17 +224,26 @@ export const match = observable({
         const end_time = formatTime(new Date(data.end_time))
         const [region, address] = data.location.split("||");
         const cost = ["免费", "约10元", "约20元", "约30元"][data.price[0]]
+
         const sports_halls = data.sports_halls.id
+
+        const arena = this.matchForm.myArenas.filter(item => item.id == sports_halls)[0]
+
+        if (data.match_type == 2) {
+          this.matchForm.team = this.matchForm.myTeams.filter(item => item.id == data.owner_team)[0]
+        }
+
         const files = [
           { url: data.banner_attachments, isImage: true, key: data.banner_attachments_key },
           { url: data.attachments[0], isImage: true, key: data.attachments_key[0] }
         ]
         const patch = {
-          date, start_time, end_time, region, address, cost, files, sports_halls
+          date, start_time, end_time, region, address, cost, files, sports_halls, arena
         }
 
         this.matchForm = { ...this.matchForm, ...data, ...patch }
       } catch (e) {
+        console.log(e)
         handleErr("修改比赛，获得比赛信息失败")
       }
     }
@@ -268,11 +290,21 @@ export const match = observable({
       handleErr("获取比赛列表中出现错误。")
     }
   }),
-  joinMatch: action(async function (id) {
+  /**
+   * @param {string} id  比赛的id
+   */
+  joinMatch: action(async function (match_id, team_id) {
+
     try {
-      await joinMatch(id)
+      let data = {
+        match_id: match_id
+      }
+      if (team_id) {
+        data.team_id = team_id
+      }
+      await joinMatch(data)
       // 强制刷新比赛详情 列表
-      await this.updateMatchDetails(id)
+      await this.updateMatchDetails(match_id)
       await this.updateMatchesList(true)
       handleInfo("报名成功")
     } catch (e) {
@@ -300,12 +332,12 @@ let matchFormBackup = {
   address: '',
   files: [],
   cost: '免费',
-  myArenas: null,
+  myArenas: [],
   arena: {
     name: "",
     id: ""
   },
-  myteams: null,
+  myTeams: [],
   team: {
     name: "",
     id: ""

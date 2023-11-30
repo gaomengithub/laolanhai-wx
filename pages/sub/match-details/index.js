@@ -8,7 +8,7 @@ Page({
     show: false,
     // showPopup: false,
     actions: [{ name: '开始比赛', color: '#ee0a24' }, { name: '编辑比赛详情' }],
-    radio: '0',
+    radio: 0,
     icon: {
       edit: 'https://openstore.obabyball.com/ui_v1/icon/match-detail-edit-v2.svg',
       clock: 'https://openstore.obabyball.com/ui_v1/icon/desc-clock-v1.svg',
@@ -16,12 +16,25 @@ Page({
       star: 'https://openstore.obabyball.com/ui_v1/icon/octagonal-star.svg',
       type: 'https://openstore.obabyball.com/ui_v1/icon/desc-diy-tag-v1.svg',
     },
+    showTeamSelect: false
     // swiperImgHeight: wx.getSystemInfoSync().windowWidth + 'px',
     // swiperHeight: wx.getSystemInfoSync().windowWidth + 'px',
     // windowWidth: wx.getSystemInfoSync().windowWidth,
   },
 
+  onJoinBtnForTeam() {
+    const idx = this.data.radio
+    const teamId = this.data.user.myTeams[idx].id
+    this.joinMatch(this.data.matchDetails.id, teamId)
+  },
+
   onJoinBtn() {
+    if (this.data.matchDetails.match_type == 2) {
+      this.setData({
+        showTeamSelect: true
+      })
+      return
+    }
     if (this.data.matchDetails.id) {
       this.joinMatch(this.data.matchDetails.id)
     }
@@ -38,14 +51,16 @@ Page({
 
   },
 
-  onChange(event) {
-    let radio = event.detail
-    const { name } = event.currentTarget.dataset;
-    if (name) {
-      radio = name
-    }
+  onRadioChange(event) {
     this.setData({
-      radio
+      radio: event.detail
+    });
+  },
+
+  onCellClick(e) {
+    const { name } = e.currentTarget.dataset;
+    this.setData({
+      radio: name,
     });
   },
 
@@ -86,7 +101,7 @@ Page({
     });
     this.storeBindings_ = createStoreBindings(this, {
       store: user,
-      fields: ["id"],
+      fields: ["id", "user"],
     });
     if (options.id) {
       this.updateMatchDetails(options.id)

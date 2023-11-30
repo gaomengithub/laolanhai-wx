@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getTeamDesc, updatMatchePoints } from "$/utils/api"
+import { getTeamDesc, updatMatchePoints, getMatchDesc, createMatchRound } from "$/utils/api"
 
 export const input = observable({
   matchTeamsList: [
@@ -120,11 +120,19 @@ export const input = observable({
     name: "选择队伍"
   },
 
+  activeMatchRound: action(async function (params) {
+    try {
+      await createMatchRound()
+    } catch (e) {
+
+    }
+  }),
+
   /**
    * @param {'redTeamDetails' || 'blueTeamDetails'} key
    */
-  updateTeamDetails: action(function (key, idx) {
-    const teamDetails = this.matchTeamsList.filter(option => option.value == idx)[0]
+  updateTeamDetails: action(async function (key, id) {
+    const teamDetails = await getTeamDesc(id)
     this[key] = { ...this[key], ...teamDetails };
   }),
 
@@ -136,7 +144,10 @@ export const input = observable({
     // data.teamMember.map(member => {
     //   return { ...member, isPlaying: false };
     // })
-    this.matchTeamsList = this.matchTeamsList.map(item => ({ ...item, text: item.name, value: item.name, icon: "" }))
+    const data = await getMatchDesc(id)
+    const teams = data.teams
+    this.matchTeamsList = teams.map(item => ({ ...item, text: item.name, value: item.id, icon: "" }))
+    // this.matchTeamsList = this.matchTeamsList.map(item => ({ ...item, text: item.name, value: item.name, icon: "" }))
 
   }),
   /**
@@ -154,15 +165,27 @@ export const input = observable({
     this[key] = { ...this[key] }
   }),
   /**
-   * @param {string} match 比赛id
-   * @param {string} user 选手id
-   * @param {string} score 动作描述
+   * @param {string} matchId 比赛id
+   * @param {string} member_id 选手id
+   * @param {string} score 动作类型
    */
-  updateMatchPoints: action(async function (match, user, score) {
+  updateMatchPoints: action(async function (match_id, member_id, score, current_score) {
+    let data = {
+      match_id,
+      member_id,
+      score,
+      current_score
+    }
+    // if (scoreTypes.includes(type)) {
+    //   data.score = type
+    //   data.current_score = curr
+    // } else {
+    //   // 犯规的情况
+    // }
     try {
-      await updatMatchePoints(match, user, score)
+      await updatMatchePoints(data)
     } catch (e) {
-
+      console.log(JSON.stringify(e))
     }
   })
 })

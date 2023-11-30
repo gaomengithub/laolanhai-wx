@@ -11,6 +11,7 @@
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-button": "@vant/weapp/button/index",
-    "pic-swiper":"/components/pic-swiper/index"
+    "pic-swiper":"/components/pic-swiper/index",
+    "van-dialog": "@vant/weapp/dialog/index"
   }
 }

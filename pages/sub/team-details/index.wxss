@@ -1,6 +1,7 @@
 page {
   background-color: #E2E2E2;
 }
+
 .container {
 
   padding: 24rpx 0;
@@ -112,3 +113,9 @@ page {
   width: 650rpx;
   height: 650rpx;
 }
+
+/* .items {
+  margin: 24rpx 12rpx;
+  display: flex;
+  flex-wrap: wrap;
+} */

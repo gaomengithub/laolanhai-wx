@@ -238,3 +238,7 @@
   border: none !important;
   background-color: #FB8808 !important;
 }
+
+.radio-group {
+  margin: 48rpx 12rpx;
+}

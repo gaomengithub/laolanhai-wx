@@ -9,7 +9,9 @@
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "top-line": "/components/top-line/index",
-    "van-action-sheet": "@vant/weapp/action-sheet/index"
-
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "logo-bar": "/components/logo-bar/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-picker": "@vant/weapp/picker/index"
   }
 }

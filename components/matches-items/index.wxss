@@ -140,11 +140,23 @@
   overflow: hidden;
 }
 
-.arena {
+.tip {
   position: absolute;
+  color: #FFFFFF;
+  letter-spacing: 2rpx;
+  font-size: 34rpx;
+}
+
+.arena {
+  
   background-color: #569C89;
   border-radius: 12rpx 0 12rpx 0;
   padding: 5rpx 10rpx;
-  color: #FFFFFF;
-  letter-spacing: 2rpx;
+}
+
+.team {
+  margin-top: 6rpx;
+  background-color: #569C89;
+  border-radius: 12rpx 0 12rpx 0;
+  padding: 5rpx 10rpx;
 }

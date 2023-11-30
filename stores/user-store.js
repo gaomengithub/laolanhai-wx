@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData } from '$/utils/api'
+import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData, getTeamsList ,getMyJoinTeamsList } from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { handleErr, handleInfo } from '../modules/msgHandler'
 import { userFormRules, userFormMessages, userFormRules_, userFormMessages_ } from '$/utils/validate/validate-set'
@@ -272,7 +272,6 @@ export const user = observable({
       if (form.avatarUrl) {
         // 修改头像
         const data = await uploadImgWithToken(form.avatarUrl)
-        console.log(data)
         this.user.avatarKey = data.key
         this.user = Object.assign({}, this.user, { avatar: form.avatarUrl })
       }
@@ -285,6 +284,10 @@ export const user = observable({
       try {
         this.initUserInfo()
         const data = await getUserInfo()
+        getTeamsList
+        // const data_ = await getMyJoinTeamsList()
+        const data_ = await getTeamsList()
+        const myTeams = data_.items.filter(item => item.isMyTeam)
         let date = null
         if (data.birthDate) {
           date = new Date(data.birthDate)
@@ -292,7 +295,8 @@ export const user = observable({
           date = new Date("1949-01-01")
         }
         const patch = { date: date.getTime() }
-        this.user = { ...data, ...patch }
+
+        this.user = { ...data, ...patch ,myTeams }
       } catch (e) {
         handleErr("获得用户信息失败")
       }

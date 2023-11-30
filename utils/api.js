@@ -1,15 +1,11 @@
 import { request_ } from "../modules/requestManager"
 
 
-export async function updatMatchePoints(match, user, score) {
+export async function updatMatchePoints(data) {
   let obj = {
     url: '/match/createIntegral',
     method: 'POST',
-    data: {
-      match_id: match,
-      member_id: user,
-      current_score: score,
-    }
+    data
   }
   return await request_(obj)
 }
@@ -81,13 +77,11 @@ export async function getMatches(data) {
 }
 
 
-export async function joinMatch(matchID) {
+export async function joinMatch(data) {
   let obj = {
     url: '/match/join',
     method: 'POST',
-    data: {
-      match_id: matchID
-    }
+    data: data
   }
   return await request_(obj)
 }
@@ -201,6 +195,19 @@ export async function getTeamsList() {
 }
 
 
+export async function getMatchTeamMember(params) {
+  let obj = {
+    url: '/team/list',
+    method: 'GET',
+    data: {
+      page_size: 10,
+      page_token: ""
+    }
+  }
+  return await request_(obj)
+}
+
+
 
 /**
  * 
@@ -216,14 +223,11 @@ export async function getTeamDesc(id) {
   return await request_(obj)
 }
 
-export async function joinTeam(teamID, comment) {
+export async function joinTeam(data) {
   let obj = {
     url: '/team/join',
     method: 'POST',
-    data: {
-      comment: comment,
-      team_id: teamID
-    }
+    data: data
   }
   return await request_(obj)
 }
@@ -355,3 +359,22 @@ export async function getArenaList(data) {
   }
   return await request_(obj)
 }
+
+export async function getMyJoinTeamsList() {
+  let obj = {
+    url: '/team/listMyJoinTeam',
+    method: 'GET',
+  }
+  return await request_(obj)
+}
+
+export async function createMatchRound(data) {
+  let obj = {
+    url: '/match/createMatchRound',
+    method: 'POST',
+    data
+  }
+  return await request_(obj)
+}
+
+

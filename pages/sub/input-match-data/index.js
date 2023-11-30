@@ -1,6 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { input } from "$/stores/input-store";
-
+import { handleErr } from "../../../modules/msgHandler"
 Page({
   data: {
     redTeamOptions: [],
@@ -10,10 +10,16 @@ Page({
     },
     radio: "",
     show: false,
-    currPlayer: {}
+    currPlayer: {},
+    currMatchId: "",
   },
 
   start() {
+    if (!this.data.redTeamDetails.id || !this.data.blueTeamDetails.id) {
+      handleErr("需要选择球队")
+      return
+    }
+    
     const countDown = this.selectComponent('.control-count-down');
     countDown.start();
   },
@@ -33,8 +39,8 @@ Page({
   },
 
   // 防止滚定穿透
-  lock(){
-    
+  lock() {
+
   },
 
   onLoad(options) {
@@ -45,6 +51,9 @@ Page({
     });
     if (options.id) {
       this.updateMatchTeamsList(options.id)
+      this.setData({
+        currMatchId: options.id
+      })
     }
   },
 
@@ -60,24 +69,32 @@ Page({
 
   showPopup(e) {
     const item = e.currentTarget.dataset.item
-    this.setData({
-      show: true,
-      currPlayer: item
-    })
+    if (item) {
+      this.setData({
+        show: true,
+        currPlayer: item
+      })
+    }
   },
+
   handleRecord(e) {
-    this.updateMatchPoints(this.data.currMatchId, this.data.currUserId, parseInt(this.data.radio))
+    const item = e.currentTarget.dataset.item
+    const [score, current_score] = item.split("-")
+    this.updateMatchPoints(this.data.currMatchId, this.data.currPlayer.id, score, current_score)
   },
+
   onClose() {
     this.setData({
       show: false
     })
   },
+
   onRadioChange(e) {
     this.setData({
       radio: e.detail,
     });
   },
+
   onBeforeChange({ detail: { status, callback } }) {
     this.setData({
       redTeamOptions: this.data.matchTeamsList.filter(option => option.text !== this.data.blueTeamDetails.name),

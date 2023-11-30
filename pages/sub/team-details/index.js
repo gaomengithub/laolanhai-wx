@@ -4,8 +4,18 @@ import routeInterceptor from "$/utils/router"
 Page({
 
   data: {
+    // columns: ['杭州', '宁波', '温州', '嘉兴', '湖州'],
+    columns: function () {
+      let arr = [];
+      for (let i = 0; i < 100; i++) {
+        arr.push(i + " 号");
+      }
+      return arr;
+    }(),
+
     arrow: 'https://openstore.obabyball.com/ui_v1/icon/tab-arrow-v1.svg',
     show: false,
+    showNumberSelect: false,
     actions: [{ name: '删除', color: '#ee0a24' }, { name: '编辑' }],
     autosize: { minHeight: 50 },
     bgImg: 'https://openstore.obabyball.com/ui_v1/img/detail-team-bg-img-v1-compress-v2.png',
@@ -27,6 +37,12 @@ Page({
       active
     })
   },
+
+  handleNumberSelect() {
+    const jerseyNumber = this.selectComponent("#picker").getIndexes()[0]
+    this.joinTeam(this.data.teamDetails.id, jerseyNumber.toString())
+  },
+
   handleClick() {
     this.setData({
       show: !this.data.show
@@ -41,8 +57,10 @@ Page({
     }
   },
   onJoinBtn(e) {
-    const id = e.currentTarget.dataset.id
-    this.joinTeam(id)
+    this.setData({
+      showNumberSelect: true
+    })
+
   },
 
   onLoad(options) {
