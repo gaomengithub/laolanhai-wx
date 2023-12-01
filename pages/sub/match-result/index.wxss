@@ -28,11 +28,72 @@
   margin-top: 24rpx;
 }
 
-.cell-group {
-  margin-top: 12rpx !important;
-}
+
 
 .steps {
   margin: 12rpx 32rpx;
   border-radius: 12rpx;
+}
+
+.mvp {
+  width: 702rpx;
+  margin: 24rpx;
+  background-color: #FFFFFF;
+  border-radius: 44rpx;
+  padding: 24rpx 0;
+}
+
+.avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  background-image: url("https://openstore.obabyball.com/ui_v1/icon/%E9%BA%A6%E7%A9%97%26%E6%98%9F%E6%98%9F.svg");
+  background-size: contain;
+}
+
+.mvp-container {
+  display: flex;
+  align-items: center;
+  margin: 0 24rpx;
+  justify-content: space-between;
+  background: linear-gradient(to right, #FFF8F4, #FB8808);
+  border-radius: 22rpx;
+
+}
+
+.name {
+  font-size: 38rpx;
+}
+
+.number {
+  width: 150rpx;
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56rpx;
+  font-weight: bolder;
+}
+
+.statistics {
+  width: 678rpx;
+  margin: 24rpx;
+  background-color: #FFFFFF;
+  border-radius: 44rpx;
+  padding: 24rpx 12rpx;
+}
+
+/* .van-uploader {
+  width: 702rpx !important;
+  height: 500rpx ;
+} */
+
+/* .van-uploader__preview {
+  width: 702rpx !important;
+} */
+
+.van-uploader__preview-image {
+  width: 678rpx !important;
+  height: 882rpx !important;
+  margin: 12rpx 36rpx;
 }

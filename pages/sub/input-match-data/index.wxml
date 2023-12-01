@@ -54,15 +54,16 @@
 
     </view>
   </view>
-
-  <view class="count">
-    <view>比赛倒计时</view>
-    <van-count-down millisecond class="control-count-down" time="{{ 30*60*1000 }}" auto-start="{{ false }}" format="mm 分 ss 秒 SSS" bind:finish="finished" />
-  </view>
-  <view class="btn-items">
-    <van-button round block bindclick="start" custom-class="count-btn">开始</van-button>
-    <van-button round block bindclick="pause" custom-class="count-btn pause">暂停</van-button>
-    <van-button round block bindclick="reset" custom-class="count-btn">重置</van-button>
+  <view class="count-active">
+    <view class="count">
+      <view>比赛倒计时</view>
+      <van-count-down millisecond class="control-count-down" time="{{ 30*60*1000 }}" auto-start="{{ false }}" format="mm 分 ss 秒 SSS" bind:finish="finished" />
+    </view>
+    <view class="btn-items">
+      <van-button round block bindclick="start" custom-class="count-btn">开始</van-button>
+      <van-button round block bindclick="pause" custom-class="count-btn pause">暂停</van-button>
+      <van-button round block bindclick="reset" custom-class="count-btn">重置</van-button>
+    </view>
   </view>
 
 

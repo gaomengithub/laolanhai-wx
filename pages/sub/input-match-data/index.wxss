@@ -219,8 +219,8 @@ page {
   align-items: center;
   justify-content: center;
   padding: 24rpx 0;
-  width: 702rpx;
-  margin: 24rpx;
+  /* width: 702rpx; */
+  /* margin: 24rpx; */
   background-color: #ffffff;
   border-radius: 44rpx;
 }
@@ -236,8 +236,9 @@ page {
 }
 
 .btn-items {
-  width: 702rpx;
-  margin: 24rpx;
+  /* width: 702rpx; */
+  margin: 0 12rpx;
+  padding: 12rpx 0;
   display: flex;
   justify-content: space-between;
 }
@@ -253,4 +254,11 @@ page {
 
 .pause {
   background-color: #989898 !important;
+}
+
+.count-active {
+  width: 702rpx;
+  background-color: #FFFFFF;
+  margin: 24rpx;
+  border-radius: 44rpx;
 }

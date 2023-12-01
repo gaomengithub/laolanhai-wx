@@ -57,12 +57,14 @@ export const match = observable({
     // 传参id 
     else if (typeof params === "string") {
       const data = await getMatchDesc(params)
-      data.photo_for_user.map(item => (item.url = item.photo))
-      data.photo_for_user.map(item => (item.isImage = true))
+      // data.photo_for_user.map(item => (item.url = item.photo))
+      // data.photo_for_user.map(item => (item.isImage = true))
+      // 临时的
       const patch = {
-        myPhotos: data.photo_for_user.filter(item => item.is_my_upload),
-        otherPhotos: data.photo_for_user.filter(item => !item.is_my_upload),
-        allPhotos: [...data.attachments, data.banner_attachments, ...data.photo_for_user.map(item => item.photo)]
+        photo_for_user: [...data.attachments, data.banner_attachments].map(item => ({ url: item, isImage: true }))
+        // myPhotos: data.photo_for_user.filter(item => item.is_my_upload),
+        // otherPhotos: data.photo_for_user.filter(item => !item.is_my_upload),
+        // allPhotos: [...data.attachments, data.banner_attachments, ...data.photo_for_user.map(item => item.photo)]
       }
       this.matchResult = { ...data, ...patch }
     }

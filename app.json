@@ -22,7 +22,8 @@
     "pages/sub/arena-details/index",
     "pages/sub/manager-form/index",
     "pages/sub/player-data-page/index",
-    "pages/sub/input-match-data/index"
+    "pages/sub/input-match-data/index",
+    "pages/sub/schedule/index"
   ],
   "permission": {
     "scope.userFuzzyLocation": {

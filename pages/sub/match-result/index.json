@@ -11,8 +11,7 @@
     "team-vs-card":"/components/team-vs-card/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
-    "van-cell": "@vant/weapp/cell/index",
-    "van-cell-group": "@vant/weapp/cell-group/index",
+    "table-view": "../../../miniprogram_npm/miniprogram-table-component",
     "van-steps": "@vant/weapp/steps/index"
   }
 }

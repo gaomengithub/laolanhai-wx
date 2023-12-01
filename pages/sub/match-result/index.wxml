@@ -4,23 +4,40 @@
   <team-vs-card></team-vs-card>
 
   <van-tabs type="card" custom-class="tabs" active="{{ active }}">
-    <van-tab title="基本信息">
-      <van-cell-group inset custom-class="cell-group">
-        <van-cell title="比赛时间" value="2023-10-11" />
-        <van-cell title="比赛地点" value="庞各庄" />
-        <van-cell title="年龄范围" value="45-55岁" />
-        <van-cell title="比赛介绍" label="{{ description }}" border="{{ false }}" />
-
-      </van-cell-group>
-    </van-tab>
     <van-tab title="赛况">
-      <van-steps steps="{{ steps }}"  direction="vertical"  custom-class="steps"  active-color="#969799" activeIcon="play"/>
+      <van-steps steps="{{ steps }}" direction="vertical" custom-class="steps" active-color="#969799" activeIcon="play" />
     </van-tab>
     <van-tab title="数据">
+      <view class="mvp">
+        <top-line name="最有价值球员" more="false"></top-line>
+        <view class="mvp-container">
+          <view class="number">{{ mvp.jerseyNumber }}</view>
+          <view class="name">{{ mvp.nickName }}</view>
+          <image class="avatar" src="{{ mvp.avatar }}" mode="aspectFill" />
+        </view>
+      </view>
+      <view class="statistics" bind:tap="tableDataChange">
+        <top-line name="技术统计" more="false"></top-line>
 
+        <table-view headers="{{tableHeader}}" data="{{ row }}" stripe="{{ stripe }}" border="{{ border }}" />
+
+      </view>
     </van-tab>
     <van-tab title="高光时刻">
+      <view class="tip">我要上传我的高光时刻</view>
+      <van-uploader showmenu file-list="{{ matchResult.photo_for_user || []}}" max-count="{{  }}" deletable="{{false}}" image-fit="aspectFill">
 
+
+      </van-uploader>
+
+      <!-- <text>我上传的高光时刻：</text>
+        <view class="mine">
+          <van-uploader file-list="{{ matchResult.myPhotos || []}}" max-count="{{ 5 }}" bind:after-read="afterRead" bind:delete="deleteImg" />
+        </view>
+        <text>其他人上传的高光时刻</text>
+        <view class="other">
+          <van-uploader file-list="{{ matchResult.otherPhotos || []}}" max-count="{{  }}" deletable="{{false}}" />
+        </view> -->
     </van-tab>
   </van-tabs>
 

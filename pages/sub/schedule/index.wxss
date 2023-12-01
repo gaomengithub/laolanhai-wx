@@ -1,0 +1,16 @@
+.container {
+  position: relative;
+}
+
+.banner {
+  width: 750rpx;
+  height: 450rpx;
+}
+
+.tabs {
+  margin: 12rpx 12rpx;
+}
+
+.cell-group {
+  margin-top: 12rpx !important;
+}

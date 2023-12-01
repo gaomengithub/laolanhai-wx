@@ -4,7 +4,7 @@
     <image class="img" src="{{item.banner_attachments}}" mode="aspectFill" />
     <view class="active">
       <view class="title">{{item.name}}</view>
-      <van-button custom-class="btn" round bind:click="HandlerClick" data-id="{{ item.id }}" >查看比赛</van-button>
+      <van-button custom-class="btn" round bind:click="HandlerClick" data-id="{{ item.id }}" data-match_type="{{ item.match_type }}" >查看比赛</van-button>
     </view>
     <view class="data">
         <van-grid column-num="{{ 3 }}" border="{{ false }}">

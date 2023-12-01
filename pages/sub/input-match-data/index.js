@@ -12,6 +12,13 @@ Page({
     show: false,
     currPlayer: {},
     currMatchId: "",
+
+
+
+
+
+
+
   },
 
   start() {
@@ -19,7 +26,21 @@ Page({
       handleErr("需要选择球队")
       return
     }
-    
+    // try {
+    //   const redTeamPlayingCount = this.data.redTeamDetails.teamMember.filter(item => item.isPlaying).length
+    //   const blueTeamPlayingCount = this.data.blueTeamDetails.teamMember.filter(item => item.isPlaying).length
+    //   if (redTeamPlayingCount < 3 || blueTeamPlayingCount < 3) {
+    //     handleErr("需要选择上场球员（至少三名）")
+    //     return
+    //   }
+    // } catch (e) {
+    //   handleErr("需要选择上场球员（至少三名）")
+    //   return
+    // }
+
+    this.activeMatchRound()
+
+
     const countDown = this.selectComponent('.control-count-down');
     countDown.start();
   },
@@ -47,7 +68,7 @@ Page({
     this.storeBindings = createStoreBindings(this, {
       store: input,
       fields: ["matchTeamsList", "redTeamDetails", "blueTeamDetails"],
-      actions: ["updateMatchTeamsList", "updatePlaying", "updateMatchPoints", "updateTeamDetails"],
+      actions: ["updateMatchTeamsList", "updatePlaying", "updateMatchPoints", "updateTeamDetails", "activeMatchRound"],
     });
     if (options.id) {
       this.updateMatchTeamsList(options.id)

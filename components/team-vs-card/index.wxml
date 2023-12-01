@@ -1,16 +1,19 @@
 <view class="container">
-  <view class="title">{{ item.title }}</view>
+  <!-- <view class="title">{{ item.title }}</view> -->
   <view class="card">
     <view class="team">
-      <image class="avatar" src="{{ item.home.avatar }}" mode="aspectFit" />
-      <view class="name">{{ item.home.name }}</view>
+      <image class="avatar" src="{{ item.redTeam.avatar }}" mode="aspectFit" />
+      <view class="name">{{ item.redTeam.name }}</view>
     </view>
-    <view class="score">
-      <span style="font-size: 48rpx;">{{ item.home.score }}</span> vs <span style="font-size: 48rpx;">{{ item.visiting.score }}</span>
+    <view class="score" wx:if="{{ item.redTeam.score && item.blueTeam.score }}">
+      <span style="font-size: 48rpx;">{{ item.redTeam.score }}</span> vs <span style="font-size: 48rpx;">{{ item.blueTeam.score }}</span>
+    </view>
+    <view class="time" wx:else>
+      {{ item.start_time }}
     </view>
     <view class="team">
-      <image  class="avatar" src="{{ item.visiting.avatar }}" mode="aspectFit" />
-      <view class="name">{{ item.visiting.name }}</view>
+      <image class="avatar" src="{{ item.blueTeam.avatar }}" mode="aspectFit" />
+      <view class="name">{{ item.blueTeam.name }}</view>
     </view>
   </view>
 </view>

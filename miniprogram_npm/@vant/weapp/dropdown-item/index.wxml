@@ -7,7 +7,7 @@
 >
   <van-popup
     show="{{ showPopup }}"
-    custom-style="position: absolute;{{ popupStyle }};"
+    custom-style="position: absolute;{{ popupStyle }}"
     overlay-style="position: absolute;"
     overlay="{{ overlay }}"
     position="{{ direction === 'down' ? 'top' : 'bottom' }}"

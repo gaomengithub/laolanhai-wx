@@ -1,0 +1,26 @@
+<nav-bar title="赛程"></nav-bar>
+<view class="container">
+  <image class="banner" src="{{ matchResult.banner_attachments }}" mode="aspectFill" />
+  <van-tabs type="card" custom-class="tabs">
+    <van-tab title="基础信息">
+      <van-cell-group inset custom-class="cell-group">
+        <van-cell title="比赛开始时间" value="{{ matchResult.start_time }}" />
+        <van-cell title="比赛结束时间" value="{{ matchResult.end_time }}" />
+        <van-cell title="比赛地点" value="{{ matchResult.location }}" />
+        <van-cell title="最小年龄" value="{{ matchResult.age_group_start }}" />
+        <van-cell title="最大年龄" value="{{ matchResult.age_group_end }}" />
+        <van-collapse value="{{ activeNames }}" bind:change="onCollapseChange" border="{{ false }}">
+          <van-collapse-item title="比赛介绍" name="1">
+            {{ matchResult.description }}
+          </van-collapse-item>
+        </van-collapse>
+
+      </van-cell-group>
+    </van-tab>
+    <van-tab title="所有比赛">
+      <block wx:for="{{fake}}" wx:key="index">
+        <team-vs-card item="{{ item }}" bind:tap="handleToResult"></team-vs-card>
+      </block>
+    </van-tab>
+  </van-tabs>
+</view>
