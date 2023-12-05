@@ -1,6 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { match } from "$/stores/match-store";
-
+import { user } from "$/stores/user-store";
 const app = getApp()
 let isFixed = false
 
@@ -45,11 +45,18 @@ Page({
       fields: ["matchesList"],
       actions: ["updateMatchesList", "modifyOptions"],
     });
+
+    this.storeBindings_ = createStoreBindings(this, {
+      store: user,
+      fields: ["user"],
+      // actions: ["updateMatchesList", "modifyOptions"],
+    });
     this.updateMatchesList()
   },
 
   onUnload() {
     this.storeBindings.destroyStoreBindings();
+    this.storeBindings_.destroyStoreBindings();
   },
 
   onShow() {
@@ -62,7 +69,7 @@ Page({
 
   onReachBottom() {
     if (match.options.page_token) {
-      this.modifyOptions()
+      this.updateMatchesList()
     }
   },
 

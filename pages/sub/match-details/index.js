@@ -7,7 +7,10 @@ Page({
   data: {
     show: false,
     // showPopup: false,
-    actions: [{ name: '开始比赛', color: '#ee0a24' }, { name: '编辑比赛详情' }],
+    actions: {
+      user: [{ name: '计分器' }],
+      owner: [{ name: '计分器' }, { name: '编辑比赛详情' }, { name: '结束比赛', color: '#ee0a24' }]
+    },
     radio: 0,
     icon: {
       edit: 'https://openstore.obabyball.com/ui_v1/icon/match-detail-edit-v2.svg',
@@ -66,12 +69,23 @@ Page({
 
   onSelect(e) {
     let path = ""
-    if (e.detail.name == '开始比赛') {
-      path = '/pages/sub/input-match-data/index?id=' + this.data.matchDetails.id
+    if (e.detail.name == '计分器') {
+      if (this.data.matchDetails.match_type == 3) {
+        path = '/pages/sub/count-page/index?id=' + this.data.matchDetails.id
+      }
+      else if (this.data.matchDetails.match_type == 2) {
+        path = '/pages/sub/input-match-data/index?id=' + this.data.matchDetails.id
+      }
     }
     else if (e.detail.name == "编辑比赛详情") {
       path = `/pages/sub/match-form/index?page=modify&id=${this.data.matchDetails.id}`
-
+    }
+    else if (e.detail.name == "录入比赛数据") {
+      path = `/pages/sub/custom-match-data/index?id=${this.data.matchDetails.id}`
+    }
+    else if (e.detail.name == "结束比赛") {
+      this.updateMatchStatus(this.data.matchDetails.id, 4)
+      // path = `/pages/sub/custom-match-data/index?id=${this.data.matchDetails.id}`
     }
     routeInterceptor.navigateTo(path)
   },

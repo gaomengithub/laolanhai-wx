@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData, getTeamsList ,getMyJoinTeamsList } from '$/utils/api'
+import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData, getTeamsList, getMyJoinTeamsList } from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { handleErr, handleInfo } from '../modules/msgHandler'
 import { userFormRules, userFormMessages, userFormRules_, userFormMessages_ } from '$/utils/validate/validate-set'
@@ -9,6 +9,7 @@ export const user = observable({
   validate_: new WxValidate(userFormRules_, userFormMessages_),
   showStarPage: true,
   starDetails: {},
+
   starForm: {
     files: [],
     age: 0,
@@ -24,6 +25,12 @@ export const user = observable({
   },
   approvals: [],
   joinedMatches: [], // 用户参加的比赛
+  userInfo: {
+
+  },
+  userForm: {
+
+  },
   user: {
     about: '',
     avatar: '',
@@ -38,6 +45,18 @@ export const user = observable({
     date: ''  //vant 组件要求传入时间戳 birthDate为字符串
   },
 
+  get isUserFormRequired() {
+    if (this.isUser) {
+      console.log(this.user.nickName)
+      return this.user.nickName
+      if (!this.user.avatarKey && !this.user.nickName) {
+        console.log(this.user.nickName)
+        return this.user.nickName
+      } else {
+        return true
+      }
+    }
+  },
 
   get id() {
     let id = wx.getStorageSync('id')
@@ -262,7 +281,7 @@ export const user = observable({
     }
   }),
 
-  initUserInfo: action(async function (params) {
+  initUserInfo: action(function () {
     let backup = JSON.parse(JSON.stringify(userBackup));
     this.user = JSON.parse(JSON.stringify(backup));
   }),
@@ -284,19 +303,14 @@ export const user = observable({
       try {
         this.initUserInfo()
         const data = await getUserInfo()
-        getTeamsList
-        // const data_ = await getMyJoinTeamsList()
         const data_ = await getTeamsList()
+        const data__ = await getMyJoinMatches()
+        const myMatches = data__.matches
         const myTeams = data_.items.filter(item => item.isMyTeam)
-        let date = null
         if (data.birthDate) {
-          date = new Date(data.birthDate)
-        } else {
-          date = new Date("1949-01-01")
+          this.user.date = new Date(data.birthDate).getTime()
         }
-        const patch = { date: date.getTime() }
-
-        this.user = { ...data, ...patch ,myTeams }
+        this.user = { ...this.user, ...data, myTeams, myMatches }
       } catch (e) {
         handleErr("获得用户信息失败")
       }
@@ -323,12 +337,12 @@ let userBackup = {
   about: '',
   avatar: '',
   birthDate: '',
-  height: '',
+  height: '172',
   honors: '',
   id: '',
   nickName: '',
-  weight: '',
+  weight: '68',
   avatarKey: '',
   // 自有字段
-  date: ''  //vant 组件要求传入时间戳 birthDate为字符串
+  date: "-652963200000"  //vant 组件要求传入时间戳 birthDate为字符串
 }

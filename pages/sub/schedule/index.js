@@ -4,7 +4,7 @@ import routeInterceptor from '$/utils/router'
 Page({
 
   data: {
-    activeNames: [],
+    activeNames: ["1"],
     fake: [
       {
         redTeam: {
@@ -63,9 +63,7 @@ Page({
   },
 
   handleToResult() {
-    console.log("1")
     const path = "/pages/sub/match-result/index?id=" + this.data.matchResult.id
     routeInterceptor.navigateTo(path)
   }
-
 })

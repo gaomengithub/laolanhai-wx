@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="card">
+    <view class="count">
+      <van-count-down millisecond class="control-count-down" time="{{ value }}" auto-start="{{ false }}" format="mm 分 ss 秒 SSS" bind:finish="finished" bind:tap="onShowPopup" />
+    </view>
+    <view class="btn-items">
+      <van-button round block bindclick="start" custom-class="count-btn">开始</van-button>
+      <van-button round block bindclick="pause" custom-class="count-btn pause">暂停</van-button>
+      <van-button round block bindclick="reset" custom-class="count-btn">结束</van-button>
+    </view>
+  </view>
+</view>
+
+<van-popup custom-class="popup" show="{{ show }}" round position="bottom" custom-style="height: 30%" bind:close="onPopupClose" catchtouchmove="lock">
+  <van-picker columns="{{ columns }}" bind:change="onPickerChange" />
+</van-popup>

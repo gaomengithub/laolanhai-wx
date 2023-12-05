@@ -24,10 +24,13 @@
       </view>
     </van-tab>
     <van-tab title="高光时刻">
-      <view class="tip">我要上传我的高光时刻</view>
+      <view class="tips">
+      <view>我要上传高光时刻</view> 
+        <van-uploader bind:after-read="afterRead">
+          <span style="background-color: #FB8808;padding: 12rpx; border-radius: 44rpx; font-size: 28rpx;color: #FFFFFF;">点击上传</span>
+        </van-uploader>
+      </view>
       <van-uploader showmenu file-list="{{ matchResult.photo_for_user || []}}" max-count="{{  }}" deletable="{{false}}" image-fit="aspectFill">
-
-
       </van-uploader>
 
       <!-- <text>我上传的高光时刻：</text>
@@ -70,4 +73,6 @@
       </van-collapse-item>
     </van-collapse>
   </view> -->
+
+  <logo-bar></logo-bar>
 </view>

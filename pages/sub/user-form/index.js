@@ -61,7 +61,8 @@ Page({
       val = formatDate(date)
     }
     if (key == 'height' || key == 'weight') {
-      val = e.detail.value[0]
+      console.log(e.detail)
+      val = e.detail.value[0].replace("cm")
     }
     if (e.type == 'confirm') {
       this.onDisplay(e)
@@ -75,16 +76,16 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: user,
-      fields: ["user", "isUser"],
+      fields: ["user", "isUser", "isUserFormRequired"],
       actions: ["updateUserInfo", "modifyUserInfo"],
     });
     this.updateUserInfo()
-    // if (options.page == 'create') {
-    //   this.updateUserInfo()
-    // }
-    // else if (options.page == "modify" && options.id) {
-    //   this.updateUserInfo()
-    // }
+    if (options.page == 'create') {
+
+    }
+    else if (options.page == "modify" && options.id) {
+
+    }
   },
 
   onUnload() {

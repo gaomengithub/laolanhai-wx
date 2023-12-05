@@ -1,0 +1,44 @@
+<nav-bar title="篮球计分器"></nav-bar>
+<view class="container">
+  <view class="teams">
+    <view class="team">
+      <view class="board red-board">
+        {{ redCount }}
+      </view>
+      <view class="items">
+        <van-button custom-class="item red" bind:click="handleCount" data-exp="redCount&1"> + 1</van-button>
+        <van-button custom-class="item red" bind:click="handleCount" data-exp="redCount&2"> + 2</van-button>
+        <van-button custom-class="item red" bind:click="handleCount" data-exp="redCount&3"> + 3</van-button>
+        <van-divider contentPosition="center"> 分割线
+        </van-divider>
+        <van-button custom-class="item reduce" bind:click="handleCount" data-exp="redCount&-1"> - 1</van-button>
+        <van-button custom-class="item reduce" bind:click="handleCount" data-exp="redCount&-2"> - 2</van-button>
+        <van-button custom-class="item reduce" bind:click="handleCount" data-exp="redCount&-3"> - 3</van-button>
+      </view>
+    </view>
+
+    <view class="team">
+      <view class="board blue-board">
+        {{ blueCount }}
+      </view>
+      <view class="items">
+        <van-button custom-class="item blue" bind:click="handleCount" data-exp="blueCount&1"> + 1</van-button>
+        <van-button custom-class="item blue" bind:click="handleCount" data-exp="blueCount&2"> + 2</van-button>
+        <van-button custom-class="item blue" bind:click="handleCount" data-exp="blueCount&3"> + 3</van-button>
+        <van-divider contentPosition="center"> 分割线
+        </van-divider>
+        <van-button custom-class="item reduce" bind:click="handleCount" data-exp="blueCount&-1"> - 1</van-button>
+        <van-button custom-class="item reduce" bind:click="handleCount" data-exp="blueCount&-2"> - 2</van-button>
+        <van-button custom-class="item reduce" bind:click="handleCount" data-exp="blueCount&-3"> - 3</van-button>
+      </view>
+
+
+    </view>
+  </view>
+  <view class="count-active">
+    <top-line name="比赛倒计时" more="false"></top-line>
+    <count-down-card id="count-down"></count-down-card>
+  </view>
+</view>
+
+<logo-bar></logo-bar>

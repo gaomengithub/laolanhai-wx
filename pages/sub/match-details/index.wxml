@@ -70,12 +70,12 @@
 
 
 
-<van-dialog catchmove="handleCatch" use-slot title="选择战队" show="{{ showTeamSelect }}" show-cancel-button  bind:confirm="onJoinBtnForTeam">
+<van-dialog catchmove="handleCatch" use-slot title="选择战队" show="{{ showTeamSelect }}" show-cancel-button bind:confirm="onJoinBtnForTeam">
   <view class="radio-group">
-    <van-radio-group value="{{ radio }}"  bind:change="onRadioChange">
+    <van-radio-group value="{{ radio }}" bind:change="onRadioChange">
       <van-cell-group>
         <block wx:for="{{ user.myTeams }}" wx:key="id">
-          <van-cell title="{{ item.name }}" clickable data-name="{{ index }}" bind:click="onCellClick" >
+          <van-cell title="{{ item.name }}" clickable data-name="{{ index }}" bind:click="onCellClick">
             <van-radio slot="right-icon" name="{{ index }}" />
           </van-cell>
         </block>

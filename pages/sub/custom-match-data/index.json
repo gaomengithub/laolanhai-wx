@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "nav-bar":"/components/nav-bar/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-switch": "@vant/weapp/switch/index",
+    "logo-bar":"/components/logo-bar/index",
+    "bottom-btn-bar":"/components/bottom-btn-bar/index"
+  }
+}

@@ -8,6 +8,7 @@
   width: 170rpx;
   height: 174rpx;
 }
+
 .active {
   width: 100%;
   background-color: #ffffff;
@@ -26,4 +27,8 @@
   width: 650rpx;
   background-color: #FB8808 !important;
   font-weight: 600;
+}
+
+.field-title {
+  font-size: 30rpx !important;
 }

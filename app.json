@@ -23,7 +23,9 @@
     "pages/sub/manager-form/index",
     "pages/sub/player-data-page/index",
     "pages/sub/input-match-data/index",
-    "pages/sub/schedule/index"
+    "pages/sub/schedule/index",
+    "pages/sub/count-page/index",
+    "pages/sub/custom-match-data/index"
   ],
   "permission": {
     "scope.userFuzzyLocation": {

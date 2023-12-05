@@ -2,6 +2,8 @@
 
 <image class="banner" src="{{ banner }}" mode="widthFix" />
 
+<wxs src="../../utils/tools.wxs" module="tools" />
+
 <view class="container">
   <van-sticky offset-top="{{ offsetTop }}" bind:scroll="showNarBar">
     <view class="tabs">
@@ -13,11 +15,13 @@
     </view>
     <filter-bar></filter-bar>
   </van-sticky>
-  <view wx:if="{{ matchesList }}">
-    <pretty-card></pretty-card>
-    <matches-items items="{{ matchesList }}"></matches-items>
+  <view>
+    <pretty-card item="{{ user }}"></pretty-card>
+    <block wx:if="{{ tools.isEmptyArr(matchesList) }}">
+      <matches-items items="{{ matchesList || [] }}"></matches-items>
+    </block>
   </view>
-  <view wx:else>
+  <view wx:if="{{ !tools.isEmptyArr(matchesList) }}">
     <no-data-tip></no-data-tip>
   </view>
   <view>

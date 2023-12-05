@@ -2,9 +2,6 @@ import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { match } from "$/stores//match-store"
 Page({
   data: {
-
-
-
     tableHeader: [
       {
         prop: 'datetime',

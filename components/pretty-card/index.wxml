@@ -1,23 +1,23 @@
 <view class="container">
-<wxs src="./index.wxs" module="tools"/>
+  <wxs src="../../utils/tools.wxs" module="tools" />
   <view class="card">
-    <image class="bg-img" src="{{ img }}" mode="aspectFit"/>
+    <image class="bg-img" src="{{ img }}" mode="aspectFit" />
 
-    <!-- <view class="item">
-      <view class="text">8</view>
-      <view class="title">
-        全部比赛
-      </view>
-    </view> -->
     <view class="item">
-      <view class="text">{{ tools.matchesCount(joinedMatches) }}</view>
+      <view class="text">{{ tools.arrayLengthCount(item.approvals) }}</view>
+      <view class="title">
+        待审批
+      </view>
+    </view>
+    <view class="item">
+      <view class="text">{{ tools.arrayLengthCount(item.myMatches) }}</view>
       <view class="title">
         近日比赛
       </view>
     </view>
     <view class="item">
       <view class="avatar" bind:tap="onClick">
-        <image class="img" src="{{user.avatar}}" mode="aspectFit" ></image>
+        <image class="img" src="{{item.avatar}}" mode="aspectFit"></image>
       </view>
       <view class="tip">进入球星卡</view>
     </view>

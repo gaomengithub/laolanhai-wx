@@ -1,0 +1,261 @@
+page {
+  background-color: #ebebeb;
+}
+
+.avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin: 12rpx;
+}
+
+.name {
+  font-size: 36rpx;
+}
+
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 24rpx 0;
+}
+
+.active {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 80rpx;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  border-radius: 22rpx;
+  justify-content: center;
+  width: 186rpx;
+  height: 95rpx;
+  margin: 24rpx;
+  background-color: #fb8808;
+  color: #ffffff;
+}
+
+
+.blue {
+  background-color: #1989fa2c !important;
+  border: 2rpx solid #1989fa !important;
+  color: #1989fa !important;
+}
+
+.reduce {
+  background-color: #ebebeb !important;
+  border: 2rpx solid #989898 !important;
+  color: black !important;
+}
+
+.select {
+  position: relative;
+  width: 702rpx;
+  margin: 24rpx;
+  height: 120rpx;
+  background-color: #ffffff;
+  border-radius: 22rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown {
+  /* box-shadow: none !important; */
+  --dropdown-menu-height: 80rpx;
+  width: 300rpx;
+  border-radius: 22rpx !important;
+}
+
+.dropdown-title {
+  font-size: 30rpx !important;
+  font-weight: bold;
+  letter-spacing: 4rpx;
+  color: #ffffff !important;
+}
+
+.dropdown-item {
+  font-size: 28rpx;
+  letter-spacing: 2rpx;
+}
+
+.red-team {
+  background-color: #ee0a24 !important;
+}
+
+.dropdown-items {
+  width: 702rpx;
+  margin: 12rpx 24rpx;
+}
+
+.blue-team {
+  background-color: #1989fa !important;
+}
+
+.vs-icon {
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.teams {
+  display: flex;
+  justify-content: space-around;
+  width: 702rpx;
+  margin: 24rpx;
+}
+
+.team {
+  width: 330rpx;
+  height: fit-content;
+  min-height: 800rpx;
+  border-radius: 22rpx;
+  background-color: #ffffff;
+}
+
+.board {
+  width: 330rpx;
+  height: 200rpx;
+  border-radius: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 86rpx;
+  position: relative;
+  /* font-weight: bold; */
+}
+
+.board::before,
+.board::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.board::before {
+  top: 30rpx;
+  left: 30rpx;
+}
+
+.board::after {
+  top: 30rpx;
+  right: 30rpx;
+}
+
+.red-board {
+
+  background-color: #ee0a24;
+}
+
+.blue-board {
+
+  background-color: #1989fa;
+}
+
+.score {
+  display: flex;
+}
+
+.items {
+  padding: 8rpx 22rpx;
+}
+
+
+.item {
+  font-weight: bold;
+  border-radius: 44rpx !important;
+  text-align: center;
+  padding: 18rpx 0;
+  width: 242rpx;
+  margin: 12rpx 22rpx;
+  background-color: #fff0f5;
+}
+
+.red {
+  border: 2rpx solid #ee0a24 !important;
+  color: #ee0a24 !important;
+}
+
+.popup {
+  padding: 24rpx;
+  overflow-y: visible !important;
+  position: relative;
+}
+
+.avatar {
+  position: absolute;
+  top: -80rpx;
+  left: 270rpx;
+  border: 6rpx solid #FFFFFF;
+  color: #ffffff;
+  width: 160rpx;
+  height: 160rpx;
+  font-weight: bold;
+  font-size: 56rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fb8808;
+}
+
+.count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24rpx 0;
+  /* width: 702rpx; */
+  /* margin: 24rpx; */
+  background-color: #ffffff;
+  border-radius: 44rpx;
+}
+
+
+.control-count-down {
+  --count-down-font-size: 36rpx !important;
+}
+
+.btn-items {
+  /* width: 702rpx; */
+  margin: 0 12rpx;
+  padding: 12rpx 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.count-btn {
+  width: 220rpx !important;
+  background-color: #fb8808 !important;
+  color: #ffffff !important;
+  font-size: 32rpx !important;
+  letter-spacing: 4rpx;
+  font-weight: bold;
+}
+
+.pause {
+  background-color: #989898 !important;
+}
+
+.count-active {
+  width: 702rpx;
+  background-color: #FFFFFF;
+  margin: 24rpx;
+  border-radius: 44rpx;
+}
+
+.hover {
+  background-color: #ebebeb;
+}

@@ -12,6 +12,7 @@
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "table-view": "../../../miniprogram_npm/miniprogram-table-component",
-    "van-steps": "@vant/weapp/steps/index"
+    "van-steps": "@vant/weapp/steps/index",
+    "logo-bar":"/components/logo-bar/index"
   }
 }

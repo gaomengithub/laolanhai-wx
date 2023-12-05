@@ -1,0 +1,44 @@
+.count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24rpx 0;
+  /* width: 702rpx; */
+  /* margin: 24rpx; */
+  background-color: #ffffff;
+  border-radius: 44rpx;
+}
+
+
+.control-count-down {
+  --count-down-font-size: 36rpx !important;
+}
+
+.btn-items {
+  /* width: 702rpx; */
+  margin: 0 12rpx;
+  padding: 12rpx 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.count-btn {
+  width: 220rpx !important;
+  background-color: #fb8808 !important;
+  color: #ffffff !important;
+  font-size: 32rpx !important;
+  letter-spacing: 4rpx;
+  font-weight: bold;
+}
+
+.pause {
+  background-color: #989898 !important;
+}
+
+.count-active {
+  width: 702rpx;
+  background-color: #FFFFFF;
+  margin: 24rpx;
+  border-radius: 44rpx;
+}

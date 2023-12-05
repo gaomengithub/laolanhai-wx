@@ -97,3 +97,13 @@
   height: 882rpx !important;
   margin: 12rpx 36rpx;
 }
+
+.tips {
+  /* width: 654rpx; */
+  margin: 24rpx;
+  padding: 24rpx 56rpx;
+  background-color: #FFFFFF;
+  border-radius: 44rpx;
+  display: flex;
+  justify-content: space-between;
+}

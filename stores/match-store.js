@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto, getArenaList, getMyJoinMatches, getTeamsList } from '$/utils/api'
+import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto, getArenaList, getMyJoinMatches, getTeamsList, updateCustomMatchRecord, getCustomMatchRecord } from '$/utils/api'
 import { compressUploadImg } from '$/utils/qiniu/qiniu'
 import { matchFormMessages, matchFormRules } from '$/utils/validate/validate-set'
 import WxValidate from '$/utils/validate/WxValidate'
@@ -11,7 +11,7 @@ export const match = observable({
   matchForm: null,
   overMatchesList: null,
   matchResult: null, // 赛况中 完成了的比赛
-  matchDetails: null,  //比赛详情
+  matchDetails: {},  //比赛详情
   matchesList: [],
   joinedMatches: null,
   // 筛选条件
@@ -26,6 +26,16 @@ export const match = observable({
     date: '全部时间', //后端还未添加该筛选条件
     currentDate: null
   },
+
+
+  activeCustomMatchRecord: action(async function (form) {
+    try {
+      await updateCustomMatchRecord(form)
+
+    } catch (e) {
+      handleErr("个人数据录入失败")
+    }
+  }),
 
   updateJoinedMatches: action(async function (params) {
     try {
@@ -270,7 +280,7 @@ export const match = observable({
 
   modifyOptions: action(function (filter) {
     this.options = { ...this.options, ...filter }
-    this.updateMatchesList()
+    this.updateMatchesList(true)
   }),
 
   // 每当this.options发生变化
@@ -278,6 +288,7 @@ export const match = observable({
    * @param {boolean} force 强制刷新
    */
   updateMatchesList: action(async function (force) {
+
     if (force) {
       this.matchesList = []
       this.options.page_token = ""

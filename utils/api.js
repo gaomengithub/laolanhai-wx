@@ -377,4 +377,24 @@ export async function createMatchRound(data) {
   return await request_(obj)
 }
 
+export async function updateCustomMatchRecord(data) {
+  let obj = {
+    url: '/match/createCompetitionResults',
+    method: 'POST',
+    data
+  }
+  return await request_(obj)
+}
+
+
+export async function getCustomMatchRecord() {
+  let obj = {
+    url: '/match/listCompetitionResults',
+    method: 'GET',
+  }
+  return await request_(obj)
+}
+
+
+
 

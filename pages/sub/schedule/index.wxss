@@ -14,3 +14,13 @@
 .cell-group {
   margin-top: 12rpx !important;
 }
+
+.content {
+  text-align: justify;
+  text-justify: distribute-all-lines;
+  font-size: 32rpx !important;
+}
+
+.cell-title {
+  font-size: 30rpx;
+}

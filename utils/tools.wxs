@@ -39,10 +39,19 @@ var isEnterMatch = function (matchType, isMyMatch) {
   return msg
 }
 
+var isEmptyArr = function (arr) {
+  if (arr) {
+    return arr.length > 0
+  }
+}
 
 
 
 var formatStartTime = function (str) {
+  if (str) return str.replace(":00+08:00", "").replace("T", "  ")
+}
+
+var formatEndTime = function (str) {
   if (str) return str.replace(":00+08:00", "").replace("T", "  ")
 }
 
@@ -61,6 +70,12 @@ var calcJoinedNum = function (arr) {
   }
 }
 
+var arrayLengthCount = function (arr) {
+  if (arr) {
+    return arr.length
+  }
+}
+
 module.exports = {
   formatLocation: formatLocation,
   formatDateStartEndTime: formatDateStartEndTime,
@@ -68,5 +83,8 @@ module.exports = {
   formatPrice: formatPrice,
   formatShortLocation: formatShortLocation,
   formatStartTime: formatStartTime,
-  calcJoinedNum: calcJoinedNum
+  calcJoinedNum: calcJoinedNum,
+  isEmptyArr: isEmptyArr,
+  formatEndTime: formatEndTime,
+  arrayLengthCount:arrayLengthCount
 }
