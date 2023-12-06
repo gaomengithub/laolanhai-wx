@@ -4,21 +4,21 @@ Page({
 
   data: {
     banner: "https://openstore.obabyball.com/ui_v1/img/banner%20%281%29.jpg",
-    form: {
-      assist: "",
-      block: "",
-      hit_free_throw: "",
-      hit_three_point: "",
-      hit_two_point: "",
-      is_win: false,
-      match_id: "",
-      rebound: "",
-      steal: "",
-      total_free_throw: "",
-      total_three_point: "",
-      total_two_point: "",
-      total_point: 0,
-    },
+    // form: {
+    //   assist: "",
+    //   block: "",
+    //   hit_free_throw: "",
+    //   hit_three_point: "",
+    //   hit_two_point: "",
+    //   is_win: false,
+    //   match_id: "",
+    //   rebound: "",
+    //   steal: "",
+    //   total_free_throw: "",
+    //   total_three_point: "",
+    //   total_two_point: "",
+    //   total_point: 0,
+    // },
     icon: {
       assist: "https://openstore.obabyball.com/ui_v1/icon/%E7%AF%AE%E7%90%83%E5%8A%A9%E6%94%BB.svg",
       block: "https://openstore.obabyball.com/ui_v1/icon/%E7%9B%96%E5%B8%BD-v2.svg",
@@ -40,16 +40,22 @@ Page({
 
 
   onLoad(options) {
-    if (options.id) {
-      this.setData({
-        ['form.match_id']: options.id
-      })
-    }
     this.storeBindings = createStoreBindings(this, {
       store: match,
-      // fields: [""],
-      actions: ["activeCustomMatchRecord"],
+      fields: ["customInputForm"],
+      actions: ["activeCustomMatchRecord", "updateCustomInputForm"],
     });
+    if (options.id) {
+      const patch = {
+        match_id: options.id
+      }
+      this.updateCustomInputForm(patch)
+      this.updateCustomInputForm() 
+      // this.setData({
+      //   ['form.match_id']: options.id
+      // })
+    }
+
 
   },
 
@@ -67,28 +73,34 @@ Page({
     this.storeBindings.destroyStoreBindings();
   },
   onChange(e) {
-    const items = ['hit_free_throw', 'hit_two_point', 'hit_three_point']
+    // const items = ['hit_free_throw', 'hit_two_point', 'hit_three_point']
 
     const key = e.currentTarget.dataset.key
-    let val = null
-    try {
-      val = parseInt(e.detail) || e.detail
-    } catch (e) {
-
+    let val = e.detail
+    const patch = {
+      [key]: parseInt(val) || e.detail,
     }
-    this.setData({
-      [`form.${key}`]: val
-    })
-    if (items.includes(key)) {
-      const form = this.data.form
-      const sum = form.hit_free_throw * 1 + form.hit_two_point * 2 + form.hit_three_point * 3
 
-      this.setData({
-        ['form.total_point']: parseInt(sum)
-      })
-    }
+    this.updateCustomInputForm(patch)
+
+    // try {
+    //   val = parseInt(e.detail) || e.detail
+    // } catch (e) {
+
+    // }
+    // this.setData({
+    //   [`form.${key}`]: val
+    // })
+    // if (items.includes(key)) {
+    //   const form = this.data.form
+    //   const sum = form.hit_free_throw * 1 + form.hit_two_point * 2 + form.hit_three_point * 3
+
+    //   this.setData({
+    //     ['form.total_point']: parseInt(sum)
+    //   })
+    // }
   },
-  handleInput() {
-    this.activeCustomMatchRecord(this.data.form)
+  handleActive() {
+    this.activeCustomMatchRecord()
   }
 })

@@ -1,18 +1,20 @@
 {
   "usingComponents": {
-    "nav-bar":"/components/nav-bar/index",
+    "nav-bar": "/components/nav-bar/index",
     "van-collapse": "@vant/weapp/collapse/index",
     "van-collapse-item": "@vant/weapp/collapse-item/index",
-    "top-line":"/components/top-line/index",
+    "top-line": "/components/top-line/index",
     "van-uploader": "@vant/weapp/uploader/index",
-    "pic-swiper":"/components/pic-swiper/index",
-    "points-points":"/components/technical-statistics/points-points/index",
-    "vs-bar":"/components/technical-statistics/vs-bar/index",
-    "team-vs-card":"/components/team-vs-card/index",
+    "pic-swiper": "/components/pic-swiper/index",
+    "points-points": "/components/technical-statistics/points-points/index",
+    "vs-bar": "/components/technical-statistics/vs-bar/index",
+    "team-vs-card": "/components/team-vs-card/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "table-view": "../../../miniprogram_npm/miniprogram-table-component",
     "van-steps": "@vant/weapp/steps/index",
-    "logo-bar":"/components/logo-bar/index"
+    "logo-bar": "/components/logo-bar/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index"
   }
 }

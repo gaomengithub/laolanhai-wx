@@ -76,11 +76,11 @@
 }
 
 .statistics {
-  width: 678rpx;
+  width: 654rpx;
   margin: 24rpx;
   background-color: #FFFFFF;
   border-radius: 44rpx;
-  padding: 24rpx 12rpx;
+  padding: 24rpx 24rpx;
 }
 
 /* .van-uploader {
@@ -106,4 +106,9 @@
   border-radius: 44rpx;
   display: flex;
   justify-content: space-between;
+}
+
+.banner {
+  width: 100%;
+  height: 300rpx;
 }

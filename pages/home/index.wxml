@@ -16,7 +16,7 @@
     <filter-bar></filter-bar>
   </van-sticky>
   <view>
-    <pretty-card item="{{ user }}"></pretty-card>
+    <pretty-card item="{{ user || null }}"></pretty-card>
     <block wx:if="{{ tools.isEmptyArr(matchesList) }}">
       <matches-items items="{{ matchesList || [] }}"></matches-items>
     </block>

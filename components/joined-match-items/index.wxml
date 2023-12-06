@@ -1,4 +1,5 @@
 <view class="container">
+  <wxs src="../../utils/tools.wxs" module="tools" />
   <slot></slot>
   <view class="card" wx:for="{{ items }}" wx:key="id">
     <view class="item">
@@ -7,19 +8,26 @@
         <view class="name">
           {{item.name}}
         </view>
-        <view class="type">
-          <wxs src="./index.wxs" module="tools" />
-          <block>
-            {{ tools.getTypeName(item.match_type) }}
-          </block>
+        <view class="type-status">
+          <view class="type">
+            <block>
+              {{ tools.getTypeName(item.match_type) }}
+            </block>
+          </view>
+          <view class="status {{ ['start','start','mid','mid','end','end'][item.status] }}">
+            {{ ["报名中","报名中","报名结束","进行中","比赛结束"][item.status] }}
+          </view>
         </view>
       </view>
-      <view class="status {{ ['start','mid','end'][item.status] }}">
-        {{ ["报名中","报名中","报名结束","进行中","比赛结束"][item.status] }}
-      </view>
-      <navigator url="/pages/sub/match-details/index?id={{ item.id }}">
+      <van-button disabled="{{ item.status != 4 }}" custom-class="btn" bind:click="handleToInput" data-id="{{ item.id }}"> 录入数据 </van-button>
+
+
+      <!-- <navigator url="/pages/sub/match-details/index?id={{ item.id }}">
         <image class="link" src="{{link}}" mode="aspectFill" />
-      </navigator>
+      </navigator> -->
+
+
+
     </view>
   </view>
 

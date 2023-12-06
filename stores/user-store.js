@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData, getTeamsList, getMyJoinTeamsList } from '$/utils/api'
+import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData, getTeamsList, getMyJoinTeamsList, getCustomMatchRecord } from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { handleErr, handleInfo } from '../modules/msgHandler'
 import { userFormRules, userFormMessages, userFormRules_, userFormMessages_ } from '$/utils/validate/validate-set'
@@ -9,7 +9,41 @@ export const user = observable({
   validate_: new WxValidate(userFormRules_, userFormMessages_),
   showStarPage: true,
   starDetails: {},
-
+  playerData: {
+    sum: {
+      assist: "",
+      block: "",
+      hit_free_throw: "",
+      hit_three_point: "",
+      hit_two_point: "",
+      is_win: "",
+      rebound: "",
+      steal: "",
+      total_free_throw: "",
+      total_point: "",
+      total_three_point: "",
+      total_two_point: ""
+    },
+    per: {
+      free_throw: "",
+      point: "",
+      point: "",
+    },
+    avg: {
+      assist: "",
+      block: "",
+      hit_free_throw: "",
+      hit_three_point: "",
+      hit_two_point: "",
+      is_win: "",
+      rebound: "",
+      steal: "",
+      total_free_throw: "",
+      total_point: "",
+      total_three_point: "",
+      total_two_point: ""
+    }
+  },
   starForm: {
     files: [],
     age: 0,
@@ -125,6 +159,101 @@ export const user = observable({
     }
   },
 
+  updatePlayerData: action(async function (params) {
+    try {
+      const data = await getCustomMatchRecord()
+      if (data) {
+        const assist_arr = data.map(item => item.assist)
+        const block_arr = data.map(item => item.block)
+        const hit_free_throw_arr = data.map(item => item.hit_free_throw)
+        const hit_three_point_arr = data.map(item => item.hit_three_point)
+        const hit_two_point_arr = data.map(item => item.hit_two_point)
+        const is_win_arr = data.map(item => item.is_win)
+        const rebound_arr = data.map(item => item.rebound)
+        const steal_arr = data.map(item => item.steal)
+        const total_free_throw_arr = data.map(item => item.total_free_throw)
+        const total_three_point_arr = data.map(item => item.total_three_point)
+        const total_two_point_arr = data.map(item => item.total_two_point)
+        const total_point_arr = [
+          ...hit_free_throw_arr.map(item => item * 1),
+          ...hit_three_point_arr.map(item => item * 3),
+          ...hit_two_point_arr.map(item => item * 2)
+        ]
+        this.playerData = {
+          sum: {
+            assist: assist_arr.reduce((prev, curr) => { return prev + curr }),
+            block: block_arr.reduce((prev, curr) => { return prev + curr }),
+            hit_free_throw: hit_free_throw_arr.reduce((prev, curr) => { return prev + curr }),
+            hit_three_point: hit_three_point_arr.reduce((prev, curr) => { return prev + curr }),
+            hit_two_point: hit_two_point_arr.reduce((prev, curr) => { return prev + curr }),
+            is_win: is_win_arr.filter(item => item).length,
+            is_loss: is_win_arr.filter(item => !item).length,
+            rebound: rebound_arr.reduce((prev, curr) => { return prev + curr }),
+            steal: steal_arr.reduce((prev, curr) => { return prev + curr }),
+            total_free_throw: total_free_throw_arr.reduce((prev, curr) => { return prev + curr }),
+            total_point: total_point_arr.reduce((prev, curr) => { return prev + curr }),
+            total_three_point: total_three_point_arr.reduce((prev, curr) => { return prev + curr }),
+            total_two_point: total_two_point_arr.reduce((prev, curr) => { return prev + curr }),
+          },
+          per: {
+            free_throw: (
+              hit_free_throw_arr.reduce((prev, curr) => { return prev + curr }) /
+              total_free_throw_arr.reduce((prev, curr) => { return prev + curr }) * 100
+            ).toFixed(1),
+            two_point: (
+              hit_two_point_arr.reduce((prev, curr) => { return prev + curr }) /
+              total_two_point_arr.reduce((prev, curr) => { return prev + curr }) * 100
+            ).toFixed(1),
+            three_point: (
+              hit_three_point_arr.reduce((prev, curr) => { return prev + curr }) /
+              total_three_point_arr.reduce((prev, curr) => { return prev + curr }) * 100
+            ).toFixed(1),
+          },
+          avg: {
+            assist: (
+              assist_arr.reduce((prev, curr) => { return prev + curr }) / assist_arr.length
+            ).toFixed(1),
+            block: (
+              block_arr.reduce((prev, curr) => { return prev + curr }) / block_arr.length
+            ).toFixed(1),
+            hit_free_throw: (
+              hit_free_throw_arr.reduce((prev, curr) => { return prev + curr }) / hit_free_throw_arr.length
+            ).toFixed(1),
+            hit_three_point: (
+              hit_three_point_arr.reduce((prev, curr) => { return prev + curr }) / hit_three_point_arr.length
+            ).toFixed(1),
+            hit_two_point: (
+              hit_two_point_arr.reduce((prev, curr) => { return prev + curr }) / hit_two_point_arr.length
+            ).toFixed(1),
+            // is_win: (
+            //   assist_arr.reduce((prev, curr) => { return prev + curr }) / assist_arr.length
+            // ).toFixed(1),
+            rebound: (
+              rebound_arr.reduce((prev, curr) => { return prev + curr }) / rebound_arr.length
+            ).toFixed(1),
+            steal: (
+              steal_arr.reduce((prev, curr) => { return prev + curr }) / steal_arr.length
+            ).toFixed(1),
+            total_free_throw: (
+              total_free_throw_arr.reduce((prev, curr) => { return prev + curr }) / total_free_throw_arr.length
+            ).toFixed(1),
+            total_point: (
+              total_point_arr.reduce((prev, curr) => { return prev + curr }) / total_point_arr.length
+            ).toFixed(1),
+            total_three_point: (
+              total_three_point_arr.reduce((prev, curr) => { return prev + curr }) / total_three_point_arr.length
+            ).toFixed(1),
+            total_two_point: (
+              total_two_point_arr.reduce((prev, curr) => { return prev + curr }) / total_two_point_arr.length
+            ).toFixed(1),
+          }
+        }
+      }
+    } catch (e) {
+      handleErr("您还没有录入比赛数据")
+    }
+
+  }),
 
   initStarForm: action(function () {
     let backup = JSON.parse(JSON.stringify(starFormBackup));

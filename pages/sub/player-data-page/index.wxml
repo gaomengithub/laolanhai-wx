@@ -2,7 +2,7 @@
 
 <view class="container">
   <view class="play-card">
-    <player-card item="{{ user }}" />
+    <player-card item="{{ user || null }}" />
   </view>
 
   <view class="win-loss">
@@ -10,11 +10,11 @@
     <view class="items">
       <image class="icon" src="{{icon.win}}" mode="aspectFit" />
       <view class="text">
-        {{ 0 }} 胜
+        {{ playerData.sum.is_win || 0}} 胜
       </view>
       <image class="icon" src="{{icon.loss}}" mode="aspectFit" />
       <view class="text">
-        {{ 0 }} 负
+        {{ playerData.sum.is_loss || 0}} 负
       </view>
     </view>
   </view>
@@ -23,25 +23,25 @@
     <top-line name="我的命中率" more="false"></top-line>
     <view class="circles">
       <view class="circle">
-        <van-circle type="2d" value="{{ 30 }}" color="{{ gradientColor }}" layer-color="#ebebeb">
-          <view style="color: #fb8808; font-size: 42rpx;">{{ 0.0 }}%</view>
+        <van-circle type="2d" value="{{ playerData.per.free_throw || 0 }}" color="{{ gradientColor }}" layer-color="#ebebeb">
+          <view style="color: #fb8808; font-size: 42rpx;">{{ playerData.per.free_throw }}%</view>
           <view style="color:#989898; margin-top: 22rpx;">1分</view>
         </van-circle>
-        <view class="rate-text">0/0</view>
+        <view class="rate-text">{{playerData.sum.hit_free_throw }}/{{playerData.sum.total_free_throw }}</view>
       </view>
       <view class="circle">
-        <van-circle type="2d" value="{{ 40 }}" color="{{ gradientColor }}" layer-color="#ebebeb">
-          <view style="color: #fb8808; font-size: 42rpx;">{{ 0.0 }}%</view>
+        <van-circle type="2d" value="{{ playerData.per.two_point || 0 }}" color="{{ gradientColor }}" layer-color="#ebebeb">
+          <view style="color: #fb8808; font-size: 42rpx;">{{ playerData.per.two_point }}%</view>
           <view style="color:#989898; margin-top: 22rpx;">2分</view>
         </van-circle>
-        <view class="rate-text">0/0</view>
+        <view class="rate-text">{{playerData.sum.hit_two_point }}/{{playerData.sum.total_two_point }}</view>
       </view>
       <view class="circle">
-        <van-circle type="2d" value="{{ 50 }}" color="{{ gradientColor }}" layer-color="#ebebeb">
-          <view style="color: #fb8808; font-size: 42rpx;">{{ 0.0 }}%</view>
+        <van-circle type="2d" value="{{ playerData.per.three_point || 0 }}" color="{{ gradientColor }}" layer-color="#ebebeb">
+          <view style="color: #fb8808; font-size: 42rpx;">{{ playerData.per.three_point }}%</view>
           <view style="color:#989898; margin-top: 22rpx;">3分</view>
         </van-circle>
-        <view class="rate-text">0/0</view>
+        <view class="rate-text">{{playerData.sum.hit_three_point }}/{{playerData.sum.total_three_point }}</view>
       </view>
     </view>
 
@@ -54,27 +54,27 @@
         <view class="grid">
           <view class="cell">
             <view style="color: #989898;">得分</view>
-            <view style="font-size: 42rpx;margin-top: 12rpx;">0.0</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">{{ playerData.avg.total_point }}</view>
           </view>
           <view class="cell">
             <view style="color: #989898;">篮板</view>
-            <view style="font-size: 42rpx;margin-top: 12rpx;">0.0</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">{{ playerData.avg.rebound }}</view>
           </view>
           <view class="cell">
             <view style="color: #989898;">助攻</view>
-            <view style="font-size: 42rpx;margin-top: 12rpx;">0.0</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">{{ playerData.avg.assist }}</view>
           </view>
           <view class="cell">
-            <view style="color: #989898;">3分命中数</view>
-            <view style="font-size: 42rpx;margin-top: 12rpx;">0.0</view>
+            <view style="color: #989898;">犯规</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">{{ playerData.avg.steal }}</view>
           </view>
-          <view class="cell">
+          <!-- <view class="cell">
             <view style="color: #989898;">抢断</view>
-            <view style="font-size: 42rpx;margin-top: 12rpx;">0.0</view>
-          </view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">{{ playerData.avg.total_point }}</view>
+          </view> -->
           <view class="cell">
             <view style="color: #989898;">盖帽</view>
-            <view style="font-size: 42rpx;margin-top: 12rpx;">0.0</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">{{ playerData.avg.block }}</view>
           </view>
         </view>
       </van-tab>
@@ -82,27 +82,27 @@
         <view class="grid">
           <view class="cell">
             <view style="color: #989898;">得分</view>
-            <view style="font-size: 42rpx;margin-top: 12rpx;">0</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">{{ playerData.sum.total_point }}</view>
           </view>
           <view class="cell">
             <view style="color: #989898;">篮板</view>
-            <view style="font-size: 42rpx;margin-top: 12rpx;">0</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">{{ playerData.sum.rebound }}</view>
           </view>
           <view class="cell">
             <view style="color: #989898;">助攻</view>
-            <view style="font-size: 42rpx;margin-top: 12rpx;">0</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">{{ playerData.sum.assist }}</view>
           </view>
           <view class="cell">
-            <view style="color: #989898;">3分命中数</view>
-            <view style="font-size: 42rpx;margin-top: 12rpx;">0</view>
+            <view style="color: #989898;">犯规</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">{{ playerData.sum.steal }}</view>
           </view>
-          <view class="cell">
+          <!-- <view class="cell">
             <view style="color: #989898;">抢断</view>
             <view style="font-size: 42rpx;margin-top: 12rpx;">0</view>
-          </view>
+          </view> -->
           <view class="cell">
             <view style="color: #989898;">盖帽</view>
-            <view style="font-size: 42rpx;margin-top: 12rpx;">0</view>
+            <view style="font-size: 42rpx;margin-top: 12rpx;">{{ playerData.sum.block }}</view>
           </view>
         </view>
       </van-tab>

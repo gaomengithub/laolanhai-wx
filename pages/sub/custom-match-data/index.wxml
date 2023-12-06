@@ -5,59 +5,59 @@
     <van-cell-group>
       <van-cell title="是否获胜" title-class="title" center>
         <image class="normal" slot="icon" src="{{ icon.is_win }}"></image>
-        <van-switch checked="{{ form.is_win }}" size="24px" bind:change="onChange" data-key="is_win" />
+        <van-switch checked="{{ customInputForm.is_win || '' }}" size="24px" bind:change="onChange" data-key="is_win" />
       </van-cell>
-      <van-field value="{{ form.total_free_throw }}" center type="number" placeholder="请输罚球出手次数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="total_free_throw" title-width="250rpx">
+      <van-field value="{{ customInputForm.total_free_throw || '' }}" center type="number" placeholder="请输罚球出手次数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="total_free_throw" title-width="250rpx">
         <view class="title" slot="label">罚球出手次数</view>
         <image class="small" src="{{icon.total_free_throw}}" slot="left-icon" mode="aspectFit"></image>
       </van-field>
-      <van-field center value="{{ form.hit_free_throw }}" type="number" placeholder="请输入罚球进球数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="hit_free_throw">
+      <van-field center value="{{ customInputForm.hit_free_throw || '' }}" type="number" placeholder="请输入罚球进球数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="hit_free_throw">
         <view slot="label">罚球进球数</view>
         <image class="small" src="{{icon.hit_free_throw}}" slot="left-icon" mode="aspectFit"></image>
 
       </van-field>
-      <van-field center value="{{ form.total_two_point }}" type="number" placeholder="请输入二分球出手次数" border="{{ false }}" bind:change="onChange" input-align="right" title-width="250rpx" data-key="total_two_point">
+      <van-field center value="{{ customInputForm.total_two_point || '' }}" type="number" placeholder="请输入二分球出手次数" border="{{ false }}" bind:change="onChange" input-align="right" title-width="250rpx" data-key="total_two_point">
         <view slot="label">二分球出手次数</view>
         <image class="big" src="{{icon.total_two_point}}" slot="left-icon" mode="aspectFit"></image>
 
       </van-field>
-      <van-field center value="{{ form.hit_two_point }}" type="number" placeholder="请输入二分球进球数" border="{{ false }}" bind:change="onChange" input-align="right" title-width="250rpx" data-key="hit_two_point">
+      <van-field center value="{{ customInputForm.hit_two_point || '' }}" type="number" placeholder="请输入二分球进球数" border="{{ false }}" bind:change="onChange" input-align="right" title-width="250rpx" data-key="hit_two_point">
         <view slot="label">二分球进球数</view>
         <image class="big" src="{{icon.hit_two_point}}" slot="left-icon" mode="aspectFit"></image>
 
       </van-field>
-      <van-field center value="{{ form.total_three_point }}" type="number" placeholder="请输入三分球总数" border="{{ false }}" bind:change="onChange" input-align="right" title-width="250rpx" data-key="total_three_point">
+      <van-field center value="{{ customInputForm.total_three_point || '' }}" type="number" placeholder="请输入三分球总数" border="{{ false }}" bind:change="onChange" input-align="right" title-width="250rpx" data-key="total_three_point">
         <view slot="label">三分球出手次数</view>
         <image class="big" src="{{icon.total_three_point}}" slot="left-icon" mode="aspectFit"></image>
 
       </van-field>
 
-      <van-field center value="{{ form.hit_three_point }}" type="number" placeholder="请输入三分球进球数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="hit_three_point">
+      <van-field center value="{{ customInputForm.hit_three_point || '' }}" type="number" placeholder="请输入三分球进球数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="hit_three_point">
         <view slot="label">三分球进球数</view>
         <image class="big" src="{{icon.hit_three_point}}" slot="left-icon" mode="aspectFit"></image>
 
       </van-field>
-      <van-field center value="{{ form.total_point }}" type="number" border="{{ false }}" title-width="250rpx" input-align="right" readonly>
+      <van-field center value="{{ customInputForm.total_point || '' }}" type="number" border="{{ false }}" title-width="250rpx" input-align="right" readonly>
         <view slot="label" input-align="right">总得分（自动计算）</view>
         <image class="normal" src="{{icon.total_point}}" slot="left-icon" mode="aspectFit"></image>
 
       </van-field>
-      <van-field center value="{{ form.rebound }}" type="number" placeholder="请输入篮板球数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="rebound">
+      <van-field center value="{{ customInputForm.rebound || '' }}" type="number" placeholder="请输入篮板球数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="rebound">
         <view slot="label">篮板数</view>
         <image class="small" src="{{icon.rebound}}" slot="left-icon" mode="aspectFit"></image>
 
       </van-field>
-      <van-field center value="{{ form.assist }}" type="number" placeholder="请输入助攻数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="assist">
+      <van-field center value="{{ customInputForm.assist || '' }}" type="number" placeholder="请输入助攻数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="assist">
         <view slot="label">助攻数</view>
         <image class="small" src="{{icon.assist}}" slot="left-icon" mode="aspectFit"></image>
 
       </van-field>
-      <van-field center value="{{ form.block }}" type="number" placeholder="请输入盖帽数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="block">
+      <van-field center value="{{ customInputForm.block || '' }}" type="number" placeholder="请输入盖帽数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="block">
         <view slot="label">盖帽数</view>
         <image class="small" src="{{icon.block}}" slot="left-icon" mode="aspectFit"></image>
 
       </van-field>
-      <van-field center value="{{ form.steal }}" type="number" placeholder="请输入犯规总数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="steal">
+      <van-field center value="{{ customInputForm.steal || '' }}" type="number" placeholder="请输入犯规总数" border="{{ false }}" bind:change="onChange" input-align="right" data-key="steal">
         <view slot="label">犯规数</view>
         <image class="small" src="{{icon.steal}}" slot="left-icon" mode="aspectFit"></image>
 
@@ -69,4 +69,4 @@
 </view>
 
 
-<bottom-btn-bar name="录入" bind:handleButtonClick="handleInput"></bottom-btn-bar>
+<bottom-btn-bar name="录入" bind:handleButtonClick="handleActive"></bottom-btn-bar>

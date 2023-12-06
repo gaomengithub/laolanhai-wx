@@ -76,7 +76,14 @@ var arrayLengthCount = function (arr) {
   }
 }
 
+
+var typeList = ["正赛", "战队赛", "野球局"];
+var getTypeName = function (index) {
+  return typeList[index - 1];
+}
+
 module.exports = {
+  getTypeName: getTypeName,
   formatLocation: formatLocation,
   formatDateStartEndTime: formatDateStartEndTime,
   isEnterMatch: isEnterMatch,

@@ -60,13 +60,13 @@
   <!-- <bottom-btn-bar name="{{ tools.isEnterMatch(matchDetails.users,id,matchDetails.status) }}" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn"></bottom-btn-bar> -->
   <bottom-btn-bar name="{{ tools.isEnterMatch(matchDetails.match_type , matchDetails.isMyMatch) }}" btnBgColor="#000000" textColor="#FB8808" bind:handleButtonClick="onJoinBtn">
 
-    <view wx:if="{{ matchDetails.isMyCreate }}">
+    <view>
       <image class="edit" src="{{ icon.edit }}" mode="aspectFill" bind:tap="onDisplay" data-show="show" />
     </view>
 
   </bottom-btn-bar>
 </page-meta>
-<van-action-sheet cancel-text="取消" bind:cancel="onDisplay" show="{{ show }}" actions="{{ actions }}" bind:close="onDisplay" bind:select="onSelect" data-show="show" />
+<van-action-sheet cancel-text="取消" bind:cancel="onDisplay" show="{{ show }}" actions="{{ matchDetails.isMyCreate ? actions.owner : actions.user }}" bind:close="onDisplay" bind:select="onSelect" data-show="show" />
 
 
 

@@ -151,6 +151,99 @@ export const matchFormMessages = {
   },
 }
 
+
+export const customInputFormRules = {
+  assist: {
+    number: true,
+    required: true
+  },
+  block: {
+    number: true,
+    required: true
+  },
+  hit_free_throw: {
+    number: true,
+    required: true
+  },
+  hit_three_point: {
+    number: true,
+    required: true
+  },
+  hit_two_point: {
+    number: true,
+    required: true
+  },
+  rebound: {
+    number: true,
+    required: true
+  },
+  steal: {
+    number: true,
+    required: true
+  },
+  total_free_throw: {
+    number: true,
+    required: true
+  },
+  total_three_point: {
+    number: true,
+    required: true
+  },
+  total_two_point: {
+    number: true,
+    required: true
+  },
+  diff: {
+    min: 0
+  }
+}
+
+export const customInputFormMessages = {
+  assist: {
+    number: "需要输入数字",
+    required: "助攻数需要输入"
+  },
+  block: {
+    number: "需要输入数字",
+    required: "盖帽数需要输入"
+  },
+  hit_free_throw: {
+    number: "需要输入数字",
+    required: "罚球命中数需要输入"
+  },
+  hit_three_point: {
+    number: "需要输入数字",
+    required: "三分命中数需要输入"
+  },
+  hit_two_point: {
+    number: "需要输入数字",
+    required: "二分命中数需要输入"
+  },
+  rebound: {
+    number: "需要输入数字",
+    required: "篮板数需要输入"
+  },
+  steal: {
+    number: "需要输入数字",
+    required: "犯规数需要输入"
+  },
+  total_free_throw: {
+    number: "需要输入数字",
+    required: "罚球出手数需要输入"
+  },
+  total_three_point: {
+    number: "需要输入数字",
+    required: "三分出手数需要输入"
+  },
+  total_two_point: {
+    number: "需要输入数字",
+    required: "二分出手数需要输入"
+  },
+  diff: {
+    min: "请检查命中数是否大于了出手数"
+  }
+}
+
 export const arenaFormRules = {
   files_count: {
     min: 2

@@ -396,5 +396,21 @@ export async function getCustomMatchRecord() {
 }
 
 
+export async function getMatchInputRecord(id) {
+  
+  let obj = {
+    url: '/match/listCompetitionResultsByMatchId',
+    method: 'GET',
+    data: {
+      matchId: id
+    }
+  }
+  return await request_(obj)
+}
+
+
+
+
+
 
 

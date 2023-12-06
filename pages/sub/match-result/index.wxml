@@ -1,31 +1,48 @@
 <nav-bar title="赛况"></nav-bar>
+<wxs src="../../../utils/tools.wxs" module="tools" />
 <view class="container">
 
-  <team-vs-card></team-vs-card>
+  <team-vs-card wx:if="{{ matchResult.match_type != 3  }}"></team-vs-card>
+  <view wx:else>
+    <image class="banner" src="{{img}}" mode="aspectFill" />
+  </view>
 
   <van-tabs type="card" custom-class="tabs" active="{{ active }}">
-    <van-tab title="赛况">
+    <!-- <van-tab title="赛况">
       <van-steps steps="{{ steps }}" direction="vertical" custom-class="steps" active-color="#969799" activeIcon="play" />
+    </van-tab> -->
+    <van-tab title="基础信息" wx:if="{{ matchResult.match_type == 3 }}">
+      <!-- <van-steps steps="{{ steps }}" direction="vertical" custom-class="steps" active-color="#969799" activeIcon="play" /> -->
+      <van-cell-group inset custom-class="cell-group">
+        <van-cell title-class="cell-title" title="比赛开始时间" value="{{ tools.formatStartTime(matchResult.start_time) }}" />
+        <van-cell title-class="cell-title" title="比赛结束时间" value="{{ tools.formatEndTime(matchResult.end_time) }}" />
+        <van-cell title-class="cell-title" title="比赛地点" value="{{ tools.formatShortLocation(matchResult.location) }}" />
+        <van-cell title-class="cell-title" title="最小年龄" value="{{ matchResult.age_group_start || '' }}" />
+        <van-cell title-class="cell-title" title="最大年龄" value="{{ matchResult.age_group_end  || ''}}" />
+        <van-collapse value="{{ activeNames }}" bind:change="onCollapseChange" border="{{ false }}">
+          <van-collapse-item title-class="cell-title" title="比赛介绍" name="1" content-class="content">
+            {{ matchResult.description }}
+          </van-collapse-item>
+        </van-collapse>
+      </van-cell-group>
     </van-tab>
     <van-tab title="数据">
-      <view class="mvp">
+      <!-- <view class="mvp">
         <top-line name="最有价值球员" more="false"></top-line>
         <view class="mvp-container">
-          <view class="number">{{ mvp.jerseyNumber }}</view>
-          <view class="name">{{ mvp.nickName }}</view>
-          <image class="avatar" src="{{ mvp.avatar }}" mode="aspectFill" />
+          <view class="number">{{ matchInputData.mvp.jerseyNumber }}</view>
+          <view class="name">{{ matchInputData.mvp.nickName }}</view>
+          <image class="avatar" src="{{ matchInputData.mvp.avatar }}" mode="aspectFill" />
         </view>
-      </view>
+      </view> -->
       <view class="statistics" bind:tap="tableDataChange">
         <top-line name="技术统计" more="false"></top-line>
-
-        <table-view headers="{{tableHeader}}" data="{{ row }}" stripe="{{ stripe }}" border="{{ border }}" />
-
+        <table-view headers="{{tableHeader}}" data="{{ matchInputData.rows || [] }}" stripe="{{ stripe }}" border="{{ border }}" />
       </view>
     </van-tab>
     <van-tab title="高光时刻">
       <view class="tips">
-      <view>我要上传高光时刻</view> 
+        <view>我要上传高光时刻</view>
         <van-uploader bind:after-read="afterRead">
           <span style="background-color: #FB8808;padding: 12rpx; border-radius: 44rpx; font-size: 28rpx;color: #FFFFFF;">点击上传</span>
         </van-uploader>

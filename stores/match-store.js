@@ -1,19 +1,41 @@
 import { observable, action } from "mobx-miniprogram"
-import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto, getArenaList, getMyJoinMatches, getTeamsList, updateCustomMatchRecord, getCustomMatchRecord } from '$/utils/api'
+import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMatchStatus, updateMatchPhoto, getArenaList, getMyJoinMatches, getTeamsList, updateCustomMatchRecord, getCustomMatchRecord, getMatchInputRecord } from '$/utils/api'
 import { compressUploadImg } from '$/utils/qiniu/qiniu'
-import { matchFormMessages, matchFormRules } from '$/utils/validate/validate-set'
+import { matchFormMessages, matchFormRules, customInputFormRules, customInputFormMessages } from '$/utils/validate/validate-set'
 import WxValidate from '$/utils/validate/WxValidate'
 import { handleErr, handleInfo } from '../modules/msgHandler'
 import { formatDate, formatTime } from '$/utils/util'
 
 export const match = observable({
   validate: new WxValidate(matchFormRules, matchFormMessages),  // 创建比赛表单验证
+  customInputValidate: new WxValidate(customInputFormRules, customInputFormMessages),
   matchForm: null,
   overMatchesList: null,
   matchResult: null, // 赛况中 完成了的比赛
   matchDetails: {},  //比赛详情
   matchesList: [],
   joinedMatches: null,
+  matchInputData: {
+    mvp: {
+
+    },
+    rows: []
+  },
+  customInputForm: {
+    assist: "",
+    block: "",
+    hit_free_throw: "",
+    hit_three_point: "",
+    hit_two_point: "",
+    is_win: false,
+    match_id: "",
+    rebound: "",
+    steal: "",
+    total_free_throw: "",
+    total_three_point: "",
+    total_two_point: "",
+    total_point: 0,
+  },
   // 筛选条件
   options: {
     city: '',
@@ -28,14 +50,60 @@ export const match = observable({
   },
 
 
-  activeCustomMatchRecord: action(async function (form) {
+  updateMatchInputData: action(async function (id) {
     try {
-      await updateCustomMatchRecord(form)
-
+      const data = await getMatchInputRecord(id)
+      this.matchInputData = { rows: data }
     } catch (e) {
-      handleErr("个人数据录入失败")
+
     }
   }),
+
+
+  activeCustomMatchRecord: action(async function () {
+
+    const diff = Math.min(
+      this.customInputForm.total_free_throw - this.customInputForm.hit_free_throw,
+      this.customInputForm.total_two_point - this.customInputForm.hit_two_point,
+      this.customInputForm.total_three_point - this.customInputForm.hit_three_point,
+    )
+    console.log(this.customInputForm.total_two_throw - this.customInputForm.hit_two_throw)
+    this.customInputForm = { ...this.customInputForm, diff }
+    if (!this.customInputValidate.checkForm(this.customInputForm)) {
+      const error = this.customInputValidate.errorList[0]
+      handleErr(error.msg)
+      return
+    }
+    try {
+      await updateCustomMatchRecord(this.customInputForm)
+    } catch (e) {
+      if (e.statusCode == 400) {
+        handleErr(e.data.message)
+      }
+    }
+  }),
+
+  updateCustomInputForm: action(async function (patch) {
+    if (patch) {
+
+      this.customInputForm = { ...this.customInputForm, ...patch }
+      const total_point = (this.customInputForm.hit_free_throw || 0) * 1 + (this.customInputForm.hit_two_point || 0) * 2 + (this.customInputForm.hit_three_point || 0) * 3
+      this.customInputForm = { ...this.customInputForm, total_point }
+    } else {
+      try {
+        const data = await getCustomMatchRecord()
+        const arr = data.filter(item => item.match_id == this.customInputForm.match_id)
+        if (arr.length > 0) {
+          this.customInputForm = arr[0]
+        }
+
+      } catch (e) {
+
+      }
+    }
+  }),
+
+
 
   updateJoinedMatches: action(async function (params) {
     try {

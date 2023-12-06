@@ -1,5 +1,5 @@
 
-
+import routeInterceptor from '$/utils/router'
 Component({
 
   properties: {
@@ -15,6 +15,10 @@ Component({
   },
 
   methods: {
-
+    handleToInput(e) {
+      const id = e.currentTarget.dataset.id
+      const path = `/pages/sub/custom-match-data/index?id=${id}`
+      routeInterceptor.navigateTo(path)
+    }
   }
 })

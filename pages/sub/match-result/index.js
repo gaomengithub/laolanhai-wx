@@ -4,81 +4,44 @@ Page({
   data: {
     tableHeader: [
       {
-        prop: 'datetime',
+        prop: 'id',
         width: 150,
-        label: '球员',
+        label: '号码',
         color: '#55C355'
       },
+      // {
+      //   prop: 'tot',
+      //   width: 152,
+      //   label: '得分'
+      // },
       {
-        prop: 'sign_in',
-        width: 152,
-        label: '得分'
-      },
-      {
-        prop: 'sign_out',
+        prop: 'hit_two_point',
         width: 152,
         label: '2分'
       },
       {
-        prop: 'work_hour',
+        prop: 'hit_three_point',
         width: 110,
         label: '3分'
       },
       {
-        prop: 'status',
+        prop: 'hit_free_throw',
         width: 110,
         label: '罚球'
+      },
+      {
+        prop: 'steal',
+        width: 110,
+        label: '犯规'
       }
     ],
     stripe: true,
     border: true,
     outBorder: true,
-    row: [
-      {
-        "id": 1,
-        "status": '正常',
-        "datetime": "04-01",
-        "sign_in": '09:30:00',
-        "sign_out": '18:30:00',
-        "work_hour": 8,
-      }, {
-        "id": 2,
-        "status": '迟到',
-        "datetime": "04-02",
-        "sign_in": '10:30:00',
-        "sign_out": '18:30:00',
-        "work_hour": 7,
-      }, {
-        "id": 29,
-        "status": '正常',
-        "datetime": "04-03",
-        "sign_in": '09:30:00',
-        "sign_out": '18:30:00',
-        "work_hour": 8,
-      }, {
-        "id": 318,
-        "status": '休息日',
-        "datetime": "04-04",
-        "sign_in": '',
-        "sign_out": '',
-        "work_hour": '',
-      }, {
-        "id": 319,
-        "status": '正常',
-        "datetime": "04-05",
-        "sign_in": '09:30:00',
-        "sign_out": '18:30:00',
-        "work_hour": 8,
-      }
-    ],
+
     msg: '暂无数据',
 
-
-
-
-
-
-
+    img: "https://openstore.obabyball.com/ui_v1/img/banner-new.jpg",
 
     mvp: {
       nickName: "棒棒的我",
@@ -86,7 +49,8 @@ Page({
       jerseyNumber: "9"
     },
     // active: ['1', '2','3'],
-    active: 1,
+    activeNames: ["1"],
+    active: 0,
     steps: [
       {
         text: '时间-球队',
@@ -117,11 +81,12 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: match,
-      fields: ["matchResult",],
-      actions: ["updateMatchResult"]
+      fields: ["matchResult", "matchInputData"],
+      actions: ["updateMatchResult", "updateMatchInputData"]
     });
     if (options.id) {
       this.updateMatchResult(options.id)
+      this.updateMatchInputData(options.id)
     }
   },
 
@@ -142,6 +107,10 @@ Page({
     this.setData({
       'row[0].status': "不正常"
     })
-  }
-
+  },
+  onCollapseChange(e) {
+    this.setData({
+      activeNames: e.detail,
+    });
+  },
 })

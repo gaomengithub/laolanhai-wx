@@ -27,7 +27,7 @@ Page({
     })
     const patch = {
       city: '',
-      status: [2, 3, 4],
+      status: [4],
       match_type: [],
       page_size: 10,
       page_token: '',
