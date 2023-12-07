@@ -54,6 +54,6 @@
 }
 
 .img {
-  width: 650rpx;
-  height: 650rpx;
+  width: 580rpx;
+  height: 580rpx;
 }

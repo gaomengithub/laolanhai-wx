@@ -6,6 +6,8 @@ import WxValidate from '$/utils/validate/WxValidate'
 import { handleErr, handleInfo } from '../modules/msgHandler'
 import { formatDate, formatTime } from '$/utils/util'
 
+let oldMatchesList = []
+
 export const match = observable({
   validate: new WxValidate(matchFormRules, matchFormMessages),  // 创建比赛表单验证
   customInputValidate: new WxValidate(customInputFormRules, customInputFormMessages),
@@ -15,6 +17,7 @@ export const match = observable({
   matchDetails: {},  //比赛详情
   matchesList: [],
   joinedMatches: null,
+
   matchInputData: {
     mvp: {
 
@@ -120,16 +123,20 @@ export const match = observable({
       try {
         const key = await compressUploadImg(params.tempFilePath)
 
-        this.matchResult.myPhotos.push({ url: params.tempFilePath, isImage: true, photo_key: key })
-        this.matchResult = Object.assign({}, this.matchResult, { myPhotos: this.matchResult.myPhotos })
+        this.matchResult.photo_for_user.push({ url: params.tempFilePath, isImage: true, photo_key: key })
+        this.matchResult = Object.assign({}, this.matchResult, { photo_for_user: this.matchResult.photo_for_user })
         const payload = {
           match_id: this.matchResult.id,
-          photo: this.matchResult.myPhotos.map(item => item.photo_key)
+          photo: this.matchResult.photo_for_user.map(item => item.photo_key)
         }
         await updateMatchPhoto(payload)
         handleInfo("上传成功")
       } catch (e) {
-        handleErr("上传照片出错")
+        if (e.statusCode == 400) {
+          handleErr(e.data.message)
+        } else {
+          handleErr("上传照片出错")
+        }
       }
     }
     // 传参id 
@@ -171,11 +178,23 @@ export const match = observable({
         isMySportsHall: true
       })
       const data_ = await getTeamsList()
+      let myArenas = []
+      let myTeams = []
+      if (data.list) {
+        myArenas = data.list
+      }
+      if (data_.items) {
+        myTeams = data_.items.filter(team => team.isMyTeam)
+      }
 
       const patch = {
-        myArenas: data.list,
-        myTeams: data_.items.filter(team => team.isMyTeam)
+        myArenas,
+        myTeams
       }
+      // const patch = {
+      //   myArenas: data.list,
+      //   myTeams: data_.items.filter(team => team.isMyTeam)
+      // }
 
       this.matchForm = { ...this.matchForm, ...patch }
     } catch (e) {
@@ -363,9 +382,15 @@ export const match = observable({
     }
     try {
       const data = await getMatches(this.options)
+      // console.log(data.matches)
+      // console.log(oldMatchesList)
+      // if (data.matches == this.oldMatchesList) {
+      //   return
+      // }
       if (data.matches) {
         this.matchesList = [...this.matchesList, ...data.matches]
         this.options.page_token = data.next_page_token
+        // oldMatchesList = data.matches
       }
     } catch (e) {
       handleErr("获取比赛列表中出现错误。")

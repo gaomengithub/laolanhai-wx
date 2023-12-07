@@ -45,6 +45,11 @@ var isEmptyArr = function (arr) {
   }
 }
 
+var formatDate = function (str) {
+  if (str) {
+    return str.split("T")[0]
+  }
+}
 
 
 var formatStartTime = function (str) {
@@ -83,6 +88,7 @@ var getTypeName = function (index) {
 }
 
 module.exports = {
+  formatDate:formatDate,
   getTypeName: getTypeName,
   formatLocation: formatLocation,
   formatDateStartEndTime: formatDateStartEndTime,
@@ -93,5 +99,5 @@ module.exports = {
   calcJoinedNum: calcJoinedNum,
   isEmptyArr: isEmptyArr,
   formatEndTime: formatEndTime,
-  arrayLengthCount:arrayLengthCount
+  arrayLengthCount: arrayLengthCount
 }

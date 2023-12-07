@@ -62,9 +62,13 @@ Page({
   handler(e) {
     const key = e.currentTarget.dataset.key
     let val = e.detail
-    if (key == 'date') {
+    console.log(val)
+    if (key == 'start_time') {
       const date = new Date(e.detail)
       val = formatDate(date)
+      console.log(val)
+      // const date = new Date(e.detail)
+      // val = formatDate(date)
     }
     else if (key == 'region') {
       const { selectedOptions, value } = e.detail;

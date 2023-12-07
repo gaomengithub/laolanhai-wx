@@ -312,7 +312,7 @@ export const newsFormRules = {
   content: {
     required: true
   },
-  date: {
+  start_time: {
     required: true
   },
   region: {
@@ -331,7 +331,7 @@ export const newsFormMessages = {
   content: {
     required: '描述不能为空'
   },
-  date: {
+  start_time: {
     required: '日期不能为空'
   },
   region: {

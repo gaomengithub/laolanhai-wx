@@ -81,7 +81,7 @@ export const team = observable({
   /**
    * @param { string } id  队伍id
    */
-  joinTeam: action(async function (id,jerseyNumber) {
+  joinTeam: action(async function (id, jerseyNumber) {
     try {
       const data = {
         team_id: id,

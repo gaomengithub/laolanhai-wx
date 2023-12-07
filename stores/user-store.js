@@ -250,7 +250,7 @@ export const user = observable({
         }
       }
     } catch (e) {
-      handleErr("您还没有录入比赛数据")
+      handleErr("您还没有录入比赛数据，不能查看该页面", wx.navigateBack)
     }
 
   }),
@@ -298,11 +298,6 @@ export const user = observable({
         )
       }
     }
-
-
-
-
-
   }),
 
 
@@ -368,7 +363,9 @@ export const user = observable({
   }),
   updateUserMatches: action(async function () {
     const data = await getMyJoinMatches()
-    this.joinedMatches = data.matches
+    if (data.matches) {
+      this.joinedMatches = data.matches
+    }
   }),
 
   // 用于提交后端修改  其实应该是active
@@ -434,8 +431,16 @@ export const user = observable({
         const data = await getUserInfo()
         const data_ = await getTeamsList()
         const data__ = await getMyJoinMatches()
-        const myMatches = data__.matches
-        const myTeams = data_.items.filter(item => item.isMyTeam)
+        let myMatches = []
+        let myTeams = []
+        if (data__.matches) {
+          myMatches = data__.matches
+        }
+        if (data_.items) {
+          myTeams = data_.items.filter(item => item.isMyTeam)
+        }
+        // const myMatches = data__.matches
+        // const myTeams = data_.items.filter(item => item.isMyTeam)
         if (data.birthDate) {
           this.user.date = new Date(data.birthDate).getTime()
         }

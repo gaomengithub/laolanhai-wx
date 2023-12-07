@@ -36,7 +36,7 @@
     </van-field>
 
   </view>
-  {{ isUserFormRequired }}
+  <!-- {{ isUserFormRequired }} -->
   <!-- 提交 -->
   <view wx:if="{{ !isUser }}">
     <van-button open-type="getPhoneNumber" bind:getphonenumber="onUpdateUserInfo" custom-class="btn">创建</van-button>

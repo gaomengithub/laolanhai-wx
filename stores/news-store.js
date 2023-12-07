@@ -1,7 +1,7 @@
 import { observable, action } from "mobx-miniprogram"
 import { newsFormMessages, newsFormRules } from '$/utils/validate/validate-set'
 import WxValidate from '$/utils/validate/WxValidate'
-import { createNews, getNewsList, getNewsDetails, delNews } from '$/utils/api'
+import { createNews, getNewsList, getNewsDetails, delNews, updateNews } from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { handleErr, handleInfo } from '../modules/msgHandler'
 
@@ -17,9 +17,22 @@ export const news = observable({
   }),
   deleteNews: action(async function (id) {
     try {
-      await delNews(id)
-      this.updateNewsList()
-      handleInfo("删除成功", wx.navigateBack)
+      wx.showModal({
+        title: '确定',
+        content: '您确定删除这条资讯？',
+        complete: async (res) => {
+          if (res.cancel) {
+
+          }
+
+          if (res.confirm) {
+            await delNews(id)
+            this.updateNewsList()
+            handleInfo("删除成功", wx.navigateBack)
+          }
+        }
+      })
+
     } catch (e) {
       handleErr("删除失败")
     }
@@ -62,7 +75,8 @@ export const news = observable({
     }
     else if (typeof params === 'string') {
       const data = await getNewsDetails(params)
-      this.newsForm = { ...this.newsForm, ...data }
+      const files = data.attachments.map((item, index) => ({ isImage: true, url: item, key: data.attachmentsKey[index] }))
+      this.newsForm = { ...this.newsForm, ...data, files }
     }
     else {
       this.newsForm = { ...this.newsForm, ...params }
@@ -71,7 +85,8 @@ export const news = observable({
   activeNews: action(async function (params) {
     const patch = {
       attachments: this.newsForm.files.map(item => item.key),
-      files_count: this.newsForm.files.length
+      files_count: this.newsForm.files.length,
+      start_time: this.newsForm.start_time + "T00:00:00Z"
     }
     const form = { ...this.newsForm, ...patch }
     if (!this.validate.checkForm(form)) {
@@ -87,6 +102,15 @@ export const news = observable({
         } catch {
           handleErr("创建资讯失败")
         }
+      } else {
+        // 更新
+        try {
+          await updateNews(form)
+          handleInfo("修改成功", wx.navigateBack)
+        } catch (e) {
+          handleErr("更新资讯失败")
+        }
+
       }
     }
   })
@@ -101,6 +125,7 @@ let newsFormBackup = {
   date: '',
   region: '',
   attachments: [],
+  start_time: "",
   // 自有字段
   files: []
 }

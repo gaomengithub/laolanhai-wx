@@ -195,6 +195,16 @@ export async function getTeamsList() {
 }
 
 
+export async function updateNews(data) {
+  let obj = {
+    url: '/match/updateMatchNews',
+    method: 'POST',
+    data: data
+  }
+  return await request_(obj)
+}
+
+
 export async function getMatchTeamMember(params) {
   let obj = {
     url: '/team/list',

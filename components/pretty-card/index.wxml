@@ -4,13 +4,13 @@
     <image class="bg-img" src="{{ img }}" mode="aspectFit" />
 
     <view class="item">
-      <view class="text">{{ tools.arrayLengthCount(item.approvals) }}</view>
+      <view class="text">{{ tools.arrayLengthCount(item.approvals) || 0 }}</view>
       <view class="title">
         待审批
       </view>
     </view>
     <view class="item">
-      <view class="text">{{ tools.arrayLengthCount(item.myMatches) }}</view>
+      <view class="text">{{ tools.arrayLengthCount(item.myMatches) || 0 }}</view>
       <view class="title">
         近日比赛
       </view>

@@ -1,4 +1,5 @@
 <nav-bar title="创建/修改"></nav-bar>
+<wxs src="../../../utils/tools.wxs" module="tools" />
 <view class="container">
 
   <!-- 名称 -->
@@ -8,8 +9,8 @@
   <van-field class="field-input-class" value="{{ newsForm.content || '' }}" type="textarea" autosize="{{ autoSize }}" bind:change="handler" data-key="content" placeholder="简要描述比赛" />
 
   <!-- 日期 -->
-  <van-cell is-link icon="{{ icon.date }}" title="日期" value="{{ newsForm.date }}" bind:click="onDisplay" data-show="showCalendar" />
-  <van-calendar show="{{ showCalendar }}" bind:close="onDisplay" data-show="showCalendar" bind:confirm="handler" data-key="date" />
+  <van-cell is-link icon="{{ icon.date }}" title="日期" value="{{ tools.formatDate(newsForm.start_time) }}" bind:click="onDisplay" data-show="showCalendar" />
+  <van-calendar show="{{ showCalendar }}" bind:close="onDisplay" data-show="showCalendar" bind:confirm="handler" data-key="start_time" />
 
   <!-- 地区 -->
   <van-cell is-link icon="location" value="{{ newsForm.region }}" readonly title="地区" bind:click="onDisplay" data-show="showAreaCascader" />
@@ -22,7 +23,7 @@
       <image class="upload-bg-img" src="{{ icon.upload }}" mode="aspectFill" />
     </van-uploader>
   </view>
-
+  <logo-bar placeholder="188rpx"></logo-bar>
 </view>
 
-<bottom-btn-bar name="{{ news.id ? '修改' :'创建' }}" bind:handleButtonClick="handleClick"></bottom-btn-bar>
+<bottom-btn-bar name="{{ newsForm.id ? '修改' :'创建' }}" bind:handleButtonClick="handleClick"></bottom-btn-bar>

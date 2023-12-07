@@ -1,7 +1,7 @@
 <view class="head">
   <image class="img" src="{{ img.light }}" mode="aspectFill" />
 </view>
-
+<wxs src="../../utils/tools.wxs" module="tools" />
 <view class="container">
   <image class="react" src="{{img.react}}" mode="aspectFill" />
   <view class="sub-container">
@@ -44,6 +44,9 @@
     </view>
     <joined-match-items items="{{ joinedMatches || [] }}">
       <top-line name="已参加的" more="false"></top-line>
+      <block wx:if="{{ tools.arrayLengthCount(joinedMatches) == 0 }}">
+        <no-data-tip></no-data-tip>
+      </block>
     </joined-match-items>
 
     <!-- <honor-card></honor-card> -->
