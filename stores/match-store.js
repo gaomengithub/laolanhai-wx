@@ -233,9 +233,10 @@ export const match = observable({
       price: { "免费": "0", "约10元": "10", "约20元": "20", "约30元": "30" }[this.matchForm.cost],
       // 组织者
       organizer: wx.getStorageSync('id'),
-      sports_halls: this.matchForm.arena.id,
+      sports_halls: this.matchForm.arena ? this.matchForm.arena.id : '',
       team_id: this.matchForm.team.id
     }
+
 
     const form = { ...this.matchForm, ...patch }
     if (!this.validate.checkForm(form)) {
@@ -284,6 +285,8 @@ export const match = observable({
     }
     try {
       await updateMatchStatus(data)
+      handleInfo("更新比赛状态成功", wx.navigateBack)
+      this.updateMatchesList(true)
     } catch (e) {
       if (e.statusCode == 400) {
         // handleErr("更新失败，需要按步骤更新比赛")

@@ -15,7 +15,7 @@
 
 
 <van-popup show="{{ showPopup }}" round position="bottom" custom-style="height: 38vh" bind:close="onClosePopup" catch:touchmove="preventTouchMove">
-  <add-action>
+  <add-action show="{{showPopup}}" bind:closeAction="onClosePopup">
     <image class="close-icon" src="{{closeIcon}}" bind:tap="onClosePopup" />
   </add-action>
 </van-popup>

@@ -155,7 +155,6 @@
 }
 
 .team {
-  margin-top: 6rpx;
   background-color: #569C89;
   border-radius: 12rpx 0 12rpx 0;
   padding: 5rpx 10rpx;

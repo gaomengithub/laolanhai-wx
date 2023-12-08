@@ -51,7 +51,7 @@ Page({
       fields: ["user"],
       // actions: ["updateMatchesList", "modifyOptions"],
     });
-    // this.updateMatchesList()
+    this.updateMatchesList()
   },
 
   onUnload() {
@@ -60,7 +60,7 @@ Page({
   },
 
   onShow() {
-    this.updateMatchesList()
+    // this.updateMatchesList()
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         selected: 0

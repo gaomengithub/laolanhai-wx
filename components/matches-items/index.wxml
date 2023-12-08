@@ -5,7 +5,8 @@
     <image class="img" src="{{ img }}" mode="aspectFit" />
     <view class="tip">
       <view class="arena" wx:if="{{ item.sports_halls.id }}">球馆</view>
-      <view class="team" wx:if="{{ item.match_type == 2 }}">战队</view>
+
+      <view class="team" style="margin-top: {{ item.sports_halls.id ? '6rpx':0  }}" wx:if="{{ item.match_type == 2 }}">战队</view>
     </view>
     <view class="main">
       <image class="poster" src="{{ item.banner_attachments }}" mode="aspectFill" />
