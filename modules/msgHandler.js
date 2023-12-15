@@ -1,3 +1,5 @@
+var log = require('$/utils/log.js')
+
 export function handleErr(err, callback) {
   wx.showModal({
     title: '错误',
@@ -22,4 +24,19 @@ export function handleInfo(info, callback) {
       }
     }
   })
+}
+
+
+export function handleErrWithLog(err, callback) {
+  wx.showModal({
+    title: '错误',
+    content: err.content,
+    showCancel: false,
+    complete: (res) => {
+      if (res.confirm && typeof callback === 'function') {
+        callback()
+      }
+    }
+  })
+  log.error(e.msg)
 }

@@ -3,23 +3,25 @@ import { user } from "$/stores/user-store"
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
+    show: false,
     icon: {
       upload: 'https://openstore.obabyball.com/ui_v1/icon/add-upload-v1.svg',
-
     },
+    actions: [
+      { name: "中锋" },
+      { name: "控球后卫" },
+      { name: "得分后卫" },
+      { name: "小前锋" },
+      { name: "大前锋" },
 
+    ],
   },
-  onUnload(){
+  onUnload() {
     this.storeBindings.destroyStoreBindings();
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: user,
@@ -45,9 +47,22 @@ Page({
   handler(e) {
     const key = e.currentTarget.dataset.key
     let val = e.detail
+    if (key == 'position') {
+      val = e.detail.name
+    }
     const form = {
       [key]: parseInt(val) ? parseInt(val) : val
     }
     this.updateStarForm(form)
+  },
+  onCellClick() {
+    this.setData({
+      show: true
+    })
+  },
+  onClose() {
+    this.setData({
+      show: false
+    })
   },
 })

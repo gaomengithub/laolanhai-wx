@@ -1,8 +1,7 @@
 import * as echarts from '../../libs/ec-canvas/echarts';
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { user } from "$/stores/user-store";
 
-let old = ''
+
 
 var option = {
   polar: {
@@ -49,21 +48,15 @@ Component({
   behaviors: [storeBindingsBehavior],
   observers: {
     'arr': function () {
-      if (this.chart) {
-        // 直接修改数据会造成数据的样式不对，所以只能初始化
-        this.init()
-      }
+      // 直接修改数据会造成数据的样式不对，所以只能再执行一次init
+      this.init()
     }
   },
   properties: {
     arr: {
       type: Array,
-      value: [5, 4, 22]
+      value: [null, null, null]
     }
-  },
-  storeBindings: {
-    store: user,
-    fields: ["user"]
   },
 
   data: {
@@ -92,9 +85,9 @@ Component({
     },
     // 点击按钮后初始化图表
     init: function () {
-
-      if (this.data.arr == old) return
-      old = this.data.arr
+      if (this.data.arr.includes(null)) {
+        return
+      }
       this.ecComponent.init((canvas, width, height, dpr) => {
         // 获取组件的 canvas、width、height 后的回调函数
         // 在这里初始化图表

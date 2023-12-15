@@ -329,6 +329,17 @@ export async function getNewsList() {
 }
 
 
+
+export async function getAllUsers() {
+  let obj = {
+    url: '/user/listLoginUsers',
+    method: 'GET',
+  }
+  return await request_(obj)
+}
+
+
+
 export async function getNewsDetails(id) {
   let obj = {
     url: '/match/getMatchNews',

@@ -1,6 +1,7 @@
 import Common from '$/utils/common'
 import { loginForToken } from 'modules/tokenManager/getToken'
 import { user } from "$/stores/user-store"
+var log = require('$/utils/log.js')
 App({
   onLaunch() {
     this.globalData.common = new Common()
@@ -8,7 +9,7 @@ App({
     checkStorage().then(() => {
       user.updateUserInfo()
     }).catch(e => {
-
+      log.error(e)
     })
   },
   globalData: {

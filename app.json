@@ -25,7 +25,8 @@
     "pages/sub/input-match-data/index",
     "pages/sub/schedule/index",
     "pages/sub/count-page/index",
-    "pages/sub/custom-match-data/index"
+    "pages/sub/custom-match-data/index",
+    "pages/sub/user-list-page/index"
   ],
   "permission": {
     "scope.userFuzzyLocation": {

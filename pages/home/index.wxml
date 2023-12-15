@@ -20,11 +20,9 @@
     <block wx:if="{{ tools.isEmptyArr(matchesList) }}">
       <matches-items items="{{ matchesList || [] }}"></matches-items>
     </block>
+    <view wx:if="{{ !tools.isEmptyArr(matchesList) }}">
+      <no-data-tip></no-data-tip>
+    </view>
   </view>
-  <view wx:if="{{ !tools.isEmptyArr(matchesList) }}">
-    <no-data-tip></no-data-tip>
-  </view>
-  <view>
-    <logo-bar placeholder="188rpx"></logo-bar>
-  </view>
+  <logo-bar placeholder="188rpx"></logo-bar>
 </view>

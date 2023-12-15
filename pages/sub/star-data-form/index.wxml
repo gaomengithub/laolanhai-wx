@@ -1,18 +1,36 @@
 <nav-bar title="修改"></nav-bar>
 
 <view class="container">
+
   <!-- 图片上传 -->
   <van-uploader bind:delete='deleteImg' file-list="{{ starForm.files || [] }}" bind:after-read="onAfterRead" max-count="1" image-fit="widthFix" accept="image">
     <image class="upload-bg-img" src="{{ icon.upload }}" mode="aspectFill" />
   </van-uploader>
+  <van-cell value="" value-class="cell-value" is-link   link-type="navigateTo"
+  url="/pages/sub/user-list-page/index">
+    <view slot="title" class="label">用户</view>
+  </van-cell>
+  <van-field bind:change="handler" value="{{ starForm.age || ''}}" input-align="right" placeholder="" data-key="age" type="number">
+    <view slot="label" class="label">球龄（年）</view>
+  </van-field>
 
-  <van-field label-class="label" label="球龄" bind:change="handler" value="{{ starForm.age || ''}}" input-align="right" placeholder="" data-key="age"  type="number"/>
-  <van-field label-class="label" label="位置" bind:change="handler" value="{{ starForm.position || ''}}" input-align="right" placeholder="" data-key="position" />
-  <van-field label-class="label" label="身高" bind:change="handler" value="{{ starForm.height || ''}}" input-align="right" placeholder="" data-key="height" type="number" />
-  <van-field label-class="label" label="得分" bind:change="handler" value="{{ starForm.score || ''}}" input-align="right" placeholder="" data-key="score" type="number" />
-  <van-field label-class="label" label="罚球" bind:change="handler" value="{{ starForm.steal || ''}}" input-align="right" placeholder="" data-key="steal" type="number" />
-  <van-field label-class="label" label="三分" bind:change="handler" value="{{ starForm.threePoint || ''}}" input-align="right" placeholder="" data-key="threePoint" type="number" />
-  <van-field label-class="label" label="助攻" bind:change="handler" value="{{ starForm.assist || ''}}" input-align="right" placeholder="" data-key="assist" type="number" />
+  <van-cell value="{{ starForm.position ||'' }}" value-class="cell-value" bind:click="onCellClick">
+    <view slot="title" class="label">位置</view>
+  </van-cell>
+  <van-action-sheet show="{{ show }}" actions="{{ actions }}" cancel-text="取消" bind:close="onClose" bind:select="handler" data-key="position" />
+  <!-- <van-field label-class="label" label="身高" bind:change="handler" value="{{ starForm.height || ''}}" input-align="right" placeholder="" data-key="height" type="number" /> -->
+  <van-field bind:change="handler" value="{{ starForm.score || ''}}" input-align="right" placeholder="" data-key="score" type="number">
+    <view slot="label" class="label">总得分</view>
+  </van-field>
+  <van-field bind:change="handler" value="{{ starForm.steal || ''}}" input-align="right" placeholder="" data-key="steal" type="number">
+    <view slot="label" class="label">总罚球得分</view>
+  </van-field>
+  <van-field bind:change="handler" value="{{ starForm.threePoint || ''}}" input-align="right" placeholder="" data-key="threePoint" type="number">
+    <view slot="label" class="label">总三分得分</view>
+  </van-field>
+  <van-field bind:change="handler" value="{{ starForm.assist || ''}}" input-align="right" placeholder="" data-key="assist" type="number">
+    <view slot="label" class="label">总助攻数</view>
+  </van-field>
 </view>
 
 <logo-bar></logo-bar>

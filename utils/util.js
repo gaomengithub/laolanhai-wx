@@ -47,3 +47,42 @@ export function getDifferenceInMinute(time1, time2) {
 }
 
 
+export function getDiffInMinute(end, start) {
+  const t1 = end.split(":");
+  const t2 = start.split(":");
+  const minute1 = parseInt(t1[0]) * 60 + parseInt(t1[1]);
+  const minute2 = parseInt(t2[0]) * 60 + parseInt(t2[1]);
+  return minute1 - minute2;
+}
+
+
+var pinyinlite = require('../miniprogram_npm/pinyinlite/index');
+
+export function getInitial(nickname) {
+  let initial = '';
+  const firstChar = nickname.charAt(0);
+  if (isChinese(firstChar)) {
+    // 使用pinyin库获取首字母
+    initial = pinyinlite(firstChar)[0][0].toUpperCase();
+  }
+  else if (isNumber(firstChar) || isLetter(firstChar)) {
+    // 如果是数字或字母，直接获取这个字符
+    initial = firstChar.toUpperCase();
+  }
+  return initial;
+}
+
+function isChinese(str) {
+  const reg = /^[\u4E00-\u9FA5]{1,}$/;
+  return reg.test(str);
+}
+
+function isNumber(str) {
+  const reg = /^[0-9]{1,}$/;
+  return reg.test(str);
+}
+
+function isLetter(str) {
+  const reg = /^[A-Za-z]{1,}$/;
+  return reg.test(str);
+}

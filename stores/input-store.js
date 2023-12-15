@@ -1,7 +1,8 @@
 import { observable, action } from "mobx-miniprogram"
-import { getTeamDesc, updatMatchePoints, getMatchDesc, createMatchRound } from "$/utils/api"
-
+import { getTeamDesc, updatMatchePoints, getMatchDesc, createMatchRound, getAllUsers } from "$/utils/api"
+import { getInitial } from "$/utils/util"
 export const input = observable({
+  usersList: [],
   matchDetails: null,
   matchTeamsList: [
 
@@ -13,6 +14,15 @@ export const input = observable({
   blueTeamDetails: {
     name: "选择队伍"
   },
+
+  updateUsersList: action(async function () {
+    try {
+      const data = await getAllUsers()
+      console.log(data)
+    } catch (e) {
+
+    }
+  }),
 
   activeMatchRound: action(async function () {
     let data = {

@@ -1,0 +1,11 @@
+<nav-bar title="选择用户"></nav-bar>
+<view class="container">
+  <van-index-bar index-list="{{ indexList }}">
+    <view wx:for="{{indexList}}" wx:key="index">
+      <van-index-anchor index="{{ item }}" />
+      <block wx:for="{{ fakeData[item] }}" wx:key="index">
+        <van-cell title="{{ item }}" />
+      </block>
+    </view>
+  </van-index-bar>
+</view>

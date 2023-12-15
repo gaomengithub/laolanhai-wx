@@ -3,14 +3,15 @@ import { getMatches, joinMatch, getMatchDesc, createMatch, updateMatch, updateMa
 import { compressUploadImg } from '$/utils/qiniu/qiniu'
 import { matchFormMessages, matchFormRules, customInputFormRules, customInputFormMessages } from '$/utils/validate/validate-set'
 import WxValidate from '$/utils/validate/WxValidate'
-import { handleErr, handleInfo } from '../modules/msgHandler'
-import { formatDate, formatTime } from '$/utils/util'
+import { handleErr, handleInfo, handleErrWithLog } from '../modules/msgHandler'
+import { formatDate, formatTime, getDiffInMinute } from '$/utils/util'
 
-let oldMatchesList = []
+
 
 export const match = observable({
   validate: new WxValidate(matchFormRules, matchFormMessages),  // 创建比赛表单验证
   customInputValidate: new WxValidate(customInputFormRules, customInputFormMessages),
+
   matchForm: null,
   overMatchesList: null,
   matchResult: null, // 赛况中 完成了的比赛
@@ -303,10 +304,13 @@ export const match = observable({
         const key = await compressUploadImg(params.tempFilePath)
         const item = { url: params.tempFilePath, isImage: true }
         this.matchForm.files.push({ key, ...item })
-        // 部分更新
         this.matchForm = Object.assign({}, this.matchForm, { files: this.matchForm.files })
       } catch (e) {
-        handleErr("上传图片失败")
+        const err = {
+          content: "上传图片失败。",
+          msg: e
+        }
+        handleErrWithLog(err, wx.navigateBack)
       }
     }
     // 删除图片
@@ -318,9 +322,7 @@ export const match = observable({
     else if (typeof params === 'string') {
       try {
         await this.initMatchForm()
-
         const data = await getMatchDesc(params)
-
         const date = formatDate(new Date(data.start_time))
         const start_time = formatTime(new Date(data.start_time))
         const end_time = formatTime(new Date(data.end_time))
@@ -362,48 +364,52 @@ export const match = observable({
       const data = await getMatches(options)
       this.overMatchesList = data.matches
     } catch (e) {
-      handleErr("获取赛事错误")
+      const err = {
+        content: "获取赛事错误。",
+        msg: e
+      }
+      handleErrWithLog(err, wx.navigateBack)
     }
   }),
 
-
-
+  /**
+   * @param {object} filter
+   */
   modifyOptions: action(function (filter) {
     this.options = { ...this.options, ...filter }
+    // 每当this.options发生变化，强制刷新
     this.updateMatchesList(true)
   }),
 
-  // 每当this.options发生变化
+
   /**
    * @param {boolean} force 强制刷新
    */
   updateMatchesList: action(async function (force) {
-
     if (force) {
       this.matchesList = []
       this.options.page_token = ""
     }
     try {
       const data = await getMatches(this.options)
-      // console.log(data.matches)
-      // console.log(oldMatchesList)
-      // if (data.matches == this.oldMatchesList) {
-      //   return
-      // }
       if (data.matches) {
         this.matchesList = [...this.matchesList, ...data.matches]
         this.options.page_token = data.next_page_token
-        // oldMatchesList = data.matches
       }
     } catch (e) {
-      handleErr("获取比赛列表中出现错误。")
+      const err = {
+        content: "获取比赛列表中出现错误。",
+        msg: e
+      }
+      handleErrWithLog(err, wx.navigateBack)
     }
   }),
+
   /**
-   * @param {string} id  比赛的id
+   * @param {string} match_id
+   * @param {string} team_id 当时战队赛的时候需要传入战队id
    */
   joinMatch: action(async function (match_id, team_id) {
-
     try {
       let data = {
         match_id: match_id
@@ -418,21 +424,20 @@ export const match = observable({
       handleInfo("报名成功")
     } catch (e) {
       if (e.statusCode == 400) {
-        if (e.data.message == "已报名") handleErr("您已报名，请勿反复报名")
-        if (e.data.message == "队长") handleErr("此比赛为战队赛，需要队长报名")
+        handleInfo(e.data.message)
+        return
       }
+      const err = {
+        content: "加入比赛出现未知错误。",
+        msg: e
+      }
+      handleErrWithLog(err, wx.navigateBack)
     }
   })
 });
 
 
-function getDiffInMinute(end, start) {
-  const t1 = end.split(":");
-  const t2 = start.split(":");
-  const minute1 = parseInt(t1[0]) * 60 + parseInt(t1[1]);
-  const minute2 = parseInt(t2[0]) * 60 + parseInt(t2[1]);
-  return minute1 - minute2;
-}
+
 
 let matchFormBackup = {
   //自有字段

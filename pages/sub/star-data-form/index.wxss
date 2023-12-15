@@ -1,11 +1,16 @@
 .container {
   padding: 22rpx;
 }
-.upload-bg-img{
+
+.upload-bg-img {
   width: 200rpx;
   height: 200rpx;
 }
 
 .label {
-  font-size: 32rpx;
+  font-size: 30rpx;
+}
+
+.cell-value {
+  color: #000000 !important;
 }
