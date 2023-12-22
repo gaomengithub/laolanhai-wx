@@ -1,8 +1,10 @@
 import { observable, action } from "mobx-miniprogram"
 import { getTeamDesc, updatMatchePoints, getMatchDesc, createMatchRound, getAllUsers } from "$/utils/api"
 import { getInitial } from "$/utils/util"
+import { handleErr, handleInfo, handleErrWithLog } from '../modules/msgHandler'
 export const input = observable({
   usersList: [],
+  indexList: [],
   matchDetails: null,
   matchTeamsList: [
 
@@ -18,9 +20,24 @@ export const input = observable({
   updateUsersList: action(async function () {
     try {
       const data = await getAllUsers()
-      console.log(data)
-    } catch (e) {
+      const userWithInitial = data.map(item => ({ ...item, initial: getInitial(item.nickName) }))
+      this.usersList = userWithInitial.reduce((res, value) => {
+        if (res[value.initial]) {
+          res[value.initial].push(value);
+        } else {
+          res[value.initial] = [value];
+        }
+        return res;
+      }, {})
+      this.indexList = Object.keys(this.usersList).sort()
 
+    } catch (e) {
+      const err = {
+        content: "获取用户列表失败",
+        msg: e
+      }
+
+      handleErrWithLog(err, wx.navigateBack)
     }
   }),
 

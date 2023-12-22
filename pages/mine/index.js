@@ -51,6 +51,9 @@ Page({
 
 
   onShow() {
+    if (!this.storeBindings) {
+      this.onLoad()
+    }
     //tabbar
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {

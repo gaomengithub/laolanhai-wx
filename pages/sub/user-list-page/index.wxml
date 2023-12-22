@@ -1,10 +1,10 @@
 <nav-bar title="选择用户"></nav-bar>
 <view class="container">
-  <van-index-bar index-list="{{ indexList }}">
-    <view wx:for="{{indexList}}" wx:key="index">
+  <van-index-bar index-list="{{ indexList || [] }}" sticky-offset-top="{{ offset }}" sticky="{{ false }}">
+    <view wx:for="{{ indexList }}" wx:key="index" class="items">
       <van-index-anchor index="{{ item }}" />
-      <block wx:for="{{ fakeData[item] }}" wx:key="index">
-        <van-cell title="{{ item }}" />
+      <block wx:for="{{ usersList[item] }}" wx:key="index">
+        <van-cell title="{{ item.nickName }}" bind:click="handleClick" data-item="{{ item }}" />
       </block>
     </view>
   </van-index-bar>

@@ -6,8 +6,7 @@
   <van-uploader bind:delete='deleteImg' file-list="{{ starForm.files || [] }}" bind:after-read="onAfterRead" max-count="1" image-fit="widthFix" accept="image">
     <image class="upload-bg-img" src="{{ icon.upload }}" mode="aspectFill" />
   </van-uploader>
-  <van-cell value="" value-class="cell-value" is-link   link-type="navigateTo"
-  url="/pages/sub/user-list-page/index">
+  <van-cell value="{{ starForm.nickName }}" value-class="cell-value" is-link link-type="navigateTo" url="/pages/sub/user-list-page/index">
     <view slot="title" class="label">用户</view>
   </van-cell>
   <van-field bind:change="handler" value="{{ starForm.age || ''}}" input-align="right" placeholder="" data-key="age" type="number">

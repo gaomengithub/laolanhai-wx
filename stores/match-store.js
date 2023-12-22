@@ -25,21 +25,7 @@ export const match = observable({
     },
     rows: []
   },
-  customInputForm: {
-    assist: "",
-    block: "",
-    hit_free_throw: "",
-    hit_three_point: "",
-    hit_two_point: "",
-    is_win: false,
-    match_id: "",
-    rebound: "",
-    steal: "",
-    total_free_throw: "",
-    total_three_point: "",
-    total_two_point: "",
-    total_point: 0,
-  },
+  customInputForm: null,
   // 筛选条件
   options: {
     city: '',
@@ -71,7 +57,6 @@ export const match = observable({
       this.customInputForm.total_two_point - this.customInputForm.hit_two_point,
       this.customInputForm.total_three_point - this.customInputForm.hit_three_point,
     )
-    console.log(this.customInputForm.total_two_throw - this.customInputForm.hit_two_throw)
     this.customInputForm = { ...this.customInputForm, diff }
     if (!this.customInputValidate.checkForm(this.customInputForm)) {
       const error = this.customInputValidate.errorList[0]
@@ -89,7 +74,6 @@ export const match = observable({
 
   updateCustomInputForm: action(async function (patch) {
     if (patch) {
-
       this.customInputForm = { ...this.customInputForm, ...patch }
       const total_point = (this.customInputForm.hit_free_throw || 0) * 1 + (this.customInputForm.hit_two_point || 0) * 2 + (this.customInputForm.hit_three_point || 0) * 3
       this.customInputForm = { ...this.customInputForm, total_point }
@@ -169,6 +153,11 @@ export const match = observable({
         handleErr("删除失败")
       }
     }
+  }),
+
+  initCustomInputForm: action(function () {
+    let backup = JSON.parse(JSON.stringify(customInputFormBackup));
+    this.customInputForm = JSON.parse(JSON.stringify(backup));
   }),
 
   initMatchForm: action(async function (params) {
@@ -475,4 +464,21 @@ let matchFormBackup = {
   organizer: '',
   price: '',
   start_time: '08:00',
+}
+
+
+let customInputFormBackup = {
+  assist: "",
+  block: "",
+  hit_free_throw: "",
+  hit_three_point: "",
+  hit_two_point: "",
+  is_win: false,
+  match_id: "",
+  rebound: "",
+  steal: "",
+  total_free_throw: "",
+  total_three_point: "",
+  total_two_point: "",
+  total_point: 0,
 }

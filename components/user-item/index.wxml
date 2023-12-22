@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="item">
+    <image class="avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+    <view class="info">
+      <view class="name">
+        {{ item.nickName }}
+      </view>
+    </view>
+    <view class="active">
+      <slot></slot>
+    </view>
+  </view>
+</view>

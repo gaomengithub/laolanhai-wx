@@ -1,11 +1,13 @@
 {
   "usingComponents": {
-    "player-card":"/components/player-card/index",
+    "player-card": "/components/player-card/index",
     "nav-bar": "/components/nav-bar/index",
-    "player-data-charts":"/components/player-data-charts",
-    "top-line":"/components/top-line/index",
-    "star-card":"/components/star-card/index",
-    "logo-bar":"/components/logo-bar/index",
-    "van-overlay": "@vant/weapp/overlay/index"
+    "player-data-charts": "/components/player-data-charts",
+    "top-line": "/components/top-line/index",
+    "star-card": "/components/star-card/index",
+    "logo-bar": "/components/logo-bar/index",
+    "van-overlay": "@vant/weapp/overlay/index",
+    "no-data-tip": "/components/no-data-tip/index",
+    "van-icon": "@vant/weapp/icon/index"
   }
 }

@@ -1,7 +1,7 @@
 <nav-bar title="搜索"></nav-bar>
 
 <view class="container">
-  <van-search shape="round" value="{{ value }}" bind:change="onInputChange" use-action-slot placeholder="请输入你需要搜索的球队、球员名称">
+  <van-search shape="round" value="{{ value }}" bind:change="onInputChange" use-action-slot placeholder="请输入你需要搜索的球队、球员名称" bind:search="onClickSearch">
     <view slot="action" bind:tap="onClickSearch" class="btn">搜索</view>
   </van-search>
 
@@ -25,11 +25,18 @@
     </van-tab>
     <van-tab title="用户">
       <view wx:if="{{ userSearchResult }}">
-        <player-items items="{{ userSearchResult || [] }}"></player-items>
+        <block wx:for="{{ userSearchResult }}" wx:key="index">
+          <user-item item="{{ item }}">
+            <van-button custom-class="star-btn" bind:click="onStarBtn" data-id="{{ item.id }}">
+              球星卡
+            </van-button>
+          </user-item>
+        </block>
+        <!-- <player-items items="{{ userSearchResult || [] }}"></player-items> -->
       </view>
       <view wx:else>
         <no-data-tip></no-data-tip>
       </view>
     </van-tab>
   </van-tabs>
-</view> 
+</view>

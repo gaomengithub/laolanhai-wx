@@ -38,5 +38,5 @@ export function handleErrWithLog(err, callback) {
       }
     }
   })
-  log.error(e.msg)
+  log.error(err.msg)
 }

@@ -1,4 +1,16 @@
+#page {
+  background-color: #ebebeb;
+}
+
 .container {
-  width: 702rpx;
-  margin: 24rpx;
+
+  background-color: #ebebeb;
+}
+
+.van-index-anchor {
+  --index-anchor-background-color: #ebebeb
+}
+
+.items {
+  margin: 12rpx 0;
 }

@@ -43,12 +43,13 @@ Page({
     this.storeBindings = createStoreBindings(this, {
       store: match,
       fields: ["customInputForm"],
-      actions: ["activeCustomMatchRecord", "updateCustomInputForm"],
+      actions: ["activeCustomMatchRecord", "updateCustomInputForm","initCustomInputForm"],
     });
     if (options.id) {
       const patch = {
         match_id: options.id
       }
+      this.initCustomInputForm()
       this.updateCustomInputForm(patch)
       this.updateCustomInputForm() 
       // this.setData({

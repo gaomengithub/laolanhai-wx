@@ -40,27 +40,34 @@ Page({
   },
 
   onLoad() {
+ 
     this.storeBindings = createStoreBindings(this, {
       store: match,
       fields: ["matchesList"],
       actions: ["updateMatchesList", "modifyOptions"],
     });
-
+    this.updateMatchesList()
+    
     this.storeBindings_ = createStoreBindings(this, {
       store: user,
       fields: ["user"],
-      // actions: ["updateMatchesList", "modifyOptions"],
     });
-    this.updateMatchesList()
+
+    
   },
 
   onUnload() {
     this.storeBindings.destroyStoreBindings();
     this.storeBindings_.destroyStoreBindings();
+
+
   },
 
   onShow() {
     // this.updateMatchesList()
+    if (!this.storeBindings || !this.storeBindings_) {
+      this.onLoad()
+    }
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         selected: 0

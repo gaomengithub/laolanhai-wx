@@ -56,18 +56,15 @@ export function getDiffInMinute(end, start) {
 }
 
 
-var pinyinlite = require('../miniprogram_npm/pinyinlite/index');
 
+import { pinyin } from '../miniprogram_npm/pinyin-pro/index';
 export function getInitial(nickname) {
   let initial = '';
-  const firstChar = nickname.charAt(0);
-  if (isChinese(firstChar)) {
-    // 使用pinyin库获取首字母
-    initial = pinyinlite(firstChar)[0][0].toUpperCase();
-  }
-  else if (isNumber(firstChar) || isLetter(firstChar)) {
-    // 如果是数字或字母，直接获取这个字符
-    initial = firstChar.toUpperCase();
+
+  try {
+    initial = pinyin(nickname)[0].toUpperCase()
+  } catch (e) {
+    initial = "$"
   }
   return initial;
 }

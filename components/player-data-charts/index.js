@@ -48,8 +48,11 @@ Component({
   behaviors: [storeBindingsBehavior],
   observers: {
     'arr': function () {
-      // 直接修改数据会造成数据的样式不对，所以只能再执行一次init
-      this.init()
+      if (!this.data.arr.includes(null)) {
+        // 直接修改数据会造成数据的样式不对，所以只能再执行一次init
+        this.init()
+      }
+
     }
   },
   properties: {
@@ -69,8 +72,8 @@ Component({
   },
   lifetimes: {
     ready() {
-      this.ecComponent = this.selectComponent('#ec-charts');
-      this.init()
+      // this.ecComponent = this.selectComponent('#ec-charts');
+      // this.init()
     }
   },
   methods: {
@@ -85,9 +88,8 @@ Component({
     },
     // 点击按钮后初始化图表
     init: function () {
-      if (this.data.arr.includes(null)) {
-        return
-      }
+      this.ecComponent = this.selectComponent('#ec-charts');
+
       this.ecComponent.init((canvas, width, height, dpr) => {
         // 获取组件的 canvas、width、height 后的回调函数
         // 在这里初始化图表

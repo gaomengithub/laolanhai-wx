@@ -10,3 +10,12 @@ page{
   padding-right: 24rpx;
 }
 
+.star-btn {
+  border: none !important;
+  border-radius: 44rpx !important;
+  height: 70rpx !important;
+  color: #FFFFFF !important;
+  background-color: #FB8808 !important;
+  /* font-weight: bolder; */
+}
+

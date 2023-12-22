@@ -1,7 +1,7 @@
 import { observable, action } from "mobx-miniprogram"
 import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData, getTeamsList, getMyJoinTeamsList, getCustomMatchRecord } from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
-import { handleErr, handleInfo } from '../modules/msgHandler'
+import { handleErr, handleInfo, handleErrWithLog } from '../modules/msgHandler'
 import { userFormRules, userFormMessages, userFormRules_, userFormMessages_ } from '$/utils/validate/validate-set'
 import WxValidate from '$/utils/validate/WxValidate'
 export const user = observable({
@@ -79,51 +79,57 @@ export const user = observable({
     date: ''  //vant 组件要求传入时间戳 birthDate为字符串
   },
 
-  get isUserFormRequired() {
-    if (this.isUser) {
-      console.log(this.user.nickName)
-      return this.user.nickName
-      if (!this.user.avatarKey && !this.user.nickName) {
-        console.log(this.user.nickName)
-        return this.user.nickName
-      } else {
-        return true
-      }
-    }
-  },
 
   get id() {
-    let id = wx.getStorageSync('id')
-    if (id) {
-      return id
+    let id = ""
+    try {
+      id = this.user.id
+    } catch (e) {
+      id = wx.getStorageSync('id')
     }
-    else {
-      handleErr("获取id错误")
-    }
+    return id
   },
 
   // 预留  用来判断是否能组织正赛
   get isOrg() {
-    const quals = this.user.quals.map(item => item.qual)
-    return quals.includes(1)
+    try {
+      const quals = this.user.quals.map(item => item.qual)
+      return quals.includes(1)
+    } catch (e) {
+      const quals = wx.getStorageSync('quals')
+      return quals.includes(1)
+    }
   },
 
+  get isEditor() {
 
+    if (this.starDetails.userId == this.id) {
+
+      return true
+    }
+    try {
+      const quals = this.user.quals.map(item => item.qual)
+      return quals.includes(8)
+    } catch (e) {
+      const quals = wx.getStorageSync('quals')
+      return quals.includes(8)
+    }
+  },
 
   get isUser() {
     try {
-      // 可能是因为微信小程序内存回收机制的问题，user 可能是被清理
-      // const quals = wx.getStorageSync('quals').map(item => item.qual)
       const quals = this.user.quals.map(item => item.qual)
       return !quals.includes(2)
+      // 如果user中没有取到 则去本地存储中取
     } catch (e) {
       const quals = wx.getStorageSync('quals')
       if (quals) {
         const arr = quals.map(item => item.qual)
         return !arr.includes(2)
       } else {
-        throw new Error("权限读取错误")
+        return false
       }
+      // 添加上报
     }
   },
 
@@ -137,8 +143,10 @@ export const user = observable({
         const arr = quals.map(item => item.qual)
         return arr.includes(4)
       } else {
-        throw new Error("权限读取错误")
+        return false
+        // throw new Error("权限读取错误")
       }
+      // 添加上报
     }
   },
 
@@ -151,8 +159,7 @@ export const user = observable({
         isTeamLeader: arr.includes(4)
       }
       return tags
-    }
-    else {
+    } else {
       return {
         isTeamLeader: false
       }
@@ -301,15 +308,15 @@ export const user = observable({
   }),
 
 
-  activeStar: action(async function () {
+  activeStar: action(async function (id) {
     try {
       const patch = {
         image: this.starForm.files[0].key,
-        userId: this.id
+        userId: id
       }
       const data = { ...this.starForm, ...patch }
       await updateStarData(data)
-      await this.updateStarDetails(this.id)
+      await this.updateStarDetails(id)
       handleInfo("录入成功", wx.navigateBack)
     } catch {
       handleErr("输入的数据可能存在异常")
@@ -337,18 +344,22 @@ export const user = observable({
       this.starForm.files.splice(params, 1)
       this.starForm = Object.assign({}, this.starForm, { files: this.starForm.files })
     }
-    // 修改比赛，需要先获得比赛信息，修改form
+    // 修改
     else if (typeof params === 'string') {
+      this.initStarForm()
       try {
         const data = await getStarData(params)
-        const patch = {
-          files: [{ url: data.image, isImage: true, key: data.imageKey }]
+        let patch = {}
+        if (data.image) {
+          patch = {
+            files: [{ url: data.image, isImage: true, key: data.imageKey }]
+          }
         }
         this.starForm = { ...this.starForm, ...data, ...patch }
       } catch (e) {
         // 如果是新建 那么上面的内容必要报错
         // handleErr("获取数据失败")
-        this.initStarForm()
+        // this.initStarForm()
       }
     }
     // 更新其他字段

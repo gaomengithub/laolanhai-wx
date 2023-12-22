@@ -1,6 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { search } from "$/stores/search-store";
-
+import routeInterceptor from '$/utils/router'
 Page({
 
   data: {
@@ -22,8 +22,11 @@ Page({
       value: e.detail,
     });
   },
-  async onClickSearch() {
+  onClickSearch() {
     this.search(this.data.value)
   },
-
+  onStarBtn(e) {
+    const path = '/pages/sub/star-page/index?userID=' + e.currentTarget.dataset.id
+    routeInterceptor.navigateTo(path)
+  }
 })

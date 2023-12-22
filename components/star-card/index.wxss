@@ -56,14 +56,3 @@
   text-overflow: ellipsis;
 }
 
-.edit-bg {
-  position: absolute;
-  background-color: #FB8808;
-  left: 0;
-  height: 100rpx;
-  width: 100rpx;
-  border-radius: 44rpx 0;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-}

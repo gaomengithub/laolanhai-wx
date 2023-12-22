@@ -8,22 +8,40 @@
 
   <view class="about-card">
     <top-line name="自我介绍" more="false"></top-line>
-    <view class="about">
-      {{starDetails.about }}
-    </view>
+    <block wx:if="{{starDetails.about}}">
+      <view class="about">
+        {{starDetails.about}}
+      </view>
+    </block>
+    <block wx:else>
+      <no-data-tip />
+    </block>
   </view>
 
+  <view class="star-card">
+    <star-card item="{{starDetails || null}}">
+      <block wx:if="{{ isEditor }}">
+        <view class="edit-bg">
+          <van-icon name="records" bind:tap="onEditClick" data-id="{{ id }}" size="25px" />
+        </view>
+      </block>
+    </star-card>
+  </view>
 
   <view class="data-card">
     <top-line name="技术统计" more="false">
     </top-line>
-    <view class="data-charts">
-      <player-data-charts arr="{{ [starDetails.steal || null,starDetails.threePoint|| null,starDetails.score|| null] }}" />
-    </view>
+    <block wx:if="{{ starDetails.steal }}">
+      <view class="data-charts">
+        <player-data-charts arr="{{ [starDetails.steal || null,starDetails.threePoint|| null,starDetails.score|| null] }}" />
+      </view>
+    </block>
+    <block wx:else>
+      <no-data-tip />
+    </block>
+
   </view>
 
-  <view class="star-card">
-    <star-card></star-card>
-  </view>
+
   <logo-bar></logo-bar>
 </view>

@@ -1,35 +1,46 @@
 <view class="container">
-  <view class="edit-bg">
-    <van-icon class="eidt" name="records" bind:tap="onEditClick" data-id="{{ id }}" size="25px" />
+  <view>
+    <slot></slot>
   </view>
-  <image class="person" src="{{ starDetails.image }}" mode="aspectFill" bind:tap="translate" />
-  <view class="main" style="left:{{ leftOffset  }} ; bottom: {{ bottomOffset }}" bind:tap="translateByClick">
-    <view class="name">{{ starDetails.userName }}</view>
-    <view class="data">
-      <view class="item">
-        <view class="title">球龄：</view>
-        <view class="content">{{ starDetails.age }}</view>
-      </view>
-      <view class="item">
-        <view class="title">身高：</view>
-        <view class="content">{{ starDetails.height }}cm</view>
-      </view>
-      <view class="item">
-        <view class="title">位置：</view>
-        <view class="content">{{ starDetails.position }}</view>
-      </view>
-      <view class="item">
-        <view class="title">得分：</view>
-        <view class="content">{{ starDetails.score }}</view>
-      </view>
-      <view class="item">
-        <view class="title">罚球：</view>
-        <view class="content">{{ starDetails.steal }}</view>
-      </view>
-      <view class="item">
-        <view class="title">三分：</view>
-        <view class="content">{{ starDetails.threePoint }}</view>
+
+  <block wx:if="{{item.image}}">
+    <image class="person" src="{{ item.image }}" mode="aspectFill" bind:tap="translate" />
+    <view class="main" style="left:{{ leftOffset  }} ; bottom: {{ bottomOffset }}" bind:tap="translateByClick">
+      <view class="name">{{ item.userName }}</view>
+      <view class="data">
+        <view class="item">
+          <view class="title">球龄：</view>
+          <view class="content">{{ item.age }}</view>
+        </view>
+        <view class="item">
+          <view class="title">身高：</view>
+          <view class="content">{{ item.height }}cm</view>
+        </view>
+        <view class="item">
+          <view class="title">位置：</view>
+          <view class="content">{{ item.position }}</view>
+        </view>
+        <view class="item">
+          <view class="title">得分：</view>
+          <view class="content">{{ item.score }}</view>
+        </view>
+        <view class="item">
+          <view class="title">罚球：</view>
+          <view class="content">{{ item.steal }}</view>
+        </view>
+        <view class="item">
+          <view class="title">三分：</view>
+          <view class="content">{{ item.threePoint }}</view>
+        </view>
       </view>
     </view>
-  </view>
+  </block>
+  <block wx:else>
+    <view class="person">
+      <no-data-tip />
+    </view>
+  </block>
+
+
+
 </view>

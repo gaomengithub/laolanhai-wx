@@ -8,6 +8,7 @@ Page({
     icon: {
       upload: 'https://openstore.obabyball.com/ui_v1/icon/add-upload-v1.svg',
     },
+    id: "",
     actions: [
       { name: "中锋" },
       { name: "控球后卫" },
@@ -30,10 +31,13 @@ Page({
     });
     if (options.id) {
       this.updateStarForm(options.id)
+      this.setData({
+        id: options.id
+      })
     }
   },
   handleClick() {
-    this.activeStar()
+    this.activeStar(this.data.id)
   },
   onAfterRead(e) {
     const { file } = e.detail;

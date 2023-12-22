@@ -12,6 +12,11 @@ App({
       log.error(e)
     })
   },
+  onShow(){
+    if (!this.globalData.common) {
+      this.onLaunch()
+    }
+  },
   globalData: {
     common: null,
   }

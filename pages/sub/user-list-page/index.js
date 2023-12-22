@@ -1,6 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { input } from "$/stores/input-store"
-
+import { user } from "$/stores/user-store"
 const app = getApp()
 
 Page({
@@ -10,21 +10,6 @@ Page({
    */
   data: {
     offset: app.globalData.common.navBarHeight,
-    indexList: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-    fakeData: {
-      A: [
-        "阿拉斯加"
-      ],
-      B: [
-        "不不不"
-      ],
-      C: [
-        "CCCC"
-      ],
-      D: [
-        "DDDD"
-      ]
-    }
   },
 
   /**
@@ -33,8 +18,13 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: input,
-      fields: ["usersList"],
+      fields: ["usersList", "indexList"],
       actions: ["updateUsersList"],
+    })
+    this.storeBindings_ = createStoreBindings(this, {
+      store: user,
+      // fields: ["usersList", "indexList"],
+      actions: ["updateStarForm"],
     })
     this.updateUsersList()
   },
@@ -65,6 +55,7 @@ Page({
    */
   onUnload() {
     this.storeBindings.destroyStoreBindings();
+    this.storeBindings_.destroyStoreBindings();
   },
 
   /**
@@ -80,10 +71,15 @@ Page({
   onReachBottom() {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
+  handleClick(e) {
+    const item = e.currentTarget.dataset.item
+    const patch = {
+      userId: item.id,
+      nickName: item.nickName
+    }
+    this.updateStarForm(patch)
+    wx.navigateBack()
+  },
   onShareAppMessage() {
 
   }
