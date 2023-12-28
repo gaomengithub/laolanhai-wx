@@ -44,3 +44,25 @@ page {
 .tab {
   font-size: 32rpx !important;
 }
+
+.user-avatar {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.user-item {
+  margin: 22rpx;
+}
+
+.user-container {
+  display: flex;
+
+}
+
+.user-view {
+  padding: 24rpx; 
+  background-color: #FFFFFF;
+  margin: 24rpx;
+  border-radius: 44rpx;
+  max-width: 654rpx;
+}

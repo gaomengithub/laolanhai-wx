@@ -1,6 +1,28 @@
 <nav-bar title="球界"></nav-bar>
 <view class="container">
   <van-tabs active="{{ active }}" sticky offset-top="{{ offset }}" tab-class="tab" custom-class="tabs" color="#FB8808">
+    <van-tab title="球员">
+
+      <view class="player-list">
+        <top-line name="所有球员" more="{{ false }}"></top-line>
+        <scroll-view class="user-view" scroll-x enable-flex style="flex-direction: row;">
+          <view class="user-container" >
+            <view class="user-item" wx:for="{{ usersList }}" wx:key="id">
+              <image class="user-avatar" src="{{ item.avatar }}" mode="aspectFit" />
+              <view class="user-name">{{item.nickName}}</view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+
+
+      <view class="star-list">
+        <top-line name="所有球星" more="false"></top-line>
+      </view>
+
+      <logo-bar placeholder="188rpx"></logo-bar>
+    </van-tab>
+
     <van-tab title="球队">
       <top-line name="我的球队" more="{{ false }}"></top-line>
       <view wx:if="{{ myTeams }}">
@@ -22,7 +44,8 @@
       </view>
 
       <view class="list">
-        <top-line name="球队列表" more="<创建球队>" bind:handleButtomClick="ToTeamCreate"></top-line>
+        <top-line name="球队列表" more="false"></top-line>
+        <view class="tip" bind:tap="ToTeamCreate">快来创建自己的球队吧！</view>
         <view wx:if="{{notMyTeams}}">
           <enlist-items items="{{ notMyTeams }}"></enlist-items>
         </view>

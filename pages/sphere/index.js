@@ -3,6 +3,7 @@ import routeInterceptor from '$/utils/router'
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { team } from "$/stores/team-store";
 import { arena } from "$/stores/arena-store";
+import { user } from "$/stores/user-store";
 Page({
   data: {
     offset: getApp().globalData.common.navBarHeight,
@@ -25,10 +26,18 @@ Page({
 
     this.updateArenasList()
 
+
+    this.storeBindings__ = createStoreBindings(this, {
+      store: user,
+      fields: ["usersList"],
+      actions: ["updateUsersList"],
+    });
+    this.updateUsersList()
   },
   onUnload() {
     this.storeBindings.destroyStoreBindings();
     this.storeBindings_.destroyStoreBindings()
+    this.storeBindings__.destroyStoreBindings()
   },
 
   ToTeamCreate() {

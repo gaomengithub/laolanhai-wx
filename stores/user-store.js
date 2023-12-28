@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getUserBaseInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData, getTeamsList, getMyJoinTeamsList, getCustomMatchRecord } from '$/utils/api'
+import { getUserBaseInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData, getTeamsList, getMyJoinTeamsList, getCustomMatchRecord ,getAllUsers} from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { handleErr, handleInfo, handleErrWithLog } from '../modules/msgHandler'
 import { userFormRules, userFormMessages, userFormRules_, userFormMessages_ } from '$/utils/validate/validate-set'
@@ -9,6 +9,7 @@ export const user = observable({
   validate_: new WxValidate(userFormRules_, userFormMessages_),
   showStarPage: true,
   starDetails: {},
+  usersList:[],
   playerData: {
     sum: {
       assist: "",
@@ -156,6 +157,20 @@ export const user = observable({
       }
     }
   },
+
+
+  updateUsersList: action(async function () {
+    try {
+      const data = await getAllUsers()
+      this.usersList = data
+    } catch (e) {
+      const err = {
+        content: "获取用户列表失败",
+        msg: e
+      }
+      handleErrWithLog(err, wx.navigateBack)
+    }
+  }),
 
   updatePlayerData: action(async function (params) {
     try {
