@@ -6,13 +6,13 @@
   <image class="react" src="{{img.react}}" mode="aspectFill" />
   <view class="sub-container">
     <view class="user">
-      <image class="avatar" src="{{ user.avatar }}" mode="scaleToFill" />
+      <image class="avatar" src="{{ userInfo.avatar }}" mode="scaleToFill" />
       <view class="item">
         <view class="name">
-          {{user.nickName}}
+          {{userInfo.nickName}}
         </view>
         <view class="about">
-          {{ user.about ? user.about : '您还没有填写自我介绍' }}
+          {{ userInfo.about ? userInfo.about : '您还没有填写自我介绍' }}
         </view>
       </view>
       <navigator url="/pages/sub/user-form/index?id={{id}}&page=modify" open-type="navigate">

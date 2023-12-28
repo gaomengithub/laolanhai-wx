@@ -41,11 +41,9 @@ Page({
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store: user,
-      fields: ["user", "joinedMatches", "id"],
+      fields: ["userInfo", "joinedMatches", "id"],
       actions: ["updateUserInfo", "updateUserMatches","updateJoinedMatches"],
     })
-    // 在第一次加载的已经更新了用户信息
-    // this.updateUserInfo()
     this.updateUserMatches()
   },
 

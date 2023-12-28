@@ -10,7 +10,9 @@ export async function updatMatchePoints(data) {
   return await request_(obj)
 }
 
-
+/**
+ * @param {string} id 咨询id
+ */
 export async function delNews(id) {
   let obj = {
     url: '/match/deleteMatchNews',
@@ -22,6 +24,9 @@ export async function delNews(id) {
   return await request_(obj)
 }
 
+/**
+ * @param {string} id 场馆id 
+ */
 export async function delArena(id) {
   let obj = {
     url: '/arena/deleteSportsHall',
@@ -33,7 +38,9 @@ export async function delArena(id) {
   return await request_(obj)
 }
 
-
+/**
+ * @param {string} id 场馆id 
+ */
 export async function getArenaDetails(id) {
   let obj = {
     url: '/arena/getSportsHall',
@@ -170,7 +177,7 @@ export async function searchAngthing(data) {
   return await request_(obj)
 }
 
-export async function getUserInfo(id) {
+export async function getUserBaseInfo(id) {
   let obj = {
     url: '/user/get',
     method: 'POST',

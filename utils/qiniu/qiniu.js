@@ -35,9 +35,9 @@ export function compressUploadImg(params) {
   return new Promise(async (resolve, reject) => {
     wx.compressImage({
       src: params,
-      quality: 10,
+      quality: 20,
       success: function (res) {
-        uploadImgWithToken(res.tempFilePath).then(res => {resolve(res.key) })
+        uploadImgWithToken(res.tempFilePath).then(res => { resolve(res.key) })
       },
       fail: (e) => {
         handleErr("压缩图片失败")

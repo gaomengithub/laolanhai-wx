@@ -39,7 +39,6 @@ export const match = observable({
     currentDate: null
   },
 
-
   updateMatchInputData: action(async function (id) {
     try {
       const data = await getMatchInputRecord(id)
@@ -160,32 +159,15 @@ export const match = observable({
     this.customInputForm = JSON.parse(JSON.stringify(backup));
   }),
 
-  initMatchForm: action(async function (params) {
+  initMatchForm: action(async function () {
     let backup = JSON.parse(JSON.stringify(matchFormBackup));
     this.matchForm = JSON.parse(JSON.stringify(backup));
     try {
-      const data = await getArenaList({
-        isMySportsHall: true
-      })
-      const data_ = await getTeamsList()
-      let myArenas = []
-      let myTeams = []
-      if (data.list) {
-        myArenas = data.list
-      }
-      if (data_.items) {
-        myTeams = data_.items.filter(team => team.isMyTeam)
-      }
-
-      const patch = {
-        myArenas,
-        myTeams
-      }
-      // const patch = {
-      //   myArenas: data.list,
-      //   myTeams: data_.items.filter(team => team.isMyTeam)
-      // }
-
+      const arenas = await getArenaList({ isMySportsHall: true })
+      const teams = await getTeamsList()
+      let myArenas = arenas?.list?.length ? arenas.list : []
+      let myTeams = teams?.items?.length ? teams.items.filter(team => team.isMyTeam) : []
+      const patch = { myArenas, myTeams }
       this.matchForm = { ...this.matchForm, ...patch }
     } catch (e) {
       handleErr("获取相关信息失败")

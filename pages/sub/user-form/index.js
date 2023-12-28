@@ -34,7 +34,7 @@ Page({
   },
 
   onUpdateUserInfo() {
-    this.modifyUserInfo()
+    this.activeUser()
   },
 
   onDisplay(e) {
@@ -49,7 +49,7 @@ Page({
     const form = {
       avatarUrl: e.detail.avatarUrl
     }
-    this.updateUserInfo(form)
+    this.updateUserForm(form)
   },
 
 
@@ -61,8 +61,7 @@ Page({
       val = formatDate(date)
     }
     if (key == 'height' || key == 'weight') {
-      console.log(e.detail)
-      val = e.detail.value[0].replace("cm")
+      val = e.detail.value[0].replace("cm", "")
     }
     if (e.type == 'confirm') {
       this.onDisplay(e)
@@ -70,22 +69,16 @@ Page({
     const form = {
       [key]: val
     }
-    this.updateUserInfo(form)
+    this.updateUserForm(form)
   },
 
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: user,
-      fields: ["user", "isUser", "isUserFormRequired"],
-      actions: ["updateUserInfo", "modifyUserInfo"],
+      fields: ["userForm", "isUser"],
+      actions: ["updateUserForm", "activeUser"],
     });
-    this.updateUserInfo()
-    if (options.page == 'create') {
-
-    }
-    else if (options.page == "modify" && options.id) {
-
-    }
+    this.updateUserForm()
   },
 
   onUnload() {

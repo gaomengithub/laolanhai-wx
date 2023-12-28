@@ -242,3 +242,9 @@
 .radio-group {
   margin: 48rpx 12rpx;
 }
+
+.code {
+  width: 654rpx;
+  height: 654rpx;
+  padding: 24rpx;
+}

@@ -16,7 +16,7 @@ Component({
   properties: {
     title: {
       type: String,
-      value: "老蓝孩俱乐部"
+      value: "老篮孩俱乐部"
     },
   },
   data: {

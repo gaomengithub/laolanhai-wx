@@ -14,5 +14,6 @@
     "van-action-sheet": "@vant/weapp/action-sheet/index",
     "logo-bar":"/components/logo-bar/index",
     "bottom-btn-bar":"/components/bottom-btn-bar/index"
+
   }
 }

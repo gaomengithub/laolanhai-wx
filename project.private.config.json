@@ -5,6 +5,18 @@
     "compileHotReLoad": true,
     "urlCheck": true
   },
-  "condition": {},
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "",
+          "pathName": "pages/sub/match-join-page/index",
+          "query": "scene=2VFGFgfnwzQIqYXodR5lr6NRbqM",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  },
   "libVersion": "2.25.4"
 }

@@ -5,8 +5,8 @@
 }
 
 .upload-bg-img {
-  width: 170rpx;
-  height: 174rpx;
+  width: 200rpx;
+  height: 200rpx;
 }
 
 .van-cell {
@@ -18,6 +18,14 @@
 
 .toolbar {
   --picker-action-font-size: 32rpx !important;
+}
+
+.tip{
+  display: flex;
+  align-items: center;
+  padding: 4rpx 12rpx;
+  color: #989898;
+  font-size: 30rpx;
 }
 
 

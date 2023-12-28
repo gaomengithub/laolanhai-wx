@@ -18,13 +18,11 @@ Page({
   },
 
   showNarBar(e) {
-    if (e.detail.isFixed === isFixed) {
-      return
-    } else {
+    if (e.detail.isFixed !== isFixed) {
       this.setData({
         showNarBar: e.detail.isFixed
-      })
-      isFixed = e.detail.isFixed
+      });
+      isFixed = e.detail.isFixed;
     }
   },
 
@@ -40,31 +38,29 @@ Page({
   },
 
   onLoad() {
- 
     this.storeBindings = createStoreBindings(this, {
       store: match,
       fields: ["matchesList"],
       actions: ["updateMatchesList", "modifyOptions"],
     });
-    this.updateMatchesList()
-    
     this.storeBindings_ = createStoreBindings(this, {
       store: user,
-      fields: ["user"],
+      fields: ["userInfo"],
     });
 
-    
+    this.loadDataAsync()
+  },
+
+  async loadDataAsync() {
+    await this.updateMatchesList()
   },
 
   onUnload() {
     this.storeBindings.destroyStoreBindings();
     this.storeBindings_.destroyStoreBindings();
-
-
   },
 
   onShow() {
-    // this.updateMatchesList()
     if (!this.storeBindings || !this.storeBindings_) {
       this.onLoad()
     }
@@ -83,7 +79,7 @@ Page({
 
   onShareAppMessage() {
     return {
-      title: '老蓝孩',
+      title: '老篮孩',
       path: '/pages/home/index'
     }
   }

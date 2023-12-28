@@ -93,7 +93,7 @@ export const matchFormRules = {
   },
   age_group_start: {
     number: true,
-    min: 45,
+    min: 18,
     required: true
   },
   age_group_end: {
@@ -136,7 +136,7 @@ export const matchFormMessages = {
   },
   age_group_start: {
     number: '最小年龄的输入必须是数字',
-    min: '最小年龄不能低于45岁',
+    min: '最小年龄不能低于18岁',
     required: '最小年龄不能为空'
   },
   age_group_end: {

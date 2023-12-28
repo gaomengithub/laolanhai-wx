@@ -1,0 +1,13 @@
+<nav-bar title="参加比赛"></nav-bar>
+<view class="container">
+  <view class="card">
+    <view class="title">
+    {{ matchDetails.name }}
+    </view>
+    <image class="img" src="{{ matchDetails.banner_attachments }}" mode="aspectFill"/>
+  </view>
+  <van-button custom-class="btn" bind:click="handleClick">
+    立即加入
+  </van-button>
+
+</view>

@@ -2,7 +2,7 @@
   <view>
     <slot></slot>
   </view>
-
+  <wxs src="../../utils/tools.wxs" module="tools" />
   <block wx:if="{{item.image}}">
     <image class="person" src="{{ item.image }}" mode="aspectFill" bind:tap="translate" />
     <view class="main" style="left:{{ leftOffset  }} ; bottom: {{ bottomOffset }}" bind:tap="translateByClick">
@@ -14,7 +14,7 @@
         </view>
         <view class="item">
           <view class="title">身高：</view>
-          <view class="content">{{ item.height }}cm</view>
+          <view class="content">{{ tools.formatHeightStr(item.height) }}cm</view>
         </view>
         <view class="item">
           <view class="title">位置：</view>

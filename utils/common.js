@@ -16,7 +16,6 @@ class Common {
   }
   init() {
     if (!this.systemInfo || !this.menuButtonInfo) return
-
     this.navBarHeight = this.systemInfo.statusBarHeight + 44;
     this.menuRight = this.systemInfo.screenWidth - this.menuButtonInfo.right;
     this.menuTop = this.menuButtonInfo.top;

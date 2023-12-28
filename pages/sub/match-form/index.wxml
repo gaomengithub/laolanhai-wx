@@ -1,17 +1,20 @@
 <nav-bar title="创建/修改"></nav-bar>
-<wxs src="./index.wxs" module="tools" />
+
 <view class="container">
 
   <!-- 图片上传 -->
   <van-uploader bind:delete='deleteImg' file-list="{{ matchForm.files || [] }}" bind:after-read="onAfterRead" max-count="2" image-fit="widthFix" accept="image">
     <image class="upload-bg-img" src="{{ icon.upload }}" mode="aspectFill" />
   </van-uploader>
-
+  <!-- <view class="tip" wx:if="{{showTip}}">
+    <van-icon name="warning-o" size="20px" color="#2979ff" />
+    <view style="margin:0 0 2rpx 6rpx">需要上传两张图片</view>
+  </view> -->
   <!-- 名称 -->
-  <van-field value="{{ matchForm.name || ''}}" placeholder="清晰的活动标题" bind:change="handler" data-key="name" />
+  <van-field value="{{ matchForm.name || ''}}" placeholder="清晰的活动标题" bind:change="handler" data-key="name" maxlength="64" />
 
   <!-- 详情描述 -->
-  <van-field class="field-input-class" value="{{ matchForm.description || '' }}" type="textarea" autosize="{{ autoSize }}" bind:change="handler" data-key="description" placeholder="描述一下比赛规则、比赛内容、比赛奖励、推荐的人群、贴心tips等，叫大家一起打比赛吧~" />
+  <van-field class="field-input-class" value="{{ matchForm.description || '' }}" type="textarea" autosize="{{ autoSize }}" bind:change="handler" data-key="description" placeholder="描述一下比赛规则、比赛内容、比赛奖励、推荐的人群、贴心tips等，叫大家一起打比赛吧~"/>
 
   <!-- 日期 -->
   <van-cell is-link icon="{{ icon.date }}" title="日期" value="{{ matchForm.date }}" bind:click="onDisplay" data-show="showCalendar" />
@@ -34,37 +37,37 @@
     <van-cascader wx:if="{{ showAreaCascader }}" value="{{ regionVal }}" title="请选择所在地区" options="{{ options }}" field-names="{{ fieldNames }}" active-color="#ee0a24" bind:close="onDisplay" data-show="showAreaCascader" data-key="region" bind:finish="handler" />
   </van-popup>
   <!-- 详细地址 -->
-  <van-field left-icon="wap-home" value="{{ matchForm.address || ''}}" bind:change="handler" input-align="right" placeholder="请输详细地址" data-key="address">
+  <van-field left-icon="wap-home" value="{{ matchForm.address || ''}}" bind:change="handler" input-align="right" placeholder="请输详细地址" data-key="address" maxlength="64">
     <view slot="label">详细地址</view>
   </van-field>
 
   <!-- 人数/队伍数量 -->
-  <van-field left-icon="friends" value="{{ matchForm.join_num || ''}}" bind:change="handler" input-align="right" placeholder="请输入{{ matchForm.match_type == '3' ? '人数' : '队伍数量' }}" type="digit" data-key="join_num">
+  <van-field left-icon="friends" value="{{ matchForm.join_num || ''}}" bind:change="handler" input-align="right" placeholder="请输入{{ matchForm.match_type == '3' ? '人数' : '队伍数量' }}" type="digit" data-key="join_num" maxlength="2">
     <view slot="label">{{ matchForm.match_type == '3' ? '人数' : '队伍数量' }}</view>
   </van-field>
 
 
-  <van-field bind:change="handler" left-icon="{{icon.age_group_start}}" value="{{ matchForm.age_group_start || ''}}" input-align="right" placeholder="可参加的最小年龄" type="digit" data-key="age_group_start">
+  <van-field bind:change="handler" left-icon="{{icon.age_group_start}}" value="{{ matchForm.age_group_start || ''}}" input-align="right" placeholder="可参加的最小年龄" type="digit" data-key="age_group_start" maxlength="2">
     <view slot="label">最小年龄</view>
   </van-field>
-  <van-field bind:change="handler" left-icon="{{ icon.age_group_end }}" value="{{ matchForm.age_group_end || ''}}" input-align="right" placeholder="可参加的最大年龄" type="digit" data-key="age_group_end">
+  <van-field bind:change="handler" left-icon="{{ icon.age_group_end }}" value="{{ matchForm.age_group_end || ''}}" input-align="right" placeholder="可参加的最大年龄" type="digit" data-key="age_group_end" maxlength="2">
     <view slot="label">最大年龄</view>
   </van-field>
 
   <!-- 费用 -->
   <van-cell icon="{{ icon.price }}" title="费用" value="{{ matchForm.cost }}" is-link bind:click="onDisplay" data-show="showCostAction" />
-  <van-action-sheet show="{{ showCostAction }}" actions="{{ actions }}" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" data-show="showCostAction" data-key="cost" />
+  <van-action-sheet show="{{ showCostAction }}" actions="{{ actions }}" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" data-show="showCostAction" bind:close="onDisplay" data-key="cost" />
 
   <!-- 球馆 -->
   <view wx:if="{{matchForm.myArenas}}">
     <van-cell icon="{{ icon.arena }}" title="关联球馆" value="{{ matchForm.arena.name }}" is-link bind:click="onDisplay" data-show="showArenaAction" />
-    <van-action-sheet show="{{ showArenaAction }}" actions="{{ matchForm.myArenas }}" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" data-show="showArenaAction" data-key="arena" />
+    <van-action-sheet show="{{ showArenaAction }}" actions="{{ matchForm.myArenas }}" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" bind:close="onDisplay" data-show="showArenaAction" data-key="arena" />
   </view>
 
   <!-- 球队 -->
   <view wx:if="{{ matchForm.match_type == 2 }}">
     <van-cell icon="{{ icon.team }}" title="关联球队" value="{{ matchForm.team.name }}" is-link bind:click="onDisplay" border="{{ false }}" data-show="showTeamAction" />
-    <van-action-sheet show="{{ showTeamAction }}" actions="{{ matchForm.myTeams }}" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" data-show="showTeamAction" data-key="team" />
+    <van-action-sheet show="{{ showTeamAction }}" actions="{{ matchForm.myTeams }}" cancel-text="取消" bind:select="handler" bind:cancel="onDisplay" bind:close="onDisplay" data-show="showTeamAction" data-key="team" />
   </view>
 
 </view>

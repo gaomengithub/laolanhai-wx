@@ -6,9 +6,9 @@
   <van-uploader bind:delete='deleteImg' file-list="{{ starForm.files || [] }}" bind:after-read="onAfterRead" max-count="1" image-fit="widthFix" accept="image">
     <image class="upload-bg-img" src="{{ icon.upload }}" mode="aspectFill" />
   </van-uploader>
-  <van-cell value="{{ starForm.nickName }}" value-class="cell-value" is-link link-type="navigateTo" url="/pages/sub/user-list-page/index">
+  <!-- <van-cell value="{{ starForm.nickName }}" value-class="cell-value" is-link link-type="navigateTo" url="/pages/sub/user-list-page/index">
     <view slot="title" class="label">用户</view>
-  </van-cell>
+  </van-cell> -->
   <van-field bind:change="handler" value="{{ starForm.age || ''}}" input-align="right" placeholder="" data-key="age" type="number">
     <view slot="label" class="label">球龄（年）</view>
   </van-field>
@@ -19,16 +19,16 @@
   <van-action-sheet show="{{ show }}" actions="{{ actions }}" cancel-text="取消" bind:close="onClose" bind:select="handler" data-key="position" />
   <!-- <van-field label-class="label" label="身高" bind:change="handler" value="{{ starForm.height || ''}}" input-align="right" placeholder="" data-key="height" type="number" /> -->
   <van-field bind:change="handler" value="{{ starForm.score || ''}}" input-align="right" placeholder="" data-key="score" type="number">
-    <view slot="label" class="label">总得分</view>
+    <view slot="label" class="label">场均得分</view>
   </van-field>
   <van-field bind:change="handler" value="{{ starForm.steal || ''}}" input-align="right" placeholder="" data-key="steal" type="number">
-    <view slot="label" class="label">总罚球得分</view>
+    <view slot="label" class="label">场均罚球</view>
   </van-field>
-  <van-field bind:change="handler" value="{{ starForm.threePoint || ''}}" input-align="right" placeholder="" data-key="threePoint" type="number">
-    <view slot="label" class="label">总三分得分</view>
+  <van-field title-width="300rpx" bind:change="handler" value="{{ starForm.threePoint || ''}}" input-align="right" placeholder="" data-key="threePoint" type="number">
+    <view slot="label" class="label">三分球场均命中数</view>
   </van-field>
-  <van-field bind:change="handler" value="{{ starForm.assist || ''}}" input-align="right" placeholder="" data-key="assist" type="number">
-    <view slot="label" class="label">总助攻数</view>
+  <van-field  bind:change="handler" value="{{ starForm.assist || ''}}" input-align="right" placeholder="" data-key="assist" type="number">
+    <view slot="label" class="label">场均助攻数</view>
   </van-field>
 </view>
 

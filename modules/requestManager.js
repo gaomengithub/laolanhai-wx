@@ -15,7 +15,7 @@ function requestWithToken(obj, accessToken, retry) {
     var data = obj.data || {};
     var contentType = obj.contentType || 'application/json';
     var method = obj.method || 'GET';
-    wx.showLoading({ title: '请等待', mask:true})
+    wx.showLoading({ title: '请等待', mask: true })
     wx.request({
       url: BASE_URL + obj.url,
       data: data,
@@ -33,9 +33,12 @@ function requestWithToken(obj, accessToken, retry) {
           if (retry < 2) {
             retryTimeout = setTimeout(() => {
               request_(obj, retry + 1, true)
-                .then(() => clearTimeout(retryTimeout))
+                .then((data) => {
+                  resolve(data)
+                  clearTimeout(retryTimeout)
+                })
                 .catch(() => clearTimeout(retryTimeout))
-            }, 1000)
+            }, 500)
           } else {
             reject(new Error('重试超过最大次数'))
             handleErr("获取token的重试次数超过最大值")

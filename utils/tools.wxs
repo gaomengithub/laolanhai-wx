@@ -20,6 +20,7 @@ var formatLocation = function (str) {
   }
 }
 
+
 var formatPrice = function (str) {
   if (str) {
     var idx = parseInt(str[0])
@@ -48,6 +49,12 @@ var isEmptyArr = function (arr) {
 var formatDate = function (str) {
   if (str) {
     return str.split("T")[0]
+  }
+}
+
+var formatHeightStr = function (str) {
+  if (str) {
+    return str.replace("undefined","")
   }
 }
 
@@ -88,7 +95,7 @@ var getTypeName = function (index) {
 }
 
 module.exports = {
-  formatDate:formatDate,
+  formatDate: formatDate,
   getTypeName: getTypeName,
   formatLocation: formatLocation,
   formatDateStartEndTime: formatDateStartEndTime,
@@ -99,5 +106,6 @@ module.exports = {
   calcJoinedNum: calcJoinedNum,
   isEmptyArr: isEmptyArr,
   formatEndTime: formatEndTime,
-  arrayLengthCount: arrayLengthCount
+  arrayLengthCount: arrayLengthCount,
+  formatHeightStr:formatHeightStr
 }

@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getUserInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData, getTeamsList, getMyJoinTeamsList, getCustomMatchRecord } from '$/utils/api'
+import { getUserBaseInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData, getTeamsList, getMyJoinTeamsList, getCustomMatchRecord } from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { handleErr, handleInfo, handleErrWithLog } from '../modules/msgHandler'
 import { userFormRules, userFormMessages, userFormRules_, userFormMessages_ } from '$/utils/validate/validate-set'
@@ -59,13 +59,8 @@ export const user = observable({
   },
   approvals: [],
   joinedMatches: [], // 用户参加的比赛
+  userForm: null,
   userInfo: {
-
-  },
-  userForm: {
-
-  },
-  user: {
     about: '',
     avatar: '',
     birthDate: '',
@@ -75,15 +70,13 @@ export const user = observable({
     nickName: '',
     weight: '',
     avatarKey: '',
-    // 自有字段
-    date: ''  //vant 组件要求传入时间戳 birthDate为字符串
   },
 
 
   get id() {
     let id = ""
     try {
-      id = this.user.id
+      id = this.userInfo.id
     } catch (e) {
       id = wx.getStorageSync('id')
     }
@@ -93,7 +86,7 @@ export const user = observable({
   // 预留  用来判断是否能组织正赛
   get isOrg() {
     try {
-      const quals = this.user.quals.map(item => item.qual)
+      const quals = this.userInfo.quals.map(item => item.qual)
       return quals.includes(1)
     } catch (e) {
       const quals = wx.getStorageSync('quals')
@@ -102,13 +95,11 @@ export const user = observable({
   },
 
   get isEditor() {
-
     if (this.starDetails.userId == this.id) {
-
       return true
     }
     try {
-      const quals = this.user.quals.map(item => item.qual)
+      const quals = this.userInfo.quals.map(item => item.qual)
       return quals.includes(8)
     } catch (e) {
       const quals = wx.getStorageSync('quals')
@@ -118,7 +109,7 @@ export const user = observable({
 
   get isUser() {
     try {
-      const quals = this.user.quals.map(item => item.qual)
+      const quals = this.userInfo.quals.map(item => item.qual)
       return !quals.includes(2)
       // 如果user中没有取到 则去本地存储中取
     } catch (e) {
@@ -135,7 +126,7 @@ export const user = observable({
 
   get isTeamLeader() {
     try {
-      const quals = this.user.quals.map(item => item.qual)
+      const quals = this.userInfo.quals.map(item => item.qual)
       return quals.includes(4)
     } catch (e) {
       const quals = wx.getStorageSync('quals')
@@ -268,9 +259,10 @@ export const user = observable({
   }),
 
   updateStarDetails: action(async function (id, share) {
+    // 如果是分享的情况则不检查是否注册成为用户
     if (share) {
       const data = await getStarData(id)
-      const part = await getUserInfo(id)
+      const part = await getUserBaseInfo(id)
       const arr = part.quals.map(item => item.qual)
       const patch = {
         isTeamLeader: arr.includes(4)
@@ -289,16 +281,16 @@ export const user = observable({
       try {
         const data = await getStarData(id)
         if (!data.imageKey) {
-          throw new Error("球星卡信息不完整")
+          throw new Error("球星卡必要信息不完整，请填写信息")
         }
-        const part = await getUserInfo(id)
+        const part = await getUserBaseInfo(id)
         const arr = part.quals.map(item => item.qual)
         const patch = {
           isTeamLeader: arr.includes(4)
         }
         this.starDetails = { ...data, ...patch, ...part }
       } catch (e) {
-        handleInfo("球星卡信息不完整，请填写信息",
+        handleInfo("球星卡必要信息不完整，请填写信息",
           function () {
             wx.navigateTo({ url: '/pages/sub/star-data-form/index?id=' + id })
           }
@@ -379,24 +371,26 @@ export const user = observable({
     }
   }),
 
-  // 用于提交后端修改  其实应该是active
-  modifyUserInfo: action(async function () {
+  activeUser: action(async function () {
     let form = null
     let isVali = false
     let error = null
+    // 判断是否是游客，游客是初始注册，注册只需要头像、生日和昵称
     if (!this.isUser) {
       form = {
         id: this.id,
-        avatar: this.user.avatarKey,
-        birthDate: this.user.birthDate,
-        nickName: this.user.nickName
+        avatar: this.userForm.avatarKey,
+        birthDate: this.userForm.birthDate,
+        nickName: this.userForm.nickName
       }
     } else {
+      // 如果是用户，则字段多身高、体重、自我介绍，传递整个userForm
+      // 需要对userForm部分字段做修正
       const patch = {
-        avatar: this.user.avatarKey,
-        height: this.user.height.replace("cm", "")
+        avatar: this.userForm.avatarKey,
+        height: this.userForm.height.replace("cm", "")
       }
-      form = { ...this.user, ...patch }
+      form = { ...this.userForm, ...patch }
     }
     if (!this.isUser) {
       isVali = this.validate_.checkForm(form)
@@ -418,46 +412,50 @@ export const user = observable({
     }
   }),
 
-  initUserInfo: action(function () {
-    let backup = JSON.parse(JSON.stringify(userBackup));
-    this.user = JSON.parse(JSON.stringify(backup));
+  initUserForm: action(function () {
+    let backup = JSON.parse(JSON.stringify(userFormBackup));
+    this.userForm = JSON.parse(JSON.stringify(backup));
   }),
 
-  updateUserInfo: action(async function (form) {
+  updateUserInfo: action(async function () {
+    try {
+      const data = await getUserBaseInfo()
+      const teams = await getTeamsList()
+      const matches = await getMyJoinMatches()
+      let myMatches = matches?.matches?.length ? matches.matches : []
+      let myTeams = teams?.items?.length ? teams.items.filter(item => item.isMyTeam) : []
+      const patch = { myMatches, myTeams }
+      this.userInfo = { ...this.userInfo, ...data, ...patch }
+    } catch (e) {
+      console.log(e)
+      handleErr("获得用户信息失败")
+    }
+  }),
+
+  updateUserForm: action(async function (form) {
     if (form) {
       if (form.avatarUrl) {
         // 修改头像
         const data = await uploadImgWithToken(form.avatarUrl)
-        this.user.avatarKey = data.key
-        this.user = Object.assign({}, this.user, { avatar: form.avatarUrl })
+        this.userForm.avatarKey = data.key
+        this.userForm = Object.assign({}, this.userForm, { avatar: form.avatarUrl })
       }
       else {
-        this.user = { ...this.user, ...form }
+        // 修改其他字段
+        this.userForm = { ...this.userForm, ...form }
       }
     }
-    // 获取用户信息更新user
+    // 给userForm赋值
     else {
       try {
-        this.initUserInfo()
-        const data = await getUserInfo()
-        const data_ = await getTeamsList()
-        const data__ = await getMyJoinMatches()
-        let myMatches = []
-        let myTeams = []
-        if (data__.matches) {
-          myMatches = data__.matches
-        }
-        if (data_.items) {
-          myTeams = data_.items.filter(item => item.isMyTeam)
-        }
-        // const myMatches = data__.matches
-        // const myTeams = data_.items.filter(item => item.isMyTeam)
+        this.initUserForm()
+        const data = await getUserBaseInfo()
         if (data.birthDate) {
-          this.user.date = new Date(data.birthDate).getTime()
+          this.userForm.date = new Date(data.birthDate).getTime()
         }
-        this.user = { ...this.user, ...data, myTeams, myMatches }
+        this.userForm = { ...this.userForm, ...data }
       } catch (e) {
-        handleErr("获得用户信息失败")
+        console.log(e)
       }
     }
   }),
@@ -478,7 +476,7 @@ let starFormBackup = {
 }
 
 
-let userBackup = {
+let userFormBackup = {
   about: '',
   avatar: '',
   birthDate: '',
@@ -489,5 +487,6 @@ let userBackup = {
   weight: '68',
   avatarKey: '',
   // 自有字段
-  date: "-652963200000"  //vant 组件要求传入时间戳 birthDate为字符串
+  //vant 组件要求传入时间戳 birthDate为字符串
+  date: "-652963200000"
 }

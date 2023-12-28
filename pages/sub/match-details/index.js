@@ -6,10 +6,12 @@ import { handleErr } from '../../../modules/msgHandler'
 Page({
   data: {
     show: false,
+    showMatchCode: false,
     // showPopup: false,
     actions: {
       user: [{ name: '计分器' }],
-      owner: [{ name: '计分器' }, { name: '编辑比赛详情' }, { name: '结束比赛', color: '#ee0a24' }]
+      owner: [{ name: '计分器' }, { name: '专业计分器' }, { name: '编辑比赛详情' }, { name: '结束比赛', color: '#ee0a24' }],
+      code: [{ name: '计分器' }, { name: '专业计分器' }, { name: '编辑比赛详情' }, { name: '结束比赛', color: '#ee0a24' }, { name: "展示二维码" }]
     },
     radio: 0,
     icon: {
@@ -86,8 +88,18 @@ Page({
     else if (e.detail.name == "结束比赛") {
       this.updateMatchStatus(this.data.matchDetails.id, 4)
       // path = `/pages/sub/custom-match-data/index?id=${this.data.matchDetails.id}`
+    } else if (e.detail.name == "展示二维码") {
+      this.setData({
+        showMatchCode: true
+      })
     }
     routeInterceptor.navigateTo(path)
+  },
+
+  onClose() {
+    this.setData({
+      showMatchCode: false
+    })
   },
 
   // 更改比赛状态
@@ -118,11 +130,13 @@ Page({
       fields: ["id", "user"],
     });
     if (options.id) {
-      this.updateMatchDetails(options.id)
+      this.loadDataAsync(options)
     } else {
       handleErr("比赛详情，非法的比赛id")
     }
   },
-
+  async loadDataAsync(options) {
+    await this.updateMatchDetails(options.id)
+  }
 
 })

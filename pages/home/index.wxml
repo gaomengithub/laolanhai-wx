@@ -1,4 +1,4 @@
-<nav-bar wx:if="{{ showNarBar }}" title="老蓝孩"></nav-bar>
+<nav-bar wx:if="{{ showNarBar }}" title="老篮孩"></nav-bar>
 
 <image class="banner" src="{{ banner }}" mode="widthFix" />
 
@@ -16,7 +16,7 @@
     <filter-bar></filter-bar>
   </van-sticky>
   <view>
-    <pretty-card item="{{ user || null }}"></pretty-card>
+    <pretty-card item="{{ userInfo || null }}"></pretty-card>
     <block wx:if="{{ tools.isEmptyArr(matchesList) }}">
       <matches-items items="{{ matchesList || [] }}"></matches-items>
     </block>

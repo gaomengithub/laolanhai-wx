@@ -17,7 +17,7 @@ Page({
       price: 'https://openstore.obabyball.com/ui_v1/icon/add-cost-v1.png',
       upload: 'https://openstore.obabyball.com/ui_v1/icon/add-upload-v1.svg',
       arena: 'https://openstore.obabyball.com/ui_v1/icon/match-form-arena.svg',
-      team:"https://openstore.obabyball.com/ui_v1/icon/%E5%85%B3%E8%81%94%E9%98%9F%E4%BC%8D.svg"
+      team: "https://openstore.obabyball.com/ui_v1/icon/%E5%85%B3%E8%81%94%E9%98%9F%E4%BC%8D.svg"
     },
     // 页面控制
     minHour: 8,
@@ -32,6 +32,7 @@ Page({
       value: 'text',
       children: 'children',
     },
+    // showTip: false,
     showStartTimePicker: false,
     showEndTimePicker: false,
     showCalendar: false,
@@ -68,6 +69,7 @@ Page({
   },
 
   handler(e) {
+
     const key = e.currentTarget.dataset.key
     let val = e.detail
     if (key == 'date') {
@@ -90,7 +92,10 @@ Page({
       val = parseInt(e.detail)
     }
 
-    if (e.type == "confirm" || e.type == "select" || e.type == "finish") {
+    // if (e.type == "confirm" || e.type == "select" || e.type == "finish") {
+    //   this.onDisplay(e)
+    // }
+    if (e.type == "confirm" || e.type == "finish") {
       this.onDisplay(e)
     }
 
@@ -102,6 +107,9 @@ Page({
 
   onAfterRead(e) {
     const { file } = e.detail;
+    // this.setData({
+    //   showTip: true
+    // })
     this.updateMatchForm(file)
   },
 

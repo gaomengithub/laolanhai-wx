@@ -66,7 +66,7 @@
 
   </bottom-btn-bar>
 </page-meta>
-<van-action-sheet cancel-text="取消" bind:cancel="onDisplay" show="{{ show }}" actions="{{ matchDetails.isMyCreate ? actions.owner : actions.user }}" bind:close="onDisplay" bind:select="onSelect" data-show="show" />
+<van-action-sheet cancel-text="取消" bind:cancel="onDisplay" show="{{ show }}" actions="{{ matchDetails.isMyCreate ?  (matchDetails.match_type == 3 ? actions.code : actions.owner)  : actions.user }}" bind:close="onDisplay" bind:select="onSelect" data-show="show" />
 
 
 
@@ -83,3 +83,10 @@
     </van-radio-group>
   </view>
 </van-dialog>
+
+
+<van-popup show="{{ showMatchCode }}" bind:close="onClose">
+
+  <image class="code" src="{{ matchDetails.qr_code }}" mode="aspectFit" />
+
+</van-popup>
