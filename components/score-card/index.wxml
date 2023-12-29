@@ -4,7 +4,7 @@
     <van-grid custom-class="grid" border="{{false}}">
       <van-grid-item content-class="item" use-slot>
         <view class="num">
-          {{ joinedNum }}
+          {{ item.sum.is_win || 0 +  item.sum.is_loss || 0}}
         </view>
         <view class="tag">
           参赛数
@@ -12,7 +12,7 @@
       </van-grid-item>
       <van-grid-item content-class="item" use-slot>
         <view class="num">
-          {{ win }}
+          {{ item.sum.is_win || 0}}
         </view>
         <view class="tag">
           获胜场
@@ -28,7 +28,7 @@
       </van-grid-item> -->
       <van-grid-item content-class="item" use-slot>
         <view class="num">
-          {{ pointer }}
+          {{ item.sum.total_point || 0 }}
         </view>
         <view class="tag">
           总得分

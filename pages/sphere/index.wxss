@@ -48,21 +48,47 @@ page {
 .user-avatar {
   width: 100rpx;
   height: 100rpx;
+  border-radius: 50%;
+  border: 6rpx solid #FB8808;
 }
 
 .user-item {
-  margin: 22rpx;
+  margin: 6rpx;
+  background-color: #FFF6DB;
+  padding: 22rpx;
+  border-radius: 44rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-star {
+  width: 250rpx;
+  height: 350rpx;
+  border-radius: 44rpx;
+  margin: 22rpx 0;
 }
 
 .user-container {
   display: flex;
-
 }
 
 .user-view {
   padding: 24rpx; 
   background-color: #FFFFFF;
-  margin: 24rpx;
+  margin:  0 24rpx;
   border-radius: 44rpx;
   max-width: 654rpx;
 }
+
+.btn {
+  border-radius: 44rpx !important;
+  background-color: #FB8808 !important;
+  height: 70rpx !important;
+  color: #FFFFFF !important;
+  margin: 12rpx 0 0 0;
+}
+
+
+

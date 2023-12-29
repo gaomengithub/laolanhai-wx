@@ -20,7 +20,7 @@
       </navigator>
     </view>
     <view class="score">
-      <score-card></score-card>
+      <score-card item="{{ playerData || null}}"></score-card>
     </view>
     <view class="active-card">
       <view class="cell" bind:tap="onCellClick" data-path="{{'/pages/sub/star-page/index?id=' + id}}">

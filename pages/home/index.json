@@ -7,5 +7,6 @@
     "no-data-tip": "/components/no-data-tip/index",
     "logo-bar": "/components/logo-bar/index",
     "pretty-card": "/components/pretty-card/index"
-  }
+  },
+  "enablePullDownRefresh": true 
 }

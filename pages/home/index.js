@@ -76,6 +76,10 @@ Page({
       this.updateMatchesList()
     }
   },
+  onPullDownRefresh() {
+    this.updateMatchesList(true)
+    wx.stopPullDownRefresh()
+  },
 
   onShareAppMessage() {
     return {

@@ -188,6 +188,15 @@ export async function getUserBaseInfo(id) {
   return await request_(obj)
 }
 
+export async function getUserStarList(data) {
+  let obj = {
+    url: '/user/listAllUser',
+    method: 'POST',
+    data: data
+  }
+  return await request_(obj)
+}
+
 
 export async function getTeamsList() {
   let obj = {
@@ -425,7 +434,7 @@ export async function getCustomMatchRecord() {
 
 
 export async function getMatchInputRecord(id) {
-  
+
   let obj = {
     url: '/match/listCompetitionResultsByMatchId',
     method: 'GET',

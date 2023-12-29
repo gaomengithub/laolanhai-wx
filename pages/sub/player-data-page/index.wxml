@@ -2,7 +2,7 @@
 
 <view class="container">
   <view class="play-card">
-    <player-card item="{{ user || null }}" />
+    <player-card item="{{ userInfo || null }}" />
   </view>
 
   <view class="win-loss">

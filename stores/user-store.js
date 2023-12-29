@@ -1,5 +1,5 @@
 import { observable, action } from "mobx-miniprogram"
-import { getUserBaseInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData, getTeamsList, getMyJoinTeamsList, getCustomMatchRecord ,getAllUsers} from '$/utils/api'
+import { getUserBaseInfo, getMyJoinMatches, getMatchApprovals, updateUserInfo, getStarData, updateStarData, getTeamsList, getMyJoinTeamsList, getCustomMatchRecord, getAllUsers, getUserStarList } from '$/utils/api'
 import { uploadImgWithToken } from '$/utils/qiniu/qiniu'
 import { handleErr, handleInfo, handleErrWithLog } from '../modules/msgHandler'
 import { userFormRules, userFormMessages, userFormRules_, userFormMessages_ } from '$/utils/validate/validate-set'
@@ -9,7 +9,11 @@ export const user = observable({
   validate_: new WxValidate(userFormRules_, userFormMessages_),
   showStarPage: true,
   starDetails: {},
-  usersList:[],
+  userStarList: [],
+  userStarListOptions: {
+    pageSize: 10,
+    pageToken: ""
+  },
   playerData: {
     sum: {
       assist: "",
@@ -159,13 +163,14 @@ export const user = observable({
   },
 
 
-  updateUsersList: action(async function () {
+  updateUserStarList: action(async function () {
     try {
-      const data = await getAllUsers()
-      this.usersList = data
+      const data = await getUserStarList(this.userStarListOptions)
+      this.userStarList = data.AllUser.filter(item => item.nickName != '用户879875'  && item.ballStarCardImage)
+      this.userStarListOptions.pageToken = data.NextPageToken
     } catch (e) {
       const err = {
-        content: "获取用户列表失败",
+        content: "获取球星列表失败",
         msg: e
       }
       handleErrWithLog(err, wx.navigateBack)
@@ -175,7 +180,7 @@ export const user = observable({
   updatePlayerData: action(async function (params) {
     try {
       const data = await getCustomMatchRecord()
-      if (data) {
+      if (data && data.length != 0) {
         const assist_arr = data.map(item => item.assist)
         const block_arr = data.map(item => item.block)
         const hit_free_throw_arr = data.map(item => item.hit_free_throw)
@@ -261,9 +266,48 @@ export const user = observable({
             ).toFixed(1),
           }
         }
+      } else {
+        this.playerData = {
+          sum: {
+            assist: 0,
+            block: 0,
+            hit_free_throw: 0,
+            hit_three_point: 0,
+            hit_two_point: 0,
+            is_win: 0,
+            is_loss: 0,
+            rebound: 0,
+            steal: 0,
+            total_free_throw: 0,
+            total_point: 0,
+            total_three_point: 0,
+            total_two_point: 0,
+          },
+          per: {
+            free_throw: 0,
+            two_point: 0,
+            three_point: 0,
+          },
+          avg: {
+            assist: 0,
+            block: 0,
+            hit_free_throw: 0,
+            hit_three_point: 0,
+            hit_two_point: 0,
+            // is_win: (
+            //   assist_arr.reduce((prev, curr) => { return prev + curr }) / assist_arr.length
+            // ).toFixed(1),
+            rebound: 0,
+            steal: 0,
+            total_free_throw: 0,
+            total_point: 0,
+            total_three_point: 0,
+            total_two_point: 0,
+          }
+        }
       }
     } catch (e) {
-      handleErr("您还没有录入比赛数据，不能查看该页面", wx.navigateBack)
+      console.log(e)
     }
 
   }),
@@ -419,8 +463,10 @@ export const user = observable({
     } else {
       try {
         await updateUserInfo(form)
-        await this.updateUserInfo()
-        handleInfo("更新成功", wx.navigateBack)
+        handleInfo("更新成功", async () => {
+          wx.navigateBack()
+          await this.updateUserInfo()
+        })
       } catch (e) {
         handleErr("更新出错")
       }
@@ -499,7 +545,7 @@ let userFormBackup = {
   honors: '',
   id: '',
   nickName: '',
-  weight: '68',
+  weight: '68kg',
   avatarKey: '',
   // 自有字段
   //vant 组件要求传入时间戳 birthDate为字符串

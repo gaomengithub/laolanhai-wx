@@ -5,7 +5,7 @@ Page({
   data: {
     img: {
       light: 'https://openstore.obabyball.com/ui_v1/img/mine-light-img-v1.svg',
-      react:'https://openstore.obabyball.com/ui_v1/icon/Rectangle-grey-round.svg'
+      react: 'https://openstore.obabyball.com/ui_v1/icon/Rectangle-grey-round.svg'
     },
     icon: {
       team: 'https://openstore.obabyball.com/ui_v1/icon/mine-team-v1.svg',
@@ -41,10 +41,11 @@ Page({
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store: user,
-      fields: ["userInfo", "joinedMatches", "id"],
-      actions: ["updateUserInfo", "updateUserMatches","updateJoinedMatches"],
+      fields: ["userInfo", "joinedMatches", "id","playerData"],
+      actions: ["updateUserMatches", "updatePlayerData"],
     })
     this.updateUserMatches()
+    this.updatePlayerData()
   },
 
 

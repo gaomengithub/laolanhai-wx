@@ -29,15 +29,19 @@ Page({
 
     this.storeBindings__ = createStoreBindings(this, {
       store: user,
-      fields: ["usersList"],
-      actions: ["updateUsersList"],
+      fields: ["userStarList"],
+      actions: ["updateUserStarList"],
     });
-    this.updateUsersList()
+    this.updateUserStarList()
   },
   onUnload() {
     this.storeBindings.destroyStoreBindings();
     this.storeBindings_.destroyStoreBindings()
     this.storeBindings__.destroyStoreBindings()
+  },
+
+  handleLoadData() {
+    this.updateUserStarList()
   },
 
   ToTeamCreate() {
@@ -48,6 +52,13 @@ Page({
   handleTap(e) {
     const id = e.currentTarget.dataset.id
     const path = `/pages/sub/team-details/index?id=${id}`
+    routeInterceptor.navigateTo(path)
+  },
+
+  handleClickToStar(e) {
+    console.log(e)
+    const id = e.currentTarget.dataset.id
+    const path = `/pages/sub/star-page/index?userID=${id}`
     routeInterceptor.navigateTo(path)
   },
 

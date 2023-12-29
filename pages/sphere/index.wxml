@@ -1,24 +1,22 @@
 <nav-bar title="球界"></nav-bar>
 <view class="container">
   <van-tabs active="{{ active }}" sticky offset-top="{{ offset }}" tab-class="tab" custom-class="tabs" color="#FB8808">
-    <van-tab title="球员">
+    <van-tab title="球星">
 
       <view class="player-list">
-        <top-line name="所有球员" more="{{ false }}"></top-line>
-        <scroll-view class="user-view" scroll-x enable-flex style="flex-direction: row;">
-          <view class="user-container" >
-            <view class="user-item" wx:for="{{ usersList }}" wx:key="id">
-              <image class="user-avatar" src="{{ item.avatar }}" mode="aspectFit" />
+        <top-line name="所有球星" more="{{ false }}"></top-line>
+        <scroll-view class="user-view" scroll-x enable-flex style="flex-direction: row;" bindscrolltolower="handleLoadData"	>
+          <view class="user-container">
+            <view class="user-item" wx:for="{{ userStarList }}" wx:key="id">
+              <image class="user-avatar" src="{{ item.avatar }}" mode="aspectFit"  />
+              <image class="user-star" src="{{ item.ballStarCardImage }}" mode="aspectFill" bind:tap="handleClickToStar" data-id="{{item.id}}" />
               <view class="user-name">{{item.nickName}}</view>
+              <van-button custom-class="btn" bind:click="handleClickToStar" data-id="{{item.id}}">点击查看</van-button>
             </view>
           </view>
         </scroll-view>
       </view>
 
-
-      <view class="star-list">
-        <top-line name="所有球星" more="false"></top-line>
-      </view>
 
       <logo-bar placeholder="188rpx"></logo-bar>
     </van-tab>

@@ -21,10 +21,10 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store: user,
-      fields: ["user", "playerData"],
-      actions: ["updateStarDetails","updatePlayerData"],
+      fields: ["userInfo", "playerData"],
+
     })
-    this.updatePlayerData()
+    
 
   }
 
